@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -21,6 +22,20 @@ return new class extends Migration
             $table->string('lab');
             $table->timestamps();
         });
+
+        // Fake data for medication
+        DB::table('medicines')->insert([
+            [
+                'name' => 'MEdicamento',
+                'presentation' => 'gotas',
+                'concentration' => '1ml',
+                'volume_flask' => '100ml',
+                'formulation' => 'Canabidiol',
+                'lab' => 'Laboratorio',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
     }
 
     /**

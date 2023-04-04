@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\MedicineController;
 use App\Http\Controllers\Api\V1\Patient\AuthController;
 use App\Http\Controllers\Api\V1\Patient\PatientController;
 use App\Http\Controllers\Api\V1\Patient\RecoverController;
+use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +34,12 @@ Route::prefix('patient')->group(function(){
 
     // Authenticated Routes for Patient
     Route::middleware('auth:sanctum')->group(function() {
+
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
+        
+        Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
     });
 
 });

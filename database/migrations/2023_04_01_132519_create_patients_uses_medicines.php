@@ -21,9 +21,13 @@ return new class extends Migration
             $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');;
 
             $table->string('description')->nullable();
+            $table->integer('howMany')->nullable();
 
             $table->timestamps();
         });
+
+
+        
     }
 
     /**
