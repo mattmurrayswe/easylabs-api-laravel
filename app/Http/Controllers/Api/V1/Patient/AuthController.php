@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1\Patient;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\Api\V1\SignupRequest;
 use App\Http\Requests\Api\V1\LoginRequest;
+use App\Http\Requests\Api\V1\PatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
-use App\Http\Resources\Api\V1\SpecificUserResource;
-use App\Models\User;
+use App\Http\Resources\Api\V1\SpecificPatientResource;
+use App\Models\Patient;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function signup(SignupRequest $request)
+    public function signup(PatientRequest $request)
     {
-        $data = $request->validated();
+        $request->merge([
+            'active' => true,
+        ]);
 
-        $data['password'] = bcrypt($data['password']);
-
-        $user = User::create($data);
+        $request['password'] = bcrypt($request['password']);
+        
+        $user = Patient::create($request->all());
 
         $token = $user->createToken('main')->plainTextToken;
 
@@ -37,7 +39,7 @@ class AuthController extends Controller
             ], 422);
         }
 
-        /** @var User $user */
+        /** @var Patient $patient */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
 
@@ -48,16 +50,16 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        /** @var User $user */
+        /** @var Patient $user */
         $user = $request->user();
         $user->currentAccessToken()->delete();
 
         return response('', 204);
     }
 
-    public function userInfo(Int $id)
+    public function patientInfo(Int $id)
     {
-        $user = User::find($id);
+        $user = Patient::find($id);
 
         if (!isset($user)) {
             return response([
@@ -65,7 +67,6 @@ class AuthController extends Controller
             ], 404);
         }
 
-        return new SpecificUserResource($user);
+        return new SpecificPatientResource($user);
     }
-
 }

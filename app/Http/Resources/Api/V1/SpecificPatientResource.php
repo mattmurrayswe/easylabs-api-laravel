@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DefaultUserResource extends JsonResource
+class SpecificPatientResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,10 @@ class DefaultUserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'createdAt' => $this->created_at->format('d-m-Y')
+            'cpf' => $this->cpf,
+            'cellphone' => $this->cellphone,
+            'active' => $this->active,
+            'birth' => $this->birth,
         ];
     }
 }

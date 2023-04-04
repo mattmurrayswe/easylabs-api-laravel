@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Patient::class,
         ],
 
         // 'users' => [
@@ -92,8 +92,8 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
-            'table' => 'password_reset_tokens',
+            'provider' => 'patients',
+            'table' => 'password_reset_tokens_patients',
             'expire' => 60,
             'throttle' => 60,
         ],

@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Patient\AuthController;
+use App\Http\Controllers\Api\V1\Patient\PatientController;
+use App\Http\Controllers\Api\V1\Patient\RecoverController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\AuthController;
-use App\Http\Controllers\Api\V1\RecoverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +17,53 @@ use App\Http\Controllers\Api\V1\RecoverController;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
+// Patient
+Route::prefix('patient')->group(function(){
+
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/signup', [AuthController::class, 'signup']);
+
+    Route::post('/recover-password', [RecoverController::class, 'recoverPassword']);
+    Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);
+    Route::post('/new-password', [RecoverController::class, 'newPassword']);
+    Route::post('/new-code', [RecoverController::class, 'sendNewCode']);
+
+    // Route::post('/approbation', [RecoverController::class, 'approbation']);
+
+    // Authenticated Routes for Patient
+    Route::middleware('auth:sanctum')->group(function() {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
+        Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
     });
 
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/user-info/{id}', [AuthController::class, 'userInfo']);
 });
 
-Route::post('/signup', [AuthController::class, 'signup']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/recover-password', [RecoverController::class, 'recoverPassword']);
-Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);
-Route::post('/new-password', [RecoverController::class, 'newPassword']);
-Route::post('/approbation', [RecoverController::class, 'approbation']);
+
+// Prescriber
+// Route::prefix('prescriber')->group(function(){
+
+//     Route::post('/login', [AuthController::class, 'login']);
+//     Route::post('/signup', [AuthController::class, 'signup']);
+//     Route::post('/recover-password', [RecoverController::class, 'recoverPassword']);
+//     Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);
+//     Route::post('/new-password', [RecoverController::class, 'newPassword']);
+//     Route::post('/approbation', [RecoverController::class, 'approbation']);
+
+//     // Authenticated Routes for Prescriber
+//     Route::middleware('auth:sanctum')->group(function() {
+//         Route::get('/user', function (Request $request) {
+//             return $request->user();
+//         });
+
+//         Route::post('/logout', [AuthController::class, 'logout']);
+//         Route::get('/user-info/{id}', [AuthController::class, 'userInfo']);
+//     });
+
+// });
+
+
+
+
+
+
