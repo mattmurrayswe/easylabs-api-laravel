@@ -14,7 +14,7 @@ class PatientUsesMedicineController extends Controller
         try {
             PatientUsesMedicine::create($request->all());
             return response([
-                'message' => 'Medicine use recorded.'
+                'message' => 'Uso do remédo feito com sucesso!'
             ], 200);
 
         } catch (\Throwable $th) {

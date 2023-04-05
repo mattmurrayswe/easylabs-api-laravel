@@ -23,13 +23,30 @@ class PatientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:55'],
+            'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:patients,email'],
-            'password' => ['required', Password::min(6)->letters()->symbols(),'confirmed'],
+            'password' => ['required', 'min:6','confirmed'],
             'cellphone' => ['required', 'string'],
             'cpf' => ['required', 'string', 'max:11', 'unique:patients,cpf'],
-            'cellphone' => ['required', 'string'],
-            'birth' => ['date_format:Y-m-d','before:today','nullable'],
+            'birth' => ['date_format:Y-m-d','before:today','required'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo Nome é obrigatório!',
+            'email.required' => 'O campo Email é obrigatório!',
+            'password.required' => 'O campo Senha é obrigatório!',
+            'cellphone.required' => 'O campo Celular é obrigatório!',
+            'cpf.required' => 'O campo CPF é obrigatório!',
+            'birth.required' => 'O campo Data de Nascimento é obrigatório!',
+            'password_confirmation.required' => 'O campo Confirmação de senha é obrigatório!',
+            'cpf.unique' => 'CPF ja cadastrado em nossa base',
+            'email.unique' => 'Email ja cadastrado em nossa base!',
+            'password.Password' => 'fewfwefwe',
+            'password.confirmed' => 'As duas senhas não são iguais',
+            'password.min' => 'Senha deve ter no mínimo 6 caracteres!',
         ];
     }
 }

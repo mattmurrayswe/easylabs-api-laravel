@@ -38,6 +38,7 @@ Route::prefix('patient')->group(function(){
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
+        Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
         
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
     });

@@ -46,8 +46,8 @@ class Patient extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function scopeIsActive($query)
+    public function scopeIsInactive($query)
     {
-        return $query->where('active',true);
+        return $query->where('active',false);
     }
 }

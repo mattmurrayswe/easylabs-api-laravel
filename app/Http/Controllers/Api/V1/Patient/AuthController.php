@@ -31,7 +31,9 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request)
-    {
+    {   
+
+        
         $credentials = $request->validated();
         if (!Auth::attempt($credentials)) {
             return response([
@@ -39,6 +41,12 @@ class AuthController extends Controller
             ], 422);
         }
 
+        if (Patient::where('email', $request->email)->IsInactive()->get()->count() > 0) {
+            return response([
+                'message' => 'Sua conta esta desativada!'
+            ], 422);
+        }
+        
         /** @var Patient $patient */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
@@ -63,7 +71,7 @@ class AuthController extends Controller
 
         if (!isset($user)) {
             return response([
-                'message' => 'User not found'
+                'message' => 'Paciente não encontrado!'
             ], 404);
         }
 

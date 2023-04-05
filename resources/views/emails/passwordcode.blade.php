@@ -76,9 +76,6 @@
             <table border="0" cellpadding="0" cellspacing="0" width="480" >
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
-                        <a href="http://litmus.com" target="_blank">
-                            <img alt="Logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/665940/helloglogo.png" width="100" height="100" style="display: block;  font-family: 'Lato', Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;" border="0">
-                        </a>
                     </td>
                 </tr>
             </table>

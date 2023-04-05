@@ -47,12 +47,12 @@ class RecoverController extends Controller
             $this->deleteRecoverToken($request);
 
             return response([
-                "message" => "Your recovery code had been successfully validated."
+                "message" => "Seu código foi validado com sucesso!."
             ]);
         }
 
         return response([
-            "message" => "Invalid recovery code."
+            "message" => "Código de validação inválido."
         ]);
     }
 
@@ -70,7 +70,7 @@ class RecoverController extends Controller
         Patient::where('email', $request['email'])->update(['password' => $request['password']]);
 
         return response([
-            "message" => "Password changed successfully!"
+            "message" => "Senha alterada com sucesso!"
         ]);
     }
 

@@ -18,7 +18,24 @@ class PatientController extends Controller
             ]);
 
             return response([
-                'message' => 'Patient disabled with success.'
+                'message' => 'Patient desativado com sucesso.'
+            ], 200);
+        } catch (\Throwable $th) {
+
+            return response([
+                'message' => $th
+            ], 422);
+        }
+    }
+    public function delete($id)
+    {
+        $patient = Patient::find($id);
+
+        try {
+            $patient->delete();
+
+            return response([
+                'message' => 'Conta deletada com sucesso!'
             ], 200);
         } catch (\Throwable $th) {
 
