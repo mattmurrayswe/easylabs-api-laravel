@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\V1\ErrorResource;
+use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
 use App\Models\PatientPasswordRecover;
 use App\Notifications\PasswordRecoveryNotification;
@@ -45,15 +47,12 @@ class RecoverController extends Controller
         if ($code === $recoveryCode->token) {
 
             $this->deleteRecoverToken($request);
+            return response()->json(new SuccessResource("Seu código foi validado com sucesso!"), 200);
 
-            return response([
-                "message" => "Seu código foi validado com sucesso!."
-            ]);
         }
 
-        return response([
-            "message" => "Código de validação inválido."
-        ]);
+        return response()->json(new ErrorResource("Código de validação inválido."), 200);
+
     }
 
     public function newPassword(Request $request)
@@ -69,9 +68,9 @@ class RecoverController extends Controller
 
         Patient::where('email', $request['email'])->update(['password' => $request['password']]);
 
-        return response([
-            "message" => "Senha alterada com sucesso!"
-        ]);
+        
+        return response()->json(new SuccessResource("Senha alterada com sucesso!"), 200);
+
     }
 
     public function sendNewCode(Request $request)

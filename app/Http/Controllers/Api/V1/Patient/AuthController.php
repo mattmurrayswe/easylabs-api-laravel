@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\LoginRequest;
 use App\Http\Requests\Api\V1\PatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
+use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SpecificPatientResource;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -36,15 +37,13 @@ class AuthController extends Controller
         
         $credentials = $request->validated();
         if (!Auth::attempt($credentials)) {
-            return response([
-                'error' => 'Email ou senha incorreto.'
-            ], 422);
+            return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
+
         }
 
         if (Patient::where('email', $request->email)->IsInactive()->get()->count() > 0) {
-            return response([
-                'error' => 'Sua conta esta desativada!'
-            ], 422);
+            return response()->json(new ErrorResource('Sua conta esta desativada.'), 422);
+
         }
         
         /** @var Patient $patient */
@@ -70,9 +69,8 @@ class AuthController extends Controller
         $user = Patient::find($id);
 
         if (!isset($user)) {
-            return response([
-                'message' => 'Paciente não encontrado!'
-            ], 404);
+            return response()->json(new ErrorResource('Paciente nao encontrado.'), 422);
+
         }
 
         return new SpecificPatientResource($user);

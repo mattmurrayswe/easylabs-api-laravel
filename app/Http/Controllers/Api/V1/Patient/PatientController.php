@@ -22,14 +22,10 @@ class PatientController extends Controller
                 'active' => false
             ]);
 
-            return response([
-                'message' => 'Patient desativado com sucesso.'
-            ], 200);
-        } catch (\Throwable $th) {
+            return response()->json(new SuccessResource('Patient desativado com sucesso.'), 422);
 
-            return response([
-                'message' => $th
-            ], 422);
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th), 422);
         }
     }
     public function delete($id)
@@ -39,14 +35,12 @@ class PatientController extends Controller
         try {
             $patient->delete();
 
-            return response([
-                'message' => 'Conta deletada com sucesso!'
-            ], 200);
+            return response()->json(new SuccessResource('Conta deletada com sucesso.'), 422);
+
         } catch (\Throwable $th) {
 
-            return response([
-                'message' => $th
-            ], 422);
+            return response()->json(new ErrorResource($th), 422);
+
         }
     }
 
