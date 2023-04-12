@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\V1\MedicineController;
+use App\Http\Controllers\Api\V1\NewTreatmentController;
 use App\Http\Controllers\Api\V1\Patient\AuthController;
 use App\Http\Controllers\Api\V1\Patient\PatientController;
 use App\Http\Controllers\Api\V1\Patient\RecoverController;
+use App\Http\Controllers\Api\V1\PatientInformTreatmentController;
 use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use Illuminate\Http\Request;
@@ -49,6 +51,10 @@ Route::prefix('patient')->group(function(){
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
 
+        // Patient inform me
+        Route::post('/inform-treatment', [PatientInformTreatmentController::class, 'informTreatment']);
+
+        
         // Medicine
         Route::post('/medicine', [MedicineController::class, 'store']);
         Route::get('/medicine/{id}', [MedicineController::class, 'getMedicine']);
@@ -63,6 +69,12 @@ Route::prefix('patient')->group(function(){
         Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
         Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
 
+        // newTreatment
+        Route::post('/new-treatment', [NewTreatmentController::class, 'store']);
+        Route::get('/all-newtreatments', [NewTreatmentController::class, 'getAllTreatment']);
+        Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'show']);
+        Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroy']);
+        Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'update']);
 
     });
 
