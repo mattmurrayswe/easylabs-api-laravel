@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\LoginRequest;
 use App\Http\Requests\Api\V1\PatientRequest;
+use App\Http\Requests\Api\V1\EditPatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SpecificPatientResource;
@@ -74,5 +75,29 @@ class AuthController extends Controller
         }
 
         return new SpecificPatientResource($user);
+    }
+
+    public function editPatientInfo(int $id, Request $request)
+    {
+        $user = Patient::find($id);
+
+        $request = $request->all();
+
+        try {
+
+            if (isset($request["password"])) {
+
+                $request["password"] = bcrypt($request['password']);
+            }
+
+            $user->update($request);
+            
+            return response('', 200);
+
+        } catch (\Throwable $th) {
+
+            return $th;
+        }
+
     }
 }

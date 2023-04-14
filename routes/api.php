@@ -45,6 +45,7 @@ Route::prefix('patient')->group(function(){
         // Acount info
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
+        Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
         
