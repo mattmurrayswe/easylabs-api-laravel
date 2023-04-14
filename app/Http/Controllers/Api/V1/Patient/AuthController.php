@@ -79,11 +79,11 @@ class AuthController extends Controller
 
     public function editPatientInfo(int $id, Request $request)
     {
-        $user = Patient::find($id);
-
-        $request = $request->all();
-
         try {
+            
+            $user = Patient::find($id);
+    
+            $request = $request->all();
 
             if (isset($request["password"])) {
 
