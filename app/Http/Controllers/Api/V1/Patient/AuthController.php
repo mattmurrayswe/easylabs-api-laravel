@@ -8,6 +8,7 @@ use App\Http\Requests\Api\V1\PatientRequest;
 use App\Http\Requests\Api\V1\EditPatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
 use App\Http\Resources\Api\V1\ErrorResource;
+use App\Http\Resources\Api\V1\SuccessResource;
 use App\Http\Resources\Api\V1\SpecificPatientResource;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -80,7 +81,7 @@ class AuthController extends Controller
     public function editPatientInfo(int $id, Request $request)
     {
         try {
-            
+
             $user = Patient::find($id);
     
             $request = $request->all();
@@ -92,12 +93,11 @@ class AuthController extends Controller
 
             $user->update($request);
             
-            return response('', 200);
+            return response()->json(new SuccessResource("Paciente editado com sucesso"), 200);
 
         } catch (\Throwable $th) {
 
-            return $th;
+            return response()->json(new ErrorResource($th), 422);
         }
-
     }
 }
