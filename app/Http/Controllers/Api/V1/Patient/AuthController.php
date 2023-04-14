@@ -11,6 +11,7 @@ use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Http\Resources\Api\V1\SpecificPatientResource;
 use App\Models\Patient;
+use App\Models\Prescriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,28 @@ class AuthController extends Controller
         $user = new DefaultUserResource($user);
 
         return response(compact('user', 'token'));
+    }
+
+    public function signupPrescriber(Request $request)
+    {
+        try {
+
+            var_dump($request->all());
+            
+            // $request['password'] = bcrypt($request['password']);
+        
+            // $user = Prescriber::create($request->all());
+    
+            // $token = $user->createToken('main')->plainTextToken;
+    
+            // $user = new DefaultUserResource($user);
+    
+            // return response(compact('user', 'token'));
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
+        }
     }
 
     public function login(LoginRequest $request)
