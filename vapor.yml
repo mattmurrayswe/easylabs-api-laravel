@@ -1,5 +1,5 @@
-id: 45036
-name: EasyLabs
+id: 45541
+name: api-brease-laravel
 environments:
     production:
         memory: 1024
