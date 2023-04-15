@@ -18,7 +18,7 @@ class PatientInformTreatmentController extends Controller
             return response()->json(new SuccessResource("Uso do remédo feito com sucesso!"), 200);
 
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource("Medicamento ou paciente nao existentes!"), 422);
+            return response()->json(new ErrorResource("Tratamento ou paciente nao existentes!"), 422);
         }
     }
     

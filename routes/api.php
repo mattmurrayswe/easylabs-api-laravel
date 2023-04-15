@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\FollowUpController;
 use App\Http\Controllers\Api\V1\MedicineController;
 use App\Http\Controllers\Api\V1\NewTreatmentController;
 use App\Http\Controllers\Api\V1\Patient\AuthController;
@@ -8,7 +9,6 @@ use App\Http\Controllers\Api\V1\Patient\RecoverController;
 use App\Http\Controllers\Api\V1\PatientInformTreatmentController;
 use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
 use App\Http\Controllers\Api\V1\TreatmentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +54,9 @@ Route::prefix('patient')->group(function(){
 
         // Patient inform me
         Route::post('/inform-treatment', [PatientInformTreatmentController::class, 'informTreatment']);
+
+        // Follow Up Treatment
+        Route::post('/follow-up', [FollowUpController::class, 'store']);
 
         
         // Medicine

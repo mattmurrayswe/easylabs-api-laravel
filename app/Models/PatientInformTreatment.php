@@ -12,5 +12,8 @@ class PatientInformTreatment extends Model
     protected $fillable = [
         'treatment_id',
         'how_many',
+        'use_date',
+        'use_time',
+        'patient_id'
     ];
 }
