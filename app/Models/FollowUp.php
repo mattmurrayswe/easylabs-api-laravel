@@ -16,6 +16,7 @@ class FollowUp extends Model
         'how_are_you_feeling',
         'patient_id',
         'send_to_doctor',
+        'how_is_your_treatment',
     ];
 
     

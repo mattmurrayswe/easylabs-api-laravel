@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('positive_results')->nullable();
             $table->integer('how_are_you_feeling')->nullable();
             $table->integer('send_to_doctor')->nullable();
+            $table->integer('how_is_your_treatment')->nullable();
 
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');

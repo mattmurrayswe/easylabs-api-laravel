@@ -14,6 +14,7 @@ class PatientInformTreatment extends Model
         'how_many',
         'use_date',
         'use_time',
-        'patient_id'
+        'patient_id',
+        'unit_type',
     ];
 }
