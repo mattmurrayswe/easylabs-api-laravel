@@ -37,18 +37,16 @@ class AuthController extends Controller
     public function signupPrescriber(Request $request)
     {
         try {
-
-            var_dump($request->all());
             
-            // $request['password'] = bcrypt($request['password']);
+            $request['password'] = bcrypt($request['password']);
         
-            // $user = Prescriber::create($request->all());
+            $user = Prescriber::create($request->all());
     
-            // $token = $user->createToken('main')->plainTextToken;
+            $token = $user->createToken('main')->plainTextToken;
     
-            // $user = new DefaultUserResource($user);
+            $user = new DefaultUserResource($user);
     
-            // return response(compact('user', 'token'));
+            return response(compact('user', 'token'));
 
         } catch (\Throwable $th) {
 

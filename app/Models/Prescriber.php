@@ -29,6 +29,7 @@ class Prescriber extends Authenticatable
         'crm',
         'cnpj',
         'company_name',
+        'active',
     ];
 
     /**
