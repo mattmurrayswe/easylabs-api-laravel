@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\LoginRequest;
+use App\Http\Requests\Api\V1\LoginPrescRequest;
 use App\Http\Requests\Api\V1\PatientRequest;
 use App\Http\Requests\Api\V1\EditPatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
@@ -76,9 +77,30 @@ class AuthController extends Controller
         return response(compact('user', 'token'));
     }
 
-    public function loginPrescriber(LoginRequest $request)
-    {   
-        var_dump("loginPrescriber()!!!");
+    public function loginPrescriber(LoginPrescRequest $request)
+    { 
+        $credentials = $request->validated();
+
+        $authPresc = Auth::guard("webPresc");
+
+        if (!$authPresc->attempt($credentials)) {
+            return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
+
+        }
+
+        if (Prescriber::where('email', $request->email)->where('active', false)->get()->count() > 0) {
+            return response()->json(new ErrorResource('Sua conta esta desativada.'), 422);
+
+        }
+        
+        /** @var Prescriber $prescriber */
+        $user = $authPresc->user();
+
+        $token = $user->createToken('main')->plainTextToken;
+
+        $user = new DefaultUserResource($user);
+
+        return response(compact('user', 'token')); 
     }
 
     public function logout(Request $request)

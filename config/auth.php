@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'webPresc' => [
+            'driver' => 'session',
+            'provider' => 'usersPresc',
+        ],
     ],
 
     /*
@@ -64,11 +68,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Patient::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'usersPresc' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Prescriber::class,
+        ]
     ],
 
     /*
@@ -93,6 +96,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'patients',
+            'table' => 'password_reset_tokens_patients',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'usersPresc' => [
+            'provider' => 'prescribers',
             'table' => 'password_reset_tokens_patients',
             'expire' => 60,
             'throttle' => 60,
