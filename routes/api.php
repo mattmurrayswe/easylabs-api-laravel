@@ -91,7 +91,7 @@ Route::prefix('prescriber')->group(function(){
     Route::post('/signup', [AuthController::class, 'signupPrescriber']);
     Route::post('/recover-password', [RecoverController::class, 'recoverPasswordPresc']);
     Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCodePresc']);
-    // Route::post('/new-password', [RecoverController::class, 'newPassword']);
+    Route::post('/new-password', [RecoverController::class, 'newPasswordPresc']);
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
 
     // // Authenticated Routes for Prescriber

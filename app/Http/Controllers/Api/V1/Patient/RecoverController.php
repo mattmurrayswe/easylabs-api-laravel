@@ -116,6 +116,24 @@ class RecoverController extends Controller
 
     }
 
+    public function newPasswordPresc(Request $request)
+    {
+        $request->validate([
+            'email' => "required|email|exists:prescribers,email",
+            'password' => ["required", Password::min(8)->letters()->symbols()]
+        ]);
+
+        if (isset($request['password'])) {
+            $request['password'] = bcrypt($request['password']);
+        }
+
+        Prescriber::where('email', $request['email'])->update(['password' => $request['password']]);
+
+        
+        return response()->json(new SuccessResource("Senha alterada com sucesso!"), 200);
+
+    }
+
     public function sendNewCode(Request $request)
     {
         $this->deleteRecoverToken($request);
