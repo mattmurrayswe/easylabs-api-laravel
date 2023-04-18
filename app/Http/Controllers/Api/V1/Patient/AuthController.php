@@ -56,8 +56,6 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {   
-
-        
         $credentials = $request->validated();
         if (!Auth::attempt($credentials)) {
             return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
