@@ -7,6 +7,8 @@ use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
 use App\Models\PatientPasswordRecover;
+use App\Models\Prescriber;
+use App\Models\PrescriberPasswordRecover;
 use App\Notifications\PasswordRecoveryNotification;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -15,7 +17,6 @@ class RecoverController extends Controller
 {
     public function recoverPassword(Request $request)
     {
-        
         $request->validate([
             'email' => "required|email|exists:patients,email",
         ]);
@@ -27,6 +28,25 @@ class RecoverController extends Controller
         $code = $this->generateRecoverCode();
         $this->storeGeneratedCode($request->email, $code);
         $this->sendCode($request, $code);
+
+        return response([
+            "recoveryCode" => $code
+        ], 200);
+    }
+
+    public function recoverPasswordPresc(Request $request)
+    {
+        $request->validate([
+            'email' => "required|email|exists:prescribers,email",
+        ]);
+
+        if (PrescriberPasswordRecover::where('email', $request->email)->first()) {
+            $this->deleteRecoverTokenPresc($request);
+        }
+
+        $code = $this->generateRecoverCode();
+        $this->storeGeneratedCodePresc($request->email, $code);
+        $this->sendCodePresc($request, $code);
 
         return response([
             "recoveryCode" => $code
@@ -98,6 +118,21 @@ class RecoverController extends Controller
         
     }
 
+    private function storeGeneratedCodePresc($email, $code)
+    {
+        try {
+
+            PrescriberPasswordRecover::create([
+                'email' => $email,
+                'token' => $code
+            ]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        
+    }
+
     private function deleteRecoverToken($request)
     {
         $recover = PatientPasswordRecover::find($request->email);
@@ -106,9 +141,23 @@ class RecoverController extends Controller
         }
     }
 
+    private function deleteRecoverTokenPresc($request)
+    {
+        $recover = PrescriberPasswordRecover::find($request->email);
+        if ($recover) {
+            $recover->delete();
+        }
+    }
+
     private function sendCode($request, $code)
     {
         $patient = Patient::where('email', $request->email)->first();
+        $patient->notify(new PasswordRecoveryNotification($code));
+    }
+
+    private function sendCodePresc($request, $code)
+    {
+        $patient = Prescriber::where('email', $request->email)->first();
         $patient->notify(new PasswordRecoveryNotification($code));
     }
 }
