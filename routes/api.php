@@ -90,7 +90,7 @@ Route::prefix('prescriber')->group(function(){
     Route::post('/login', [AuthController::class, 'loginPrescriber']);
     Route::post('/signup', [AuthController::class, 'signupPrescriber']);
     Route::post('/recover-password', [RecoverController::class, 'recoverPasswordPresc']);
-    // Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);
+    Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCodePresc']);
     // Route::post('/new-password', [RecoverController::class, 'newPassword']);
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
 

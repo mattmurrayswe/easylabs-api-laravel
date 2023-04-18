@@ -75,6 +75,29 @@ class RecoverController extends Controller
 
     }
 
+    public function confirmCodePresc(Request $request)
+    {
+        $request->validate([
+            'email' => "required|email|exists:prescribers,email",
+            'token' => "required|min:6|max:6",
+        ]);
+
+        $recoveryCode = PrescriberPasswordRecover::where('email', $request->email)->first();
+
+        $code = $request['token'];
+
+        if ($code === $recoveryCode->token) {
+
+            $this->deleteRecoverTokenPresc($request);
+
+            return response()->json(new SuccessResource("Seu código foi validado com sucesso!"), 200);
+
+        }
+
+        return response()->json(new ErrorResource("Código de validação inválido."), 200);
+
+    }
+
     public function newPassword(Request $request)
     {
         $request->validate([
