@@ -87,7 +87,7 @@ Route::prefix('patient')->group(function(){
 
 Route::prefix('prescriber')->group(function(){
 
-    // Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'loginPrescriber']);
     Route::post('/signup', [AuthController::class, 'signupPrescriber']);
     // Route::post('/recover-password', [RecoverController::class, 'recoverPassword']);
     // Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);

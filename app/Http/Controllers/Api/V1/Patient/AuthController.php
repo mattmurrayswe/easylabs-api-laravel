@@ -76,6 +76,11 @@ class AuthController extends Controller
         return response(compact('user', 'token'));
     }
 
+    public function loginPrescriber(LoginRequest $request)
+    {   
+        var_dump("loginPrescriber()!!!");
+    }
+
     public function logout(Request $request)
     {
         /** @var Patient $user */
