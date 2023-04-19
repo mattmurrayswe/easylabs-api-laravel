@@ -95,14 +95,10 @@ Route::prefix('prescriber')->group(function(){
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
 
     // // Authenticated Routes for Prescriber
-    // Route::middleware('auth:sanctum')->group(function() {
-    //     Route::get('/user', function (Request $request) {
-    //         return $request->user();
-    //     });
-
-    //     Route::post('/logout', [AuthController::class, 'logout']);
-    //     Route::get('/user-info/{id}', [AuthController::class, 'userInfo']);
-    // });
+    Route::middleware('auth:sanctum')->group(function() {
+        Route::post('/logout', [AuthController::class, 'logoutPresc']);
+        Route::get('/prescriber-info/{id}', [AuthController::class, 'prescInfo']);
+    });
 
 });
 

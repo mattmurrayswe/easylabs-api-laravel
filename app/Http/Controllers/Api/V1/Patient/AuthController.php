@@ -10,7 +10,8 @@ use App\Http\Requests\Api\V1\EditPatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
-use App\Http\Resources\Api\V1\SpecificPatientResource;
+use App\Http\Resources\Api\V1\SpecificPatientResource; 
+use App\Http\Resources\Api\V1\SpecificPrescriberResource; 
 use App\Models\Patient;
 use App\Models\Prescriber;
 use Illuminate\Http\Request;
@@ -112,6 +113,15 @@ class AuthController extends Controller
         return response('', 204);
     }
 
+    public function logoutPresc(Request $request)
+    {
+        /** @var Prescriber $user */
+        $user = $request->user("webPresc");
+        $user->currentAccessToken()->delete();
+
+        return response('', 204);
+    }
+
     public function patientInfo(Int $id)
     {
         $user = Patient::find($id);
@@ -122,6 +132,18 @@ class AuthController extends Controller
         }
 
         return new SpecificPatientResource($user);
+    }
+
+    public function prescInfo(Int $id)
+    {
+        $user = Prescriber::find($id);
+
+        if (!isset($user)) {
+            return response()->json(new ErrorResource('Paciente nao encontrado.'), 422);
+
+        }
+
+        return new SpecificPrescriberResource($user);
     }
 
     public function editPatientInfo(int $id, Request $request)
