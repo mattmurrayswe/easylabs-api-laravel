@@ -168,4 +168,27 @@ class AuthController extends Controller
             return response()->json(new ErrorResource($th), 422);
         }
     }
+
+    public function editPrescInfo(int $id, Request $request)
+    {
+        try {
+
+            $user = Prescriber::find($id);
+    
+            $request = $request->all();
+
+            if (isset($request["password"])) {
+
+                $request["password"] = bcrypt($request['password']);
+            }
+
+            $user->update($request);
+            
+            return response()->json(new SuccessResource("Prescritor editado com sucesso"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
+        }
+    }
 }
