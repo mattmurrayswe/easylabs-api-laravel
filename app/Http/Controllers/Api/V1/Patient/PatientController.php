@@ -117,4 +117,23 @@ class PatientController extends Controller
         }
         
     }
+
+    public function updateAccountConfig($id, Request $request)
+    {
+        $patient = Patient::find($id);
+
+        try {
+            $patient->update([
+                'push_notification' => $request->push_notification,
+                'email_notification' => $request->email_notification,
+                'remember_medicine' => $request->remember_medicine,
+                'treatment_feedback' => $request->treatment_feedback
+            ]);
+
+            return response()->json(new SuccessResource('Configuracoes da conta alteradas com sucesso!.'), 422);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th), 422);
+        }
+    }
 }

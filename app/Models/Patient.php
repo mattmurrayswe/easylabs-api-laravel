@@ -24,7 +24,11 @@ class Patient extends Authenticatable
         'address',
         'cellphone',
         'birth',
-        'active'
+        'active',
+        'push_notification',
+        'email_notification',
+        'remember_medicine',
+        'treatment_feedback',
     ];
 
     /**

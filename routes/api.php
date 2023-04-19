@@ -49,6 +49,7 @@ Route::prefix('patient')->group(function(){
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
+        Route::post('/account-config/{id}', [PatientController::class, 'updateAccountConfig']);
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);

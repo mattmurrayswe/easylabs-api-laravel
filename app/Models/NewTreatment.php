@@ -18,7 +18,11 @@ class NewTreatment extends Model
         'frequency',
         'presentation',
         'start_treatment_date',
-        'end_treatment_date'
+        'end_treatment_date',
+        'use_time',
+        'posology',
+        'packing_quantity',
+        'permanent'
     ];
 
     public function patient()

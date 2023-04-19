@@ -22,6 +22,10 @@ class SpecificPatientResource extends JsonResource
             'cellphone' => $this->cellphone,
             'active' => $this->active,
             'birth' => $this->birth,
+            'push_notification' => $this->push_notification ?? false,
+            'email_notification' => $this->email_notification ?? false,
+            'remember_medicine' => $this->remember_medicine ?? false,
+            'treatment_feedback' => $this->treatment_feedback ?? false,
         ];
     }
 }
