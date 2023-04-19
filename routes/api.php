@@ -102,6 +102,14 @@ Route::prefix('prescriber')->group(function(){
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
+
+        // newTreatment
+        Route::post('/new-treatment', [NewTreatmentController::class, 'storePresc']);
+        Route::get('/all-newtreatments', [NewTreatmentController::class, 'getAllTreatmentPresc']);
+        Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'showPresc']);
+        Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroyPresc']);
+        Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'updatePresc']);
+        
     });
 
 });
