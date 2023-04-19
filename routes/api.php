@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\MedicineController;
 use App\Http\Controllers\Api\V1\NewTreatmentController;
 use App\Http\Controllers\Api\V1\Patient\AuthController;
 use App\Http\Controllers\Api\V1\Patient\PatientController;
+use App\Http\Controllers\Api\V1\Patient\PrescriberController;
 use App\Http\Controllers\Api\V1\Patient\RecoverController;
 use App\Http\Controllers\Api\V1\PatientInformTreatmentController;
 use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
@@ -99,8 +100,8 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/logout', [AuthController::class, 'logoutPresc']);
         Route::get('/prescriber-info/{id}', [AuthController::class, 'prescInfo']);
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);
-        // Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
-        // Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
+        Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
+        Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
     });
 
 });
