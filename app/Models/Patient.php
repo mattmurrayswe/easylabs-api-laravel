@@ -29,6 +29,7 @@ class Patient extends Authenticatable
         'email_notification',
         'remember_medicine',
         'treatment_feedback',
+        'prescriber_id'
     ];
 
     /**
@@ -58,5 +59,15 @@ class Patient extends Authenticatable
     public function treatments()
     {
         return $this->belongsToMany(Treatment::class, 'patient_treatment')->withTimestamps();
+    }
+
+    public function newTreatments()
+    {
+        return $this->hasMany(NewTreatment::class);
+    }
+
+    public function prescriber()
+    {
+        return $this->belongsTo(Prescriber::class);
     }
 }

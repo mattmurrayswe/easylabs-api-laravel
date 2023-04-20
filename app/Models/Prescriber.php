@@ -53,4 +53,9 @@ class Prescriber extends Authenticatable
         'documents' => 'array',
         'indicate_clinic' => 'boolean'
     ];
+
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
 }

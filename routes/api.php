@@ -110,7 +110,21 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'showPresc']);
         Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroyPresc']);
         Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'updatePresc']);
-        
+
+
+        // Create Patient Using Prescriber
+        Route::post('/create-patient', [PatientController::class, 'createPatientUsingPrescriber']);
+
+
+        // Connect Patient on Prescriber
+        Route::post('/connect-patient', [PatientController::class, 'connectPrescriberToPatient']);
+        Route::post('/erase-connected-patient/{id}', [PatientController::class, 'errasePrescriberInPatient']);
+        Route::post('/get-pacient-treatment/{id}', [PatientController::class, 'getPacientTreatment']);
+
+
+        // Get Prescriber Info with patients and treatments
+        Route::get('/get-prescriber-patient/{id}', [PrescriberController::class, 'getConnectedPatients']);
+
     });
 
 });

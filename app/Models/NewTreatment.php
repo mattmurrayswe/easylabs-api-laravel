@@ -20,7 +20,6 @@ class NewTreatment extends Model
         'start_treatment_date',
         'end_treatment_date',
         'use_time',
-        'posology',
         'packing_quantity',
         'permanent'
     ];

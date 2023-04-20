@@ -118,4 +118,90 @@ class PrescriberController extends Controller
         }
         
     }
+
+    protected function getPrescribersWithPatients($id) {
+        return Prescriber::with('patients')->where('id', $id)->get();
+    }
+    
+    protected function formatPrescriberData($prescriber) {
+
+        $prescriberData = [
+            'id' => $prescriber->id,
+            'name' => $prescriber->name,
+            'email' => $prescriber->email,
+            'cpf' => $prescriber->cpf,
+            'cellphone' => $prescriber->cellphone,
+            'crm' => $prescriber->crm,
+            'cnpj' => $prescriber->cnpj,
+            'company_name' => $prescriber->company_name,
+            'patients' => []
+        ];
+    
+        foreach ($prescriber->patients as $patient) {
+
+            $patientData = [
+                'id' => $patient->id,
+                'name' => $patient->name,
+                'email' => $patient->email,
+                'cpf' => $patient->cpf,
+                'cellphone' => $patient->cellphone,
+                'birth' => $patient->birth,
+                'active' => $patient->active,
+                'treatment' => []
+            ];
+
+            foreach ($patient->newTreatments as $treatment) {
+
+                $treatmentData = [
+                    'id' => $treatment->id,
+                    'name_diagnosis' => $treatment->name_diagnosis,
+                    'name_medicine' => $treatment->name_medicine,
+                    'name_treatment' => $treatment->name_treatment,
+                    'how_many' => $treatment->how_many,
+                    'frequency' => $treatment->frequency,
+                    'presentation' => $treatment->presentation,
+                    'start_treatment_date' => $treatment->start_treatment_date,
+                    'end_treatment_date' => $treatment->end_treatment_date,
+                    'use_time' => $treatment->use_time,
+                    'posology' => $treatment->posology,
+                    'packing_quantity' => $treatment->packing_quantity,
+                    'permanent' => $treatment->permanent,
+                ];
+
+                $patientData['treatment'][] = $treatmentData;
+
+            }
+
+            $prescriberData['patients'][] = $patientData;
+
+        }
+    
+        return $prescriberData;
+    }
+    
+    protected function buildPrescribersData($prescribers) {
+        $prescribersData = [];
+    
+        foreach ($prescribers as $prescriber) {
+            $prescriberData = $this->formatPrescriberData($prescriber);
+            $prescribersData[] = $prescriberData;
+        }
+    
+        return $prescribersData;
+    }
+    
+    public function getConnectedPatients($id) {
+        try {
+
+            $prescribers = $this->getPrescribersWithPatients($id);
+            $prescribersData = $this->buildPrescribersData($prescribers);
+            
+            return response()->json(new SuccessResource($prescribersData), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
+
+        }
+    }
 }

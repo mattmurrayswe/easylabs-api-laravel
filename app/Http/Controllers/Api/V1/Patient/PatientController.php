@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api\V1\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\V1\DefaultUserResource;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
 use App\Models\PatientTreatment;
-use App\Models\Treatment;
 use App\Models\TreatmentMedicine;
+use App\Notifications\SendPasswordToCreatedPatientFromPrescriber;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -136,4 +137,101 @@ class PatientController extends Controller
             return response()->json(new ErrorResource($th), 422);
         }
     }
+
+    public function createPatientUsingPrescriber(Request $request)
+    {
+        try {
+            $request->merge([
+                'active' => true,
+            ]);
+
+            $newPassword = $this->generatePassword();
+            $request['password'] = bcrypt($newPassword);
+
+            $user = Patient::create($request->all());
+
+            $user->notify(new SendPasswordToCreatedPatientFromPrescriber($newPassword, $user->email));
+
+            $token = $user->createToken('main')->plainTextToken;
+
+            $user = new DefaultUserResource($user);
+
+
+            return response(compact('user', 'token'));
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource('Nao foi possivel criar o paciente'), 422);
+
+        }
+    }
+
+    public function connectPrescriberToPatient(Request $request)
+    {
+        $patient = Patient::find($request->patient_id);
+        try {
+            $patient->update([
+                'prescriber_id' => $request->prescriber_id
+            ]);
+
+            return response()->json(new SuccessResource('Sucesso!.'), 422);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource('Nao foi possivel criar o paciente'), 422);
+
+        }
+           
+    }
+
+    public function errasePrescriberInPatient($id)
+    {
+        $patient = Patient::find($id);
+
+        if (!$patient) {
+            return response()->json(new ErrorResource('Paciente não encontrado'), 422);
+        }
+
+        if (!$patient->prescriber_id) {
+            return response()->json(new ErrorResource('Paciente não esta vinculado a nenhum prescritor'), 422);
+        }
+
+        $patient->prescriber_id = null;
+        $patient->save();
+
+        // Return a success response
+        return response()->json(new SuccessResource('Sucesso!'), 422);
+    }
+
+    public function getPacientTreatment($id)
+    {
+
+        try {
+            
+        $patient = Patient::with('newTreatments')->findOrFail($id);
+
+        $response = [
+            'id' => $patient->id,
+            'name' => $patient->name,
+            'email' => $patient->email,
+            'cpf' => $patient->cpf,
+            'cellphone' => $patient->cellphone,
+            'birth' => $patient->birth,
+            'active' => $patient->active,
+            'treatments' => $patient->newTreatments->toArray(),
+        ];
+
+        return response()->json($response);
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource('Paciente não encontrado'), 422);
+
+        }
+        
+    }
+
+    
+
+    protected function generatePassword()
+    {
+        return bin2hex(random_bytes(8)); 
+    }
+
 }
