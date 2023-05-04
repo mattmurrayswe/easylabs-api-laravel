@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::prefix('docs')->group(function () {
+    Route::get('/', function () {
+        return redirect('/docs/' . config('larecipe.versions.default') . '/introduction');
+    });
+    Route::get('/{version}/{page?}', 'BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->name('larecipe.show');
+});
