@@ -3,6 +3,7 @@
 ---
 
 - [Retornar Informações do Paciente](#retornar-pacient-infos)
+- [Editar Informações do Paciente](#editar-pacient-infos)
 - [Informar Uso de Medicação](#informar-uso-medicacao)
 - [Desativar Conta](#desativar)
 - [Deletar Conta](#deletar)
@@ -46,6 +47,43 @@ Por ex: 28.
         "email_notification": false,
         "remember_medicine": false,
         "treatment_feedback": false
+    }
+}
+```
+
+<a name="editar-pacient-infos"></a>
+## Retornar Informações do Paciente
+
+Método http e caminho: 
+
+> {primary} PUT {{url('/')}}/api/patient/patient-info/**{ID_DO_PACIENTE}**
+
+### Parâmetros do body:
+- **name**  _String_: ID válido de um tratamento.
+- **email**  _String_: Quanto fora utilizado da medicação.
+- **password**  _String_: Data de uso da medicação.
+- **cpf**  _String_: Hora de uso da medicação.
+- **cellphone**  _String_: ID válido de um paciente.
+- **birth**  _String_: Tipo da medicação. Ex: Gotas / Comprimidos / etc...
+
+No lugar de **ID_DO_PACIENTE** colocar o ID que fora retornado na hora do login.
+
+Por ex: 28.
+
+> {primary} PUT {{url('/')}}/api/patient/patient-info/**28**
+
+### Respostas
+
+#### Status: 200 OK
+
+```json
+{
+    "data": {
+        "name": "John Doe",
+        "email": "johndoe@gmail.com",
+        "cpf": "13126440107",
+        "cellphone": "(11) 55932-4370",
+        "birth": "1997-12-18"
     }
 }
 ```
