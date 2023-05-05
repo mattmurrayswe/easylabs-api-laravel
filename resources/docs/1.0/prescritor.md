@@ -7,8 +7,8 @@
 - [Desconecetar Paciente com Prescritor pelo ID](#disconect)
 - [Ver Pacientes Conectados ao Prescritor Com Tratamento](#pacientes-conectados-ao-prescritor-com-tratamento)
 - [Retornar Tratamento do Paciente pelo ID do Paciente](#retornar-tratamento-do-paciente-pelo-id-do-paciente)
-- [Editar Tratamento do Paciente pelo ID do Paciente](#editar-tratamento-do-paciente-pelo-id-do-paciente)
-- [Deletar Tratamento do Paciente pelo ID do Paciente](#deletar-tratamento-do-paciente-pelo-id-do-paciente)
+- [Editar Tratamento do Paciente pelo ID do Paciente](#editar-tratamento-do-paciente-pelo-id-do-tratamento)
+- [Deletar Tratamento do Paciente pelo ID do Paciente](#deletar-tratamento-do-paciente-pelo-id-do-tratamento)
 
 > {success} Todas as requisições abaixo fazem o uso do **Bearer Token**, como forma de segurança. Portanto, no header de cada requisição é necessário utilizar o **token** que fora retornado na hora do login.
 
@@ -317,24 +317,24 @@ Por ex: 2.
 }
 ```
 
-<a name="editar-tratamento-do-paciente-pelo-id-do-paciente"></a>
-##Retornar Tratamento do Paciente pelo ID do Paciente
+<a name="editar-tratamento-do-paciente-pelo-id-do-tratamento"></a>
+##Editar Tratamento do Paciente pelo ID do tratamento
 
 Método http e caminho: 
 
-> {primary} PUT {{url('/')}}/api/prescriber/new-treatment/**{ID_DO_PACIENTE}**
+> {primary} PUT {{url('/')}}/api/prescriber/new-treatment/**{ID_DO_TRATAMENTO}**
 
 ### Parâmetros do body:
 
 - **patient_id**  _Int_: id do paciente.
-- **name_diagnosis**  _Int_: Nome do diagnóstico.
-- **name_medicine**  _Int_: Nome do medicamento.
-- **name_treatment**  _Int_: Nome do tratamento.
-- **presentation**  _Int_: Unidade de medida.
-- **how_many**  _Int_: Quantidade.
-- **frequency**  _Int_: Frequencia.
-- **start_treatment_date**  _Int_: Data de inicio.
-- **end_treatment_date**  _Int_: Data de fim.
+- **name_diagnosis**  _String_: Nome do diagnóstico.
+- **name_medicine**  _String_: Nome do medicamento.
+- **name_treatment**  _String_: Nome do tratamento.
+- **presentation**  _String_: Unidade de medida.
+- **how_many**  _String_: Quantidade.
+- **frequency**  _String_: Frequencia.
+- **start_treatment_date**  _String_: Data de inicio.
+- **end_treatment_date**  _String_: Data de fim.
 
 
 ### Exemplo de payload da requisição
@@ -356,6 +356,25 @@ Método http e caminho:
 Por ex: 2.
 
 > {primary} POST {{url('/')}}/api/prescriber/new-treatment/**2**
+
+
+### Respostas
+
+#### Status: 200 OK
+
+<a name="deletar-tratamento-do-paciente-pelo-id-do-tratamento"></a>
+##Deletar Tratamento do Paciente pelo ID do tratamento
+
+Método http e caminho: 
+
+> {primary} DELETE {{url('/')}}/api/prescriber/new-treatment/**{ID_DO_TRATAMENTO}**
+
+
+### Exemplo de payload da requisição
+
+Por ex: 2.
+
+> {primary} delete {{url('/')}}/api/prescriber/new-treatment/**2**
 
 
 ### Respostas
