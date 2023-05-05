@@ -355,7 +355,7 @@ Método http e caminho:
 
 Por ex: 2.
 
-> {primary} POST {{url('/')}}/api/prescriber/new-treatment/**2**
+> {primary} PUT {{url('/')}}/api/prescriber/new-treatment/**2**
 
 
 ### Respostas
@@ -374,7 +374,7 @@ Método http e caminho:
 
 Por ex: 2.
 
-> {primary} delete {{url('/')}}/api/prescriber/new-treatment/**2**
+> {primary} DELETE {{url('/')}}/api/prescriber/new-treatment/**2**
 
 
 ### Respostas
