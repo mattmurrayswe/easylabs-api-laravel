@@ -7,6 +7,8 @@
 - [Desconecetar Paciente com Prescritor pelo ID](#disconect)
 - [Ver Pacientes Conectados ao Prescritor Com Tratamento](#pacientes-conectados-ao-prescritor-com-tratamento)
 - [Retornar Tratamento do Paciente pelo ID do Paciente](#retornar-tratamento-do-paciente-pelo-id-do-paciente)
+- [Editar Tratamento do Paciente pelo ID do Paciente](#editar-tratamento-do-paciente-pelo-id-do-paciente)
+- [Deletar Tratamento do Paciente pelo ID do Paciente](#deletar-tratamento-do-paciente-pelo-id-do-paciente)
 
 > {success} Todas as requisições abaixo fazem o uso do **Bearer Token**, como forma de segurança. Portanto, no header de cada requisição é necessário utilizar o **token** que fora retornado na hora do login.
 
@@ -314,3 +316,48 @@ Por ex: 2.
     ]
 }
 ```
+
+<a name="editar-tratamento-do-paciente-pelo-id-do-paciente"></a>
+##Retornar Tratamento do Paciente pelo ID do Paciente
+
+Método http e caminho: 
+
+> {primary} PUT {{url('/')}}/api/prescriber/new-treatment/**{ID_DO_PACIENTE}**
+
+### Parâmetros do body:
+
+- **patient_id**  _Int_: id do paciente.
+- **name_diagnosis**  _Int_: Nome do diagnóstico.
+- **name_medicine**  _Int_: Nome do medicamento.
+- **name_treatment**  _Int_: Nome do tratamento.
+- **presentation**  _Int_: Unidade de medida.
+- **how_many**  _Int_: Quantidade.
+- **frequency**  _Int_: Frequencia.
+- **start_treatment_date**  _Int_: Data de inicio.
+- **end_treatment_date**  _Int_: Data de fim.
+
+
+### Exemplo de payload da requisição
+
+```json
+{
+    "patient_id": 2,
+    "name_diagnosis": "Epilepsia",
+    "name_medicine": "Canabidiol",
+    "name_treatment": "Tratamento contra Epilepsia",
+    "presentation": "gramas",
+    "how_many": "3",
+    "frequency": "3x por dia",
+    "start_treatment_date": "2023-02-21",
+    "end_treatment_date": "2023-02-21"
+}
+```
+
+Por ex: 2.
+
+> {primary} POST {{url('/')}}/api/prescriber/new-treatment/**2**
+
+
+### Respostas
+
+#### Status: 200 OK
