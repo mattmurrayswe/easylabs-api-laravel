@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\V1\PatientInformTreatmentController;
 use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +25,12 @@ use Illuminate\Support\Facades\Route;
 
 // Patient
 Route::prefix('patient')->group(function(){
+
+   
+
+    // Google Login Routes
+    Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/signup', [AuthController::class, 'signup']);

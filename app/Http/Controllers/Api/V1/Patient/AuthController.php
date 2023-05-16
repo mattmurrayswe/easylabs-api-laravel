@@ -16,6 +16,7 @@ use App\Models\Patient;
 use App\Models\Prescriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -66,7 +67,6 @@ class AuthController extends Controller
 
         if (Patient::where('email', $request->email)->IsInactive()->get()->count() > 0) {
             return response()->json(new ErrorResource('Sua conta esta desativada.'), 422);
-
         }
         
         /** @var Patient $patient */
@@ -190,5 +190,52 @@ class AuthController extends Controller
 
             return response()->json(new ErrorResource($th), 422);
         }
+    }
+
+    public function redirectToGoogle(Request $request)
+    {
+         return Socialite::driver('google')
+            ->redirect();
+    }
+
+    public function handleGoogleCallback(Request $request)
+    {
+
+        $user = Socialite::driver('google')->user();
+
+        $existingUser = Patient::where('email', $user->getEmail())->first();
+
+        if (Patient::where('email', $user->getEmail())->IsInactive()->get()->count() > 0) {
+            return response()->json(new ErrorResource('Sua conta esta desativada.'), 422);
+        }
+
+        if ($existingUser) {
+
+            $token = $existingUser->createToken('main')->plainTextToken;
+
+            $data = new DefaultUserResource($existingUser);
+
+            return response(compact('data', 'token'));
+            
+        }
+
+        $newPatient = Patient::create([
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'password' => bcrypt('breaseapp'),
+            'active' => true,
+        ]);
+
+        
+        auth()->login($newPatient, true);
+
+        $token = $newPatient->createToken('main')->plainTextToken;
+
+        $data = new DefaultUserResource($newPatient);
+
+        return response(compact('data', 'token'));
+
+        
+
     }
 }
