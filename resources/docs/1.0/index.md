@@ -6,5 +6,6 @@
     - [Recuperação de Senha](/{{route}}/{{version}}/recuperacao-senha)
     - [Paciente](/{{route}}/{{version}}/paciente)
     - [Prescritor](/{{route}}/{{version}}/prescritor)
+    - [Agenda - Gestão de Disponibilidade](/{{route}}/{{version}}/agenda)
 
 

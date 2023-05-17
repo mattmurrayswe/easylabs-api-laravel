@@ -11,6 +11,7 @@
  - [Cadastro](#prescritor-cadastro)
 
 - [Logout](#logout)
+- [OAuth-Google](#oauthgoogle)
 
 
 <a name="paciente-login"></a>
@@ -230,3 +231,33 @@ No lugar de **{entidade}**, podemos colocar:
 ```
 
 A resposta da API vem vazia, mostrando que o logout fora realizado com sucesso!
+
+
+
+<a name="oauthgoogle"></a>
+## Autenticação OAuth Google
+
+As chamadas abaixo servem somente para **PACIENTE**. Fornecem um login e cadastro via Google, ou seja, o email será vinculado a uma conta ja existente, ou uma nova conta será cadastrada a partir dele. 
+
+> {primary} GET {{url('/')}}/api/patient/auth/google
+
+Após fazer a requisição **GET**, abrirá um POPUP na tela solicitando a entrada do usuário e senha do Google.
+Deve inserir a informacoes corretas, e a partir disso, a própria API vai realizar o login ou cadastrar um novo paciente.
+**O redirecionamento para as telas "pos" autenticadas, deverá ser feita pelo próprio desenvolvedor.**
+### Respostas
+
+#### Status: 200
+
+```json
+{
+    "user": {
+        "id": 28,
+        "name": "John Doe",
+        "email": "doc@gmail.com",
+        "createdAt": "04-05-2023"
+    },
+    "token": "114|DeHT4A6hd6Hbrsk41wY9M7OIthCrNAp58Adl9uQC"
+}
+```
+
+

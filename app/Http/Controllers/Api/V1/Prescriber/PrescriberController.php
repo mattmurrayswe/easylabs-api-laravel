@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Patient;
+namespace App\Http\Controllers\Api\V1\Prescriber;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\ErrorResource;

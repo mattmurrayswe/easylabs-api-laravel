@@ -5,10 +5,11 @@ use App\Http\Controllers\Api\V1\MedicineController;
 use App\Http\Controllers\Api\V1\NewTreatmentController;
 use App\Http\Controllers\Api\V1\Patient\AuthController;
 use App\Http\Controllers\Api\V1\Patient\PatientController;
-use App\Http\Controllers\Api\V1\Patient\PrescriberController;
+use App\Http\Controllers\Api\V1\Prescriber\PrescriberController;
 use App\Http\Controllers\Api\V1\Patient\RecoverController;
 use App\Http\Controllers\Api\V1\PatientInformTreatmentController;
 use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
+use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -130,6 +131,11 @@ Route::prefix('prescriber')->group(function(){
 
         // Get Prescriber Info with patients and treatments
         Route::get('/get-prescriber-patient/{id}', [PrescriberController::class, 'getConnectedPatients']);
+
+        // Availability
+        Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
+        Route::post('/create-availability', [AvailabilityController::class, 'store']);
+
 
     });
 
