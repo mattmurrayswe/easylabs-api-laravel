@@ -141,7 +141,7 @@ class RecoverController extends Controller
     }
     private function generateRecoverCode()
     {
-        return sprintf("%06d", mt_rand(1, 999999));
+        return sprintf("%06d", mt_rand(1, 9999));
     }
 
     private function storeGeneratedCode($email, $code)

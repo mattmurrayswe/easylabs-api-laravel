@@ -4,23 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Treatment extends Model
+class Appointment extends Model
 {
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'patient_id',
         'prescriber_id',
         'description',
         'appointment_date',
         'appointment_time',
+        'type'
     ];
 
 
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
+    } 
+
+    public function prescritor()
+    {
+        return $this->belongsTo(Prescriber::class, 'prescriber_id');
+    }
     
 
 }

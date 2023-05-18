@@ -9,7 +9,9 @@ use App\Http\Controllers\Api\V1\Prescriber\PrescriberController;
 use App\Http\Controllers\Api\V1\Patient\RecoverController;
 use App\Http\Controllers\Api\V1\PatientInformTreatmentController;
 use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
+use App\Http\Controllers\Api\V1\Prescriber\AppointmentController;
 use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
+use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -136,6 +138,13 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
         Route::post('/create-availability', [AvailabilityController::class, 'store']);
 
+        // ClinicAdress
+        Route::get('/get-clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
+        Route::post('/create-clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
+        Route::put('/update-clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
+
+        // Appointment
+        Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
 
     });
 
