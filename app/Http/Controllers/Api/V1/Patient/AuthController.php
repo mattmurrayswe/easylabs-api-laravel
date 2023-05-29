@@ -16,6 +16,7 @@ use App\Models\Patient;
 use App\Models\Prescriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
@@ -185,6 +186,40 @@ class AuthController extends Controller
             $user->update($request);
             
             return response()->json(new SuccessResource("Prescritor editado com sucesso"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
+        }
+    }
+
+    public function uploadDocs(int $id, Request $request)
+    {
+        try {
+            Storage::disk('local')->put("public/docs/crm-frente/crm-frente-{$id}.jpg", file_get_contents($request->file('crm_frente')->getPathname()));
+            Storage::disk('local')->put("public/docs/crm-verso/crm-verso-{$id}.jpg", file_get_contents($request->file('crm_verso')->getPathname()));
+            Storage::disk('local')->put("public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg", file_get_contents($request->file('selfie_com_doc')->getPathname()));
+            Storage::disk('local')->put("public/docs/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
+            
+            return response()->json(new SuccessResource("Upload de documentos feito com sucesso"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
+        }
+    }
+
+    public function getDocuments(int $id)
+    {
+        try {
+            $response = [
+                "crm_frente" => asset("storage/docs/crm-frente/crm-frente-{$id}.jpg"),
+                "crm_verso" => asset("storage/docs/crm-verso/crm-verso-{$id}.jpg"),
+                "selfie_com_doc" => asset("storage/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg"),
+                "foto_perfil" => asset("storage/docs/foto-perfil/foto-perfil-{$id}.jpg")
+            ];
+            
+            return response()->json(new SuccessResource($response), 200);
 
         } catch (\Throwable $th) {
 
