@@ -5,6 +5,7 @@
 - [Get Prescriber](#get-prescriber)
 - [Edit Prescriber](#edit-prescriber)
 - [Upload Documents](#upload-docs)
+- [Get Documents](#upload-docs)
 - [Criar um Paciente Usando Prescritor](#criar-paciente)
 - [Conectar Paciente com Prescritor](#connect)
 - [Desconecetar Paciente com Prescritor pelo ID](#disconect)
@@ -112,6 +113,54 @@ Método http e caminho:
 
 ```json
 {"success":{"message":"Sucesso!","data":"Prescritor editado com sucesso"}}
+```
+
+#### Status: 422 Unprocessable Content
+
+```json
+{
+    "error": {
+        "message": {}
+    }
+}
+```
+
+<a name="upload-docs"></a>
+## Upload de Documentos
+
+Método http e caminho: 
+
+> {primary} PUT {{url('/')}}/api/prescriber/prescriber-info/22
+
+### Parâmetros do body:
+
+- **crm_frente** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
+- **crm_verso** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
+- **selfie_com_doc** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
+- **foto_perfil** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
+
+### Exemplo de payload da requisição
+
+```json
+{
+    "crm_frente": "crm_frente.jpg",
+    "crm_verso": "crm_verso.jpg",
+    "selfie_com_doc": "selfie_com_doc.jpg",
+    "foto_perfil": "foto_perfil.jpg"
+}
+```
+
+### Respostas
+
+#### Status: 200 OK
+
+```json
+{
+    "success": {
+        "message": "Sucesso!",
+        "data": "Upload de documentos feito com sucesso"
+    }
+}
 ```
 
 #### Status: 422 Unprocessable Content
