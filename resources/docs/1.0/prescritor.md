@@ -3,6 +3,8 @@
 ---
 
 - [Get Prescriber](#get-prescriber)
+- [Edit Prescriber](#edit-prescriber)
+- [Upload Documents](#upload-docs)
 - [Criar um Paciente Usando Prescritor](#criar-paciente)
 - [Conectar Paciente com Prescritor](#connect)
 - [Desconecetar Paciente com Prescritor pelo ID](#disconect)
@@ -56,6 +58,68 @@ Método http e caminho:
 {
     "error": {
         "message": "Prescriber não encontrado."
+    }
+}
+```
+
+<a name="edit-prescriber"></a>
+## Editar Prescritor
+
+Método http e caminho: 
+
+> {primary} PUT {{url('/')}}/api/prescriber/prescriber-info/22
+
+### Parâmetros do body:
+
+- **name** _string_: O nome do prescriber
+- **cpf** _string_: CPF único do prescriber
+- **email** _string_: Email único do prescriber
+- **cellphone** _string_: Telefone do prescriber
+- **crm** _string_: CRM único do prescriber
+- **indicate_clinic** _boolean_: true
+- **password** _string_: A senha do prescriber
+- **cnpj** _string_: Senha do prescriber
+- **company_name** _string_: Nome da empresa
+- **address** _object_:
+- **street** _string_: Rua
+- **number** _string_: Número
+- **complement** _string_: Complemento
+
+### Exemplo de payload da requisição
+
+```json
+{
+    "name": "Matheus Murray",
+    "cpf": "07862803911",
+    "email": "matheusmurraydev4@gmail.com",
+    "cellphone": "11994273409",
+    "crm": "CRM/SP 123469.",
+    "indicate_clinic": true,
+    "password": "Senha@123",
+    "cnpj": "206061900001211",
+    "company_name": "Hospital Geral de Curitiba",
+    "address": {
+        "street" : "Rua da Engenharia de Software",
+        "number" : "33",
+        "complement" : "Bloco 6"
+    }
+}
+```
+
+### Respostas
+
+#### Status: 200 OK
+
+```json
+{"success":{"message":"Sucesso!","data":"Prescritor editado com sucesso"}}
+```
+
+#### Status: 422 Unprocessable Content
+
+```json
+{
+    "error": {
+        "message": {}
     }
 }
 ```
