@@ -17,7 +17,6 @@ class SpecificPrescriberResource extends JsonResource
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
             'cpf' => $this->cpf,
             'address' => $this->address,
             'documents' => $this->documents,
