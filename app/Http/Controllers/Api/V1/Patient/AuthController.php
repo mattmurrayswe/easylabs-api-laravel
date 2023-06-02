@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 
+use function PHPUnit\Framework\isNull;
+
 class AuthController extends Controller
 {
     public function signup(PatientRequest $request)
@@ -199,10 +201,29 @@ class AuthController extends Controller
     public function uploadDocs(int $id, Request $request)
     {
         try {
-            Storage::disk('local')->put("public/docs/crm-frente/crm-frente-{$id}.jpg", file_get_contents($request->file('crm_frente')->getPathname()));
-            Storage::disk('local')->put("public/docs/crm-verso/crm-verso-{$id}.jpg", file_get_contents($request->file('crm_verso')->getPathname()));
-            Storage::disk('local')->put("public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg", file_get_contents($request->file('selfie_com_doc')->getPathname()));
-            Storage::disk('local')->put("public/docs/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
+            if(!isNull($request->file('crm_frente'))) {
+                
+                Storage::disk('local')->put("public/docs/crm-frente/crm-frente-{$id}.jpg", file_get_contents($request->file('crm_frente')->getPathname()));
+                
+            }
+
+            if(!isNull($request->file('crm_verso'))) {
+                
+                Storage::disk('local')->put("public/docs/crm-verso/crm-verso-{$id}.jpg", file_get_contents($request->file('crm_verso')->getPathname()));
+                
+            }
+
+            if(!isNull($request->file('selfie_com_doc'))) {
+                
+                Storage::disk('local')->put("public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg", file_get_contents($request->file('selfie_com_doc')->getPathname()));
+                
+            }
+
+            if(!isNull($request->file('foto_perfil'))) {
+                
+                Storage::disk('local')->put("public/docs/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
+                
+            }
             
             return response()->json(new SuccessResource("Upload de documentos feito com sucesso"), 200);
 
