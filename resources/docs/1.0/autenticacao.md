@@ -60,7 +60,7 @@ Método http e caminho:
 
 Método http e caminho: 
 
-> {primary} POST {{url('/')}}/api/patient/singup
+> {primary} POST {{url('/')}}/api/patient/signup
 
 
 ### Parâmetros do body:
@@ -154,30 +154,43 @@ Método http e caminho:
 
 Método http e caminho: 
 
-> {primary} POST {{url('/')}}/api/prescriber/singup
+> {primary} POST {{url('/')}}/api/prescriber/signup
 
 
 ### Parâmetros do body:
 
-- **name**  _string_: O nome do paciente.
-- **email**  _string_: O email do paciente.
-- **password**  _string_: A senha do paciente.
-- **password_confirmation**  _string_: A confirmação senha do paciente.
-- **cpf**  _string_: O CPF válido e único do paciente.
-- **cellphone**  _string_: O celular válido e único do paciente.
-- **birth**  _date_: A confirmação senha do paciente.
+- **name** _string_: O nome do prescriber
+- **cpf** _string_: CPF único do prescriber
+- **email** _string_: Email único do prescriber
+- **cellphone** _string_: Telefone do prescriber
+- **crm** _string_: CRM único do prescriber
+- **indicate_clinic** _boolean_: true
+- **password** _string_: A senha do prescriber
+- **cnpj** _string_: Senha do prescriber
+- **company_name** _string_: Nome da empresa
+- **address** _object_:
+- **street** _string_: Rua
+- **number** _string_: Número
+- **complement** _string_: Complemento
 
 ### Exemplo de payload da requisição
 
 ```json
 {
-    "name": "John Doe",
-    "email": "doc@gmail.com",
+    "name": "Matheus Murray",
+    "cpf": "07862803911",
+    "email": "matheusmurraydev4@gmail.com",
+    "cellphone": "11994273409",
+    "crm": "CRM/SP 123469.",
+    "indicate_clinic": true,
     "password": "Senha@123",
-    "password_confirmation": "Senha@123",
-    "cpf": "13126440107",
-    "cellphone": "(11) 55932-4370",
-    "birth": "1997-12-18"
+    "cnpj": "206061900001211",
+    "company_name": "Hospital Geral de Curitiba",
+    "address": {
+        "street" : "Rua da Engenharia de Software",
+        "number" : "33",
+        "complement" : "Bloco 6"
+    }
 }
 ```
 
@@ -188,12 +201,29 @@ Método http e caminho:
 ```json
 {
     "user": {
-        "id": 28,
-        "name": "John Doe",
-        "email": "doc@gmail.com",
-        "createdAt": "04-05-2023"
+        "id": 22,
+        "name": "Matheus Murray",
+        "email": "matheusmurraydev6@gmail.com",
+        "createdAt": "02-06-2023"
     },
-    "token": "113|sXcvnN1eJCsdZR1yptTtiFp9XEZLBv2neFkgU2WS"
+    "token": "165|8SQAlAsSetz133aw4r53dQCYgnkmgrhE1UJLC5D7"
+}
+```
+
+#### Status: 422 Unprocessable Content
+
+```json
+{
+    "error": {
+        "message": {
+            "errorInfo": [
+                "HY000",
+                1364,
+                "Field 'active' doesn't have a default value"
+            ],
+            "connectionName": "mysql"
+        }
+    }
 }
 ```
 

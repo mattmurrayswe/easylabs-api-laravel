@@ -43,8 +43,11 @@ class AuthController extends Controller
         try {
             
             $request['password'] = bcrypt($request['password']);
-        
-            $user = Prescriber::create($request->all());
+            
+            $prescriber = $request->all();
+            $prescriber = array_merge($request->all(), ["active" => true], ["documents" => '']);
+
+            $user = Prescriber::create($prescriber);
     
             $token = $user->createToken('main')->plainTextToken;
     
