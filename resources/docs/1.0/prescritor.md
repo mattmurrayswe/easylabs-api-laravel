@@ -130,14 +130,14 @@ Método http e caminho:
 
 Método http e caminho: 
 
-> {primary} PUT {{url('/')}}/api/prescriber/prescriber-info/22
+> {primary} PUT {{url('/')}}/api/prescriber/documents/2
 
 ### Parâmetros do body:
 
-- **crm_frente** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
-- **crm_verso** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
-- **selfie_com_doc** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
-- **foto_perfil** _file_: Imagem em formato, jpg, jpeg, utilixar form-data
+- **crm_frente** _file_: Imagem em formato, jpg, jpeg, utilixar form-data, opcional
+- **crm_verso** _file_: Imagem em formato, jpg, jpeg, utilixar form-data, opcional
+- **selfie_com_doc** _file_: Imagem em formato, jpg, jpeg, utilixar form-data, opcional
+- **foto_perfil** _file_: Imagem em formato, jpg, jpeg, utilixar form-data, opcional
 
 ### Exemplo de payload da requisição
 
@@ -159,6 +159,42 @@ Método http e caminho:
     "success": {
         "message": "Sucesso!",
         "data": "Upload de documentos feito com sucesso"
+    }
+}
+```
+
+#### Status: 422 Unprocessable Content
+
+```json
+{
+    "error": {
+        "message": {}
+    }
+}
+```
+
+<a name="get-docs"></a>
+## Resgate os Documentos
+
+Método http e caminho: 
+
+> {primary} GET {{url('/')}}/api/prescriber/documents/3
+
+
+### Respostas
+
+#### Status: 200 OK
+
+```json
+{
+    "success": {
+        "message": "Sucesso!",
+        "data": {
+            "crm_frente": "http://localhost:8989/storage/docs/crm-frente/crm-frente-3.jpg",
+            "crm_verso": "http://localhost:8989/storage/docs/crm-verso/crm-verso-.jpg",
+            "selfie_com_doc": "http://localhost:8989/storage/docs/selfie-com-doc/selfie-com-doc-3.jpg",
+            "foto_perfil": "http://localhost:8989/storage/docs/foto-perfil/foto-perfil-3.jpg"
+        }
     }
 }
 ```
