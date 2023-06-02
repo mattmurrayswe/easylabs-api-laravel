@@ -2,6 +2,7 @@
 
 ---
 
+- [Get Prescriber](#get-prescriber)
 - [Criar um Paciente Usando Prescritor](#criar-paciente)
 - [Conectar Paciente com Prescritor](#connect)
 - [Desconecetar Paciente com Prescritor pelo ID](#disconect)
@@ -16,6 +17,48 @@
 
 - **Authorization**  _token_: Bearer Token.
 
+
+<a name="get-prescriber"></a>
+## Lista os dados do Prescriber
+
+Método http e caminho: 
+
+> {primary} GET {{url('/')}}/api/prescriber/prescriber-info/22
+
+### Respostas
+
+#### Status: 200 OK
+
+```json
+{
+    "data": {
+        "name": "Matheus Murray",
+        "email": "matheusmurraydev6@gmail.com",
+        "cpf": "07862803811",
+        "address": {
+            "number": "33",
+            "street": "Rua da Engenharia de Software",
+            "complement": "Bloco 6"
+        },
+        "documents": "",
+        "indicate_clinic": true,
+        "cellphone": "11994273409",
+        "crm": "CRM/SP 123479.",
+        "cnpj": "206061900021211",
+        "company_name": "Hospital Geral de Curitiba",
+        "active": 1
+    }
+}
+```
+#### Status: 422 Unprocessable Content ( A falha do envio do email pode causa esse erro )
+
+```json
+{
+    "error": {
+        "message": "Prescriber não encontrado."
+    }
+}
+```
 
 <a name="criar-paciente"></a>
 ## Criar um Paciente Usando Prescritor
