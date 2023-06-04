@@ -198,8 +198,10 @@ class AuthController extends Controller
         }
     }
 
-    public function uploadDocs(int $id, Request $request)
+    public function uploadDocs(Request $request)
     {
+        $id = Auth::id();
+
         try {
             if(!isNull($request->file('crm_frente'))) {
                 
@@ -233,8 +235,10 @@ class AuthController extends Controller
         }
     }
 
-    public function getDocuments(int $id)
+    public function getDocuments()
     {
+        $id = Auth::id();
+
         try {
             $response = [
                 "crm_frente" => asset("storage/docs/crm-frente/crm-frente-{$id}.jpg"),

@@ -100,15 +100,15 @@ Route::prefix('prescriber')->group(function(){
 
     Route::post('/login', [AuthController::class, 'loginPrescriber']);
     Route::post('/signup', [AuthController::class, 'signupPrescriber']);
-    Route::post('/documents/{id}', [AuthController::class, 'uploadDocs']);
-    Route::get('/documents/{id}', [AuthController::class, 'getDocuments']);
     Route::post('/recover-password', [RecoverController::class, 'recoverPasswordPresc']);
     Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCodePresc']);
     Route::post('/new-password', [RecoverController::class, 'newPasswordPresc']);
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
-
+    
     // // Authenticated Routes for Prescriber
     Route::middleware('auth:sanctum')->group(function() {
+        Route::post('/documents', [AuthController::class, 'uploadDocs']);
+        Route::get('/documents', [AuthController::class, 'getDocuments']);
         Route::post('/logout', [AuthController::class, 'logoutPresc']);
         Route::get('/prescriber-info/{id}', [AuthController::class, 'prescInfo']);
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);
