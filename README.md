@@ -23,5 +23,17 @@ Gere a key do projeto Laravel
 php artisan key:generate
 ```
 
+Permissão na pasta /storage
+```sh
+chmod -R 777 storage
+```
+
 Acesse o projeto
-[http://localhost:8989](http://localhost:8989)
+```sh
+http://localhost:8989
+```
+
+Doc de rotas
+```sh
+http://localhost:8989/manual/1.0/autenticacao
+```
