@@ -48,11 +48,11 @@ Route::prefix('patient')->group(function(){
 
     // Authenticated Routes for Patient
     Route::middleware('auth:sanctum')->group(function() {
-
+        
         // Patient
         Route::post('/set-treatment', [PatientController::class, 'setTreatmentToPatient']);
         Route::get('/get-treatments/{id}', [PatientController::class, 'getPatientTreatments']);
-
+        
         // Acount info
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
@@ -63,6 +63,8 @@ Route::prefix('patient')->group(function(){
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
+        Route::post('/inform-symptoms', [PatientUsesMedicineController::class, 'informSymptoms']);
+        Route::get('/informed-symptoms', [PatientUsesMedicineController::class, 'informedSymptoms']);
 
         // Patient inform me
         Route::post('/inform-treatment', [PatientInformTreatmentController::class, 'informTreatment']);
@@ -155,11 +157,4 @@ Route::prefix('prescriber')->group(function(){
         /** id do diagnostico */
         Route::get('/percepcao-melhora/{id}', [StatisticsController::class, 'showPercepcaoDeMelhora']);
     });
-
 });
-
-
-
-
-
-
