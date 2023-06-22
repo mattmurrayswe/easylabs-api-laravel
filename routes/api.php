@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\Prescriber\AppointmentController;
 use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
 use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
 use App\Http\Controllers\Api\V1\TreatmentController;
+use App\Http\Controllers\Api\V1\StatisticsController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 /*
@@ -148,6 +149,11 @@ Route::prefix('prescriber')->group(function(){
         // Appointment
         Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
 
+        // Appointment
+        Route::get('/produto-indicado', [StatisticsController::class, 'showProdutoIndicadoPorDiagnostico']);
+        
+        /** id do diagnostico */
+        Route::get('/percepcao-melhora/{id}', [StatisticsController::class, 'showPercepcaoDeMelhora']);
     });
 
 });
