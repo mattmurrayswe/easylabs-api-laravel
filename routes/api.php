@@ -65,13 +65,14 @@ Route::prefix('patient')->group(function(){
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
         Route::post('/inform-symptoms', [PatientUsesMedicineController::class, 'informSymptoms']);
         Route::get('/informed-symptoms', [PatientUsesMedicineController::class, 'informedSymptoms']);
-
+        
         // Patient inform me
         Route::post('/inform-treatment', [PatientInformTreatmentController::class, 'informTreatment']);
-
+        
         // Follow Up Treatment
         Route::post('/follow-up', [FollowUpController::class, 'store']);
-
+        Route::post('/message', [FollowUpController::class, 'messageToPrescriber']);
+        
         
         // Medicine
         Route::post('/medicine', [MedicineController::class, 'store']);
