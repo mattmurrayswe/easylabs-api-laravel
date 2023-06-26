@@ -28,6 +28,8 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 // Patient
+Route::get('/cep', [AuthController::class, 'cep']);
+
 Route::prefix('patient')->group(function(){
 
    

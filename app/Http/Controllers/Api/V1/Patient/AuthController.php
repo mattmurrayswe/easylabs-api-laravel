@@ -14,6 +14,7 @@ use App\Http\Resources\Api\V1\SpecificPatientResource;
 use App\Http\Resources\Api\V1\SpecificPrescriberResource; 
 use App\Models\Patient;
 use App\Models\Prescriber;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -261,6 +262,26 @@ class AuthController extends Controller
             ->redirect();
     }
 
+    public function cep(Request $request)
+    {
+        try {
+            $cep = $request->all()["cep"];
+
+            $client = new Client();
+
+            $res = $client->request(
+                "GET",
+                "https://viacep.com.br/ws/$cep/json/"
+            );
+            
+            return response()->json(new SuccessResource((string) $res->getBody()), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
+        }
+    }
+
     public function handleGoogleCallback(Request $request)
     {
 
@@ -297,8 +318,5 @@ class AuthController extends Controller
         $data = new DefaultUserResource($newPatient);
 
         return response(compact('data', 'token'));
-
-        
-
     }
 }
