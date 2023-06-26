@@ -45,9 +45,9 @@ Route::prefix('patient')->group(function(){
     Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);
     Route::post('/new-password', [RecoverController::class, 'newPassword']);
     Route::post('/new-code', [RecoverController::class, 'sendNewCode']);
-
+    
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
-
+    
     // Authenticated Routes for Patient
     Route::middleware('auth:sanctum')->group(function() {
         
@@ -74,6 +74,7 @@ Route::prefix('patient')->group(function(){
         // Follow Up Treatment
         Route::post('/follow-up', [FollowUpController::class, 'store']);
         Route::post('/message', [FollowUpController::class, 'messageToPrescriber']);
+        Route::get('/message', [FollowUpController::class, 'readMessagesToPrescriber']);
         
         
         // Medicine

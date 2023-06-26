@@ -32,4 +32,15 @@ class FollowUpController extends Controller
             return response()->json(new ErrorResource($th), 422);
         }
     }    
+
+    public function readMessagesToPrescriber(Request $request)
+    {
+        try {
+            $messages = MessagesToPrescriber::
+                where('patient_id', $request['patient_id'])->get()->toArray();
+            return response()->json(new SuccessResource($messages), 200);
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th), 422);
+        }
+    }    
 }
