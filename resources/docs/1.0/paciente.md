@@ -4,6 +4,8 @@
 
 - [Retornar Informações do Paciente](#retornar-pacient-infos)
 - [Editar Informações do Paciente](#editar-pacient-infos)
+- [Informar Sintomas](#inform-symptoms)
+- [Listar Sintomas por Data](#informed-symptoms)
 - [Informar Uso de Medicação](#informar-uso-medicacao)
 - [Desativar Conta](#desativar)
 - [Deletar Conta](#deletar)
@@ -84,6 +86,52 @@ Por ex: 28.
         "cpf": "13126440107",
         "cellphone": "(11) 55932-4370",
         "birth": "1997-12-18"
+    }
+}
+```
+<a name="inform-symptoms"></a>
+## Informar Sintomas
+
+Método http e caminho: 
+
+> {primary} POST {{url('/')}}/api/patient/inform-symptoms
+
+### Parâmetros do body:
+
+- **patient_id**  _Int_: ID válido de um paciente.
+- **symptom_id**  _Int_: Referente ao id unico de um sintoma.
+- **diagnoses_id**  _Int_: Referente ao id unico de um diagnostico.
+- **symptom_scale**  _Int_: 1, 2, 3, 4, 5
+
+### Exemplo de payload da requisição
+
+```json
+{
+    "patient_id": "1",
+    "symptom_id": "1",
+    "diagnoses_id": "1",
+    "symptom_scale": "3"
+}
+```
+
+### Respostas
+
+#### Status: 200 OK
+
+```json
+{
+    "success": {
+        "message": "Sucesso!",
+        "data": "Sintoma informado com sucesso!"
+    }
+}
+```
+#### Status: 422 Error - Unprocessable Content
+
+```json
+{
+    "error": {
+        "message": "Verifique os ids informados."
     }
 }
 ```
