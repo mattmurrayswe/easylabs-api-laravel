@@ -37,6 +37,10 @@ Route::get('/validacao-documentos', function () {
     return view('validacao-documentos');
 });
 
+Route::get('/config-pushs', function () {
+    return view('config-pushs');
+});
+
 
 // Route::prefix('docs')->group(function () {
 //     Route::get('/', function () {
