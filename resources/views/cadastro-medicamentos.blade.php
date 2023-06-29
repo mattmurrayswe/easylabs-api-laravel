@@ -18,7 +18,7 @@
     <div class="container flex min-h-screen min-w-full h-screen">
         <div id="side-navbar" class="min-h-screen bg-gray-200 w-1/5 shadow-2xl py-2">
             <div id="logo-brease" class="p-3 text-white flex justify-center py-16">
-                <img src="{{URL::asset('/image/logo.svg')}}" alt="profile Pic" height="100" width="100">
+                <img src="{{URL::asset('/image/logo.svg')}}" alt="profile Pic" height="120" width="120">
             </div>
             <div id="cadastro-medicamentos" class=" p-3 pt-12 text-gray-900 mx-4">
                 <a class="flex" href="">
