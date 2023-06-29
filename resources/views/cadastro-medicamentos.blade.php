@@ -20,7 +20,7 @@
             <div id="logo-brease" class="p-3 text-white flex justify-center py-16">
                 <img src="{{URL::asset('/image/logo.svg')}}" alt="profile Pic" height="100" width="100">
             </div>
-            <div id="cadastro-medicamentos" class="p-3 text-gray-900 mx-4">
+            <div id="cadastro-medicamentos" class=" p-3 pt-12 text-gray-900 mx-4">
                 <a class="flex" href="">
                     <div class="w-5 mr-3 flex justify-center">
                         <img src="{{URL::asset('/image/med-icon.svg')}}" alt="profile Pic" height="15" width="15">
@@ -55,7 +55,23 @@
         </div>
 
         <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
-            <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">Cadastro de Medicamentos</div>
+            <div class="header flex justify-between content-center">
+                <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
+                    <a class="flex" href="">
+                        <div class="w-7 mr-3 flex justify-center">
+                            <img src="{{URL::asset('/image/med-icon.svg')}}" alt="profile Pic" height="20" width="20">
+                        </div>
+                        <p>Cadastro de Medicamentos</p>
+                    </a>
+                </div>
+                <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
+                    <a class="flex" href="">
+                        <div class="w-7 mr-3 flex justify-center">
+                            <img src="{{URL::asset('/image/prof-icon.svg')}}" alt="profile Pic" height="20" width="20">
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
                 <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
@@ -75,8 +91,14 @@
                             <th>
                                 <p class="flex text-white">Formulação</p>
                             </th>
-                            <th class="rounded-tr-xl">
+                            <th>
                                 <p class="flex text-white">Laboratório</p>
+                            </th>
+                            <th>
+                                <p class="flex text-white">Excluir</p>
+                            </th>
+                            <th class="rounded-tr-xl">
+                                <p class="flex text-white">Editar</p>
                             </th>
                         </tr>
                     </thead>
@@ -88,6 +110,8 @@
                             <td class="px-4">30ml</td>
                             <td class="px-4">Isolado</td>
                             <td class="px-4">Ease Labs</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
                         </tr>
                         <tr>
                             <td class="px-4">Extrato de Cannabis</td>
@@ -96,6 +120,8 @@
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
                         </tr>
                         <tr>
                             <td class="px-4">Extrato de Cannabis</td>
@@ -104,6 +130,8 @@
                             <td class="px-4">70ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
                         </tr>
                         <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
@@ -112,6 +140,8 @@
                             <td class="px-4">30ml</td>
                             <td class="px-4">Isolado</td>
                             <td class="px-4">Ease Labs</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
                         </tr>
                         <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
@@ -120,6 +150,8 @@
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
                         </tr>
                         <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
@@ -128,9 +160,13 @@
                             <td class="px-4">70ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
+                            <td class="px-4"></td>
+                            <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
