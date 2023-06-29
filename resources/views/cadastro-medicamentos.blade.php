@@ -16,22 +16,50 @@
 
 <body>
     <div class="container flex min-h-screen min-w-full h-screen">
-        <div id="side-navbar" class="min-h-screen bg-gray-900 w-1/5 shadow-2xl py-2">
+        <div id="side-navbar" class="min-h-screen bg-gray-200 w-1/5 shadow-2xl py-2">
             <div id="logo-brease" class="p-3 text-white flex justify-center py-16">
                 <img src="{{URL::asset('/image/logo.svg')}}" alt="profile Pic" height="100" width="100">
             </div>
-            <div id="cadastro-medicamentos" class="p-3 text-white"> <a href=""> Cadastro de Medicamentos</a></div>
-            <div id="cadastro-sintomas" class="p-3 text-white"><a href="">Cadastro de Sintomas</a></div>
-            <div id="docs" class="p-3 text-white"><a href="">Validação de Documentos</a></div>
-            <div id="config-pushs" class="p-3 text-white"><a href="">Push Notifications</a></div>
+            <div id="cadastro-medicamentos" class="p-3 text-gray-900 mx-4">
+                <a class="flex" href="">
+                    <div class="w-5 mr-3 flex justify-center">
+                        <img src="{{URL::asset('/image/med-icon.svg')}}" alt="profile Pic" height="15" width="15">
+                    </div>
+                    <p>Cadastro de Medicamentos</p>
+                </a>
+            </div>
+            <div id="cadastro-sintomas" class="p-3 text-gray-900 mx-4">
+                <a class="flex" href="">
+                    <div class="w-5 mr-3 flex justify-center">
+                        <img src="{{URL::asset('/image/sym-icon.svg')}}" alt="profile Pic" height="18" width="18">
+                    </div>
+                    <p>Cadastro de Sintomas</p>
+                </a>
+            </div>
+            <div id="docs" class="p-3 text-gray-900 mx-4">
+                <a class="flex" href="">
+                    <div class="w-5 mr-3 flex justify-center">
+                        <img src="{{URL::asset('/image/doc-icon.svg')}}" alt="profile Pic" height="15" width="15">
+                    </div>
+                    <p>Validação de Documentos</p>
+                </a>
+            </div>
+            <div id="config-pushs" class="p-3 text-gray-900 mx-4">
+                <a class="flex" href="">
+                    <div class="w-5 mr-3 flex justify-center">
+                        <img src="{{URL::asset('/image/set-icon.svg')}}" alt="profile Pic" height="18" width="18">
+                    </div>
+                    <p>Push Notifications</p>
+                </a>
+            </div>
         </div>
 
         <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
-            <div id="titulo-pagina" class="text-gray-900 text-xl underline">Cadastro de Medicamentos</div>
-            <div id="tabela-medicamentos" class="h-fit my-20 border border-gray-300 rounded-xl">
-                <table class="table-auto w-full h-full">
-                    <thead class="h-24">
-                        <tr class="bg-gray-900">
+            <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">Cadastro de Medicamentos</div>
+            <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
+                <table class="table-auto w-full h-full text-xs rounded-xl">
+                    <thead class="h-16">
+                        <tr class="bg-gray-800">
                             <th class="rounded-tl-xl">
                                 <p class="flex justify-center text-white">Nome Medicamento</p>
                             </th>
@@ -70,6 +98,14 @@
                             <td class="px-4">Green</td>
                         </tr>
                         <tr>
+                            <td class="px-4">Extrato de Cannabis</td>
+                            <td class="px-4">Gotas</td>
+                            <td class="px-4">17.18 mg/ml</td>
+                            <td class="px-4">70ml</td>
+                            <td class="px-4">Fitoterápico</td>
+                            <td class="px-4">Green</td>
+                        </tr>
+                        <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">4.00 mg/ml</td>
@@ -84,6 +120,22 @@
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4">Canabidiol Fitofarmaco</td>
+                            <td class="px-4">Gotas</td>
+                            <td class="px-4">17.18 mg/ml</td>
+                            <td class="px-4">70ml</td>
+                            <td class="px-4">Fitoterápico</td>
+                            <td class="px-4">Green</td>
+                        </tr>
+                        <tr class="bg-gray-800 h-10">
+                            <td class="px-4 rounded-bl-xl"></td>
+                            <td class="px-4"></td>
+                            <td class="px-4"></td>
+                            <td class="px-4"></td>
+                            <td class="px-4"></td>
+                            <td class="px-4 rounded-br-xl"></td>
                         </tr>
                     </tbody>
                 </table>
