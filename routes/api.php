@@ -14,8 +14,9 @@ use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
 use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use App\Http\Controllers\Api\V1\StatisticsController;
+use App\Http\Controllers\Api\V1\SymptomsController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,10 +38,10 @@ Route::prefix('patient')->group(function(){
     // Google Login Routes
     Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
-
+    
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/signup', [AuthController::class, 'signup']);
-
+    
     Route::post('/recover-password', [RecoverController::class, 'recoverPassword']);
     Route::post('/confirm-recovery-code', [RecoverController::class, 'confirmCode']);
     Route::post('/new-password', [RecoverController::class, 'newPassword']);
@@ -65,8 +66,9 @@ Route::prefix('patient')->group(function(){
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
-        Route::post('/inform-symptoms', [PatientUsesMedicineController::class, 'informSymptoms']);
-        Route::get('/informed-symptoms', [PatientUsesMedicineController::class, 'informedSymptoms']);
+        
+        Route::post('/inform-symptoms', [SymptomsController::class, 'informSymptoms']);
+        Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptoms']);
         
         // Patient inform me
         Route::post('/inform-treatment', [PatientInformTreatmentController::class, 'informTreatment']);
@@ -83,28 +85,28 @@ Route::prefix('patient')->group(function(){
         Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
         Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
         Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
-
+        
         // Treatment
         Route::post('/treatment', [TreatmentController::class, 'store']);
         Route::get('/all-treatments', [TreatmentController::class, 'getAllTreatment']);
         Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
         Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
         Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
-
+        
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'store']);
         Route::get('/all-newtreatments', [NewTreatmentController::class, 'getAllTreatment']);
         Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'show']);
         Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroy']);
         Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'update']);
-
+        
     });
-
+    
 });
 
 
 Route::prefix('prescriber')->group(function(){
-
+    
     Route::post('/login', [AuthController::class, 'loginPrescriber']);
     Route::post('/signup', [AuthController::class, 'signupPrescriber']);
     Route::post('/recover-password', [RecoverController::class, 'recoverPasswordPresc']);
@@ -121,44 +123,47 @@ Route::prefix('prescriber')->group(function(){
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
-
+        
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'storePresc']);
         Route::get('/all-newtreatments', [NewTreatmentController::class, 'getAllTreatmentPresc']);
         Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'showPresc']);
         Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroyPresc']);
         Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'updatePresc']);
-
-
+        
+        
         // Create Patient Using Prescriber
         Route::post('/create-patient', [PatientController::class, 'createPatientUsingPrescriber']);
-
-
+        
+        
         // Connect Patient on Prescriber
         Route::post('/connect-patient', [PatientController::class, 'connectPrescriberToPatient']);
         Route::post('/erase-connected-patient/{id}', [PatientController::class, 'errasePrescriberInPatient']);
         Route::post('/get-pacient-treatment/{id}', [PatientController::class, 'getPacientTreatment']);
-
-
+        
+        
         // Get Prescriber Info with patients and treatments
         Route::get('/get-prescriber-patient/{id}', [PrescriberController::class, 'getConnectedPatients']);
-
+        
         // Availability
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
         Route::post('/create-availability', [AvailabilityController::class, 'store']);
-
+        
         // ClinicAdress
         Route::get('/get-clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
         Route::post('/create-clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
         Route::put('/update-clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
-
+        
         // Appointment
         Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
-
+        
         // Appointment
         Route::get('/produto-indicado', [StatisticsController::class, 'showProdutoIndicadoPorDiagnostico']);
         
         /** id do diagnostico */
         Route::get('/percepcao-melhora/{id}', [StatisticsController::class, 'showPercepcaoDeMelhora']);
+
+        Route::get('/symptoms', [SymptomsController::class, 'listSymptoms']);
+        Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);
     });
 });
