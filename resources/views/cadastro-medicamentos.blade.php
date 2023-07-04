@@ -102,11 +102,11 @@
                             <th>
                                 <p class="flex text-white">Laboratório</p>
                             </th>
-                            <th>
-                                <p class="flex text-white">Excluir</p>
+                            <th class="px-4">
+                                <p class="flex justify-end text-white">Editar</p>
                             </th>
-                            <th class="rounded-tr-xl">
-                                <p class="flex text-white">Editar</p>
+                            <th class="rounded-tr-xl px-4">
+                                <p class="flex justify-start text-white">Excluir</p>
                             </th>
                         </tr>
                     </thead>
@@ -118,8 +118,8 @@
                             <td class="px-4">30ml</td>
                             <td class="px-4">Isolado</td>
                             <td class="px-4">Ease Labs</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">Extrato de Cannabis</td>
@@ -128,8 +128,8 @@
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">Extrato de Cannabis</td>
@@ -138,8 +138,8 @@
                             <td class="px-4">70ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
@@ -148,8 +148,8 @@
                             <td class="px-4">30ml</td>
                             <td class="px-4">Isolado</td>
                             <td class="px-4">Ease Labs</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
@@ -158,8 +158,8 @@
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
@@ -168,8 +168,8 @@
                             <td class="px-4">70ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
