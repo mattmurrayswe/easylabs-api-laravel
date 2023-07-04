@@ -17,7 +17,7 @@
 <body>
     <div class="container flex min-h-screen min-w-full h-screen">
 
-        @include('sidebar')
+        @include('components.sidebar')
 
         <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
             <div class="header flex justify-between content-center">
