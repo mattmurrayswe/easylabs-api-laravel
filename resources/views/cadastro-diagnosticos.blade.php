@@ -81,98 +81,108 @@
                 </div>
             </div>
             <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
-                <table class="table-auto w-full h-full text-xs rounded-xl">
+            <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
                         <tr class="bg-gray-800">
-                            <th class="rounded-tl-xl">
-                                <p class="flex justify-center text-white">Nome Medicamento</p>
+                            <th class="rounded-tl-xl px-4">
+                                <p class="flex text-white">ID</p>
                             </th>
-                            <th>
+                            <th class="px-4">
+                                <p class="flex text-white">Nome Medicamento</p>
+                            </th>
+                            <th class="px-4">
                                 <p class="flex text-white">Apresentação</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Concentração</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Volume Frasco</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Formulação</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Laboratório</p>
                             </th>
-                            <th>
-                                <p class="flex text-white">Excluir</p>
+                            <th class="px-4">
+                                <p class="flex justify-end text-white">Editar</p>
                             </th>
-                            <th class="rounded-tr-xl">
-                                <p class="flex text-white">Editar</p>
+                            <th class="rounded-tr-xl px-4">
+                                <p class="flex justify-start text-white">Excluir</p>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
                         <tr>
+                            <td class="px-4">1</td>
                             <td class="px-4">Extrato de Cannabis</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">4.00 mg/ml</td>
                             <td class="px-4">30ml</td>
                             <td class="px-4">Isolado</td>
                             <td class="px-4">Ease Labs</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">2</td>
                             <td class="px-4">Extrato de Cannabis</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">3</td>
                             <td class="px-4">Extrato de Cannabis</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
                             <td class="px-4">70ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">4</td>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">4.00 mg/ml</td>
                             <td class="px-4">30ml</td>
                             <td class="px-4">Isolado</td>
                             <td class="px-4">Ease Labs</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">5</td>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
                             <td class="px-4">50ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">6</td>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
                             <td class="px-4">70ml</td>
                             <td class="px-4">Fitoterápico</td>
                             <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">Editar</td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2">Excluir</td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
+                            <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
