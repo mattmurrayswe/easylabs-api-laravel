@@ -39,7 +39,7 @@
             <div id="cadastro-sintomas" class="p-3 text-gray-900 mx-4">
                 <a class="flex" href="{{ url('/cadastro-diagnosticos') }}">
                     <div class="w-5 mr-3 flex justify-center">
-                        <img src="{{URL::asset('/image/doc-icon.svg')}}" alt="profile Pic" height="15" width="15">
+                        <img src="{{URL::asset('/image/diag-icon.svg')}}" alt="profile Pic" height="15" width="15">
                     </div>
                     <p>Cadastro de Diagnósticos</p>
                 </a>

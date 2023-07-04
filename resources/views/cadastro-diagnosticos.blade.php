@@ -39,7 +39,7 @@
             <div id="cadastro-sintomas" class="p-3 text-gray-900 mx-4">
                 <a class="flex" href="{{ url('/cadastro-diagnosticos') }}">
                     <div class="w-5 mr-3 flex justify-center">
-                        <img src="{{URL::asset('/image/doc-icon.svg')}}" alt="profile Pic" height="15" width="15">
+                        <img src="{{URL::asset('/image/diag-icon.svg')}}" alt="profile Pic" height="15" width="15">
                     </div>
                     <p>Cadastro de Diagnósticos</p>
                 </a>
@@ -67,9 +67,9 @@
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">
                         <div class="w-7 mr-3 flex justify-center">
-                            <img src="{{URL::asset('/image/med-icon.svg')}}" alt="profile Pic" height="20" width="20">
+                            <img src="{{URL::asset('/image/diag-icon.svg')}}" alt="profile Pic" height="20" width="20">
                         </div>
-                        <p>Cadastro de Medicamentos</p>
+                        <p>Cadastro de Diagnósticos</p>
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
