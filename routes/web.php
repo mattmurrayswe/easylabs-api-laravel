@@ -33,6 +33,10 @@ Route::get('/cadastro-medicamentos', function () {
     return view('cadastro-medicamentos');
 });
 
+Route::get('/cadastro-diagnosticos', function () {
+    return view('cadastro-diagnosticos');
+});
+
 Route::get('/validacao-documentos', function () {
     return view('validacao-documentos');
 });
