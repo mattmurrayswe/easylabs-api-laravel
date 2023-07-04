@@ -84,22 +84,22 @@
                 <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
                         <tr class="bg-gray-800">
-                            <th class="rounded-tl-xl">
-                                <p class="flex justify-center text-white">Nome Medicamento</p>
+                            <th class="rounded-tl-xl px-4">
+                                <p class="flex text-white">Nome Medicamento</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Apresentação</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Concentração</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Volume Frasco</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Formulação</p>
                             </th>
-                            <th>
+                            <th class="px-4">
                                 <p class="flex text-white">Laboratório</p>
                             </th>
                             <th class="px-4">
