@@ -85,6 +85,9 @@
                     <thead class="h-16">
                         <tr class="bg-gray-800">
                             <th class="rounded-tl-xl px-4">
+                                <p class="flex text-white">ID</p>
+                            </th>
+                            <th class="px-4">
                                 <p class="flex text-white">Nome Medicamento</p>
                             </th>
                             <th class="px-4">
@@ -112,6 +115,7 @@
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
                         <tr>
+                            <td class="px-4">1</td>
                             <td class="px-4">Extrato de Cannabis</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">4.00 mg/ml</td>
@@ -122,6 +126,7 @@
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">2</td>
                             <td class="px-4">Extrato de Cannabis</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
@@ -132,6 +137,7 @@
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">3</td>
                             <td class="px-4">Extrato de Cannabis</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
@@ -142,6 +148,7 @@
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">4</td>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">4.00 mg/ml</td>
@@ -152,6 +159,7 @@
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">5</td>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
@@ -162,6 +170,7 @@
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
+                            <td class="px-4">6</td>
                             <td class="px-4">Canabidiol Fitofarmaco</td>
                             <td class="px-4">Gotas</td>
                             <td class="px-4">17.18 mg/ml</td>
@@ -173,6 +182,7 @@
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
+                            <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
