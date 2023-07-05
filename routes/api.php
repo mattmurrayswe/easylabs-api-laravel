@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\PatientUsesMedicineController;
 use App\Http\Controllers\Api\V1\Prescriber\AppointmentController;
 use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
 use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
+use App\Http\Controllers\Api\V1\Prescriber\VoucherController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use App\Http\Controllers\Api\V1\StatisticsController;
 use App\Http\Controllers\Api\V1\SymptomsController;
@@ -148,7 +149,15 @@ Route::prefix('prescriber')->group(function(){
         // Availability
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
         Route::post('/create-availability', [AvailabilityController::class, 'store']);
-        
+
+        //Voucher
+        Route::get('/vouchers', [VoucherController::class, 'getVoucher']);
+        Route::get('/voucher/{id}', [VoucherController::class, 'getVoucherPerId']);
+        Route::post('/voucher', [VoucherController::class, 'createVoucher']);
+        Route::put('/voucher/{id}', [VoucherController::class, 'updateVoucher']);
+        Route::delete('/voucher/{id}', [VoucherController::class, 'deleteVoucher']);
+
+
         // ClinicAdress
         Route::get('/get-clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
         Route::post('/create-clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
@@ -156,7 +165,13 @@ Route::prefix('prescriber')->group(function(){
         
         // Appointment
         Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
-        
+        Route::delete('/drop-appointment/{id}', [AppointmentController::class, 'dropAppointment']);
+
+        Route::get('/next-appointments', [AppointmentController::class, 'nextAppointments']);
+        Route::get('/past-appointments', [AppointmentController::class, 'pastAppointments']);
+
+        Route::post('/end-appointment/{id}', [AppointmentController::class, 'endAppointment']);
+
         // Appointment
         Route::get('/produto-indicado', [StatisticsController::class, 'showProdutoIndicadoPorDiagnostico']);
         

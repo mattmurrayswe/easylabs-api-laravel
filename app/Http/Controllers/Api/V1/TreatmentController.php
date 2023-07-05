@@ -40,7 +40,7 @@ class TreatmentController extends Controller
             return response()->json(new SuccessResource($treament), 200);
             
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
         
@@ -55,7 +55,7 @@ class TreatmentController extends Controller
             return response()->json(new SuccessResource($treament), 200);
             
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }
@@ -89,7 +89,7 @@ class TreatmentController extends Controller
             return response()->json(new SuccessResource($treament), 200);
             
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
 

@@ -109,7 +109,7 @@ class RecoverController extends Controller
             $request['password'] = bcrypt($request['password']);
         }
 
-        Patient::where('email', $request['email'])->update(['password' => $request['password']]);
+        Patient::where('email', $request['email'])ErrorResource($th->getMessage())(['password' => $request['password']]);
 
         
         return response()->json(new SuccessResource("Senha alterada com sucesso!"), 200);
@@ -192,13 +192,24 @@ class RecoverController extends Controller
 
     private function sendCode($request, $code)
     {
-        $patient = Patient::where('email', $request->email)->first();
-        $patient->notify(new PasswordRecoveryNotification($code));
+        try {
+            $patient = Patient::where('email', $request->email)->first();
+            $patient->notify(new PasswordRecoveryNotification($code));
+        } catch (\Throwable $th) {
+            dd( $th);
+        }
+        
     }
 
     private function sendCodePresc($request, $code)
     {
-        $patient = Prescriber::where('email', $request->email)->first();
-        $patient->notify(new PasswordRecoveryNotification($code));
+        
+
+        try {
+            $patient = Prescriber::where('email', $request->email)->first();
+            $patient->notify(new PasswordRecoveryNotification($code));
+        } catch (\Throwable $th) {
+            dd( $th);
+        }
     }
 }

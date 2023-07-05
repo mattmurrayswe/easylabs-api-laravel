@@ -13,7 +13,8 @@ class Appointment extends Model
         'description',
         'appointment_date',
         'appointment_time',
-        'type'
+        'type',
+        'appointment_done'
     ];
 
 

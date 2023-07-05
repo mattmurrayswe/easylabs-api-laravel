@@ -5,6 +5,11 @@ Os endpoints abaixo serão utilizados na hora do cadastro / leitura dos dados de
 
 - [Gestão de Disponibilidade - Listar Datas](#listagem)
 - [Gestão de Disponibilidade - Cadastrar Datas](#cadastro)
+- [Gestão de Disponibilidade - Marcar Consulta](#marcar-consulta)
+- [Gestão de Disponibilidade - Cancelar Consulta](#cancelar-consulta)
+- [Gestão de Disponibilidade - Próximas Consultas](#next-consulta)
+- [Gestão de Disponibilidade - Historico de Consultas](#last-consulta)
+- [Gestão de Disponibilidade - Realizar Consulta](#do-consulta)
 
 > {success} Todas as requisições abaixo fazem o uso do **Bearer Token**, como forma de segurança. Portanto, no header de cada requisição é necessário utilizar o **token** que fora retornado na hora do login.
 

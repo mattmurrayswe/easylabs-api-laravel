@@ -36,7 +36,7 @@ class NewTreatmentController extends Controller
             $treatment = NewTreatment::create($request->all());
             return response()->json(new SuccessResource($treatment), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 
@@ -49,7 +49,7 @@ class NewTreatmentController extends Controller
             $treatment = NewTreatment::create($request->all());
             return response()->json(new SuccessResource($treatment), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 
@@ -88,7 +88,7 @@ class NewTreatmentController extends Controller
             $treatment = NewTreatment::with('patient')->get();
             return response()->json(new SuccessResource($treatment), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
         
     }
@@ -102,7 +102,7 @@ class NewTreatmentController extends Controller
             $treatment = NewTreatment::with('patient')->get();
             return response()->json(new SuccessResource($treatment), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
         
     }
