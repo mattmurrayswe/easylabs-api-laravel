@@ -76,6 +76,24 @@ class SymptomsController extends Controller
         }
     }
 
+    public function informedSymptomsCount(Request $request)
+    {
+        try {
+
+            $symptoms = PatientSymptoms::
+                where('created_at', '>', $request['start_time'])->
+                where('created_at', '<', $request['end_time'])->
+                where('patient_id', Auth::id())->get()->toArray();
+
+            return response()->json(new SuccessResource(count($symptoms)), 200);
+            
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($symptoms), 404);
+
+        }
+    }
+
     public function listSymptoms()
     {
         try {
