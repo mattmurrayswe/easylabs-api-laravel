@@ -60,6 +60,7 @@ Route::prefix('patient')->group(function(){
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
+        Route::put('/password', [AuthController::class, 'editPassword']);
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
         Route::post('/account-config/{id}', [PatientController::class, 'updateAccountConfig']);
@@ -68,6 +69,8 @@ Route::prefix('patient')->group(function(){
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
         
         Route::post('/inform-symptoms', [SymptomsController::class, 'informSymptoms']);
+        Route::put('/informed-symptom', [SymptomsController::class, 'informedSymptomEdit']);
+        Route::delete('/informed-symptom', [SymptomsController::class, 'informedSymptomDelete']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptoms']);
         
         // Patient inform me

@@ -28,7 +28,7 @@ class SymptomsController extends Controller
     {
         try {
 
-            $return = PatientSymptoms::whereId($request['informed_symptom_id'])->update(
+            PatientSymptoms::whereId($request['informed_symptom_id'])->update(
                 [
                     "symptom_scale" => $request['symptom_scale'],
                     "diagnoses_id" => $request['diagnoses_id'],
@@ -37,6 +37,19 @@ class SymptomsController extends Controller
             );
 
             return response()->json(new SuccessResource("Sintoma informado editado com sucesso!"), 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource("Erro ao informar sintoma!"), 422);
+        }
+    }
+
+    public function informedSymptomDelete(Request $request)
+    {
+        try {
+
+            PatientSymptoms::whereId($request['informed_symptom_id'])->delete();
+
+            return response()->json(new SuccessResource("Sintoma informado deletado com sucesso!"), 200);
 
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource("Erro ao informar sintoma!"), 422);
