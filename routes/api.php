@@ -67,6 +67,7 @@ Route::prefix('patient')->group(function(){
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
+        Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMed']);
         
         Route::post('/inform-symptoms', [SymptomsController::class, 'informSymptoms']);
         Route::put('/informed-symptom', [SymptomsController::class, 'informedSymptomEdit']);
