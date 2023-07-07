@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
-                <table class="table-auto w-full h-full text-xs rounded-xl">
+            <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
                         <tr class="bg-gray-800">
                             <th class="rounded-tl-xl px-4">
@@ -47,7 +47,6 @@
                             <td class="px-4">Febre</td>
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
                         <tr>
                             <td class="px-4">2</td>
                             <td class="px-4">Náusea</td>
@@ -74,9 +73,10 @@
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
-                            <td class="px-4">Tremores</td>
+                            <td class="px-5">Tremores</td>
                             <td id="editar" class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            </tr>
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>

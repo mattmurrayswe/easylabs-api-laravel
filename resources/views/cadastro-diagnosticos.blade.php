@@ -31,23 +31,16 @@
                                 <p class="flex text-white">ID</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Nome Medicamento</p>
+                                <p class="flex text-white">Diagnóstico</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Apresentação</p>
+                                <p class="flex text-white">Sintomas</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Concentração</p>
-                            </th>
+                                <p class="flex text-white">Medicamento Sugerido</p>
+                            <th class="px-4">                            
                             <th class="px-4">
-                                <p class="flex text-white">Volume Frasco</p>
-                            </th>
                             <th class="px-4">
-                                <p class="flex text-white">Formulação</p>
-                            </th>
-                            <th class="px-4">
-                                <p class="flex text-white">Laboratório</p>
-                            </th>
                             <th class="px-4">
                                 <p class="flex justify-end text-white">Editar</p>
                             </th>
@@ -59,67 +52,67 @@
                     <tbody class="my-20 bg-white rounded-xl">
                         <tr>
                             <td class="px-4">1</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Febre</td>
                             <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">4.00 mg/ml</td>
-                            <td class="px-4">30ml</td>
-                            <td class="px-4">Isolado</td>
-                            <td class="px-4">Ease Labs</td>
+                            <th class="px-4"> 
+                            <th class="px-4">
+                            <th class="px-4">
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">2</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Naúsea</td>
                             <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">50ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
+                            <th class="px-4">
+                            <th class="px-4">
+                            <th class="px-4">
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">3</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Refluxo</td>
                             <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">70ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
+                            <th class="px-4">
+                            <th class="px-4">
+                            <th class="px-4">
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">4</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">4.00 mg/ml</td>
-                            <td class="px-4">30ml</td>
-                            <td class="px-4">Isolado</td>
-                            <td class="px-4">Ease Labs</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Tosse</td>
+                            <td class="px-4">Extrato de Cannabis</td>
+                            <th class="px-4">
+                            <th class="px-4">
+                            <th class="px-4">
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">5</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">50ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Secreção Nasal</td>
+                            <td class="px-4">Extrato de Cannabis</td>
+                            <th class="px-4">
+                            <th class="px-4">
+                            <th class="px-4">
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">70ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Tremores</td>
+                            <td class="px-4">Extrato de Cannabis</td>  
+                            <th class="px-4">
+                            <th class="px-4">
+                            <th class="px-4">                    
                             <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
                             <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
                         </tr>
