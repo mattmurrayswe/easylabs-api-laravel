@@ -45,49 +45,49 @@
                         <tr>
                             <td class="px-4">1</td>
                             <td class="px-4">Febre</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
                                 <p class="flex justify-start">Excluir</p>
                             </td>
                         <tr>
                             <td class="px-4">2</td>
                             <td class="px-4">Náusea</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
                                 <p class="flex justify-start">Excluir</p>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-4">3</td>
                             <td class="px-4">Refluxo</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
                                 <p class="flex justify-start">Excluir</p>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-4">4</td>
                             <td class="px-4">Tosse</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
                                 <p class="flex justify-start">Excluir</p>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-4">5</td>
                             <td class="px-4">Secreção Nasal</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2">
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
                                 <p class="flex justify-start">Excluir</p>
                             </td>
                         </tr>
@@ -168,7 +168,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button data-modal-hide="deleteModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Excluir</button>
+                            <button data-modal-hide="deleteModal" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Excluir</button>
                         </div>
                     </div>
                 </div>
