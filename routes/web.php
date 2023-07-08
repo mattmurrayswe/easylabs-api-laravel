@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ViewsAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,9 +28,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/cadastro-sintomas', function () {
-    return view('cadastro-sintomas');
-});
 
 Route::get('/cadastro-medicamentos', function () {
     return view('cadastro-medicamentos');

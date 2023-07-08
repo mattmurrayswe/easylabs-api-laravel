@@ -44,7 +44,7 @@
                     <tbody class="my-20 bg-white rounded-xl">
                         <tr>
                             <td class="px-4">1</td>
-                            <td class="px-4">Febre</td>
+                            <td class="px-4">{{ $sintomas[0] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -53,7 +53,7 @@
                             </td>
                         <tr>
                             <td class="px-4">2</td>
-                            <td class="px-4">Náusea</td>
+                            <td class="px-4">{{ $sintomas[1] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <td class="px-4">3</td>
-                            <td class="px-4">Refluxo</td>
+                            <td class="px-4">{{ $sintomas[2] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -73,7 +73,7 @@
                         </tr>
                         <tr>
                             <td class="px-4">4</td>
-                            <td class="px-4">Tosse</td>
+                            <td class="px-4">{{ $sintomas[3] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -83,7 +83,7 @@
                         </tr>
                         <tr>
                             <td class="px-4">5</td>
-                            <td class="px-4">Secreção Nasal</td>
+                            <td class="px-4">{{ $sintomas[4] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
-                            <td class="px-5">Tremores</td>
+                            <td class="px-5">{{ $sintomas[5] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
