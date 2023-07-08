@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Treatment\StoreTreatmentRequest;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
-use App\Models\Treatments;
-use App\Models\TreatmentHasMedicines;
 use App\Service\TreatmentService;
 use Illuminate\Http\Request;
 
@@ -33,32 +31,13 @@ class TreatmentController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(StoreTreatmentRequest $request)
     {
         try {
+            
+            $treament = $this->treatmentService->store($request);
 
-            $dataTreatment = [
-                "patient_id" => $request->patient_id,
-                "prescriber_id" => $request->prescriber_id,
-                "diagnoses_id" => $request->diagnoses_id
-            ];
-
-            $treatment = Treatments::create($dataTreatment);
-
-            foreach ($request->medicines as $medicine) {
-
-                $dataMedicine = [
-                    "treatment_id" => $treatment->id,
-                    "medicine_id" => $medicine->medicine_id,
-                    "intervalo_em_horas" => $medicine->intervalo_em_horas,
-                    "inicio_do_uso" => $medicine->inicio_do_uso,
-                    "how_many" => $medicine->how_many
-                ];
-                
-                $treatment = TreatmentHasMedicines::create($dataMedicine);
-            }
-
-            return response()->json(new SuccessResource("Tratamento criado com sucesso!"), 200);
+            return response()->json(new SuccessResource($treament), 200);
             
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th), 422);

@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 // Patient
 Route::get('/cep', [AuthController::class, 'cep']);
+Route::post('/treatment', [TreatmentController::class, 'store']);
 
 Route::prefix('patient')->group(function(){
 
@@ -91,12 +92,12 @@ Route::prefix('patient')->group(function(){
         Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
         Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
         
-        // Treatment
-        Route::post('/treatment', [TreatmentController::class, 'store']);
-        Route::get('/all-treatments', [TreatmentController::class, 'getAllTreatment']);
-        Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
-        Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
-        Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
+        // // Treatment
+        // Route::post('/treatment', [TreatmentController::class, 'store']);
+        // Route::get('/all-treatments', [TreatmentController::class, 'getAllTreatment']);
+        // Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
+        // Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
+        // Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
         
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'store']);
