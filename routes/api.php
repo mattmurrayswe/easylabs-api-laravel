@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Route;
 // Patient
 Route::get('/cep', [AuthController::class, 'cep']);
 Route::post('/treatment', [TreatmentController::class, 'store']);
+Route::get('/treatments', [TreatmentController::class, 'getAllTreatments']);
+Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
 
 Route::prefix('patient')->group(function(){
 
