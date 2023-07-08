@@ -42,66 +42,18 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                        <tr>
-                            <td class="px-4">1</td>
-                            <td class="px-4">{{ $sintomas[0] }}</td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
-                                <p class="flex justify-start">Excluir</p>
-                            </td>
-                        <tr>
-                            <td class="px-4">2</td>
-                            <td class="px-4">{{ $sintomas[1] }}</td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
-                                <p class="flex justify-start">Excluir</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">3</td>
-                            <td class="px-4">{{ $sintomas[2] }}</td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
-                                <p class="flex justify-start">Excluir</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">4</td>
-                            <td class="px-4">{{ $sintomas[3] }}</td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
-                                <p class="flex justify-start">Excluir</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">5</td>
-                            <td class="px-4">{{ $sintomas[4] }}</td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
-                                <p class="flex justify-start">Excluir</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">6</td>
-                            <td class="px-4">{{ $sintomas[5] }}</td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
-                                <p class="flex justify-start">Excluir</p>
-                            </td>
-                        </tr>
-                        </tr>
+                        @foreach ($sintomas as $sintoma)
+                            <tr>
+                                <td class="px-4">{{ $sintoma->id }}</td>
+                                <td class="px-4">{{ $sintoma->name }}</td>
+                                <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                    <p class="flex justify-end">Editar</p>
+                                </td>
+                                <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                    <p class="flex justify-start">Excluir</p>
+                                </td>
+                            </tr>
+                        @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>
