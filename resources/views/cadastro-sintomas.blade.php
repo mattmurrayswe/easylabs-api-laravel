@@ -32,13 +32,7 @@
                             </th>
                             <th class="px-4">
                                 <p class="flex text-white">Nome Sintoma</p>
-                                </th>
-                            <th class="px-4">
-                            <th class="px-4">                            
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
+                            </th>
                             <th class="px-4">
                                 <p class="flex justify-end text-white">Editar</p>
                             </th>
@@ -99,7 +93,7 @@
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
-                            <td class="px-5">{{ $sintomas[5] }}</td>
+                            <td class="px-4">{{ $sintomas[5] }}</td>
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -112,14 +106,6 @@
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-2">
-                            <td data-modal-target="addModal" data-modal-toggle="addModal" id="Adicionar" class="px-4 underline decoration-blue-400 decoration-2">
-                            <p class="flex justify-end text-white px-4 underline decoration-blue-400 decoration-2">Adicionar</p>
-                            
-                            <th class="px-4">>
                             <td class="px-4 rounded-br-xl"></td>
                         </tr>
                     </tbody>
