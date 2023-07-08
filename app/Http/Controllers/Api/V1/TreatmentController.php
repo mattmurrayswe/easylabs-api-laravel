@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Treatment\StoreTreatmentRequest;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
+use App\Models\Medicine;
 use App\Models\TreatmentsRef;
 use App\Models\TreatmentHasMedicines;
 use App\Service\TreatmentService;
@@ -78,7 +79,8 @@ class TreatmentController extends Controller
             $treatments = TreatmentsRef::where('patient_id', $request->patient_id)->get();
 
             foreach ($treatments as $treatment) {
-                $treatmentsHasMeds = TreatmentHasMedicines::where('treatment_id', $treatment->id)->get()->toArray();
+                
+                $treatmentsHasMeds = TreatmentHasMedicines::where('treatment_id', $treatment->id)->with("medicine")->get()->toArray();
 
                 $response[] = [
                     "treatment_id" => $treatment->id,

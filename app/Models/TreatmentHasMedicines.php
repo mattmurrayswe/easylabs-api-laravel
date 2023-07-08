@@ -22,4 +22,8 @@ class TreatmentHasMedicines extends Model
         'how_many'
     ];
 
+    public function medicine()
+    {
+        return $this->belongsTo(Medicine::class, "medicine_id", "id");
+    }
 }
