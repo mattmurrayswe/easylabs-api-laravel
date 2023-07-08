@@ -92,10 +92,10 @@ Route::prefix('patient')->group(function(){
         Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
         
         Route::post('/treatment', [TreatmentController::class, 'store']);
-        Route::get('/treatments', [TreatmentController::class, 'getAllTreatments']);
-        Route::get('/treatments/{id}', [TreatmentController::class, 'getTreatment']);
-        Route::delete('/treatments/{id}', [TreatmentController::class, 'deleteTreatment']);
-        Route::put('/treatments/{id}', [TreatmentController::class, 'editTreatment']);
+        Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
+        Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
+        Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
+        Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
         
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'store']);
@@ -129,7 +129,7 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
         
         Route::post('/treatment', [TreatmentController::class, 'store']);
-        Route::get('/treatments', [TreatmentController::class, 'getAllTreatments']);
+        Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
         Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
         Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
         Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
