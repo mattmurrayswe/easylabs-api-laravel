@@ -128,13 +128,38 @@ class TreatmentController extends Controller
         }
     }
 
-    public function editTreatment(StoreTreatmentRequest $request, $id)
+    public function editTreatment(Request $request, $id)
     {
         try {
             
-            $treament = $this->treatmentService->edit($request, $id);
+            if (isset($request->diagnoses_id)) {
 
-            return response()->json(new SuccessResource($treament), 200);
+                TreatmentsRef::where('id', $id)->update(
+                    [
+                        "diagnoses_id" => $request->diagnoses_id
+                    ]
+                );
+            }
+
+            if (isset($request->medicines)) {
+
+                foreach ($request->medicines as $medicine) {
+    
+                    TreatmentHasMedicines::where([
+                        "medicine_id" => $medicine["medicine_id"],
+                        "treatment_id" => $id,
+                    ])->update(
+                        [
+                            "medicine_id" => $medicine["medicine_id"],
+                            "intervalo_em_horas" => $medicine["intervalo_em_horas"],
+                            "inicio_do_uso" => $medicine["inicio_do_uso"],
+                            "how_many" => $medicine["how_many"]
+                        ]
+                    );
+                }
+            }
+
+            return response()->json(new SuccessResource("Sucesso ao editar o Tratamento"), 200);
             
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th), 422);
