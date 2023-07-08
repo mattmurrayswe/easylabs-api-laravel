@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Treatment\StoreTreatmentRequest;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
-use App\Models\Treatments;
+use App\Models\TreatmentsRef;
 use App\Models\TreatmentHasMedicines;
 use App\Service\TreatmentService;
 use Illuminate\Http\Request;
@@ -43,7 +43,7 @@ class TreatmentController extends Controller
                 "diagnoses_id" => $request->diagnoses_id
             ];
 
-            $treatment = Treatments::create($dataTreatment);
+            $treatment = TreatmentsRef::create($dataTreatment);
 
             foreach ($request->medicines as $medicine) {
 

@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('treatments');
-        Schema::create('treatments', function (Blueprint $table) {
+        Schema::create('treatments_ref', function (Blueprint $table) {
             $table->id();
             
             $table->unsignedBigInteger('patient_id')->nullable();
@@ -46,7 +45,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('treatments');
+        Schema::dropIfExists('treatments_ref');
         Schema::dropIfExists('treatment_has_medicines');
     }
 };

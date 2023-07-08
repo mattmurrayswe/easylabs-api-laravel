@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Treatments extends Model
+class TreatmentsRef extends Model
 {
 
-    protected $table = "treatments";
+    protected $table = "treatments_ref";
 
     /**
      * The attributes that are mass assignable.
