@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
-            <table class="table-auto w-full h-full text-xs rounded-xl">
+                <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
                         <tr class="bg-gray-800">
                             <th class="rounded-tl-xl px-4">
@@ -45,38 +45,62 @@
                         <tr>
                             <td class="px-4">1</td>
                             <td class="px-4">Febre</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                <p class="flex justify-end">Editar</p>
+                            </td>
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <p class="flex justify-start">Excluir</p>
+                            </td>
                         <tr>
                             <td class="px-4">2</td>
                             <td class="px-4">Náusea</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                <p class="flex justify-end">Editar</p>
+                            </td>
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <p class="flex justify-start">Excluir</p>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4">3</td>
                             <td class="px-4">Refluxo</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                <p class="flex justify-end">Editar</p>
+                            </td>
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <p class="flex justify-start">Excluir</p>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4">4</td>
                             <td class="px-4">Tosse</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                <p class="flex justify-end">Editar</p>
+                            </td>
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <p class="flex justify-start">Excluir</p>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4">5</td>
                             <td class="px-4">Secreção Nasal</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                <p class="flex justify-end">Editar</p>
+                            </td>
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <p class="flex justify-start">Excluir</p>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
                             <td class="px-5">Tremores</td>
-                            <td id="editar" class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                            </tr>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
+                                <p class="flex justify-end">Editar</p>
+                            </td>
+                            <td data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <p class="flex justify-start">Excluir</p>
+                            </td>
+                        </tr>
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
@@ -87,6 +111,69 @@
                     </tbody>
                 </table>
             </div>
+
+            <div id="editModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Editar
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="editModal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Fechar</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                            </p>
+                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                            </p>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button data-modal-hide="editModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deleteModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Excluir
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="deleteModal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Fechar</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                            </p>
+                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                            </p>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button data-modal-hide="deleteModal" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
