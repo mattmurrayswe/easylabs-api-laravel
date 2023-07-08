@@ -33,6 +33,7 @@ Route::get('/cep', [AuthController::class, 'cep']);
 Route::post('/treatment', [TreatmentController::class, 'store']);
 Route::get('/treatments', [TreatmentController::class, 'getAllTreatments']);
 Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
+Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
 
 Route::prefix('patient')->group(function(){
 

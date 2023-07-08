@@ -55,7 +55,7 @@ class TreatmentController extends Controller
                     "how_many" => $medicine["how_many"]
                 ];
                 
-                $treatment = TreatmentHasMedicines::create($dataMedicine);
+                TreatmentHasMedicines::create($dataMedicine);
             }
 
             return response()->json(new SuccessResource([
@@ -119,8 +119,9 @@ class TreatmentController extends Controller
     public function deleteTreatment($id)
     {
         try {
-            $treatment = $this->treatmentService->deleteTreatment($id);
-            return response()->json(new SuccessResource($treatment), 200);
+            TreatmentsRef::where('id', $id)->delete();
+
+            return response()->json(new SuccessResource("Tratamento excluido com sucesso!"), 200);
             
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($this->errorMessage), 404);
