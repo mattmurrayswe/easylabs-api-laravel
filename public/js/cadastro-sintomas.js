@@ -1,9 +1,4 @@
-$(document).ready(function() {
-    $( "#editar" ).on( "click", function() {
-        alert(2222222);
-    });
-
-});
+$(document).ready(function() {});
 
 function editSintoma(idSintoma) {
 
