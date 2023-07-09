@@ -41,3 +41,25 @@ function deleteSintoma(idSintoma) {
         }
       });
 }
+
+function cadastreSintoma() {
+
+    const novoNomeSintoma = $( "#input-novo-sintoma" ).val();
+
+    console.log(novoNomeSintoma)
+
+    $.ajax({
+        url: `http://localhost:8989/api/symptom`,
+        type: "POST",
+        data: {
+            name: novoNomeSintoma
+        },
+        success: function(data, status) {
+
+            if (status === "success") {
+                location.reload();
+            }
+
+        }
+      });
+}
