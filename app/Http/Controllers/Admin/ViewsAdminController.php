@@ -40,4 +40,19 @@ class ViewsAdminController extends Controller
             'medicamentos' => $medicines
         ]);
     }
+
+    public function cadastroDiagnosticos()
+    {
+        return view('cadastro-diagnosticos');
+    }
+
+    public function validacaoDocumentos()
+    {
+        return view('validacao-documentos');
+    }
+
+    public function configPushs()
+    {
+        return view('config-pushs');
+    }
 }

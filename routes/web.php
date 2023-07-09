@@ -18,6 +18,12 @@ Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas
 
 Route::get('/cadastro-medicamentos', [ViewsAdminController::class, 'cadastroMedicamentos']);
 
+Route::get('/cadastro-diagnosticos', [ViewsAdminController::class, 'cadastroDiagnosticos']);
+
+Route::get('/validacao-documentos', [ViewsAdminController::class, 'validacaoDocumentos']);
+
+Route::get('/config-pushs', [ViewsAdminController::class, 'configPushs']);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,20 +35,6 @@ Route::get('/login', function () {
 Route::get('/home', function () {
     return view('home');
 });
-
-
-Route::get('/cadastro-diagnosticos', function () {
-    return view('cadastro-diagnosticos');
-});
-
-Route::get('/validacao-documentos', function () {
-    return view('validacao-documentos');
-});
-
-Route::get('/config-pushs', function () {
-    return view('config-pushs');
-});
-
 
 // Route::prefix('docs')->group(function () {
 //     Route::get('/', function () {
