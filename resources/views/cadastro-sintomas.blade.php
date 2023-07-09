@@ -45,7 +45,7 @@
                         @foreach ($sintomas as $sintoma)
                             <tr>
                                 <td class="px-4">{{ $sintoma->id }}</td>
-                                <td class="px-4">{{ $sintoma->name }}</td>
+                                <td id="sintoma-name-{{ $sintoma->id }}" class="px-4">{{ $sintoma->name }}</td>
                                 <td data-modal-target="edit-modal-{{ $sintoma->id }}" data-modal-toggle="edit-modal-{{ $sintoma->id }}" class="px-4 underline decoration-blue-400 decoration-2">
                                     <p class="flex justify-end">Editar</p>
                                 </td>
@@ -122,7 +122,7 @@
                                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                                 <div>
                             <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sintoma</label>
-                            <input type="text" name="brand" id="brand" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Exemplo: Febre">
+                            <input type="text" name="brand" id="input-{{ $sintoma->id }}" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Exemplo: Febre">
                         </div>
                         
                                 </p>
@@ -159,7 +159,7 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="delete-modal-{{ $sintoma->id }}" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Excluir</button>
+                                <button onclick="deleteSintoma({{ $sintoma->id }})" data-modal-hide="delete-modal-{{ $sintoma->id }}" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Excluir</button>
                             </div>
                         </div>
                     </div>
