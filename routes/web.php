@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\ViewsAdminController;
 
 Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas']);
 
+Route::get('/cadastro-medicamentos', [ViewsAdminController::class, 'cadastroMedicamentos']);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,10 +30,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
-
-Route::get('/cadastro-medicamentos', function () {
-    return view('cadastro-medicamentos');
-});
 
 Route::get('/cadastro-diagnosticos', function () {
     return view('cadastro-diagnosticos');
