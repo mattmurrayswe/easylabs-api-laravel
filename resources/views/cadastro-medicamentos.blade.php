@@ -57,72 +57,19 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                        <tr>
-                            <td class="px-4">1</td>
-                            <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">4.00 mg/ml</td>
-                            <td class="px-4">30ml</td>
-                            <td class="px-4">Isolado</td>
-                            <td class="px-4">Ease Labs</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">2</td>
-                            <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">50ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">3</td>
-                            <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">70ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">4</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">4.00 mg/ml</td>
-                            <td class="px-4">30ml</td>
-                            <td class="px-4">Isolado</td>
-                            <td class="px-4">Ease Labs</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">5</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">50ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
-                        <tr>
-                            <td class="px-4">6</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
-                            <td class="px-4">70ml</td>
-                            <td class="px-4">Fitoterápico</td>
-                            <td class="px-4">Green</td>
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
-                        </tr>
+                        @foreach ($medicamentos as $medicamento)
+                            <tr>
+                                <td class="px-4">{{ $medicamento->id }}</td>
+                                <td class="px-4">{{ $medicamento->name }}</td>
+                                <td class="px-4">{{ $medicamento->presentation }}</td>
+                                <td class="px-4">{{ $medicamento->concentration }}</td>
+                                <td class="px-4">{{ $medicamento->volume_flask }}</td>
+                                <td class="px-4">{{ $medicamento->formulation }}</td>
+                                <td class="px-4">{{ $medicamento->lab }}</td>
+                                <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
+                                <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            </tr>
+                        @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>
