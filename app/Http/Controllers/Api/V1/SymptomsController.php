@@ -128,4 +128,36 @@ class SymptomsController extends Controller
 
         }
     }
+
+    public function editSymptom(Request $request, $id)
+    {
+        try {
+
+            Symptoms::where("id", $id)->update([
+                "name" => $request->name
+            ]);
+
+            return response()->json(new SuccessResource("Sintoma editado com sucesso"), 200);
+            
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource("Falha ao editar sintoma"), 404);
+
+        }
+    }
+
+    public function deleteSymptom($id)
+    {
+        try {
+
+            Symptoms::where("id", $id)->delete();
+
+            return response()->json(new SuccessResource("Sintoma deletado com sucesso"), 200);
+            
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource("Falha ao deletar sintoma"), 404);
+
+        }
+    }
 }

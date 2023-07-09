@@ -8,27 +8,36 @@ $(document).ready(function() {
 function editSintoma(idSintoma) {
 
     const novoNomeSintoma = $( `#input-${idSintoma}` ).val();
-    
-    $.post("http://localhost:8989/api/symptom",
-    {
-      name: novoNomeSintoma
-    },
-    function(data, status){
 
-        if (status === "success") {
-            $( `#sintoma-name-${idSintoma}` ).text(novoNomeSintoma);
+    $.ajax({
+        url: `http://localhost:8989/api/symptom/${idSintoma}`,
+        type: "PUT",
+        data: {
+            name: novoNomeSintoma
+        },
+        success: function(data, status) {
+
+            console.log(data)
+            if (status === "success") {
+                $( `#sintoma-name-${idSintoma}` ).text(novoNomeSintoma);
+            }
+
         }
-    });
+      });
 }
 
 function deleteSintoma(idSintoma) {
 
-    $.delete(`http://localhost:8989/api/symptom/${idSintoma}`,
-    {},
-    function(data, status){
+    $.ajax({
+        url: `http://localhost:8989/api/symptom/${idSintoma}`,
+        type: "DELETE",
+        success: function(data, status) {
 
-        if (status === "success") {
-            location.reload();
+            console.log(data)
+            if (status === "success") {
+                location.reload();
+            }
+
         }
-    });
+      });
 }

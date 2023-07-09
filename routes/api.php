@@ -30,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 
 // Patient
 Route::get('/cep', [AuthController::class, 'cep']);
+Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);
+Route::delete('/symptom/{id}', [SymptomsController::class, 'deleteSymptom']);
+Route::put('/symptom/{id}', [SymptomsController::class, 'editSymptom']);
 
 Route::prefix('patient')->group(function(){
     
