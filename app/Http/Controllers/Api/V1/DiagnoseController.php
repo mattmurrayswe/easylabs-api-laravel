@@ -49,7 +49,6 @@ class DiagnoseController extends Controller
             $diagnose = Diagnoses::create($dataDiagnose);
 
             foreach ($request->has_symptoms as $symptom) {
-                var_dump($symptom);
 
                 $dataDiagHasSymptoms = [
                     "diagnose_id" => $diagnose->id,
@@ -60,7 +59,6 @@ class DiagnoseController extends Controller
             }
 
             foreach ($request->has_suggested_medicines as $medicines) {
-                var_dump($symptom);
 
                 $dataDiagHasSugMedicines = [
                     "diagnose_id" => $diagnose->id,
@@ -83,28 +81,13 @@ class DiagnoseController extends Controller
         
     }
 
-    public function getAllDiagnoses(Request $request)
+    public function getAllDiagnoses()
     {
         try {
 
-            $treatments = TreatmentsRef::where('patient_id', $request->patient_id)->get();
+            $diagnoses = Diagnoses::all();
 
-            if (empty($treatments)) {
-                throw new Exception('Não existem tratamentos cadastrados para esse usuário');
-            }
-
-            foreach ($treatments as $treatment) {
-                
-                $treatmentsHasMeds = TreatmentHasMedicines::where('treatment_id', $treatment->id)->with("medicine")->get()->toArray();
-
-                $response[] = [
-                    "treatment_id" => $treatment->id,
-                    "diagnoses_id" => $treatment->diagnoses_id,
-                    "medicines" => $treatmentsHasMeds
-                ];
-            }
-
-            return response()->json(new SuccessResource($response), 200);
+            return response()->json(new SuccessResource($diagnoses), 200);
             
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th), 422);

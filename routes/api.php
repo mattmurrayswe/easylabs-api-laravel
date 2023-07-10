@@ -112,6 +112,12 @@ Route::prefix('patient')->group(function(){
         Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
         Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
         Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
+
+        Route::post('/diagnose', [DiagnoseController::class, 'store']);
+        Route::get('/diagnose', [DiagnoseController::class, 'getAllDiagnoses']);
+        Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
+        Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
+        Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
         
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'store']);
@@ -156,6 +162,12 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'showPresc']);
         Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroyPresc']);
         Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'updatePresc']);
+
+        Route::post('/diagnose', [DiagnoseController::class, 'store']);
+        Route::get('/diagnose', [DiagnoseController::class, 'getAllDiagnoses']);
+        Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
+        Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
+        Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
         
         
         // Create Patient Using Prescriber
