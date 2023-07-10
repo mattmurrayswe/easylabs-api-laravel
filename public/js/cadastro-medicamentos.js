@@ -1,5 +1,16 @@
 $(document).ready(function() {});
 
+function alimenteModalMedicamentoEdit(idMedicamento) {
+
+    $( `#input-name-${idMedicamento}` ).val($( `#name-${idMedicamento}`).text() );
+    $( `#input-presentation-${idMedicamento}` ).val($( `#presentation-${idMedicamento}`).text() );
+    $( `#input-concentration-${idMedicamento}` ).val($( `#concentration-${idMedicamento}`).text() );
+    $( `#input-volume_flask-${idMedicamento}` ).val($( `#volume_flask-${idMedicamento}`).text() );
+    $( `#input-formulation-${idMedicamento}` ).val($( `#formulation-${idMedicamento}`).text() );
+    $( `#input-lab-${idMedicamento}` ).val($( `#lab-${idMedicamento}`).text() );
+
+}
+
 function editMedicamento(idMedicamento) {
 
     const name = $( `#input-name-${idMedicamento}` ).val();
