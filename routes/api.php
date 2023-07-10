@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\Prescriber\AppointmentController;
 use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
 use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
 use App\Http\Controllers\Api\V1\TreatmentController;
+use App\Http\Controllers\Api\V1\DiagnoseController;
 use App\Http\Controllers\Api\V1\StatisticsController;
 use App\Http\Controllers\Api\V1\SymptomsController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,12 @@ Route::get('/medicine/{id}', [MedicineController::class, 'getMedicine']);
 Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
 Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
 Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
+
+Route::post('/diagnose', [DiagnoseController::class, 'store']);
+Route::get('/diagnose', [DiagnoseController::class, 'getAllDiagnoses']);
+Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
+Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
+Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
 
 Route::prefix('patient')->group(function(){
     
