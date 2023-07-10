@@ -60,15 +60,23 @@ function deleteMedicamento(idMedicamento) {
 
 function cadastreMedicamento() {
 
-    const novoNomeMedicamento = $( "#input-novo-Medicamento" ).val();
-
-    console.log(novoNomeMedicamento)
+    const name = $( `#input-add-name` ).val();
+    const presentation = $( `#input-add-presentation` ).val();
+    const concentration = $( `#input-add-concentration` ).val();
+    const volume_flask = $( `#input-add-volume_flask` ).val();
+    const formulation = $( `#input-add-formulation` ).val();
+    const lab = $( `#input-add-lab` ).val();
 
     $.ajax({
         url: `http://localhost:8989/api/medicine`,
         type: "POST",
         data: {
-            name: novoNomeMedicamento
+            name: name,
+            presentation: presentation,
+            concentration: concentration,
+            volume_flask: volume_flask,
+            formulation: formulation,
+            lab: lab
         },
         success: function(data, status) {
 
