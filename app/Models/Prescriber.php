@@ -64,4 +64,14 @@ class Prescriber extends Authenticatable
     {
         return $this->belongsTo(ClinicAdress::class, 'clinic_adress_id');
     }
+
+    public function availability()
+    {
+        return $this->hasMany(Availability::class, 'prescriber_id');
+    }
+    
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class, 'prescriber_id');
+    }
 }

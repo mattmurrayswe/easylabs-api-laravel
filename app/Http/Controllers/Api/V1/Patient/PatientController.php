@@ -26,7 +26,7 @@ class PatientController extends Controller
             return response()->json(new SuccessResource('Patient desativado com sucesso.'), 422);
 
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
     public function delete($id)
@@ -40,7 +40,7 @@ class PatientController extends Controller
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }
@@ -134,7 +134,7 @@ class PatientController extends Controller
             return response()->json(new SuccessResource('Configuracoes da conta alteradas com sucesso!.'), 422);
 
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 

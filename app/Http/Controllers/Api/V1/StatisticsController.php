@@ -37,7 +37,7 @@ class StatisticsController extends Controller
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
             
         }
     }    
@@ -53,7 +53,7 @@ class StatisticsController extends Controller
 
         } catch (\Throwable $th) {
             
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }    
