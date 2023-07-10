@@ -17,7 +17,7 @@ class PatientUsesMedicine extends Model
     protected $fillable = [
         'patient_id',
         'medicine_id',
-        'description',
+        'treatment_id',
         'howMany',
     ];
 

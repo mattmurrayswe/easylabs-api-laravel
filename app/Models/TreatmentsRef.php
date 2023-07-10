@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Treatment extends Model
+class TreatmentsRef extends Model
 {
 
-    protected $table = "pacients_uses_medicines";
+    protected $table = "treatments_ref";
 
     /**
      * The attributes that are mass assignable.
@@ -15,9 +15,9 @@ class Treatment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'pacient_id',
-        'medicine_id',
-        'description'
+        'patient_id',
+        'prescriber_id',
+        'diagnoses_id'
     ];
 
 }

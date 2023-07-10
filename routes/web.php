@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ViewsAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas']);
+
+Route::get('/cadastro-medicamentos', [ViewsAdminController::class, 'cadastroMedicamentos']);
+
+Route::get('/cadastro-diagnosticos', [ViewsAdminController::class, 'cadastroDiagnosticos']);
+
+Route::get('/validacao-documentos', [ViewsAdminController::class, 'validacaoDocumentos']);
+
+Route::get('/config-pushs', [ViewsAdminController::class, 'configPushs']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,3 +59,4 @@ Route::prefix('docs')->group(function () {
     });
     Route::get('/{version}/{page?}', 'BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->name('larecipe.show');
 });
+

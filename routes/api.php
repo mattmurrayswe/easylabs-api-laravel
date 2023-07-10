@@ -29,13 +29,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Patient
+// Admin
 Route::get('/cep', [AuthController::class, 'cep']);
+Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);
+Route::delete('/symptom/{id}', [SymptomsController::class, 'deleteSymptom']);
+Route::put('/symptom/{id}', [SymptomsController::class, 'editSymptom']);
+
+Route::post('/medicine', [MedicineController::class, 'store']);
+Route::get('/medicine/{id}', [MedicineController::class, 'getMedicine']);
+Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
+Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
+Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
 
 Route::prefix('patient')->group(function(){
-
-   
-
+    
+    
+    
     // Google Login Routes
     Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
@@ -61,15 +70,20 @@ Route::prefix('patient')->group(function(){
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
+        Route::put('/password', [AuthController::class, 'editPassword']);
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
         Route::post('/account-config/{id}', [PatientController::class, 'updateAccountConfig']);
         
         // Patient Uses Medicine
-        Route::post('/inform-med', [PatientUsesMedicineController::class, 'informeMed']);
+        Route::post('/inform-med', [PatientUsesMedicineController::class, 'informMed']);
+        Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMed']);
         
         Route::post('/inform-symptoms', [SymptomsController::class, 'informSymptoms']);
+        Route::put('/informed-symptom', [SymptomsController::class, 'informedSymptomEdit']);
+        Route::delete('/informed-symptom', [SymptomsController::class, 'informedSymptomDelete']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptoms']);
+        Route::get('/informed-symptoms-count', [SymptomsController::class, 'informedSymptomsCount']);
         
         // Patient inform me
         Route::post('/inform-treatment', [PatientInformTreatmentController::class, 'informTreatment']);
@@ -87,9 +101,8 @@ Route::prefix('patient')->group(function(){
         Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
         Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
         
-        // Treatment
         Route::post('/treatment', [TreatmentController::class, 'store']);
-        Route::get('/all-treatments', [TreatmentController::class, 'getAllTreatment']);
+        Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
         Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
         Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
         Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
@@ -125,6 +138,12 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
         
+        Route::post('/treatment', [TreatmentController::class, 'store']);
+        Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
+        Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
+        Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
+        Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
+
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'storePresc']);
         Route::get('/all-newtreatments', [NewTreatmentController::class, 'getAllTreatmentPresc']);

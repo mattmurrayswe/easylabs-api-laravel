@@ -17,6 +17,7 @@ use App\Models\Prescriber;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -173,6 +174,38 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
 
             return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function editPassword(Request $request)
+    {
+        try {
+
+            $id = Auth::id();
+
+            $user = Patient::find($id);
+    
+            $request = $request->all();
+
+            
+            if (Hash::check($request['old_password'], $user->getAttributes()["password"])) {
+
+                $request["password"] = bcrypt($request['new_password']);
+
+                $user->update($request);
+                
+                return response()->json(new SuccessResource("Senha do paciente editada com sucesso!"), 200);
+
+            } else {
+                
+                return response()->json(new ErrorResource("Senha atual incorreta!"), 400);
+
+            }
+            
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th), 422);
         }
     }
 

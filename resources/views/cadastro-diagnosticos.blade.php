@@ -10,9 +10,9 @@
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">
                         <div class="w-7 mr-3 flex justify-center">
-                            <img src="{{URL::asset('/image/set-icon.svg')}}" alt="profile Pic" height="20" width="20">
+                            <img src="{{URL::asset('/image/diag-icon.svg')}}" alt="profile Pic" height="20" width="20">
                         </div>
-                        <p>Push Notificações</p>
+                        <p>Cadastro de Diagnósticos</p>
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
@@ -52,9 +52,9 @@
                     <tbody class="my-20 bg-white rounded-xl">
                         <tr>
                             <td class="px-4">1</td>
-                            <td class="px-4">Extrato de Cannabis</td>
+                            <td class="px-4">Alzheimer</td>
                             <td class="px-4">Febre</td>
-                            <td class="px-4">4.00 mg/ml</td>
+                            <td class="px-4">Extrato de Cannabis</td>
                             <th class="px-4"> 
                             <th class="px-4">
                             <th class="px-4">
@@ -63,9 +63,9 @@
                         </tr>
                         <tr>
                             <td class="px-4">2</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Naúsea</td>
                             <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
@@ -74,9 +74,9 @@
                         </tr>
                         <tr>
                             <td class="px-4">3</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Refluxo</td>
                             <td class="px-4">Extrato de Cannabis</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
@@ -85,9 +85,9 @@
                         </tr>
                         <tr>
                             <td class="px-4">4</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">4.00 mg/ml</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Tosse</td>
+                            <td class="px-4">Extrato de Cannabis</td>
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
@@ -96,9 +96,9 @@
                         </tr>
                         <tr>
                             <td class="px-4">5</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Secreção Nasal</td>
+                            <td class="px-4">Extrato de Cannabis</td>
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
@@ -107,9 +107,9 @@
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
-                            <td class="px-4">Canabidiol Fitofarmaco</td>
-                            <td class="px-4">Gotas</td>
-                            <td class="px-4">17.18 mg/ml</td>  
+                            <td class="px-4">Alzheimer</td>
+                            <td class="px-4">Tremores</td>
+                            <td class="px-4">Extrato de Cannabis</td>  
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">                    
