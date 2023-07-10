@@ -19,7 +19,7 @@ class FollowUpController extends Controller
             $followup = FollowUp::create($request->all());
             return response()->json(new SuccessResource($followup), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 
@@ -29,7 +29,7 @@ class FollowUpController extends Controller
             $message = MessagesToPrescriber::create($request->all());
             return response()->json(new SuccessResource($message), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }    
 
@@ -40,7 +40,7 @@ class FollowUpController extends Controller
                 where('patient_id', $request['patient_id'])->get()->toArray();
             return response()->json(new SuccessResource($messages), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }    
 }

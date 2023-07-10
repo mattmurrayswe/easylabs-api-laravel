@@ -26,7 +26,7 @@ class PrescriberController extends Controller
             return response()->json(new SuccessResource('Prescriber desativado com sucesso.'), 422);
 
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
     public function delete($id)
@@ -40,7 +40,7 @@ class PrescriberController extends Controller
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }
@@ -200,7 +200,7 @@ class PrescriberController extends Controller
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }
