@@ -28,11 +28,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Patient
+// Admin
 Route::get('/cep', [AuthController::class, 'cep']);
 Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);
 Route::delete('/symptom/{id}', [SymptomsController::class, 'deleteSymptom']);
 Route::put('/symptom/{id}', [SymptomsController::class, 'editSymptom']);
+
+Route::post('/medicine', [MedicineController::class, 'store']);
+Route::get('/medicine/{id}', [MedicineController::class, 'getMedicine']);
+Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
+Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
+Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
 
 Route::prefix('patient')->group(function(){
     
