@@ -131,7 +131,6 @@ class AppointmentController extends Controller
 
         $appointments = Appointment::where('prescriber_id', Auth::user()->id)
             ->whereDate('appointment_date', '>=', $dataAtual )
-            ->whereTime('appointment_time','>=', $horaAtual)
             ->get();
 
 
@@ -203,6 +202,6 @@ class AppointmentController extends Controller
 
         }
     }
-    
+
 }
 

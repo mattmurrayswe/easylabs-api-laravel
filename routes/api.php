@@ -156,6 +156,7 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/voucher', [VoucherController::class, 'createVoucher']);
         Route::put('/voucher/{id}', [VoucherController::class, 'updateVoucher']);
         Route::delete('/voucher/{id}', [VoucherController::class, 'deleteVoucher']);
+        Route::post('/use-voucher', [VoucherController::class, 'useVoucher']);
 
 
         // ClinicAdress
