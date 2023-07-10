@@ -18,4 +18,9 @@ class Diagnoses extends Model
         'name'
     ];
 
+    public function hasSymptoms()
+    {
+        return $this->hasMany(DiagnosesHasSymptoms::class, "diagnose_id", "id");
+    }
+
 }

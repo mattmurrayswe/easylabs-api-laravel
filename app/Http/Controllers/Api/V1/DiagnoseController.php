@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 class DiagnoseController extends Controller
 {
 
-      /**
+    /**
      * The error message.
      *
      * @var string
@@ -35,7 +35,6 @@ class DiagnoseController extends Controller
     {
         $this->treatmentService = $treatmentService;
         $this->errorMessage = "Tratamento nao encontrado!";
-
     }
 
     public function store(Request $request)
@@ -54,7 +53,7 @@ class DiagnoseController extends Controller
                     "diagnose_id" => $diagnose->id,
                     "symptom_id" => $symptom["symptom_id"]
                 ];
-                
+
                 DiagnosesHasSymptoms::create($dataDiagHasSymptoms);
             }
 
@@ -64,7 +63,7 @@ class DiagnoseController extends Controller
                     "diagnose_id" => $diagnose->id,
                     "medicine_id" => $medicines["medicine_id"]
                 ];
-                
+
                 DiagnosesHasSuggestedMedicines::create($dataDiagHasSugMedicines);
             }
 
@@ -72,13 +71,10 @@ class DiagnoseController extends Controller
                 "message" => "Diagnóstico criado com sucesso!",
                 "diagnose_id" => $diagnose->id
             ]), 200);
-            
         } catch (\Throwable $th) {
 
             return response()->json(new ErrorResource($th->getMessage()), 422);
-
         }
-        
     }
 
     public function getAllDiagnoses()
@@ -88,40 +84,29 @@ class DiagnoseController extends Controller
             $diagnoses = Diagnoses::all();
 
             return response()->json(new SuccessResource($diagnoses), 200);
-            
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th), 422);
-
         }
     }
 
     public function getDiagnose($id)
     {
         try {
-            $treatment = TreatmentsRef::where('id', $id)->get()->toArray();
 
-            $treatmentsHasMeds = TreatmentHasMedicines::where('treatment_id', $treatment[0]["id"])->get()->toArray();
+            $diagnoses = Diagnoses::where("id", $id)->with("hasSymptoms.symptom")->get()->toArray();
 
-            $response[] = [
-                "treatment_id" => $treatment[0]["id"],
-                "diagnoses_id" => $treatment[0]["diagnoses_id"],
-                "medicines" => $treatmentsHasMeds
-            ];
-
-            return response()->json(new SuccessResource($response), 200);
-            
+            return response()->json(new SuccessResource($diagnoses), 200);
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th), 404);
         }
     }
-    
+
     public function deleteDiagnose($id)
     {
         try {
-            TreatmentsRef::where('id', $id)->delete();
+            Diagnoses::where('id', $id)->delete();
 
-            return response()->json(new SuccessResource("Tratamento excluido com sucesso!"), 200);
-            
+            return response()->json(new SuccessResource("Diagnostico excluido com sucesso!"), 200);
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($this->errorMessage), 404);
         }
@@ -130,7 +115,7 @@ class DiagnoseController extends Controller
     public function editDiagnose(Request $request, $id)
     {
         try {
-            
+
             if (isset($request->diagnoses_id)) {
 
                 TreatmentsRef::where('id', $id)->update(
@@ -143,7 +128,7 @@ class DiagnoseController extends Controller
             if (isset($request->medicines)) {
 
                 foreach ($request->medicines as $medicine) {
-    
+
                     TreatmentHasMedicines::where([
                         "medicine_id" => $medicine["medicine_id"],
                         "treatment_id" => $id,
@@ -159,11 +144,8 @@ class DiagnoseController extends Controller
             }
 
             return response()->json(new SuccessResource("Sucesso ao editar o Tratamento"), 200);
-            
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th), 422);
-
         }
-
     }
 }
