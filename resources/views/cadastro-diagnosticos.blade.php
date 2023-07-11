@@ -55,7 +55,7 @@
                             <td class="px-4">{{ $diagnose['id'] }}</td>
                             <td class="px-4">{{ $diagnose['name'] }}</td>
                             <td class="px-4">{{ $diagnose['symptoms_concat'] }}</td>
-                            <td class="px-4">Extrato de Cannabis</td>
+                            <td class="px-4">{{ $diagnose['medicines_concat'] }}</td>
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">

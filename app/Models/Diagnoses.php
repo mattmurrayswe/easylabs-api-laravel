@@ -23,4 +23,9 @@ class Diagnoses extends Model
         return $this->hasMany(DiagnosesHasSymptoms::class, "diagnose_id", "id");
     }
 
+    public function hasSuggestedMedicines()
+    {
+        return $this->hasMany(DiagnosesHasSuggestedMedicines::class, "diagnose_id", "id");
+    }
+
 }

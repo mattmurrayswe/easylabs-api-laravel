@@ -45,11 +45,11 @@ class ViewsAdminController extends Controller
 
     public function cadastroDiagnosticos()
     {
-        $diagnoses = Diagnoses::with("hasSymptoms.symptom")->get()->toArray();
+        $diagnoses = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"])->get()->toArray();
 
         $diagnoses = PresenterDiagnoses::concatSymptoms($diagnoses);
 
-        return view('cadastro-diagnosticos', [ 
+        return view('cadastro-diagnosticos', [
             'diagnoses' => $diagnoses
         ]);
     }

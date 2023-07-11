@@ -19,7 +19,7 @@ class DiagnosesHasSuggestedMedicines extends Model
         'medicine_id'
     ];
 
-    public function symptom()
+    public function medicine()
     {
         return $this->belongsTo(Medicine::class, "medicine_id", "id");
     }
