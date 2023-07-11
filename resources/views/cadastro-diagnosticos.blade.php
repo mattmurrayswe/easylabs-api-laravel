@@ -38,14 +38,12 @@
                             </th>
                             <th class="px-4">
                                 <p class="flex text-white">Medicamento Sugeridos</p>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
+                            </th>
                             <th class="px-4">
                                 <p class="flex justify-end text-white">Editar</p>
                             </th>
                             <th class="rounded-tr-xl px-4">
-                                <p class="flex justify-start text-white">Excluir</p>
+                                <p class="flex justify-center text-white">Excluir</p>
                             </th>
                         </tr>
                     </thead>
@@ -56,9 +54,6 @@
                             <td class="px-4">{{ $diagnose['name'] }}</td>
                             <td class="px-4">{{ $diagnose['symptoms_concat'] }}</td>
                             <td class="px-4">{{ $diagnose['medicines_concat'] }}</td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
                             <td data-modal-target="edit-modal-{{ $diagnose['id'] }}" data-modal-toggle="edit-modal-{{ $diagnose['id'] }}" class="px-4 underline decoration-blue-400 decoration-2">
                                 <p class="flex justify-end">Editar</p>
                             </td>
@@ -74,10 +69,9 @@
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4 rounded-br-xl"></td>
+                            <td class="px-4 rounded-br-xl">
+                                <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Novo</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
