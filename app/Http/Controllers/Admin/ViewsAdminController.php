@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diagnoses;
 use App\Models\Medicine;
 use App\Models\Symptoms;
+use App\Presenter\Diagnoses as PresenterDiagnoses;
 
 class ViewsAdminController extends Controller
 {
@@ -43,7 +45,13 @@ class ViewsAdminController extends Controller
 
     public function cadastroDiagnosticos()
     {
-        return view('cadastro-diagnosticos');
+        $diagnoses = Diagnoses::with("hasSymptoms.symptom")->get()->toArray();
+
+        $diagnoses = PresenterDiagnoses::concatSymptoms($diagnoses);
+
+        return view('cadastro-diagnosticos', [ 
+            'diagnoses' => $diagnoses
+        ]);
     }
 
     public function validacaoDocumentos()

@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script src="{{URL::asset('/js/cadastro-sintomas.js')}}"></script>
     <script src="{{URL::asset('/js/cadastro-medicamentos.js')}}"></script>
+    <script src="{{URL::asset('/js/cadastro-diagnosticos.js')}}"></script>
     
     <title>Brease - Painel do Administrador</title>
     
