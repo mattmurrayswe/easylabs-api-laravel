@@ -58,8 +58,8 @@
                             <th class="px-4"> 
                             <th class="px-4">
                             <th class="px-4">
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">2</td>
@@ -69,8 +69,8 @@
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">3</td>
@@ -80,8 +80,8 @@
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">4</td>
@@ -91,8 +91,8 @@
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">5</td>
@@ -102,8 +102,8 @@
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr>
                             <td class="px-4">6</td>
@@ -113,8 +113,8 @@
                             <th class="px-4">
                             <th class="px-4">
                             <th class="px-4">                    
-                            <td class="px-4 underline decoration-blue-400 decoration-2"><p class="flex justify-end">Editar</p></td>
-                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12"><p class="flex justify-start">Excluir</p></td>
+                            <td class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red"><p class="flex justify-end">Editar</p></td>
+                            <td class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red"><p class="flex justify-start">Excluir</p></td>
                         </tr>
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>

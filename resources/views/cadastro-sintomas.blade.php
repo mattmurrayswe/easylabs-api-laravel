@@ -3,6 +3,7 @@
 <body>
     <div class="container flex min-h-screen min-w-full h-screen">
 
+
         @include('components.sidebar')
 
         <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
@@ -46,10 +47,10 @@
                             <tr>
                                 <td class="px-4">{{ $sintoma->id }}</td>
                                 <td id="sintoma-name-{{ $sintoma->id }}" class="px-4">{{ $sintoma->name }}</td>
-                                <td data-modal-target="edit-modal-{{ $sintoma->id }}" data-modal-toggle="edit-modal-{{ $sintoma->id }}" class="px-4 underline decoration-blue-400 decoration-2">
+                                <td data-modal-target="edit-modal-{{ $sintoma->id }}" data-modal-toggle="edit-modal-{{ $sintoma->id }}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
                                     <p class="flex justify-end">Editar</p>
                                 </td>
-                                <td data-modal-target="delete-modal-{{ $sintoma->id }}" data-modal-toggle="delete-modal-{{ $sintoma->id }}" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                                <td data-modal-target="delete-modal-{{ $sintoma->id }}" data-modal-toggle="delete-modal-{{ $sintoma->id }}" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
                                     <p class="flex justify-center">Excluir</p>
                                 </td>
                             </tr>
