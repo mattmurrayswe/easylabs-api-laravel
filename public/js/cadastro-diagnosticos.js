@@ -1,11 +1,11 @@
 $(document).ready(function() {});
 
-function editSintoma(idSintoma) {
+function editDiagnostico(idDiagnostico) {
 
-    const novoNomeSintoma = $( `#input-${idSintoma}` ).val();
+    const novoNomeSintoma = $( `#input-${idDiagnostico}` ).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom/${idSintoma}`,
+        url: `http://localhost:8989/api/symptom/${idDiagnostico}`,
         type: "PUT",
         data: {
             name: novoNomeSintoma
