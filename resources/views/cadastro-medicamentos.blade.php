@@ -57,8 +57,13 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
+                        @php($i = 0)
                         @foreach ($medicamentos as $medicamento)
-                        <tr>
+                            @if ($i % 2 == 0)
+                                <tr class="h-10 bg-gray-50">
+                            @else
+                                <tr class="h-10">
+                            @endif
                             <td id="id-{{ $medicamento->id }}" class="px-4">{{ $medicamento->id }}</td>
                             <td id="name-{{ $medicamento->id }}" class="px-4">{{ $medicamento->name }}</td>
                             <td id="presentation-{{ $medicamento->id }}" class="px-4">{{ $medicamento->presentation }}</td>
@@ -73,6 +78,7 @@
                                 <p class="flex justify-center">Excluir</p>
                             </td>
                         </tr>
+                        @php($i++)
                         @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>

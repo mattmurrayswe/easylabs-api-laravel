@@ -1,7 +1,7 @@
 @include('components.header')
 
 <body>
-    <div class="container flex min-h-screen min-w-full h-screen">
+    <div class="container flex top-10 min-h-screen min-w-full h-screen">
 
         @include('components.sidebar')
 
@@ -42,8 +42,13 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
+                        @php($i = 0)
                         @foreach ($sintomas as $sintoma)
-                            <tr>
+                            @if ($i % 2 == 0)
+                                <tr class="h-10 bg-gray-100">
+                            @else
+                                <tr class="h-10">
+                            @endif
                                 <td class="px-4">{{ $sintoma->id }}</td>
                                 <td id="sintoma-name-{{ $sintoma->id }}" class="px-4">{{ $sintoma->name }}</td>
                                 <td data-modal-target="edit-modal-{{ $sintoma->id }}" data-modal-toggle="edit-modal-{{ $sintoma->id }}" class="px-4 underline decoration-blue-400 decoration-2">
@@ -53,6 +58,7 @@
                                     <p class="flex justify-center">Excluir</p>
                                 </td>
                             </tr>
+                        @php($i++)
                         @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
@@ -108,7 +114,7 @@
                                     Editar Sintoma
                                 </h3>
                                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit-modal-{{ $sintoma->id }}">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/200/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                     </svg>
                                     <span class="sr-only">Fechar</span>
@@ -117,12 +123,9 @@
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
                                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                    Edite "{{ $sintoma->name }}".
-                                </p>
-                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                                 <div>
                             <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome Sintoma</label>
-                            <input type="text" name="brand" id="input-{{ $sintoma->id }}" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Exemplo: Febre">
+                            <input type="text" name="brand" id="input-{{ $sintoma->id }}" value="{{ $sintoma->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Exemplo: Febre">
                         </div>
                         
                                 </p>

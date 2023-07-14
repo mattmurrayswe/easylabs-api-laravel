@@ -48,8 +48,13 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
+                    @php($i = 0)
                     @foreach ($diagnoses as $diagnose)
-                        <tr>
+                    @if ($i % 2 == 0)
+                        <tr class="h-10 bg-gray-50">
+                    @else
+                        <tr class="h-10">
+                    @endif
                             <td class="px-4">{{ $diagnose['id'] }}</td>
                             <td class="px-4">{{ $diagnose['name'] }}</td>
                             <td class="px-4">{{ $diagnose['symptoms_concat'] }}</td>
@@ -61,6 +66,7 @@
                                 <p class="flex justify-center">Excluir</p>
                             </td>
                         </tr>
+                    @php($i++)
                     @endforeach
 
                         <tr class="bg-gray-800 h-10">
