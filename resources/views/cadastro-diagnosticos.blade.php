@@ -110,11 +110,21 @@
                                     @foreach ($diagnose["has_symptoms"] as $symptom)
                                         @if (isset($symptom['symptom']['name']))
                                             <select class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                <option value="{{ $symptom['symptom']['id'] }}">{{ $symptom['symptom']['name'] }}</option>
+                                                <option selected value="{{ $symptom['symptom']['id'] }}">{{ $symptom['symptom']['id'] }} - {{ $symptom['symptom']['name'] }}</option>
+                                                @foreach ($symptoms as $s)
+                                                    @if ($symptom['symptom']['id'] === $s->id)
+                                                        <option selected value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
+                                                    @else 
+                                                        <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         @endif
                                     @endforeach
                                 @endif
+                                <button class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                +
+                                </button>
                             </div>
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamento Sugeridos</label>
@@ -122,11 +132,21 @@
                                     @foreach ($diagnose["has_suggested_medicines"] as $medicine)
                                         @if (isset($medicine['medicine']['name']))
                                             <select class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                <option value="{{ $medicine['medicine']['id'] }}">{{ $medicine['medicine']['name'] }}</option>
+                                                <option selected value="{{ $medicine['medicine']['id'] }}">{{ $medicine['medicine']['id'] }} - {{ $medicine['medicine']['name'] }}</option>
+                                                @foreach ($medicines as $m)
+                                                    @if ($medicine['medicine']['id'] === $m->id)
+                                                        <option selected value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                                    @else 
+                                                        <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         @endif
                                     @endforeach
                                 @endif
+                                <button class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                +
+                                </button>
                             </div>
                             </p>
                         </div>

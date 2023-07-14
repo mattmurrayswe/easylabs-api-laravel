@@ -49,8 +49,24 @@ class ViewsAdminController extends Controller
 
         $diagnoses = PresenterDiagnoses::concatSymptoms($diagnoses);
 
+        $symptoms = Symptoms::all(
+            [
+                "id",
+                "name"
+            ]
+        );
+
+        $medicines = Medicine::all(
+            [
+                "id",
+                "name"
+            ]
+        );
+
         return view('cadastro-diagnosticos', [
-            'diagnoses' => $diagnoses
+            'diagnoses' => $diagnoses,
+            'symptoms' => $symptoms,
+            'medicines' => $medicines
         ]);
     }
 
