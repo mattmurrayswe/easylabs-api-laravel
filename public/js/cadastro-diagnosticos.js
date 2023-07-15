@@ -1,5 +1,13 @@
 $(document).ready(function() {});
 
+function addInputSintomaAoDiagnostico(idDiagnosticoModal) {
+    $( `#select-sintomas-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-sintomas-${idDiagnosticoModal}` );
+}
+
+function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
+    $( `#select-medicamentos-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-medicamentos-${idDiagnosticoModal}` );    
+}
+
 function editDiagnostico(idDiagnostico) {
 
     const novoNomeSintoma = $( `#input-${idDiagnostico}` ).val();
