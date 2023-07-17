@@ -27,7 +27,7 @@ function editDiagnostico(idDiagnostico) {
     console.log(medicamentosIds)
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom/${idDiagnostico}`,
+        url: `http://localhost:8989/api/diagnose/${idDiagnostico}`,
         type: "PUT",
         data: {
             id_diagnostico: idDiagnostico,

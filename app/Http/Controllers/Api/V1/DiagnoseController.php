@@ -116,36 +116,42 @@ class DiagnoseController extends Controller
     {
         try {
 
-            if (isset($request->diagnoses_id)) {
+            if (isset($request->sintomas_ids)) {
 
-                TreatmentsRef::where('id', $id)->update(
-                    [
-                        "diagnoses_id" => $request->diagnoses_id
-                    ]
-                );
+                DiagnosesHasSymptoms::where("diagnose_id", $id)->delete();
+                
             }
 
-            if (isset($request->medicines)) {
+            if (isset($request->medicamentos_ids)) {
 
-                foreach ($request->medicines as $medicine) {
+                DiagnosesHasSuggestedMedicines::where("diagnose_id", $id)->delete();
 
-                    TreatmentHasMedicines::where([
-                        "medicine_id" => $medicine["medicine_id"],
-                        "treatment_id" => $id,
-                    ])->update(
-                        [
-                            "medicine_id" => $medicine["medicine_id"],
-                            "intervalo_em_horas" => $medicine["intervalo_em_horas"],
-                            "inicio_do_uso" => $medicine["inicio_do_uso"],
-                            "how_many" => $medicine["how_many"]
-                        ]
-                    );
-                }
             }
 
-            return response()->json(new SuccessResource("Sucesso ao editar o Tratamento"), 200);
+            foreach ($request->sintomas_ids as $idSintoma) {
+
+                $dataDiagHasSymptoms = [
+                    "diagnose_id" => $id,
+                    "symptom_id" => $idSintoma
+                ];
+
+                DiagnosesHasSymptoms::create($dataDiagHasSymptoms);
+            }
+
+            foreach ($request->medicamentos_ids as $idMedicamento) {
+
+                $dataDiagHasSugMedicines = [
+                    "diagnose_id" => $id,
+                    "medicine_id" => $idMedicamento
+                ];
+
+                DiagnosesHasSuggestedMedicines::create($dataDiagHasSugMedicines);
+            }
+            
+
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 }
