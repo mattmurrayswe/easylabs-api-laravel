@@ -45,10 +45,10 @@ function editDiagnostico(idDiagnostico) {
       });
 }
 
-function deleteSintoma(idSintoma) {
+function deleteDiagnostico(idDiagnostico) {
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom/${idSintoma}`,
+        url: `http://localhost:8989/api/diagnose/${idDiagnostico}`,
         type: "DELETE",
         success: function(data, status) {
 
