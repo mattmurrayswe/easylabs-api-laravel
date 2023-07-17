@@ -10,19 +10,35 @@ function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
 
 function editDiagnostico(idDiagnostico) {
 
-    const novoNomeSintoma = $( `#input-${idDiagnostico}` ).val();
+    let sintomasIds = $(`.select-sintomas-${idDiagnostico}`).map(function() {
+
+        return this.value
+
+    }).get()
+
+    console.log(sintomasIds)
+
+    let medicamentosIds = $(`.select-medicamentos-${idDiagnostico}`).map(function() {
+
+        return this.value
+
+    }).get()
+
+    console.log(medicamentosIds)
 
     $.ajax({
         url: `http://localhost:8989/api/symptom/${idDiagnostico}`,
         type: "PUT",
         data: {
-            name: novoNomeSintoma
+            id_diagnostico: idDiagnostico,
+            sintomas_ids: sintomasIds,
+            medicamentos_ids: medicamentosIds
         },
         success: function(data, status) {
 
             console.log(data)
             if (status === "success") {
-                $( `#sintoma-name-${idSintoma}` ).text(novoNomeSintoma);
+                location.reload();
             }
 
         }

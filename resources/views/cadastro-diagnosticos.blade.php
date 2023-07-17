@@ -108,7 +108,7 @@
                                 @if (isset($diagnose["has_symptoms"]))
                                     @foreach ($diagnose["has_symptoms"] as $symptom)
                                         @if (isset($symptom['symptom']['name']))
-                                            <select id="select-sintomas-{{ $diagnose['id'] }}" class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                 @foreach ($symptoms as $s)
                                                     @if ($symptom['symptom']['id'] === $s->id)
                                                         <option selected value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
@@ -127,7 +127,7 @@
                                 @if (isset($diagnose["has_suggested_medicines"]))
                                     @foreach ($diagnose["has_suggested_medicines"] as $medicine)
                                         @if (isset($medicine['medicine']['name']))
-                                            <select id="select-medicamentos-{{ $diagnose['id'] }}" class="mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                 @foreach ($medicines as $m)
                                                     @if ($medicine['medicine']['id'] === $m->id)
                                                         <option selected value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
@@ -144,7 +144,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button onclick="editDiagostico({{ $diagnose['id'] }})" data-modal-hide="edit-modal-{{ $diagnose['id'] }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                            <button onclick="editDiagnostico({{ $diagnose['id'] }})" data-modal-hide="edit-modal-{{ $diagnose['id'] }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
                         </div>
                     </div>
                 </div>
