@@ -81,15 +81,41 @@ function deleteDiagnostico(idDiagnostico) {
 
 function cadastreDiagnostico() {
 
-    const novoNomeSintoma = $( "#input-novo-sintoma" ).val();
+    let name = $('#nome-novo-diagnostico').val()
 
-    console.log(novoNomeSintoma)
+    console.log(name)
+
+    let hasSymptoms = $(".select-sintomas").map(function() {
+
+        return { "symptom_id": this.value };
+
+    }).get();
+
+    console.log(hasSymptoms)
+
+    let hasSuggestedMedicines = $(`.select-medicamentos`).map(function() {
+
+        return { "medicine_id" : this.value };
+
+    }).get()
+
+    console.log(hasSuggestedMedicines)
+
+    data = {
+        name: name,
+        has_symptoms: hasSymptoms,
+        has_suggested_medicines: hasSuggestedMedicines
+    }
+
+    console.log(data)
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom`,
+        url: `http://localhost:8989/api/diagnose`,
         type: "POST",
         data: {
-            name: novoNomeSintoma
+            name: name,
+            has_symptoms: hasSymptoms,
+            has_suggested_medicines: hasSuggestedMedicines
         },
         success: function(data, status) {
 
