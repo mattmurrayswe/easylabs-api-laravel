@@ -71,10 +71,10 @@
                             <td id="volume_flask-{{ $medicamento->id }}" class="px-4">{{ $medicamento->volume_flask }}</td>
                             <td id="formulation-{{ $medicamento->id }}" class="px-4">{{ $medicamento->formulation }}</td>
                             <td id="lab-{{ $medicamento->id }}" class="px-4">{{ $medicamento->lab }}</td>
-                            <td  onClick="alimenteModalMedicamentoEdit({{ $medicamento->id }})" data-modal-target="edit-modal-{{ $medicamento->id }}" data-modal-toggle="edit-modal-{{ $medicamento->id }}" class="px-4 underline decoration-blue-400 decoration-2">
+                            <td  onClick="alimenteModalMedicamentoEdit({{ $medicamento->id }})" data-modal-target="edit-modal-{{ $medicamento->id }}" data-modal-toggle="edit-modal-{{ $medicamento->id }}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
                                 <p class="flex justify-end">Editar</p>
                             </td>
-                            <td data-modal-target="delete-modal-{{ $medicamento->id }}" data-modal-toggle="delete-modal-{{ $medicamento->id }}" class="px-4 underline decoration-pink-400 decoration-2 w-1/12">
+                            <td data-modal-target="delete-modal-{{ $medicamento->id }}" data-modal-toggle="delete-modal-{{ $medicamento->id }}" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
                                 <p class="flex justify-center">Excluir</p>
                             </td>
                         </tr>
