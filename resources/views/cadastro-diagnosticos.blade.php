@@ -82,6 +82,8 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Modais de Edição do Diagnóstico -->
             @foreach ($diagnoses as $diagnose)
             <div id="edit-modal-{{ $diagnose['id'] }}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
@@ -132,7 +134,7 @@
                                 <button onClick="addInputSintomaAoDiagnostico({{ $diagnose['id'] }})" id="button-select-sintomas-{{ $diagnose['id'] }}" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + </button>
                             </div>
                             <div id="div-selects-medicamentos-{{ $diagnose['id'] }}">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamento Sugeridos</label>
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamentos Sugeridos</label>
                                 @php($j = 0)
                                 @if (isset($diagnose["has_suggested_medicines"]))
                                     @foreach ($diagnose["has_suggested_medicines"] as $medicine)
@@ -168,6 +170,54 @@
                 </div>
             </div>
             @endforeach
+
+
+            <div id="add-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Novo Diagnóstico
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="add-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Fechar</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Diagnóstico</label>
+                                <input type="text" name="brand" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Exemplo: Epilepsia">
+                            </div>
+                            <div id="div-selects-sintomas">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sintomas</label>
+                                <select id="select-sintomas" class="select-sintomas mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    @foreach ($symptoms as $s)
+                                    <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button onClick="addInputSintomaAoDiagnostico(false)" id="button-select-sintomas" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + </button>
+                            </div>
+                            <div id="div-selects-medicamentos">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamentos Sugeridos</label>
+                                <select id="select-medicamentos" class="select-medicamentos mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    @foreach ($medicines as $m)
+                                        <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button onCLick="addInputMedicamentoAoDiagnostico(false)" id="button-select-medicamentos" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + </button>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button onclick="cadastreDiagnostico()" data-modal-hide="edit-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             @foreach ($diagnoses as $diagnose)
             <div id="delete-modal-{{ $diagnose['id'] }}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

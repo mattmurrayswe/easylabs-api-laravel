@@ -1,11 +1,29 @@
 $(document).ready(function() {});
 
 function addInputSintomaAoDiagnostico(idDiagnosticoModal) {
-    $( `#select-sintomas-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-sintomas-${idDiagnosticoModal}` );
+
+    if (idDiagnosticoModal === false) {
+
+        $( `#select-sintomas` ).clone().insertBefore( `#button-select-sintomas` );
+
+    } else {
+
+        $( `#select-sintomas-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-sintomas-${idDiagnosticoModal}` );
+
+    }
 }
 
 function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
-    $( `#select-medicamentos-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-medicamentos-${idDiagnosticoModal}` );    
+
+    if (idDiagnosticoModal === false) {
+
+        $( `#select-medicamentos` ).clone().insertBefore( `#button-select-medicamentos` );    
+
+    } else {
+
+        $( `#select-medicamentos-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-medicamentos-${idDiagnosticoModal}` );    
+
+    }
 }
 
 function editDiagnostico(idDiagnostico) {
@@ -61,7 +79,7 @@ function deleteDiagnostico(idDiagnostico) {
       });
 }
 
-function cadastreSintoma() {
+function cadastreDiagnostico() {
 
     const novoNomeSintoma = $( "#input-novo-sintoma" ).val();
 
