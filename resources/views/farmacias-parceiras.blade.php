@@ -10,7 +10,7 @@
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">
                         <div class="w-5 mr-2 flex justify-center">
-                            <img src="{{URL::asset('/image/farmacias-logo.png')}}" alt="profile Pic" height="40" width="40">
+                            <img src="{{URL::asset('/image/farmacias-logo.svg')}}" alt="profile Pic" height="40" width="40">
                         </div>
                         <p>Farmacias Parceiras</p>
                     </a>
