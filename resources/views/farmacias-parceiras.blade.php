@@ -57,9 +57,15 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                        <tr>
-                            <td class="px-4">1</td>
-                            <td class="px-4">Farmácia XXXXXXXXXX</td>
+                    @php($i = 0)
+                    @foreach ($clinics as $c)
+                    @if ($i % 2 == 0)
+                        <tr class="h-10 bg-gray-50">
+                    @else
+                        <tr class="h-10">
+                    @endif
+                            <td class="px-4">{{ $c->id }}</td>
+                            <td class="px-4">{{ $c->name }}</td>
                             <td class="px-4">DPSP</td>
                             <td class="px-4">xxxxxxxx@brease.com</td>
                             <td class="px-4">81000-000</td>
@@ -73,6 +79,8 @@
                                 <p class="flex justify-start">Excluir</p> 
                             </td>
                         </tr>
+                    @php($i++)
+                    @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>

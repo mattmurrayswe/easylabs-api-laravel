@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ClinicAdress extends Model
 {
     public $table = 'clinic_address';
-    public $timestamps = false;
-
     
     protected $fillable = [
         'cep',
@@ -19,7 +17,4 @@ class ClinicAdress extends Model
         'city',
         'state',
     ];
-
-
 }
-

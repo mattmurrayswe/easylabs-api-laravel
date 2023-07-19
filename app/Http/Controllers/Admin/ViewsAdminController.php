@@ -84,6 +84,7 @@ class ViewsAdminController extends Controller
     public function farmaciasParceiras()
     {
         $clinics = ClinicAdress::all([
+            'id',
             'cep',
             'street',
             'number',
