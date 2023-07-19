@@ -41,13 +41,13 @@
                             </th>
                             <th class="px-4">
                                 <p class="flex text-white">E-mail</p>
-                            <th class="px-4">                            
-                            <p class="flex text-white">CEP</p>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <td class="px-4">
-                            <p class="flex justify-end text-white">Visualizar</p>
+                            </th>
+                            <th class="px-4">                       
+                                <p class="flex text-white">CEP</p>
+                            </th>
+                            <th class="px-4">                       
+                                <p class="flex justify-end text-white">Visualizar</p>
+                            </th>
                             <th class="px-4">                            
                                 <p class="flex justify-end text-white">Editar</p>
                             </th>
@@ -63,104 +63,26 @@
                             <td class="px-4">DPSP</td>
                             <td class="px-4">xxxxxxxx@brease.com</td>
                             <td class="px-4">81000-000</td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
                             <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar"  class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                            <p class="flex justify-end">Visualizar</p>   
+                                <p class="flex justify-end">Visualizar</p>
+                            </td>  
                             <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar"  class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                            <p class="flex justify-end">Editar</p>
+                                <p class="flex justify-end">Editar</p>
+                            </td>  
                             <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                            <p class="flex justify-start">Excluir</p> 
-                        <tr>
-                            <td class="px-4">2</td>
-                            <td class="px-4">Farmácia XXXXXXXXXX</td>
-                            <td class="px-4">DPSP</td>
-                            <td class="px-4">xxxxxxxx@brease.com</td>
-                            <td class="px-4">81000-000</td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar"  class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                            <p class="flex justify-end">Visualizar</p>           
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                            <p class="flex justify-end">Editar</p>
-                            <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                            <p class="flex justify-start">Excluir</p>                        
-                        <tr>
-                            <td class="px-4">3</td>
-                            <td class="px-4">Farmácia XXXXXXXXXX</td>
-                            <td class="px-4">DPSP</td>
-                            <td class="px-4">xxxxxxxx@brease.com</td>
-                            <td class="px-4">81000-000</td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar"  class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                            <p class="flex justify-end">Visualizar</p>      
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar"  class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                            <p class="flex justify-end">Editar</p>
-                            <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                            <p class="flex justify-start">Excluir</p>                         </tr>
-                        <tr>
-                            <td class="px-4">4</td>
-                            <td class="px-4">Farmácia XXXXXXXXXX</td>
-                            <td class="px-4">DPSP</td>
-                            <td class="px-4">xxxxxxxx@brease.com</td>
-                            <td class="px-4">81000-000</td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar"  class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                            <p class="flex justify-end">Visualizar</p>    
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar"  class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                            <p class="flex justify-end">Editar</p>
-                            <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                            <p class="flex justify-start">Excluir</p> 
+                                <p class="flex justify-start">Excluir</p> 
+                            </td>
                         </tr>
-                        <tr>
-                            <td class="px-4">5</td>
-                            <td class="px-4">Farmácia XXXXXXXXXX</td>
-                            <td class="px-4">DPSP</td>
-                            <td class="px-4">xxxxxxxx@brease.com</td>
-                            <td class="px-4">81000-000</td>
-                            <th class="px-4">
-                            <th class="px-4">
-                            <th class="px-4">
-                            <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar"  class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                            <p class="flex justify-end">Visualizar</p>       
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar"  class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                            <p class="flex justify-end">Editar</p>              
-                            <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                            <p class="flex justify-start">Excluir</p>                       
-                        <tr>
-                            <td class="px-4">6</td>
-                            <td class="px-4">Farmácia XXXXXXXXXX</td>
-                            <td class="px-4">DPSP</td>
-                            <td class="px-4">xxxxxxxx@brease.com</td>  
-                            <td class="px-4">81000-000</td>
-                            <th class="px-4">
-                            <th class="px-4"> 
-                            <th class="px-4">
-                            <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar"  class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                            <p class="flex justify-end">Visualizar</p>  
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar"  class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                            <p class="flex justify-end">Editar</p>                  
-                            <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                            <p class="flex justify-start">Excluir</p>                      
                         <tr class="bg-gray-800 h-10">
-                        <td class="px-4"></td>
+                            <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-2"></td>
-                            <td class="px-2 rounded-br-xl">
-                                <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Incluir</button>
+                            <td class="px-4 rounded-br-xl">
+                                <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Novo</button>
                             </td>
                         </tr>
                     </tbody>
