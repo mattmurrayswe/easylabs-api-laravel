@@ -79,4 +79,24 @@ class ViewsAdminController extends Controller
     {
         return view('config-pushs');
     }
+
+    public function farmaciasParceiras()
+    {
+        return view('farmacias-parceiras');
+    }
+
+    public function usuarios()
+    {
+        return view('usuarios');
+    }
+
+    public function descontoPromocao()
+    {
+        return view('desconto-promocao');
+    }
+
+    public function extracaoDados()
+    {
+        return view('extracaodados');
+    }
 }

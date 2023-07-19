@@ -24,6 +24,14 @@ Route::get('/validacao-documentos', [ViewsAdminController::class, 'validacaoDocu
 
 Route::get('/config-pushs', [ViewsAdminController::class, 'configPushs']);
 
+Route::get('/farmacias-parceiras', [ViewsAdminController::class, 'farmaciasParceiras']);
+
+Route::get('/usuarios', [ViewsAdminController::class, 'usuarios']);
+
+Route::get('/desconto-promocao', [ViewsAdminController::class, 'descontoPromocao']);
+
+Route::get('/extracaodados', [ViewsAdminController::class, 'extracaoDados']);
+
 Route::get('/', function () {
     return view('welcome');
 });
