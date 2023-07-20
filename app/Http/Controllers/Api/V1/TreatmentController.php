@@ -53,6 +53,7 @@ class TreatmentController extends Controller
                     "medicine_id" => $medicine["medicine_id"],
                     "intervalo_em_horas" => $medicine["intervalo_em_horas"],
                     "inicio_do_uso" => $medicine["inicio_do_uso"],
+                    "fim_do_uso" => $medicine["fim_do_uso"],
                     "how_many" => $medicine["how_many"]
                 ];
                 
