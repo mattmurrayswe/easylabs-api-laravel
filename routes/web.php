@@ -32,6 +32,10 @@ Route::get('/desconto-promocao', [ViewsAdminController::class, 'descontoPromocao
 
 Route::get('/extracaodados', [ViewsAdminController::class, 'extracaoDados']);
 
+Route::get('/niveldepermicao', [ViewsAdminController::class, 'niveldePermicao']);
+
+Route::get('/perfilusuarios', [ViewsAdminController::class, 'perfilUsuarios']);
+
 Route::get('/', function () {
     return view('welcome');
 });
