@@ -28,6 +28,8 @@ function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
 
 function editDiagnostico(idDiagnostico) {
 
+    let name = $(`#diagnose-name`).val();
+
     let sintomasIds = $(`.select-sintomas-${idDiagnostico}`).map(function() {
 
         return this.value
@@ -48,6 +50,7 @@ function editDiagnostico(idDiagnostico) {
         url: `http://localhost:8989/api/diagnose/${idDiagnostico}`,
         type: "PUT",
         data: {
+            name: name,
             id_diagnostico: idDiagnostico,
             sintomas_ids: sintomasIds,
             medicamentos_ids: medicamentosIds

@@ -116,6 +116,15 @@ class DiagnoseController extends Controller
     {
         try {
 
+            if (isset($request->name)) {
+
+                Diagnoses::where("id", $id)->update(
+                    [
+                        "name" => $request->name
+                    ]
+                );
+            }
+
             if (isset($request->sintomas_ids)) {
 
                 DiagnosesHasSymptoms::where("diagnose_id", $id)->delete();
