@@ -35,11 +35,35 @@
     </a>
   </div>
   <div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
-    <a class="flex" href="{{ url('/config-pushs') }}">
+    <a class="flex" href="{{ url('/farmacias-parceiras') }}">
       <div class="w-5 mr-3 flex justify-center">
-        <img src="{{URL::asset('/image/set-icon.svg')}}" alt="profile Pic" height="18" width="18">
+        <img src="{{URL::asset('/image/farmacias-parceiras.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
-      <p>Push Notifications</p>
+      <p>Farmácias Parceiras</p>
     </a>
-  </div>
+</div>
+<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    <a class="flex" href="{{ url('/usuarios') }}">
+      <div class="w-5 mr-3 flex justify-center">
+        <img src="{{URL::asset('/image/users-group.svg')}}" alt="profile Pic" height="18" width="18">
+      </div>
+      <p>Usuários</p>
+      </a>
+</div>
+<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    <a class="flex" href="{{ url('/desconto-promocao') }}">
+      <div class="w-5 mr-3 flex justify-center">
+        <img src="{{URL::asset('/image/tags.svg')}}" alt="profile Pic" height="18" width="18">
+      </div>
+      <p>Desconto e Promoções</p>
+      </a>
+      </div>
+<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    <a class="flex" href="{{ url('/extracaodados') }}">
+      <div class="w-5 mr-3 flex justify-center">
+        <img src="{{URL::asset('/image/dadosbar.svg')}}" alt="profile Pic" height="18" width="18">
+      </div>
+      <p>Extração de dados</p>
+      </a>
+      </div>
 </div>

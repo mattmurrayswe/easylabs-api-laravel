@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClinicAdress;
 use App\Models\Diagnoses;
 use App\Models\Medicine;
 use App\Models\Symptoms;
@@ -78,5 +79,38 @@ class ViewsAdminController extends Controller
     public function configPushs()
     {
         return view('config-pushs');
+    }
+
+    public function farmaciasParceiras()
+    {
+        $clinics = ClinicAdress::all([
+            'id',
+            'cep',
+            'street',
+            'number',
+            'complement',
+            'neighboor',
+            'city',
+            'state',
+        ]);
+
+        return view('farmacias-parceiras', [
+            "clinics" => $clinics
+        ]);
+    }
+
+    public function usuarios()
+    {
+        return view('usuarios');
+    }
+
+    public function descontoPromocao()
+    {
+        return view('desconto-promocao');
+    }
+
+    public function extracaoDados()
+    {
+        return view('extracaodados');
     }
 }
