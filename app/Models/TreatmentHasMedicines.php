@@ -19,6 +19,7 @@ class TreatmentHasMedicines extends Model
         'medicine_id',
         'intervalo_em_horas',
         'inicio_do_uso',
+        'fim_do_uso',
         'how_many'
     ];
 

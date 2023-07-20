@@ -48,6 +48,12 @@ Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
 Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
 Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
 
+Route::post('/treatment', [TreatmentController::class, 'store']);
+Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
+Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
+Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
+Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
+
 Route::prefix('patient')->group(function(){
     
     
