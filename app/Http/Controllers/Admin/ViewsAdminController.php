@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ClinicAdress;
+use App\Models\Clinics;
 use App\Models\Diagnoses;
 use App\Models\Medicine;
+use App\Models\Pharmacy;
 use App\Models\Symptoms;
 use App\Presenter\Diagnoses as PresenterDiagnoses;
 
@@ -83,15 +85,18 @@ class ViewsAdminController extends Controller
 
     public function farmaciasParceiras()
     {
-        $clinics = ClinicAdress::all([
-            'id',
-            'cep',
-            'street',
-            'number',
-            'complement',
-            'neighboor',
-            'city',
-            'state',
+        $clinics = Pharmacy::all([
+            "id",
+            "cep",
+            "street",
+            "number",
+            "complement",
+            "neighboor",
+            "city",
+            "state",
+            "name",
+            "rede",
+            "email"
         ]);
 
         return view('farmacias-parceiras', [

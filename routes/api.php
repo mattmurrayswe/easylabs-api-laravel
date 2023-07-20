@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
 use App\Http\Controllers\Api\V1\Prescriber\VoucherController;
 use App\Http\Controllers\Api\V1\TreatmentController;
 use App\Http\Controllers\Api\V1\DiagnoseController;
+use App\Http\Controllers\Api\V1\PharmacyController;
 use App\Http\Controllers\Api\V1\StatisticsController;
 use App\Http\Controllers\Api\V1\SymptomsController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,12 @@ Route::get('/diagnose', [DiagnoseController::class, 'getAllDiagnoses']);
 Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
 Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
 Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
+
+Route::post('/pharmacy', [PharmacyController::class, 'store']);
+Route::get('/pharmacy', [PharmacyController::class, 'getAllPharmacies']);
+Route::get('/pharmacy/{id}', [PharmacyController::class, 'getPharmacy']);
+Route::delete('/pharmacy/{id}', [PharmacyController::class, 'deletePharmacy']);
+Route::put('/pharmacy/{id}', [PharmacyController::class, 'editPharmacy']);
 
 Route::post('/treatment', [TreatmentController::class, 'store']);
 Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
