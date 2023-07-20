@@ -37,3 +37,7 @@ Doc de rotas
 ```sh
 http://localhost:8989/manual/1.0/autenticacao
 ```
+
+Deploy
+
+php vendor/bin/vapor deploy production
