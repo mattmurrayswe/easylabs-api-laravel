@@ -92,10 +92,10 @@ class PharmacyController extends Controller
         }
     }
 
-    public function deleteDiagnose($id)
+    public function deletePharmacy($id)
     {
         try {
-            Diagnoses::where('id', $id)->delete();
+            Pharmacy::where('id', $id)->delete();
 
             return response()->json(new SuccessResource("Diagnostico excluido com sucesso!"), 200);
         } catch (\Throwable $th) {
