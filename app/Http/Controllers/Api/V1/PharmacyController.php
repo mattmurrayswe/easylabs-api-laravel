@@ -103,42 +103,26 @@ class PharmacyController extends Controller
         }
     }
 
-    public function editDiagnose(Request $request, $id)
+    public function editPharmacy(Request $request, $id)
     {
         try {
 
-            if (isset($request->sintomas_ids)) {
+            Pharmacy::where("id", $id)->update([
+                "cep" => $request->cep,
+                "street" => $request->street,
+                "number" => $request->number,
+                "complement" => $request->complement,
+                "neighboor" => $request->neighboor,
+                "city" => $request->city,
+                "state" => $request->state,
+                "name" => $request->name,
+                "rede" => $request->rede,
+                "email" => $request->email,
+            ]);
 
-                DiagnosesHasSymptoms::where("diagnose_id", $id)->delete();
-                
-            }
-
-            if (isset($request->medicamentos_ids)) {
-
-                DiagnosesHasSuggestedMedicines::where("diagnose_id", $id)->delete();
-
-            }
-
-            foreach ($request->sintomas_ids as $idSintoma) {
-
-                $dataDiagHasSymptoms = [
-                    "diagnose_id" => $id,
-                    "symptom_id" => $idSintoma
-                ];
-
-                DiagnosesHasSymptoms::create($dataDiagHasSymptoms);
-            }
-
-            foreach ($request->medicamentos_ids as $idMedicamento) {
-
-                $dataDiagHasSugMedicines = [
-                    "diagnose_id" => $id,
-                    "medicine_id" => $idMedicamento
-                ];
-
-                DiagnosesHasSuggestedMedicines::create($dataDiagHasSugMedicines);
-            }
-            
+            return response()->json(new SuccessResource([
+                "message" => "Farmácia editada com sucesso!"
+            ]), 200);            
 
         } catch (\Throwable $th) {
 

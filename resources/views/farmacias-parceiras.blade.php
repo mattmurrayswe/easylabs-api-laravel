@@ -25,7 +25,6 @@
             </div>
 
             <div id="tabela-medicamentos" class="h-5/6 my-20">
-                <button data-modal-target="filtro-modal" type="button" data-modal-toggle="filtro-modal" id="filtrar" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Filtrar</button>
                 </th>
                 <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
@@ -46,10 +45,7 @@
                                 <p class="flex text-white">CEP</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex justify-end text-white">Visualizar</p>
-                            </th>
-                            <th class="px-4">
-                                <p class="flex justify-end text-white">Editar</p>
+                                <p class="flex justify-end text-white">Visualizar/Editar</p>
                             </th>
                             <th class="rounded-tr-xl px-4">
                                 <p class="flex justify-start text-white">Excluir</p>
@@ -69,11 +65,8 @@
                             <td class="px-4">{{ $c->rede }}</td>
                             <td class="px-4">{{ $c->email }}</td>
                             <td class="px-4">{{ $c->cep }}</td>
-                            <td data-modal-target="visu-modal" data-modal-toggle="visu-modal" id="visulizar" class="px-4 underline decoration-green-400 decoration-2 hover:text-green-600 focus:text-red">
-                                <p class="flex justify-end">Visualizar</p>
-                            </td>
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                                <p class="flex justify-end">Editar</p>
+                            <td data-modal-target="editModal-{{ $c->id }}" data-modal-toggle="editModal-{{ $c->id }}" id="editar" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
+                                <p class="flex justify-end">Visualizar/Editar</p>
                             </td>
                             <td data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
                                 <p class="flex justify-start">Excluir</p>
@@ -83,7 +76,6 @@
                         @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
-                            <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
@@ -164,14 +156,15 @@
 </div>
 </body>
 
-<div id="editModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+@foreach ($clinics as $c)
+<div id="editModal-{{$c->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-2xl max-h-full">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                     Editar
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="editModal">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="editModal-{{$c->id}}">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                     </svg>
@@ -180,40 +173,56 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                 <div>
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome da Rede</label>
-                    <input type="text" name="brand" id="input-add-name" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome da Rede</label>
+                    <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                 </div>
                 <div>
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número</label>
-                    <input type="text" name="brand" id="input-add-presentation" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do Responsável</label>
+                    <input type="text" id="name-{{$c->id}}" value="{{$c->name}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                 </div>
                 <div>
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do Responsável</label>
-                    <input type="text" name="brand" id="input-add-concentration" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail</label>
+                    <input type="text" id="email-{{$c->id}}" value="{{$c->email}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                 </div>
                 <div>
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CEP</label>
-                    <input type="text" name="brand" id="input-add-volume_flask" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CEP</label>
+                    <input type="text" id="cep-{{$c->id}}" value="{{$c->cep}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                 </div>
                 <div>
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cidade</label>
-                    <input type="text" name="brand" id="input-add-formulation" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cidade</label>
+                    <input type="text" id="city-{{$c->id}}" value="{{$c->city}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                 </div>
                 <div>
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail da rede</label>
-                    <input type="text" name="brand" id="input-add-lab" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
+                    <input type="text" id="state-{{$c->id}}" value="{{$c->state}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                 </div>
-
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rua</label>
+                    <input type="text" id="street-{{$c->id}}" value="{{$c->street}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número</label>
+                    <input type="text" id="number-{{$c->id}}" value="{{$c->number}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bairro</label>
+                    <input type="text" id="neighboor-{{$c->id}}" value="{{$c->neighboor}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Complemento</label>
+                    <input type="text" id="complement-{{$c->id}}" value="{{$c->complement}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                </div>
             </div>
             <!-- Modal footer -->
             <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="editModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                <button onClick="editFarmacia({{$c->id}})" data-modal-hide="editModal-{{$c->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
             </div>
         </div>
     </div>
 </div>
+@endforeach
+
 <div id="delete-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-2xl max-h-full">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
