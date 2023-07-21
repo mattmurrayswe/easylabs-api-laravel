@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\Prescriber\AvailabilityController;
 use App\Http\Controllers\Api\V1\Prescriber\ClinicAdressController;
 use App\Http\Controllers\Api\V1\Prescriber\VoucherController;
 use App\Http\Controllers\Api\V1\TreatmentController;
+use App\Http\Controllers\Api\V1\PermissaoController;
 use App\Http\Controllers\Api\V1\DiagnoseController;
 use App\Http\Controllers\Api\V1\PharmacyController;
 use App\Http\Controllers\Api\V1\StatisticsController;
@@ -60,6 +61,14 @@ Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
 Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
 Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
 Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
+
+Route::post('/permissao', [PermissaoController::class, 'store']);
+Route::get('/permissao', [PermissaoController::class, 'getAllPermissaos']);
+Route::get('/permissao/{id}', [PermissaoController::class, 'getPermissao']);
+Route::delete('/permissao/{id}', [PermissaoController::class, 'deletePermissao']);
+Route::put('/permissao/{id}', [PermissaoController::class, 'editPermissao']);
+
+Route::put('/permissao-user', [PermissaoController::class, 'editPermissaoUser']);
 
 Route::post('/documents', [AuthController::class, 'uploadDocs']);
 Route::get('/documents', [AuthController::class, 'getDocuments']);
