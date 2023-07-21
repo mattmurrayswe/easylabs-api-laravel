@@ -240,24 +240,36 @@ class AuthController extends Controller
             if(!isNull($request->file('crm_frente'))) {
                 
                 Storage::disk('local')->put("public/docs/crm-frente/crm-frente-{$id}.jpg", file_get_contents($request->file('crm_frente')->getPathname()));
+                Prescriber::where("id", $id)->update([
+                    "uploaded_crm_frente" => "true"
+                ]);
                 
             }
-
+            
             if(!isNull($request->file('crm_verso'))) {
                 
                 Storage::disk('local')->put("public/docs/crm-verso/crm-verso-{$id}.jpg", file_get_contents($request->file('crm_verso')->getPathname()));
+                Prescriber::where("id", $id)->update([
+                    "uploaded_crm_verso" => "true"
+                ]);
                 
             }
-
+            
             if(!isNull($request->file('selfie_com_doc'))) {
                 
                 Storage::disk('local')->put("public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg", file_get_contents($request->file('selfie_com_doc')->getPathname()));
+                Prescriber::where("id", $id)->update([
+                    "uploaded_selfie_com_doc" => "true"
+                ]);
                 
             }
-
+            
             if(!isNull($request->file('foto_perfil'))) {
                 
                 Storage::disk('local')->put("public/docs/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
+                Prescriber::where("id", $id)->update([
+                    "uploaded_foto_perfil" => "true"
+                ]);
                 
             }
             
@@ -274,7 +286,7 @@ class AuthController extends Controller
         $id = 1;
         
         try {
-            return Storage::download("/public/docs/crm-frente/crm-frente-{$id}.jpg");
+
             $response = [
                 "crm_frente" => asset("storage/docs/crm-frente/crm-frente-{$id}.jpg"),
                 "crm_verso" => asset("storage/docs/crm-verso/crm-verso-{$id}.jpg"),
@@ -282,7 +294,7 @@ class AuthController extends Controller
                 "foto_perfil" => asset("storage/docs/foto-perfil/foto-perfil-{$id}.jpg")
             ];
             
-            // return response()->json(new SuccessResource($response), 200);
+            return response()->json(new SuccessResource($response), 200);
 
         } catch (\Throwable $th) {
 

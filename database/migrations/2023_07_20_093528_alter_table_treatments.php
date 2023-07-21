@@ -18,7 +18,7 @@ return new class extends Migration
         });
         Schema::table('treatment_has_medicines', function (Blueprint $table) {
 
-            $table->string('fim_do_do_uso')->nullable();
+            $table->string('fim_do_uso')->nullable();
 
         });
     }
