@@ -138,7 +138,45 @@ class ViewsAdminController extends Controller
 
     public function extracaoDados()
     {
-        return view('extracaodados');
+        $prescribers = Prescriber::with("permissao")->get();
+        $patients = Patient::with("permissao")->get();
+    
+        // Add a user_type attribute to differentiate between prescribers and patients
+        $prescribers = $prescribers->map(function ($prescriber) {
+            $prescriber['user_type'] = 'prescriber';
+            return $prescriber;
+        });
+    
+        $patients = $patients->map(function ($patient) {
+            $patient['user_type'] = 'patient';
+            return $patient;
+        });
+    
+        // Add a unique numeric identifier to each user
+        $prescribers = $prescribers->map(function ($prescriber) {
+            $prescriber['unique_id'] = $prescriber->id; // Assuming 'id' is the auto-incrementing primary key for Prescriber model
+            return $prescriber;
+        });
+    
+        $patients = $patients->map(function ($patient) {
+            $patient['unique_id'] = $patient->id; // Assuming 'id' is the auto-incrementing primary key for Patient model
+            return $patient;
+        });
+    
+        $users = $prescribers->concat($patients);
+
+        $medicines = Medicine::all();
+
+        $diagnoses = Diagnoses::all();
+
+
+        return view('extracaodados', [
+            "prescribers" => $prescribers->count(),
+            "patients" => $patients->count(),
+            "total" => $users->count(),
+            "medicines" => $medicines->count(),
+            "diagnoses" => $diagnoses->count(),
+        ]);
     }
     
     public function listarUsuarios()
