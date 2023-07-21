@@ -105,7 +105,7 @@
                         <div class="p-6 space-y-6">
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="cadastro-medicamentos-{{ $p->id }}" value="{{ $p->cadastro_medicamentos }}" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="cadastro-medicamentos-{{ $p->id }}" value="{{ $p->cadastro_medicamentos }}" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cadastro Medicamentos</label>
                                 </div>
                                 <div class="flex">
@@ -137,7 +137,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="cadastro-sintomas-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="cadastro-sintomas-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cadastro Sintomas</label>
                                 </div>
                                 <div class="flex">
@@ -169,7 +169,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="cadastro-diagnosticos-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="cadastro-diagnosticos-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cadastro de Diagnósticos</label>
                                 </div>
                                 <div class="flex">
@@ -201,7 +201,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="validacao-documentos-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="validacao-documentos-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Validação de Documentos</label>
                                 </div>
                                 <div class="flex">
@@ -233,7 +233,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="farmacias-parceiras-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="farmacias-parceiras-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Farmácias Parceiras</label>
                                 </div>
                                 <div class="flex">
@@ -265,7 +265,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="listar-usuarios-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="listar-usuarios-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Listar Usuários c/ Permissões</label>
                                 </div>
                                 <div class="flex">
@@ -297,7 +297,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="permissoes-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="permissoes-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Permissões</label>
                                 </div>
                                 <div class="flex">
@@ -329,7 +329,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="descontos-promocoes-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="descontos-promocoes-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descontos e Promoções</label>
                                 </div>
                                 <div class="flex">
@@ -361,7 +361,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex">
-                                    <input type="checkbox" id="extracao-dados-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
+                                    <input type="hidden" id="extracao-dados-{{ $p->id }}" value="true" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Extração de Dados</label>
                                 </div>
                                 <div class="flex">
@@ -422,7 +422,7 @@
                             <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
                             <input id="nome-novo-diagnostico" type="text" name="brand" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Exemplo: Epilepsia">
                         </div>
-                        <div id="div-selects-sintomas">
+                        <div id="div-selectshidden">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nivel</label>
                             <select id="select-sintomas" class="select-sintomas mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="">1</option>
