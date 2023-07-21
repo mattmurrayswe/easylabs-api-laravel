@@ -119,9 +119,15 @@
                                 <input type="text" name="brand" id="input-add-name" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
                             </div>
                             <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apresentação</label>
-                                <input type="text" name="brand" id="input-add-presentation" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                            </div>
+                            <div>
+                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apresentação</label>
+                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option selected="">ml</option>
+                            <option value="TV">gotas</option>
+                            <option value="PC">comprimidos</option>
+                            <option value="GA">mg</option>
+                            <option value="PH">g</option>
+                        </select>
                             <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Concentração</label>
                                 <input type="text" name="brand" id="input-add-concentration" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
@@ -197,7 +203,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button onclick="editMedicamento({{ $medicamento->id }})" data-modal-hide="edit-modal-{{ $medicamento->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                            <button onclick="editMedicamento({{ $medicamento->id }})" data-modal-hide="edit-modal-{{ $medicamento->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
                         </div>
                     </div>
                 </div>

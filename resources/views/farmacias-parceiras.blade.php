@@ -12,7 +12,7 @@
                         <div class="w-5 mr-2 flex justify-center">
                             <img src="{{URL::asset('/image/farmacias-parceiras.svg')}}" alt="profile Pic" height="40" width="40">
                         </div>
-                        <p>Farmacias Parceiras</p>
+                        <p>Farmácias Parceiras</p>
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
@@ -216,7 +216,7 @@
             </div>
             <!-- Modal footer -->
             <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button onClick="editFarmacia({{$c->id}})" data-modal-hide="editModal-{{$c->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                <button onClick="editFarmacia({{$c->id}})" data-modal-hide="editModal-{{$c->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
             </div>
         </div>
     </div>
@@ -226,7 +226,7 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Excluir Farmacia
+                    Excluir Farmácia
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="delete-modal-{{ $c->id }}">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -238,7 +238,7 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    Deseja realmente excluir a Farmacia?
+                    Deseja realmente excluir a Farmácia?
                 </p>
             </div>
             <!-- Modal footer -->

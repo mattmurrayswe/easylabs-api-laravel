@@ -31,7 +31,7 @@
                                 <p class="flex text-white">ID</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Nome Sintoma</p>
+                                <p class="flex text-white">Nome do Sintoma</p>
                             </th>
                             <th class="px-4">
                                 <p class="flex justify-end text-white">Editar</p>
@@ -132,7 +132,7 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button onclick="editSintoma({{ $sintoma->id }})" data-modal-hide="edit-modal-{{ $sintoma->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                                <button onclick="editSintoma({{ $sintoma->id }})" data-modal-hide="edit-modal-{{ $sintoma->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
                             </div>
                         </div>
                     </div>

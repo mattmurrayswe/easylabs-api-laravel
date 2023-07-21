@@ -37,7 +37,7 @@
                                 <p class="flex text-white">Sintomas</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Medicamento Sugeridos</p>
+                                <p class="flex text-white">Medicamento Sugerido</p>
                             </th>
                             <th class="px-4">
                                 <p class="flex justify-end text-white">Editar</p>
@@ -164,7 +164,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button onclick="editDiagnostico({{ $diagnose['id'] }})" data-modal-hide="edit-modal-{{ $diagnose['id'] }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                            <button onclick="editDiagnostico({{ $diagnose['id'] }})" data-modal-hide="edit-modal-{{ $diagnose['id'] }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -200,6 +200,7 @@
                                     @endforeach
                                 </select>
                                 <button onClick="addInputSintomaAoDiagnostico(false)" id="button-select-sintomas" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + </button>
+                                <button onClick="addInputSintomaAoDiagnostico(false)" id="button-select-sintomas" class="mt-1 mb-1 block w-full p-2.5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"> - </button>
                             </div>
                             <div id="div-selects-medicamentos">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamentos Sugeridos</label>
@@ -208,7 +209,6 @@
                                     <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
                                     @endforeach
                                 </select>
-                                <button onCLick="addInputMedicamentoAoDiagnostico(false)" id="button-select-medicamentos" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + </button>
                             </div>
                         </div>
                         <!-- Modal footer -->
