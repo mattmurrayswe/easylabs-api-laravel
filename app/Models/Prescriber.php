@@ -30,7 +30,8 @@ class Prescriber extends Authenticatable
         'cnpj',
         'company_name',
         'active',
-        'clinic_adress_id'
+        'clinic_adress_id',
+        'id_permissao'
     ];
 
     /**
@@ -63,6 +64,11 @@ class Prescriber extends Authenticatable
     public function clinic_address()
     {
         return $this->belongsTo(ClinicAdress::class, 'clinic_adress_id');
+    }
+
+    public function permissao()
+    {
+        return $this->hasOne(Permissao::class, "id", "id_permissao");
     }
 
     public function availability()

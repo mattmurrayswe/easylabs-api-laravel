@@ -1,52 +1,28 @@
 // $(document).ready(function() {});
 
-// function validarOuInvalidarDoc(idPresc) {
+function editarPermissaoDoUsuario(idUnique) {
 
-//     const docType = $(`#doc-type-${idPresc}`).val();
-//     const isValid = $(`input[name="validade-${idPresc}"]:checked`).val();
-//     const motivo = $(`#motivo-${idPresc}`).val();
+    const idUser = $(`#id-user-${idUnique}`).val();
+    const idPermOld = $(`#id-permissao-old-${idUnique}`).val();
+    const idPermNew = $(`#id-permissao-new-${idUnique}`).val();
 
-//     console.log(docType);
-//     console.log(isValid);
-//     console.log(motivo);
+    console.log(idUser)
+    console.log(idPermOld)
+    console.log(idPermNew)
 
-//     $.ajax({
-//         url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/valide/${docType}/${idPresc}`,
-//         type: "PUT",
-//         data: {
-//             is_valid : isValid,
-//             motivo : motivo
-//         },
-//         success: function(data, status) {
+    $.ajax({    
+        url: `http://localhost:8989/api/permissao-user`,
+        type: "PUT",
+        data: {
+            id_user : idUser,
+            id_permissao_old : idPermOld,
+            id_permissao_new : idPermNew,
+        },
+        success: function(data, status) {
 
-//             if (status === "success") {
-                
-//             }
-//         }
-//     });
-// }
-
-// function baixarDoc(idPresc) {
-//     const docType = $(`#doc-type-${idPresc}`).val();
-
-//     $.ajax({
-//         url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/${docType}/${idPresc}`,
-//         type: "GET",
-//         xhrFields: {
-//             responseType: "blob" 
-//         },
-//         success: function(data, status) {
-//             const url = window.URL.createObjectURL(data); 
-//             const link = document.createElement("a");
-//             link.href = url;
-//             link.setAttribute("download", `${docType}`); 
-//             document.body.appendChild(link);
-//             link.click();
-//             link.remove();
-
-//             if (status === "success") {
-                
-//             }
-//         }
-//     });
-// }
+            if (status === "success") {
+                location.reload();
+            }
+        }
+    });
+}

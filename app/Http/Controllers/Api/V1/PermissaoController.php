@@ -7,7 +7,9 @@ use App\Http\Requests\Api\V1\Treatment\StoreTreatmentRequest;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Medicine;
+use App\Models\Patient;
 use App\Models\Permissao;
+use App\Models\Prescriber;
 use App\Models\TreatmentsRef;
 use App\Models\TreatmentHasMedicines;
 use App\Service\TreatmentService;
@@ -152,6 +154,34 @@ class PermissaoController extends Controller
             "extracao_dados_cadastrar" => $request->extracao_dados_cadastrar,
             "extracao_dados_excluir" => $request->extracao_dados_excluir
         ]);
+
+            return response()->json(new SuccessResource("Sucesso ao editar a Permissao"), 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+
+        }
+
+    }
+
+    public function editPermissaoUser(Request $request)
+    {
+        try {
+        
+        if ($request->id_permissao_old == 4) {
+            
+            Prescriber::where("id", $request->id_user)->update([
+                "id_permissao" => $request->id_permissao_new,
+            ]);
+        }
+        
+        if ($request->id_permissao_old == 5) {            
+            
+            Patient::where("id", $request->id_user)->update([
+                "id_permissao" => $request->id_permissao_new,
+            ]);
+        }
+
 
             return response()->json(new SuccessResource("Sucesso ao editar a Permissao"), 200);
             

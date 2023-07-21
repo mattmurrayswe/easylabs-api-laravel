@@ -7,6 +7,7 @@ use App\Models\ClinicAdress;
 use App\Models\Clinics;
 use App\Models\Diagnoses;
 use App\Models\Medicine;
+use App\Models\Patient;
 use App\Models\Permissao;
 use App\Models\Pharmacy;
 use App\Models\Prescriber;
@@ -139,15 +140,45 @@ class ViewsAdminController extends Controller
     {
         return view('extracaodados');
     }
-
+    
     public function listarUsuarios()
     {
-        return view('listar-usuarios');
+        $prescribers = Prescriber::with("permissao")->get();
+        $patients = Patient::with("permissao")->get();
+    
+        // Add a user_type attribute to differentiate between prescribers and patients
+        $prescribers = $prescribers->map(function ($prescriber) {
+            $prescriber['user_type'] = 'prescriber';
+            return $prescriber;
+        });
+    
+        $patients = $patients->map(function ($patient) {
+            $patient['user_type'] = 'patient';
+            return $patient;
+        });
+    
+        // Add a unique numeric identifier to each user
+        $prescribers = $prescribers->map(function ($prescriber) {
+            $prescriber['unique_id'] = $prescriber->id; // Assuming 'id' is the auto-incrementing primary key for Prescriber model
+            return $prescriber;
+        });
+    
+        $patients = $patients->map(function ($patient) {
+            $patient['unique_id'] = $patient->id; // Assuming 'id' is the auto-incrementing primary key for Patient model
+            return $patient;
+        });
+    
+        $users = $prescribers->concat($patients);
+    
+        return view('listar-usuarios', [
+            "users" => $users
+        ]);
     }
     
     public function permissoes()
     {
         $permissao = Permissao::all();
+
         return view('permissoes', [
             "permissao" => $permissao
         ]);

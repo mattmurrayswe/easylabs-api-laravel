@@ -68,6 +68,8 @@ Route::get('/permissao/{id}', [PermissaoController::class, 'getPermissao']);
 Route::delete('/permissao/{id}', [PermissaoController::class, 'deletePermissao']);
 Route::put('/permissao/{id}', [PermissaoController::class, 'editPermissao']);
 
+Route::put('/permissao-user', [PermissaoController::class, 'editPermissaoUser']);
+
 Route::post('/documents', [AuthController::class, 'uploadDocs']);
 Route::get('/documents', [AuthController::class, 'getDocuments']);
 Route::get('/crm-frente/{id}', [AuthController::class, 'getCRMFrente']);
