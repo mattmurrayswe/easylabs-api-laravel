@@ -11,7 +11,7 @@ function editarPermissaoDoUsuario(idUnique) {
     console.log(idPermNew)
 
     $.ajax({    
-        url: `http://localhost:8989/api/permissao-user`,
+        url: `http://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/permissao-user`,
         type: "PUT",
         data: {
             id_user : idUser,
