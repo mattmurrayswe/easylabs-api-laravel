@@ -12,7 +12,7 @@
                         <div class="w-7 mr-3 flex justify-center">
                             <img src="{{URL::asset('/image/tags.svg')}}" alt="profile Pic" height="20" width="20">
                         </div>
-                        <p>Desconto-Promoções</p>
+                        <p>Descontos-Promoções</p>
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
@@ -194,7 +194,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button onclick="editMedicamento()" data-modal-hide="edit-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
+                            <button onclick="editMedicamento()" data-modal-hide="edit-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
                         </div>
                     </div>
                 </div>
