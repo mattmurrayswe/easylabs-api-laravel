@@ -8,8 +8,10 @@ use App\Models\Clinics;
 use App\Models\Diagnoses;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
+use App\Models\Prescriber;
 use App\Models\Symptoms;
 use App\Presenter\Diagnoses as PresenterDiagnoses;
+use App\Presenter\Documents;
 
 class ViewsAdminController extends Controller
 {
@@ -75,7 +77,25 @@ class ViewsAdminController extends Controller
 
     public function validacaoDocumentos()
     {
-        return view('validacao-documentos');
+        $prescribers = Prescriber::where([
+            "uploaded_crm_frente" => "true",
+            "uploaded_crm_verso" => "true",
+            "uploaded_selfie_com_doc" => "true",
+            "uploaded_foto_perfil" => "true",
+        ])->get([
+            "id",
+            "name",
+            "ok_crm_frente",
+            "ok_crm_verso",
+            "ok_selfie_com_doc",
+            "ok_foto_perfil",
+        ])->toArray();
+        
+        $prescribers = Documents::concatDocumentosPendentes($prescribers);
+        
+        return view('validacao-documentos', [
+            "prescribers" => $prescribers
+        ]);
     }
 
     public function configPushs()
