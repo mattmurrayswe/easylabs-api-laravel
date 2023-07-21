@@ -103,8 +103,8 @@ function salvarPermissoes(idPermissao) {
     console.log(extracao_dados_excluir)
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/valide/${docType}/${idPermissao}`,
-        type: "POST",
+        url: `http://localhost:8989/api/permissao/${idPermissao}`,
+        type: "PUT",
         data: {
             cadastro_medicamentos : cadastro_medicamentos,
             cadastro_medicamentos_ler : cadastro_medicamentos_ler,
