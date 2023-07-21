@@ -17,7 +17,7 @@
       </div>
       <p>Cadastro de Sintomas</p>
     </a>
-   </div>
+  </div>
   <div id="cadastro-sintomas" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800 focus:text-red">
     <a class="flex" href="{{ url('/cadastro-diagnosticos') }}">
       <div class="w-5 mr-3 flex justify-center">
@@ -41,45 +41,45 @@
       </div>
       <p>Farmácias Parceiras</p>
     </a>
-</div>
-<div id="config-pushs" class="p-3 text-gray-900 mx-4">
+  </div>
+  <div id="config-pushs" class="p-3 text-gray-900 mx-4">
     <div class="flex">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/users-group.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
       <p>Usuários</p>
     </div>
-</div>
-<div id="config-pushs" class="pl-8 p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+  </div>
+  <div id="config-pushs" class="pl-8 p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
     <a class="flex" href="{{ url('/listar-usuarios') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/perfuser.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
       <p>Listar Usuarios c/ Permissões</p>
-      </a>
-</div>
-<div id="config-pushs" class="pl-8  p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    </a>
+  </div>
+  <div id="config-pushs" class="pl-8  p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
     <a class="flex" href="{{ url('/permissoes') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/apps.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
       <p>Permissões</p>
-      </a>
-</div>
-<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    </a>
+  </div>
+  <div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
     <a class="flex" href="{{ url('/desconto-promocao') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/tags.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
       <p>Desconto e Promoções</p>
-      </a>
-      </div>
-<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    </a>
+  </div>
+  <div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
     <a class="flex" href="{{ url('/extracaodados') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/dadosbar.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
       <p>Extração de dados</p>
-      </a>
-      </div>
+    </a>
+  </div>
 </div>
