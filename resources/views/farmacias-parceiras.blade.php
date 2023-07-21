@@ -33,7 +33,7 @@
                                 <p class="flex text-white">ID</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Nome Responsável</p>
+                                <p class="flex text-white">Nome da Unidade</p>
                             </th>
                             <th class="px-4">
                                 <p class="flex text-white">Rede</p>

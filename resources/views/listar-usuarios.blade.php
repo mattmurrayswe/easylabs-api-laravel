@@ -12,7 +12,7 @@
                         <div class="w-7 mr-3 flex justify-center">
                             <img src="{{URL::asset('/image/perfuser.svg')}}" alt="profile Pic" height="20" width="20">
                         </div>
-                        <p>Perfil Usuários</p>
+                        <p>Listar Usuários c/ Permissões</p>
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
@@ -28,35 +28,30 @@
                     <thead class="h-16">
                         <tr class="bg-gray-800">
                             <th class="rounded-tl-xl px-4">
-                            <p class="flex text-white">ID</p>
+                                <p class="flex text-white">ID Usuário</p>
                             </th>
                             <th class="px-4">
+                                <p class="flex text-white">Nome Usuário</p>
                             </th>
                             <th class="px-4">
-                                <p class="flex text-white">Perfil</p>
+                                <p class="flex text-white">Nome Permissão</p>
                             </th>
                             <th class="px-4">
-                            </th>
-                            <th class="px-4">
-                                <p class="flex justify-end text-white">Editar</p>
+                                <p class="flex text-white">ID Permissão</p>
                             </th>
                             <th class="rounded-tr-xl px-4">
-                                <p class="flex justify-center text-white">Excluir</p>
+                                <p class="flex justify-end text-white">Editar</p>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                                <tr class="h-10 bg-gray-50">
-                                <tr class="h-10">
-                            <td id="id" class="px-4"></td>
+                        <tr class="h-10 bg-gray-50">
+                            <td id="id-usuario" class="px-4"></td>
                             <td id="name" class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td  onClick="alimenteModalMedicamentoEdit()" data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
-                                <p class="flex justify-end">Editar</p>
-                            </td>
-                            <td data-modal-target="delete-modal-" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
-                                <p class="flex justify-center">Excluir</p>
+                            <td id="permissao" class="px-4"></td>
+                            <td id="id-permissao" class="px-4"></td>
+                            <td data-modal-target="delete-modal-" data-modal-toggle="delete-modal" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600">
+                                <p class="flex justify-end underline decoration-blue-400 decoration-2 hover:text-blue-600">Editar</p>
                             </td>
                         </tr>
                         <tr class="bg-gray-800 h-10">
@@ -64,10 +59,7 @@
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4 rounded-br-xl">
-                                <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Novo</button>
-                            </td>
+                            <td class="px-4 rounded-br-xl"></td>
                         </tr>
                     </tbody>
                 </table>
