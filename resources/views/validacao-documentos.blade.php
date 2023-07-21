@@ -91,31 +91,38 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div>
-                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentos</label>
-                    <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected="CRM">CRM</option>
-                        <option value="CPF">CPF</option>
-                        <option value="RG">RG</option>
-                        <option value="COMPROVANTE">Comprovante de Residencia</option>
+                    <label for="doc-type-{{ $p->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentos</label>
+                    <select id="doc-type-{{ $p->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        @if ($p->ok_crm_frente === "false")
+                        <option selected value="crm-frente">CRM Frente</option>
+                        @endif
+                        @if ($p->ok_crm_verso === "false")
+                        <option value="crm-verso">CRM Verso</option>
+                        @endif
+                        @if ($p->ok_crm_verso === "false")
+                        <option value="selfie-com-doc">Selfie com Documento</option>
+                        @endif
+                        @if ($p->ok_selfie_com_doc === "false")
+                        <option value="foto-perfil">Foto Perfil</option>
+                        @endif
                     </select>
                 </div>
                 <div class="flex items-center mb-4">
-                    <input id="default-checkbox" type="radio" name="validade" value="invalido" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <input id="invalido-{{ $p->id }}" type="radio" name="validade" value="invalido" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invalidar</label>
                 </div>
                 <div class="flex items-center">
-                    <input checked id="checked-checkbox" type="radio" name="validade" value="valido" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <input id="valido-{{ $p->id }}" type="radio" name="validade" value="valido" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Validar</label>
                 </div>
                 <div class="mb-6">
-                    <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Motivos</label>
-                    <input type="text" id="large-input" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Motivo</label>
+                    <input type="text" id="motivo-{{ $p->id }}" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
-                </p>
             </div>
             <!-- Modal footer -->
             <div class="box items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="editModal-{{ $p->id }}" type="button" class="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">Baixar</button>
+                <button onClick="baixarDoc({{ $p->id }})" type="button" class="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">Baixar</button>
                 <button data-modal-hide="editModal-{{ $p->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
             </div>
         </div>
@@ -123,4 +130,4 @@
 </div>
 @endforeach
 
-    </html>
+</html>
