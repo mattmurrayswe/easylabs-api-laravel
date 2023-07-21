@@ -34,76 +34,26 @@
                                 <p class="flex text-white">Prescritores</p>
                             </th>
                             <th class="px-4">
-                            <th class="px-4">
                                 <p class="flex text-white">Documentos Pendentes</p>
                             </th>
-                            <th class="px-4">
-                               
-                            </th>
-                            <th class="px-4">
-                                <p class="flex justify-end text-white">Validar</p>
                             <th class="rounded-tr-xl px-4">
+                                <p class="flex justify-end text-white">Validar</p>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
+                        @foreach ($prescribers as $p)
                         <tr>
-                            <td class="px-4">1</td>
-                            <td class="px-4">DR.Gustavo Toledo</td>
-                            <th class="px-4">
-                            <td class="px-4">CPF, RG, CRM</td>
-                            <th class="px-4">
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">validar</p>
+                            <td class="px-4">{{ $p->id }}</td>
+                            <td class="px-4">{{ $p->name }}</td>
+                            <td class="px-4">{{ $p->docs_pendentes }}</td>
+                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">Validar</td>
                         <tr>
-                            <td class="px-4">2</td>
-                            <td class="px-4">DR.Paulo Roberto</td>
-                            <th class="px-4">                   
-                            <td class="px-4">CRM</td>
-                            <th class="px-4">
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">validar</p>
-                        <tr>
-                            <td class="px-4">3</td>
-                            <td class="px-4">DR. Marcos Bello</td>
-                            <th class="px-4">
-                            <td class="px-4">CPF, RG</td>
-                            <th class="px-4">
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">validar</p>
-                        <tr>
-                            <td class="px-4">4</td>
-                            <td class="px-4">DR.Daniel Rodrigo</td>
-                            <th class="px-4">
-                            <td class="px-4">Comprovante De Residencia, CPF</td>
-                            <th class="px-4">
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">validar</p>                       
-                        <tr>
-                            <td class="px-4">5</td>
-                            <td class="px-4">DR.Leonardo Teles</td>
-                            <th class="px-4">
-                            <td class="px-4">CRM, CPF, RG</td>
-                            <th class="px-4">
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">validar</p>
-                        </tr>
-                        <tr>
-                            <td class="px-4">6</td>
-                            <td class="px-4">DR. Gabriel Zogbi</td>
-                            <th class="px-4">
-                            <td class="px-4">CPF</td>
-                            <th class="px-4">
-                            <td data-modal-target="editModal" data-modal-toggle="editModal" id="editar" class="px-4 underline decoration-blue-400 decoration-2">
-                                <p class="flex justify-end">validar</p>
-                        </tr>
+                        @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-4"></td>
-                            <td class="px-8"></td>
                             <td class="px-4 rounded-br-xl"></td>
                         </tr>
                     </tbody>

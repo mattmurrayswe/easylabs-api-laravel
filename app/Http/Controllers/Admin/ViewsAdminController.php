@@ -89,7 +89,7 @@ class ViewsAdminController extends Controller
             "ok_crm_verso",
             "ok_selfie_com_doc",
             "ok_foto_perfil",
-        ])->toArray();
+        ]);
         
         $prescribers = Documents::concatDocumentosPendentes($prescribers);
         
