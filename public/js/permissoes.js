@@ -155,7 +155,7 @@ function salvarPermissoes(idPermissao) {
         success: function(data, status) {
 
             if (status === "success") {
-                
+                location.reload();
             }
         }
     });
