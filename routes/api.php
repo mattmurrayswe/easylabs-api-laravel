@@ -61,6 +61,13 @@ Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
 Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
 Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
 
+Route::post('/documents', [AuthController::class, 'uploadDocs']);
+Route::get('/documents', [AuthController::class, 'getDocuments']);
+Route::get('/crm-frente', [AuthController::class, 'getCRMFrente']);
+Route::get('/crm-verso', [AuthController::class, 'getCRMVerso']);
+Route::get('/selfie-com-doc', [AuthController::class, 'getSelfieComDoc']);
+Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfil']);
+
 Route::prefix('patient')->group(function(){
     
     

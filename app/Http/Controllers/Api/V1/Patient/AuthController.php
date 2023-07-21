@@ -234,7 +234,7 @@ class AuthController extends Controller
 
     public function uploadDocs(Request $request)
     {
-        $id = Auth::id();
+        $id = 1;
 
         try {
             if(!isNull($request->file('crm_frente'))) {
@@ -271,9 +271,10 @@ class AuthController extends Controller
 
     public function getDocuments()
     {
-        $id = Auth::id();
-
+        $id = 1;
+        
         try {
+            return Storage::download("/public/docs/crm-frente/crm-frente-{$id}.jpg");
             $response = [
                 "crm_frente" => asset("storage/docs/crm-frente/crm-frente-{$id}.jpg"),
                 "crm_verso" => asset("storage/docs/crm-verso/crm-verso-{$id}.jpg"),
@@ -281,7 +282,65 @@ class AuthController extends Controller
                 "foto_perfil" => asset("storage/docs/foto-perfil/foto-perfil-{$id}.jpg")
             ];
             
-            return response()->json(new SuccessResource($response), 200);
+            // return response()->json(new SuccessResource($response), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function getCRMFrente()
+    {
+        $id = 1;
+        
+        try {
+
+            return Storage::download("/public/docs/crm-frente/crm-frente-{$id}.jpg");
+            
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function getCRMVerso()
+    {
+        $id = 1;
+        
+        try {
+
+            return Storage::download("/public/docs/crm-verso/crm-verso-{$id}.jpg");
+
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function getSelfieComDoc()
+    {
+        $id = 1;
+        
+        try {
+
+            return Storage::download("/public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg");
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function getFotoPerfil()
+    {
+        $id = 1;
+        
+        try {
+
+            return Storage::download("/public/docs/foto-perfil/foto-perfil-{$id}.jpg");
 
         } catch (\Throwable $th) {
 
