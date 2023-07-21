@@ -7,6 +7,7 @@ use App\Models\ClinicAdress;
 use App\Models\Clinics;
 use App\Models\Diagnoses;
 use App\Models\Medicine;
+use App\Models\Permissao;
 use App\Models\Pharmacy;
 use App\Models\Prescriber;
 use App\Models\Symptoms;
@@ -146,6 +147,9 @@ class ViewsAdminController extends Controller
     
     public function permissoes()
     {
-        return view('permissoes');
+        $permissao = Permissao::all();
+        return view('permissoes', [
+            "permissao" => $permissao
+        ]);
     }
 }
