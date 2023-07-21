@@ -360,6 +360,114 @@ class AuthController extends Controller
         }
     }
 
+    public function editCRMFrente(Request $request, $id)
+    {
+        if ($request->is_valid === "false") {
+            
+            Prescriber::where("id", $id)->update([
+                "ok_crm_frente" => "false",
+                "motivo_crm_frente" => $request->motivo
+            ]);
+        }
+
+        if ($request->is_valid === "true") {
+
+            Prescriber::where("id", $id)->update([
+                "ok_crm_frente" => "true"
+            ]);
+        }
+        
+        try {
+
+            return response()->json(new SuccessResource("Status do documento crm_frente alterado com sucesso!"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function editCRMVerso(Request $request, $id)
+    {
+        if ($request->is_valid === "false") {
+            
+            Prescriber::where("id", $id)->update([
+                "ok_crm_verso" => "false",
+                "motivo_crm_verso" => $request->motivo
+            ]);
+        }
+
+        if ($request->is_valid === "true") {
+
+            Prescriber::where("id", $id)->update([
+                "ok_crm_verso" => "true"
+            ]);
+        }
+        
+        try {
+
+            return response()->json(new SuccessResource("Status do documento crm_verso alterado com sucesso!"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function editSelfieComDoc(Request $request, $id)
+    {
+        if ($request->is_valid === "false") {
+            
+            Prescriber::where("id", $id)->update([
+                "ok_selfie_com_doc" => "false",
+                "motivo_selfie_com_doc" => $request->motivo
+            ]);
+        }
+
+        if ($request->is_valid === "true") {
+
+            Prescriber::where("id", $id)->update([
+                "ok_selfie_com_doc" => "true"
+            ]);
+        }
+        
+        try {
+
+            return response()->json(new SuccessResource("Status do documento selfie_com_doc alterado com sucesso!"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function editFotoPerfil(Request $request, $id)
+    {
+        if ($request->is_valid === "false") {
+            
+            Prescriber::where("id", $id)->update([
+                "ok_crm_frente" => "false",
+                "motivo_crm_frente" => $request->motivo
+            ]);
+        }
+
+        if ($request->is_valid === "true") {
+
+            Prescriber::where("id", $id)->update([
+                "ok_crm_frente" => "true"
+            ]);
+        }
+        
+        try {
+
+            return response()->json(new SuccessResource("Status do documento crm_frente alterado com sucesso!"), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
     public function redirectToGoogle(Request $request)
     {
          return Socialite::driver('google')

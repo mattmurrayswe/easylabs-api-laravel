@@ -108,12 +108,12 @@
                     </select>
                 </div>
                 <div class="flex items-center mb-4">
-                    <input id="invalido-{{ $p->id }}" type="radio" name="validade" value="invalido" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invalidar</label>
+                    <input id="invalido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}" value="false" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Invalidar</label>
                 </div>
                 <div class="flex items-center">
-                    <input id="valido-{{ $p->id }}" type="radio" name="validade" value="valido" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Validar</label>
+                    <input id="valido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Validar</label>
                 </div>
                 <div class="mb-6">
                     <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Motivo</label>
@@ -123,7 +123,7 @@
             <!-- Modal footer -->
             <div class="box items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                 <button onClick="baixarDoc({{ $p->id }})" type="button" class="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">Baixar</button>
-                <button data-modal-hide="editModal-{{ $p->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
+                <button onClick="validarOuInvalidarDoc({{ $p->id }})" data-modal-hide="editModal-{{ $p->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
             </div>
         </div>
     </div>

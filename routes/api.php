@@ -63,10 +63,14 @@ Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
 
 Route::post('/documents', [AuthController::class, 'uploadDocs']);
 Route::get('/documents', [AuthController::class, 'getDocuments']);
-Route::get('/crm-frente', [AuthController::class, 'getCRMFrente']);
-Route::get('/crm-verso', [AuthController::class, 'getCRMVerso']);
-Route::get('/selfie-com-doc', [AuthController::class, 'getSelfieComDoc']);
-Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfil']);
+Route::get('/crm-frente/{id}', [AuthController::class, 'getCRMFrente']);
+Route::get('/crm-verso/{id}', [AuthController::class, 'getCRMVerso']);
+Route::get('/selfie-com-doc/{id}', [AuthController::class, 'getSelfieComDoc']);
+Route::get('/foto-perfil/{id}', [AuthController::class, 'getFotoPerfil']);
+Route::put('/valide/crm-frente/{id}', [AuthController::class, 'editCRMFrente']);
+Route::put('/valide/crm-verso/{id}', [AuthController::class, 'editCRMVerso']);
+Route::put('/valide/selfie-com-doc/{id}', [AuthController::class, 'editSelfieComDoc']);
+Route::put('/valide/foto-perfil/{id}', [AuthController::class, 'editFotoPerfil']);
 
 Route::prefix('patient')->group(function(){
     
