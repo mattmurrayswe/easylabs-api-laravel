@@ -42,28 +42,28 @@
       <p>Farmácias Parceiras</p>
     </a>
 </div>
-<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
-    <a class="flex" href="{{ url('/usuarios') }}">
+<div id="config-pushs" class="p-3 text-gray-900 mx-4">
+    <div class="flex">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/users-group.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
       <p>Usuários</p>
-      </a>
+    </div>
 </div>
-<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
-    <a class="flex" href="{{ url('/perfilusuarios') }}">
+<div id="config-pushs" class="pl-8 p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    <a class="flex" href="{{ url('/listar-usuarios') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/perfuser.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
-      <p>Perfil Usuários</p>
+      <p>Listar Usuarios c/ Permissões</p>
       </a>
 </div>
-<div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
-    <a class="flex" href="{{ url('/niveldepermicao') }}">
+<div id="config-pushs" class="pl-8  p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
+    <a class="flex" href="{{ url('/permissoes') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/apps.svg')}}" alt="profile Pic" height="18" width="18">
       </div>
-      <p>Nivel de Permissões</p>
+      <p>Permissões</p>
       </a>
 </div>
 <div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">

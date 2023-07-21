@@ -139,14 +139,13 @@ class ViewsAdminController extends Controller
         return view('extracaodados');
     }
 
-
-    public function perfilUsuarios()
+    public function listarUsuarios()
     {
-        return view('perfilusuarios');
+        return view('listar-usuarios');
     }
-
-    public function niveldePermicao()
+    
+    public function permissoes()
     {
-        return view('niveldepermicao');
+        return view('permissoes');
     }
 }
