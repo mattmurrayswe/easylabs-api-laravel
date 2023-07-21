@@ -121,7 +121,7 @@
                             <div class="flex justify-between">
                                 <div class="flex">
                                     <input type="checkbox" id="rede-" value="" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cadastro Medicamentos</label>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cadastro Sintomas</label>
                                 </div>
                                 <div class="flex">
                                     <input type="radio" name="cadastro-medicamentos" id="rede-" value="" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">
