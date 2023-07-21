@@ -1,11 +1,11 @@
 @include('components.header')
 
 <body>
-    <div class="container flex min-h-screen min-w-full h-screen">
+    <div class="flex">
 
         @include('components.sidebar')
 
-        <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
+        <div id="container-content" class="bg-white w-4/5 ml-[20%] p-20 h-screen">
             <div class="header flex justify-between content-center">
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">
@@ -59,10 +59,10 @@
                     <tbody class="my-20 bg-white rounded-xl">
                         @php($i = 0)
                         @foreach ($medicamentos as $medicamento)
-                            @if ($i % 2 == 0)
-                                <tr class="h-10 bg-gray-50">
+                        @if ($i % 2 == 0)
+                        <tr class="h-10 bg-gray-50">
                             @else
-                                <tr class="h-10">
+                        <tr class="h-10">
                             @endif
                             <td id="id-{{ $medicamento->id }}" class="px-4">{{ $medicamento->id }}</td>
                             <td id="name-{{ $medicamento->id }}" class="px-4">{{ $medicamento->name }}</td>
@@ -71,7 +71,7 @@
                             <td id="volume_flask-{{ $medicamento->id }}" class="px-4">{{ $medicamento->volume_flask }}</td>
                             <td id="formulation-{{ $medicamento->id }}" class="px-4">{{ $medicamento->formulation }}</td>
                             <td id="lab-{{ $medicamento->id }}" class="px-4">{{ $medicamento->lab }}</td>
-                            <td  onClick="alimenteModalMedicamentoEdit({{ $medicamento->id }})" data-modal-target="edit-modal-{{ $medicamento->id }}" data-modal-toggle="edit-modal-{{ $medicamento->id }}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
+                            <td onClick="alimenteModalMedicamentoEdit({{ $medicamento->id }})" data-modal-target="edit-modal-{{ $medicamento->id }}" data-modal-toggle="edit-modal-{{ $medicamento->id }}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
                                 <p class="flex justify-end">Editar</p>
                             </td>
                             <td data-modal-target="delete-modal-{{ $medicamento->id }}" data-modal-toggle="delete-modal-{{ $medicamento->id }}" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">

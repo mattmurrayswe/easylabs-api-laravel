@@ -1,11 +1,11 @@
 @include('components.header')
 
 <body>
-    <div class="container flex min-h-screen min-w-full h-screen">
+    <div class="flex">
 
         @include('components.sidebar')
 
-        <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
+        <div id="container-content" class="bg-white w-4/5 ml-[20%] p-20 h-screen">
             <div class="header flex justify-between content-center">
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">
@@ -48,13 +48,13 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                    @php($i = 0)
-                    @foreach ($diagnoses as $diagnose)
-                    @if ($i % 2 == 0)
+                        @php($i = 0)
+                        @foreach ($diagnoses as $diagnose)
+                        @if ($i % 2 == 0)
                         <tr class="h-10 bg-gray-50">
-                    @else
+                            @else
                         <tr class="h-10">
-                    @endif
+                            @endif
                             <td class="px-4">{{ $diagnose['id'] }}</td>
                             <td class="px-4">{{ $diagnose['name'] }}</td>
                             <td class="px-4">{{ $diagnose['symptoms_concat'] }}</td>
@@ -66,8 +66,8 @@
                                 <p class="flex justify-center">Excluir</p>
                             </td>
                         </tr>
-                    @php($i++)
-                    @endforeach
+                        @php($i++)
+                        @endforeach
 
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
@@ -109,20 +109,20 @@
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sintomas</label>
                                 @php($j = 0)
                                 @if (isset($diagnose["has_symptoms"]))
-                                    @foreach ($diagnose["has_symptoms"] as $symptom)
-                                        @if (isset($symptom['symptom']['name']))
-                                        @php($j++)
-                                            <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                @foreach ($symptoms as $s)
-                                                    @if ($symptom['symptom']['id'] === $s->id)
-                                                        <option selected value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
-                                                    @else 
-                                                        <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        @endif
+                                @foreach ($diagnose["has_symptoms"] as $symptom)
+                                @if (isset($symptom['symptom']['name']))
+                                @php($j++)
+                                <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    @foreach ($symptoms as $s)
+                                    @if ($symptom['symptom']['id'] === $s->id)
+                                    <option selected value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
+                                    @else
+                                    <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
+                                    @endif
                                     @endforeach
+                                </select>
+                                @endif
+                                @endforeach
                                 @endif
                                 @if ($j == 0)
                                 <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -137,25 +137,25 @@
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamentos Sugeridos</label>
                                 @php($j = 0)
                                 @if (isset($diagnose["has_suggested_medicines"]))
-                                    @foreach ($diagnose["has_suggested_medicines"] as $medicine)
-                                        @if (isset($medicine['medicine']['name']))
-                                        @php($j++)
-                                            <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                @foreach ($medicines as $m)
-                                                    @if ($medicine['medicine']['id'] === $m->id)
-                                                        <option selected value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
-                                                    @else 
-                                                        <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        @endif
+                                @foreach ($diagnose["has_suggested_medicines"] as $medicine)
+                                @if (isset($medicine['medicine']['name']))
+                                @php($j++)
+                                <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    @foreach ($medicines as $m)
+                                    @if ($medicine['medicine']['id'] === $m->id)
+                                    <option selected value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                    @else
+                                    <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                    @endif
                                     @endforeach
+                                </select>
+                                @endif
+                                @endforeach
                                 @endif
                                 @if ($j == 0)
                                 <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     @foreach ($medicines as $m)
-                                        <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                    <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
                                     @endforeach
                                 </select>
                                 @endif
@@ -205,7 +205,7 @@
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medicamentos Sugeridos</label>
                                 <select id="select-medicamentos" class="select-medicamentos mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     @foreach ($medicines as $m)
-                                        <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                    <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
                                     @endforeach
                                 </select>
                                 <button onCLick="addInputMedicamentoAoDiagnostico(false)" id="button-select-medicamentos" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + </button>

@@ -1,11 +1,11 @@
 @include('components.header')
 
 <body>
-    <div class="container flex min-h-screen min-w-full h-screen">
+    <div class="flex">
 
         @include('components.sidebar')
 
-        <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
+        <div id="container-content" class="bg-white w-4/5 ml-[20%] p-20 h-screen">
             <div class="header flex justify-between content-center">
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">

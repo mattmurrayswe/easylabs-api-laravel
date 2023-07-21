@@ -1,11 +1,11 @@
 @include('components.header')
 
 <body>
-    <div class="container flex min-h-screen min-w-full h-screen">
+    <div class="flex">
 
         @include('components.sidebar')
 
-        <div id="container-content" class="bg-white w-4/5 p-20 h-screen">
+        <div id="container-content" class="bg-white w-4/5 ml-[20%] p-20 h-screen">
             <div class="header flex justify-between content-center">
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">
@@ -60,8 +60,8 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                                <tr class="h-10 bg-gray-50">
-                                <tr class="h-10">
+                        <tr class="h-10 bg-gray-50">
+                        <tr class="h-10">
                             <td id="id" class="px-4"></td>
                             <td id="name" class="px-4"></td>
                             <td id="presentation" class="px-4"></td>
@@ -70,7 +70,7 @@
                             <td id="formulation" class="px-4"></td>
                             <td id="lab" class="px-4"></td>
                             <td class="px-4"></td>
-                            <td  onClick="alimenteModalMedicamentoEdit()" data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
+                            <td onClick="alimenteModalMedicamentoEdit()" data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600 focus:text-red">
                                 <p class="flex justify-end">Editar</p>
                             </td>
                             <td data-modal-target="delete-modal-" data-modal-toggle="delete-modal" class="px-4 underline decoration-pink-400 decoration-2 w-1/12 hover:text-red-600 focus:text-red">
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            
+
             <div id="edit-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -199,9 +199,9 @@
                     </div>
                 </div>
             </div>
-            
 
-            
+
+
             <div id="delete-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -229,7 +229,7 @@
                     </div>
                 </div>
             </div>
-        
+
         </div>
     </div>
 </body>
