@@ -5,7 +5,7 @@ function editSintoma(idSintoma) {
     const novoNomeSintoma = $( `#input-${idSintoma}` ).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom/${idSintoma}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/symptom/${idSintoma}`,
         type: "PUT",
         data: {
             name: novoNomeSintoma
@@ -24,7 +24,7 @@ function editSintoma(idSintoma) {
 function deleteSintoma(idSintoma) {
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom/${idSintoma}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/symptom/${idSintoma}`,
         type: "DELETE",
         success: function(data, status) {
 
@@ -44,7 +44,7 @@ function cadastreSintoma() {
     console.log(novoNomeSintoma)
 
     $.ajax({
-        url: `http://localhost:8989/api/symptom`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/symptom`,
         type: "POST",
         data: {
             name: novoNomeSintoma

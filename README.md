@@ -30,14 +30,16 @@ chmod -R 777 storage
 
 Acesse o projeto
 ```sh
-http://localhost:8989
+https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com
 ```
 
 Doc de rotas
 ```sh
-http://localhost:8989/manual/1.0/autenticacao
+https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/manual/1.0/autenticacao
 ```
 
 Deploy
 
+```sh
 php vendor/bin/vapor deploy production
+```

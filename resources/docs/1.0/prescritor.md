@@ -190,10 +190,10 @@ Método http e caminho:
     "success": {
         "message": "Sucesso!",
         "data": {
-            "crm_frente": "http://localhost:8989/storage/docs/crm-frente/crm-frente-3.jpg",
-            "crm_verso": "http://localhost:8989/storage/docs/crm-verso/crm-verso-.jpg",
-            "selfie_com_doc": "http://localhost:8989/storage/docs/selfie-com-doc/selfie-com-doc-3.jpg",
-            "foto_perfil": "http://localhost:8989/storage/docs/foto-perfil/foto-perfil-3.jpg"
+            "crm_frente": "https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/storage/docs/crm-frente/crm-frente-3.jpg",
+            "crm_verso": "https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/storage/docs/crm-verso/crm-verso-.jpg",
+            "selfie_com_doc": "https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/storage/docs/selfie-com-doc/selfie-com-doc-3.jpg",
+            "foto_perfil": "https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/storage/docs/foto-perfil/foto-perfil-3.jpg"
         }
     }
 }

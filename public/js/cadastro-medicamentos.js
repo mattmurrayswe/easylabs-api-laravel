@@ -21,7 +21,7 @@ function editMedicamento(idMedicamento) {
     const lab = $( `#input-lab-${idMedicamento}` ).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/medicine/${idMedicamento}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/medicine/${idMedicamento}`,
         type: "PUT",
         data: {
             name: name,
@@ -45,7 +45,7 @@ function editMedicamento(idMedicamento) {
 function deleteMedicamento(idMedicamento) {
 
     $.ajax({
-        url: `http://localhost:8989/api/medicine/${idMedicamento}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/medicine/${idMedicamento}`,
         type: "DELETE",
         success: function(data, status) {
 
@@ -68,7 +68,7 @@ function cadastreMedicamento() {
     const lab = $( `#input-add-lab` ).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/medicine`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/medicine`,
         type: "POST",
         data: {
             name: name,

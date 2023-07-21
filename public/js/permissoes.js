@@ -11,7 +11,7 @@ function salvarPermissoes(idPermissao) {
     console.log(motivo);
 
     $.ajax({
-        url: `http://localhost:8989/api/valide/${docType}/${idPresc}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/valide/${docType}/${idPresc}`,
         type: "PUT",
         data: {
             is_valid : isValid,
@@ -30,7 +30,7 @@ function baixarDoc(idPresc) {
     const docType = $(`#doc-type-${idPresc}`).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/${docType}/${idPresc}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/${docType}/${idPresc}`,
         type: "GET",
         xhrFields: {
             responseType: "blob" 

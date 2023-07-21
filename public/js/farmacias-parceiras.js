@@ -25,7 +25,7 @@ function editFarmacia(idFarmacia) {
     const complement = $( `#complement-${idFarmacia}` ).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/pharmacy/${idFarmacia}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy/${idFarmacia}`,
         type: "PUT",
         data: {
             rede : rede,
@@ -53,7 +53,7 @@ function editFarmacia(idFarmacia) {
 function deleteFarmacia(idPharmacy) {
 
     $.ajax({
-        url: `http://localhost:8989/api/pharmacy/${idPharmacy}`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy/${idPharmacy}`,
         type: "DELETE",
         success: function(data, status) {
 
@@ -80,7 +80,7 @@ function cadastreFarmacia() {
     const complement = $( `#complement` ).val();
 
     $.ajax({
-        url: `http://localhost:8989/api/pharmacy`,
+        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy`,
         type: "POST",
         data: {
             cep : cep,
