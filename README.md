@@ -43,3 +43,10 @@ Deploy
 ```sh
 php vendor/bin/vapor deploy production
 ```
+
+Auth
+
+```sh
+npm install
+npm run dev
+```
