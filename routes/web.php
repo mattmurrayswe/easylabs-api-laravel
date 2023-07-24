@@ -15,35 +15,36 @@ use App\Http\Controllers\Admin\ViewsAdminController;
 |
 */
 
-Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas']);
+Route::middleware('auth')->group(function() {
 
-Route::get('/cadastro-medicamentos', [ViewsAdminController::class, 'cadastroMedicamentos']);
+    Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas']);
+    
+    Route::get('/cadastro-medicamentos', [ViewsAdminController::class, 'cadastroMedicamentos']);
+    
+    Route::get('/cadastro-diagnosticos', [ViewsAdminController::class, 'cadastroDiagnosticos']);
+    
+    Route::get('/validacao-documentos', [ViewsAdminController::class, 'validacaoDocumentos']);
+    
+    Route::get('/config-pushs', [ViewsAdminController::class, 'configPushs']);
+    
+    Route::get('/farmacias-parceiras', [ViewsAdminController::class, 'farmaciasParceiras']);
+    
+    Route::get('/usuarios', [ViewsAdminController::class, 'usuarios']);
+    
+    Route::get('/desconto-promocao', [ViewsAdminController::class, 'descontoPromocao']);
+    
+    Route::get('/extracaodados', [ViewsAdminController::class, 'extracaoDados']);
+    
+    Route::get('/permissoes', [ViewsAdminController::class, 'permissoes']);
+    
+    Route::get('/listar-usuarios', [ViewsAdminController::class, 'listarUsuarios']);
+    
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-Route::get('/cadastro-diagnosticos', [ViewsAdminController::class, 'cadastroDiagnosticos']);
-
-Route::get('/validacao-documentos', [ViewsAdminController::class, 'validacaoDocumentos']);
-
-Route::get('/config-pushs', [ViewsAdminController::class, 'configPushs']);
-
-Route::get('/farmacias-parceiras', [ViewsAdminController::class, 'farmaciasParceiras']);
-
-Route::get('/usuarios', [ViewsAdminController::class, 'usuarios']);
-
-Route::get('/desconto-promocao', [ViewsAdminController::class, 'descontoPromocao']);
-
-Route::get('/extracaodados', [ViewsAdminController::class, 'extracaoDados']);
-
-Route::get('/permissoes', [ViewsAdminController::class, 'permissoes']);
-
-Route::get('/listar-usuarios', [ViewsAdminController::class, 'listarUsuarios']);
-
-Route::get('/', function () {
-    return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
