@@ -11,11 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('treatments_ref', function (Blueprint $table) {
 
-            $table->dropColumn('fim_do_uso');
-
-        });
         Schema::table('treatment_has_medicines', function (Blueprint $table) {
 
             $table->string('fim_do_uso')->nullable();

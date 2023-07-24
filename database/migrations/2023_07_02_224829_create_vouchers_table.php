@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('vouchers', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->integer('uses')->nullable();
 
         });
