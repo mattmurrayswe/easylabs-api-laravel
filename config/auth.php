@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'webAdmin',
+        'passwords' => 'usersAdmin',
     ],
 
     /*
@@ -28,7 +28,7 @@ return [
     | here which uses session storage and the Eloquent user provider.
     |
     | All authentication drivers have a user provider. This defines how the
-    | users are actually retrieved out of your database or other storage
+    | usersPatient are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
     | Supported: "session"
@@ -36,9 +36,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'webAdmin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'usersAdmin',
+        ],
+        'webPatient' => [
+            'driver' => 'session',
+            'provider' => 'usersPatient',
         ],
         'webPresc' => [
             'driver' => 'session',
@@ -52,7 +56,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | All authentication drivers have a user provider. This defines how the
-    | users are actually retrieved out of your database or other storage
+    | usersPatient are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
     | If you have multiple user tables or models you may configure multiple
@@ -64,7 +68,11 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'usersAdmin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'usersPatient' => [
             'driver' => 'eloquent',
             'model' => App\Models\Patient::class,
         ],
@@ -94,7 +102,13 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'usersAdmin' => [
+            'provider' => 'patients',
+            'table' => 'password_reset_tokens_admins',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'usersPatient' => [
             'provider' => 'patients',
             'table' => 'password_reset_tokens_patients',
             'expire' => 60,
@@ -102,7 +116,7 @@ return [
         ],
         'usersPresc' => [
             'provider' => 'prescribers',
-            'table' => 'password_reset_tokens_patients',
+            'table' => 'password_reset_tokens_prescribers',
             'expire' => 60,
             'throttle' => 60,
         ],

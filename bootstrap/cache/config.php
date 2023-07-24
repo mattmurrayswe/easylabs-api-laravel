@@ -94,15 +94,20 @@
   array (
     'defaults' => 
     array (
-      'guard' => 'web',
-      'passwords' => 'users',
+      'guard' => 'webAdmin',
+      'passwords' => 'usersAdmin',
     ),
     'guards' => 
     array (
-      'web' => 
+      'webAdmin' => 
       array (
         'driver' => 'session',
-        'provider' => 'users',
+        'provider' => 'usersAdmin',
+      ),
+      'webPatient' => 
+      array (
+        'driver' => 'session',
+        'provider' => 'usersPatient',
       ),
       'webPresc' => 
       array (
@@ -117,7 +122,12 @@
     ),
     'providers' => 
     array (
-      'users' => 
+      'usersAdmin' => 
+      array (
+        'driver' => 'eloquent',
+        'model' => 'App\\Models\\Admin',
+      ),
+      'usersPatient' => 
       array (
         'driver' => 'eloquent',
         'model' => 'App\\Models\\Patient',
@@ -130,7 +140,14 @@
     ),
     'passwords' => 
     array (
-      'users' => 
+      'usersAdmin' => 
+      array (
+        'provider' => 'patients',
+        'table' => 'password_reset_tokens_admins',
+        'expire' => 60,
+        'throttle' => 60,
+      ),
+      'usersPatient' => 
       array (
         'provider' => 'patients',
         'table' => 'password_reset_tokens_patients',
@@ -140,7 +157,7 @@
       'usersPresc' => 
       array (
         'provider' => 'prescribers',
-        'table' => 'password_reset_tokens_patients',
+        'table' => 'password_reset_tokens_prescribers',
         'expire' => 60,
         'throttle' => 60,
       ),

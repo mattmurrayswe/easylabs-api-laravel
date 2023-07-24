@@ -24,13 +24,13 @@ class SignupRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:55'],
-            'email' => ['required', 'email', 'unique:users,email'],
+            'email' => ['required', 'email', 'unique:usersPatient,email'],
             'password' => ['required', Password::min(8)->letters()->symbols()],
-            'cpf' => ['required', 'string', 'max:11', 'unique:users,cpf'],
+            'cpf' => ['required', 'string', 'max:11', 'unique:usersPatient,cpf'],
             'cellphone' => ['required', 'string'],
-            'crm' => ['required', 'string', 'unique:users,crm'],
+            'crm' => ['required', 'string', 'unique:usersPatient,crm'],
             'indicate_clinic' => ['required', 'boolean'],
-            'cnpj' => ['required', 'string', 'unique:users,cnpj'],
+            'cnpj' => ['required', 'string', 'unique:usersPatient,cnpj'],
             'company_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'array', 'max:7'],
             'address.*' => ['string'],
