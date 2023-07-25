@@ -41,11 +41,11 @@ return [
             'provider' => 'usersAdmin',
         ],
         'webPatient' => [
-            'driver' => 'session',
+            'driver' => 'sanctum',
             'provider' => 'usersPatient',
         ],
         'webPresc' => [
-            'driver' => 'session',
+            'driver' => 'sanctum',
             'provider' => 'usersPresc',
         ],
     ],
@@ -103,19 +103,19 @@ return [
 
     'passwords' => [
         'usersAdmin' => [
-            'provider' => 'patients',
+            'provider' => 'usersAdmin',
             'table' => 'password_reset_tokens_admins',
             'expire' => 60,
             'throttle' => 60,
         ],
         'usersPatient' => [
-            'provider' => 'patients',
+            'provider' => 'usersPatient',
             'table' => 'password_reset_tokens_patients',
             'expire' => 60,
             'throttle' => 60,
         ],
         'usersPresc' => [
-            'provider' => 'prescribers',
+            'provider' => 'usersPresc',
             'table' => 'password_reset_tokens_prescribers',
             'expire' => 60,
             'throttle' => 60,

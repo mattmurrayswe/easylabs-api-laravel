@@ -100,7 +100,7 @@ Route::prefix('patient')->group(function(){
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
     
     // Authenticated Routes for Patient
-    Route::middleware('auth:sanctum')->group(function() {
+    Route::middleware('auth:webPatient')->group(function() {
         
         // Patient
         Route::post('/set-treatment', [PatientController::class, 'setTreatmentToPatient']);
@@ -175,7 +175,7 @@ Route::prefix('prescriber')->group(function(){
     // Route::post('/approbation', [RecoverController::class, 'approbation']);
     
     // // Authenticated Routes for Prescriber
-    Route::middleware('auth:sanctum')->group(function() {
+    Route::middleware('auth:webPresc')->group(function() {
         Route::post('/documents', [AuthController::class, 'uploadDocs']);
         Route::get('/documents', [AuthController::class, 'getDocuments']);
         Route::post('/logout', [AuthController::class, 'logoutPresc']);
