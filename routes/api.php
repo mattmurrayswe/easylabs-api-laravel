@@ -206,6 +206,7 @@ Route::prefix('prescriber')->group(function(){
         
         // Create Patient Using Prescriber
         Route::post('/create-patient', [PatientController::class, 'createPatientUsingPrescriber']);
+        Route::post('/find-patient', [PatientController::class, 'findPatientByCpf']);
         
         
         // Connect Patient on Prescriber

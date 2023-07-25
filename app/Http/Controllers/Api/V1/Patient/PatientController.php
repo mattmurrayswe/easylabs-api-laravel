@@ -165,6 +165,23 @@ class PatientController extends Controller
         }
     }
 
+    public function findPatientByCpf(Request $request)
+    {
+        try {
+            $patient = Patient::where("cpf", $request->cpf)->get();
+
+            if($patient->count() === 0) {
+                return response()->json(new ErrorResource('Nao foi encontrado nenhum paciente com esse CPF'), 422);
+            }     
+
+            return response()->json(new SuccessResource($patient), 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource('Nao foi encontrado nenhum paciente com esse CPF'), 422);
+        }
+           
+    }
+
     public function connectPrescriberToPatient(Request $request)
     {
         $patient = Patient::find($request->patient_id);
