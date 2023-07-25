@@ -8,12 +8,13 @@
         <div id="container-content" class="bg-white w-4/5 ml-[20%] p-20 h-screen">
             <div class="header flex justify-between content-center">
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
-                    <a class="flex" href="">
-                        <div class="w-5 mr-2 flex justify-center">
-                            <img src="{{URL::asset('/image/farmacias-parceiras.svg')}}" alt="profile Pic" height="40" width="40">
-                        </div>
-                        <p>Farmácias Parceiras</p>
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{ __('Log Out') }}
+                        </button>
+                    </form>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
                     <a class="flex" href="">

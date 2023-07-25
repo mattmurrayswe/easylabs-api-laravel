@@ -16,11 +16,13 @@
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
-                    <a class="flex" href="">
-                        <div class="w-7 mr-3 flex justify-center">
-                            <img src="{{URL::asset('/image/prof-icon.svg')}}" alt="profile Pic" height="20" width="20">
-                        </div>
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{ __('Log Out') }}
+                        </button>
+                    </form>
                 </div>
             </div>
             <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">

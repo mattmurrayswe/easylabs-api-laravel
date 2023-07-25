@@ -17,11 +17,13 @@
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
-                    <a class="flex" href="">
-                        <div class="w-7 mr-3 flex justify-center">
-                            <img src="{{URL::asset('/image/prof-icon.svg')}}" alt="profile Pic" height="20" width="20">
-                        </div>
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{ __('Log Out') }}
+                        </button>
+                    </form>
                 </div>
             </div>
             <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
@@ -401,90 +403,90 @@
             @endforeach
 
 
-        <div id="add-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full max-w-2xl max-h-full">
-                <div class="relative bg-white rounded-lg shadow">
-                    <div class="flex items-start justify-between p-4 border-b rounded-t">
-                        <h3 class="text-xl font-semibold text-gray-900">
-                            Permissões
-                        </h3>
-                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="add-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                            <span class="sr-only">Fechar</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="p-6 space-y-6">
-                        <div>
-                            <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                            <input id="nome-novo-diagnostico" type="text" name="brand" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Exemplo: Epilepsia">
+            <div id="add-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow">
+                        <div class="flex items-start justify-between p-4 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                Permissões
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="add-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Fechar</span>
+                            </button>
                         </div>
-                        <div id="div-selectshidden">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Nivel</label>
-                            <select id="select-sintomas" class="select-sintomas mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
-                                <option value="">6</option>
-                                <option value="">7</option>
-                                <option value="">8</option>
-                                <option value="">9</option>
-                                <option value="">10</option>
-                            </select>
-                            <h3 class="mb-4 font-semibold text-gray-900">Permissões</h3>
-                            <ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
-                                <li class="w-full border-b border-gray-200 rounded-t-lg">
-                                    <div class="flex items-center pl-3">
-                                        <input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="vue-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Nenhuma</label>
-                                    </div>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg">
-                                    <div class="flex items-center pl-3">
-                                        <input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="react-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Ler</label>
-                                    </div>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg">
-                                    <div class="flex items-center pl-3">
-                                        <input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="angular-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Escrever</label>
-                                    </div>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg">
-                                    <div class="flex items-center pl-3">
-                                        <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="laravel-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Excluir</label>
-                                    </div>
-                                </li>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg">
-                                    <div class="flex items-center pl-3">
-                                        <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="laravel-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Setup</label>
-                                    </div>
-                                </li>
-                                </li>
-                                <li class="w-full border-b border-gray-200 rounded-t-lg">
-                                    <div class="flex items-center pl-3">
-                                        <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="laravel-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Define Permissões</label>
-                                    </div>
-                                </li>
-                            </ul>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
+                                <input id="nome-novo-diagnostico" type="text" name="brand" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Exemplo: Epilepsia">
+                            </div>
+                            <div id="div-selectshidden">
+                                <label class="block mb-2 text-sm font-medium text-gray-900">Nivel</label>
+                                <select id="select-sintomas" class="select-sintomas mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                    <option value="">6</option>
+                                    <option value="">7</option>
+                                    <option value="">8</option>
+                                    <option value="">9</option>
+                                    <option value="">10</option>
+                                </select>
+                                <h3 class="mb-4 font-semibold text-gray-900">Permissões</h3>
+                                <ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg">
+                                        <div class="flex items-center pl-3">
+                                            <input id="vue-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                            <label for="vue-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Nenhuma</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg">
+                                        <div class="flex items-center pl-3">
+                                            <input id="react-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                            <label for="react-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Ler</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg">
+                                        <div class="flex items-center pl-3">
+                                            <input id="angular-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                            <label for="angular-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Escrever</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg">
+                                        <div class="flex items-center pl-3">
+                                            <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                            <label for="laravel-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Excluir</label>
+                                        </div>
+                                    </li>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg">
+                                        <div class="flex items-center pl-3">
+                                            <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                            <label for="laravel-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Setup</label>
+                                        </div>
+                                    </li>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 rounded-t-lg">
+                                        <div class="flex items-center pl-3">
+                                            <input id="laravel-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                            <label for="laravel-checkbox" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Define Permissões</label>
+                                        </div>
+                                    </li>
+                                </ul>
 
 
-                        </div>
-                        <!-- Modal footer -->
-                        <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button onclick="cadastreDiagnostico()" data-modal-hide="edit-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Salvar</button>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                                <button onclick="cadastreDiagnostico()" data-modal-hide="edit-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Salvar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            </html>
+                </html>
