@@ -61,7 +61,7 @@
                         <tr class="h-10">
                             @endif
                             <td class="px-4">{{ $c->id }}</td>
-                            <td class="px-4">{{ $c->name }}</td>
+                            <td class="px-4">{{ $c->unidade }}</td>
                             <td class="px-4">{{ $c->rede }}</td>
                             <td class="px-4">{{ $c->email }}</td>
                             <td class="px-4">{{ $c->cep }}</td>
@@ -109,6 +109,10 @@
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
                     <input type="text" id="rede" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade</label>
+                    <input type="text" id="unidade" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>
@@ -176,6 +180,10 @@
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
                     <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade</label>
+                    <input type="text" id="unidade-{{$c->id}}" value="{{$c->unidade}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>

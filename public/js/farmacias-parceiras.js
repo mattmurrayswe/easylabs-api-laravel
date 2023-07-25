@@ -14,6 +14,7 @@ function alimenteModalMedicamentoEdit(idMedicamento) {
 function editFarmacia(idFarmacia) {
 
     const rede = $( `#rede-${idFarmacia}` ).val();
+    const unidade = $( `#unidade-${idFarmacia}` ).val();
     const name = $( `#name-${idFarmacia}` ).val();
     const email = $( `#email-${idFarmacia}` ).val();
     const cep = $( `#cep-${idFarmacia}` ).val();
@@ -29,6 +30,7 @@ function editFarmacia(idFarmacia) {
         type: "PUT",
         data: {
             rede : rede,
+            unidade : unidade,
             name : name,
             email : email,
             cep : cep,
@@ -69,6 +71,7 @@ function deleteFarmacia(idPharmacy) {
 function cadastreFarmacia() {
 
     const rede = $( `#rede` ).val();
+    const unidade = $( `#unidade` ).val();
     const name = $( `#name` ).val();
     const email = $( `#email` ).val();
     const cep = $( `#cep` ).val();
@@ -92,6 +95,7 @@ function cadastreFarmacia() {
             state : state,
             name : name,
             rede : rede,
+            unidade : unidade,
             email : email
         },
         success: function(data, status) {

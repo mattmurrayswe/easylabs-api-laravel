@@ -117,6 +117,7 @@ class PharmacyController extends Controller
                 "state" => $request->state,
                 "name" => $request->name,
                 "rede" => $request->rede,
+                "unidade" => $request->unidade,
                 "email" => $request->email,
             ]);
 

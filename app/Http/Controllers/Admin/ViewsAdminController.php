@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\ClinicAdress;
 use App\Models\Clinics;
 use App\Models\Diagnoses;
@@ -118,6 +119,7 @@ class ViewsAdminController extends Controller
             "state",
             "name",
             "rede",
+            "unidade",
             "email"
         ]);
 
@@ -169,6 +171,8 @@ class ViewsAdminController extends Controller
 
         $diagnoses = Diagnoses::all();
 
+        $admins = Admin::all();
+
 
         return view('extracaodados', [
             "prescribers" => $prescribers->count(),
@@ -176,6 +180,7 @@ class ViewsAdminController extends Controller
             "total" => $users->count(),
             "medicines" => $medicines->count(),
             "diagnoses" => $diagnoses->count(),
+            "admins" => $admins->count(),
         ]);
     }
     

@@ -16,6 +16,7 @@ class Pharmacy extends Model
         "neighboor",
         "city",
         "state",
+        "unidade",
         "name",
         "rede",
         "email"
