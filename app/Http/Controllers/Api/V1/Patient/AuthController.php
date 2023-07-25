@@ -68,7 +68,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {   
         $credentials = $request->validated();
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::guard("webPatient")->attempt($credentials)) {
             return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
 
         }
@@ -78,7 +78,7 @@ class AuthController extends Controller
         }
         
         /** @var Patient $patient */
-        $user = Auth::user();
+        $user = Auth::guard("webPatient")->user();
         $token = $user->createToken('main')->plainTextToken;
 
         $user = new DefaultUserResource($user);
@@ -115,7 +115,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         /** @var Patient $user */
-        $user = $request->user();
+        $user = $request->user("webPatient");
         $user->currentAccessToken()->delete();
 
         return response('', 204);
@@ -181,7 +181,7 @@ class AuthController extends Controller
     {
         try {
 
-            $id = Auth::id();
+            $id = Auth::guard("webPatient")->id();
 
             $user = Patient::find($id);
     
