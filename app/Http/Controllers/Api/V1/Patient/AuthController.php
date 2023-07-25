@@ -68,9 +68,9 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {   
         $credentials = $request->validated();
-        if (!Auth::guard("webPatient")->attempt($credentials)) {
+        $patient = Patient::where('email', $request->email)->first();
+        if (!$patient || !Hash::check($request->password, $patient->password)) {
             return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
-
         }
 
         if (Patient::where('email', $request->email)->IsInactive()->get()->count() > 0) {
@@ -78,23 +78,17 @@ class AuthController extends Controller
         }
         
         /** @var Patient $patient */
-        $user = Auth::guard("webPatient")->user();
-        $token = $user->createToken('main')->plainTextToken;
-
-        $user = new DefaultUserResource($user);
-
+        $token = $patient->createToken('main')->plainTextToken;
+        $user = new DefaultUserResource($patient);
         return response(compact('user', 'token'));
     }
 
     public function loginPrescriber(LoginPrescRequest $request)
     { 
         $credentials = $request->validated();
-
-        $authPresc = Auth::guard("webPresc");
-
-        if (!$authPresc->attempt($credentials)) {
+        $prescriber = Prescriber::where('email', $request->email)->first();
+        if (!$prescriber || !Hash::check($request->password, $prescriber->password)) {
             return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
-
         }
 
         if (Prescriber::where('email', $request->email)->where('active', false)->get()->count() > 0) {
@@ -103,30 +97,22 @@ class AuthController extends Controller
         }
         
         /** @var Prescriber $prescriber */
-        $user = $authPresc->user();
-
-        $token = $user->createToken('main')->plainTextToken;
-
-        $user = new DefaultUserResource($user);
-
-        return response(compact('user', 'token')); 
+        $token = $prescriber->createToken('main')->plainTextToken;
+        $user = new DefaultUserResource($prescriber);
+        return response(compact('user', 'token'));
     }
 
     public function logout(Request $request)
     {
         /** @var Patient $user */
-        $user = $request->user("webPatient");
-        $user->currentAccessToken()->delete();
-
+        Auth::guard('webPatient')->user()->currentAccessToken()->delete();
         return response('', 204);
     }
 
     public function logoutPresc(Request $request)
     {
         /** @var Prescriber $user */
-        $user = $request->user("webPresc");
-        $user->currentAccessToken()->delete();
-
+        Auth::guard('webPresc')->user()->currentAccessToken()->delete();
         return response('', 204);
     }
 
