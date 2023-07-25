@@ -39,13 +39,13 @@ https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/manual/1.0/autenticacao
 ```
 
 Deploy
-
 ```sh
+rm -R node_modules
+rm -R .docker
 php vendor/bin/vapor deploy production
 ```
 
 Auth
-
 ```sh
 npm install
 npm run dev
