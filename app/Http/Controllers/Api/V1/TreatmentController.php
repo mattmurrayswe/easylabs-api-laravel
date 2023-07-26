@@ -38,10 +38,13 @@ class TreatmentController extends Controller
     {
         try {
 
+            $createdBy = $request->getRequestUri() === "/api/prescriber/treatment" ? "Prescriber" : "Patient";
+
             $dataTreatment = [
                 "patient_id" => $request->patient_id,
                 "prescriber_id" => $request->prescriber_id,
-                "diagnoses_id" => $request->diagnoses_id
+                "diagnoses_id" => $request->diagnoses_id,
+                "created_by" => $createdBy
             ];
 
             $treatment = TreatmentsRef::create($dataTreatment);
@@ -85,6 +88,7 @@ class TreatmentController extends Controller
                 $response[] = [
                     "treatment_id" => $treatment->id,
                     "diagnoses_id" => $treatment->diagnoses_id,
+                    "created_by" => $treatment->created_by,
                     "medicines" => $treatmentsHasMeds
                 ];
             }
@@ -108,6 +112,7 @@ class TreatmentController extends Controller
             $response[] = [
                 "treatment_id" => $treatment[0]["id"],
                 "diagnoses_id" => $treatment[0]["diagnoses_id"],
+                "created_by" => $treatment[0]["created_by"],
                 "medicines" => $treatmentsHasMeds
             ];
 

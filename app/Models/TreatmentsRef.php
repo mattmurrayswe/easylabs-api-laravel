@@ -17,7 +17,8 @@ class TreatmentsRef extends Model
     protected $fillable = [
         'patient_id',
         'prescriber_id',
-        'diagnoses_id'
+        'diagnoses_id',
+        'created_by'
     ];
 
 }
