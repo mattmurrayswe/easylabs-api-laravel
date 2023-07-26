@@ -19,6 +19,7 @@ class PatientSymptoms extends Model
         'symptom_id',
         'diagnoses_id',
         'symptom_scale',
+        'description',
     ];
 }
 

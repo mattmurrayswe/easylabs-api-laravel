@@ -32,7 +32,8 @@ class SymptomsController extends Controller
                 [
                     "symptom_scale" => $request['symptom_scale'],
                     "diagnoses_id" => $request['diagnoses_id'],
-                    "symptom_id" => $request['symptom_id']
+                    "symptom_id" => $request['symptom_id'],
+                    "description" => $request['description'],
                 ]
             );
 
