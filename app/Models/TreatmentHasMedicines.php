@@ -20,7 +20,8 @@ class TreatmentHasMedicines extends Model
         'intervalo_em_horas',
         'inicio_do_uso',
         'fim_do_uso',
-        'how_many'
+        'how_many',
+        'presentation'
     ];
 
     public function medicine()

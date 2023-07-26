@@ -44,7 +44,7 @@ class TreatmentController extends Controller
                 "patient_id" => $request->patient_id,
                 "prescriber_id" => $request->prescriber_id,
                 "diagnoses_id" => $request->diagnoses_id,
-                "created_by" => $createdBy
+                "created_by" => $createdBy,
             ];
 
             $treatment = TreatmentsRef::create($dataTreatment);
@@ -57,7 +57,8 @@ class TreatmentController extends Controller
                     "intervalo_em_horas" => $medicine["intervalo_em_horas"],
                     "inicio_do_uso" => $medicine["inicio_do_uso"],
                     "fim_do_uso" => $medicine["fim_do_uso"],
-                    "how_many" => $medicine["how_many"]
+                    "how_many" => $medicine["how_many"],
+                    "presentation" => $medicine["presentation"]
                 ];
                 
                 TreatmentHasMedicines::create($dataMedicine);
@@ -161,7 +162,8 @@ class TreatmentController extends Controller
                             "intervalo_em_horas" => $medicine["intervalo_em_horas"],
                             "inicio_do_uso" => $medicine["inicio_do_uso"],
                             "fim_do_uso" => $medicine["fim_do_uso"],
-                            "how_many" => $medicine["how_many"]
+                            "how_many" => $medicine["how_many"],
+                            "presentation" => $medicine["presentation"]
                         ]
                     );
                 }
