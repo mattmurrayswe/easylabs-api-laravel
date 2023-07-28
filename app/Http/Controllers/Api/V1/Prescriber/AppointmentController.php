@@ -49,7 +49,7 @@ class AppointmentController extends Controller
         }
 
         // funcao para pegar qual range de horario que o medico atende de acordo com o dia 
-        $availabilityDates = Availability::where('prescriber_id', Auth::user()->id)->where('day_id', $desiredWeekDay)->where('period_id', $period)->first();
+        $availabilityDates = Availability::where('prescriber_id', Auth::guard("webPresc")->user()->id)->where('day_id', $desiredWeekDay)->where('period_id', $period)->first();
 
         // Valida se tem Availaiblity cadastrado
         if (!$availabilityDates) {
@@ -57,7 +57,7 @@ class AppointmentController extends Controller
         }
 
         // Valida se a consulta e presencial x telemedicina e se tem endereco de clinica cadastrado
-        if ($request->type == 'presencial' && !Auth::user()->clinic_address) {
+        if ($request->type == 'presencial' && !Auth::guard("webPresc")->user()->clinic_address) {
             return response()->json(new ErrorResource('Necessario configurar endereco de clinica para atentimento'), 422);
 
         }
@@ -70,7 +70,7 @@ class AppointmentController extends Controller
         ) {
 
             if (
-                Appointment::where('prescriber_id', Auth::user()->id)
+                Appointment::where('prescriber_id', Auth::guard("webPresc")->user()->id)
                     ->where('patient_id', $request->patient_id)
                     ->where('appointment_date', $request->appointment_date)
                     ->where('appointment_time', $request->appointment_time)
@@ -83,7 +83,7 @@ class AppointmentController extends Controller
             try {
                 $createdAppointment = Appointment::create([
                     'patient_id' => $request->patient_id,
-                    'prescriber_id' => Auth::user()->id,
+                    'prescriber_id' => Auth::guard("webPresc")->user()->id,
                     'description' => $request->description,
                     'appointment_date' => $request->appointment_date,
                     'appointment_time' => $request->appointment_time,

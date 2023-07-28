@@ -15,13 +15,13 @@ class AvailabilityController extends Controller
     {
         $availability = Availability::with('diaSemana')
             ->with('period')
-            ->where('prescriber_id', Auth::user()->id)
+            ->where('prescriber_id', Auth::guard("webPresc")->user()->id)
             ->orderBy('day_id')
             ->get();
         
         $response = [
-            'id' => Auth::user()->id,
-            'name_prescriber' => Auth::user()->name,
+            'id' => Auth::guard("webPresc")->user()->id,
+            'name_prescriber' => Auth::guard("webPresc")->user()->name,
             'dates' => []
         ];
 
@@ -41,7 +41,7 @@ class AvailabilityController extends Controller
 
     public function store(Request $request)
     {
-        $userId = Auth::user()->id;
+        $userId = Auth::guard("webPresc")->user()->id;
         
         try {
             

@@ -17,7 +17,7 @@ class VoucherController extends Controller
 
     public function getVoucher()
     {
-        return response()->json(new SuccessResource(Auth::user()->vouchers), 200);
+        return response()->json(new SuccessResource(Auth::guard("webPresc")->user()->vouchers), 200);
 
     }
     public function getVoucherPerId($id)

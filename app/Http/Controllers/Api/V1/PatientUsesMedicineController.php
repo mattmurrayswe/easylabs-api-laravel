@@ -18,7 +18,7 @@ class PatientUsesMedicineController extends Controller
         try {
 
             $data = [
-                "patient_id" => Auth::id(),
+                "patient_id" => Auth::guard("webPatient")->id(),
                 "medicine_id" => $request->medicine_id,
                 "treatment_id" => $request->treatment_id,
                 "howMany" => $request->how_many
@@ -36,7 +36,7 @@ class PatientUsesMedicineController extends Controller
     {
         try {
             
-            $usedMedicines = PatientUsesMedicine::where('patient_id', Auth::id())->get()->toArray();
+            $usedMedicines = PatientUsesMedicine::where('patient_id', Auth::guard("webPatient")->id())->get()->toArray();
 
             return response()->json(new SuccessResource($usedMedicines), 200);
 

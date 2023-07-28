@@ -13,7 +13,7 @@ class ClinicAdressController extends Controller
 {
     public function getClinicAdress()
     {
-        $user = Auth::user();
+        $user = Auth::guard("webPresc")->user();
         if (!$user->clinic_address) {
             return response()->json(new ErrorResource('Prescriber deve cadastrar um endereco de atendimento presencial!'), 200);
         }
@@ -22,7 +22,7 @@ class ClinicAdressController extends Controller
 
     public function createClinicAdress(Request $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard("webPresc")->user();
         try {
             $clinicAdress = ClinicAdress::create($request->all());
     
@@ -39,7 +39,7 @@ class ClinicAdressController extends Controller
 
     public function updateClinicAdress(Request $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard("webPresc")->user();
         try {
             $clinic = ClinicAdress::findOrFail($user->clinic_address->id);
             $clinic->update($request->all());
