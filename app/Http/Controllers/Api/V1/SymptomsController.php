@@ -16,8 +16,11 @@ class SymptomsController extends Controller
     public function informSymptoms(Request $request)
     {
         try {
-            PatientSymptoms::create($request->all());
-            return response()->json(new SuccessResource("Sintoma informado com sucesso!"), 200);
+            $newInformedSymptom = PatientSymptoms::create($request->all());
+            return response()->json(new SuccessResource([
+                "message" => "Sintoma informado com sucesso!",
+                "informed_symptom_id" => $newInformedSymptom->id,
+            ]), 200);
 
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource("Erro ao informar sintoma!"), 422);
@@ -27,22 +30,35 @@ class SymptomsController extends Controller
     public function informedSymptomEdit(Request $request)
     {
         try {
-
-            PatientSymptoms::whereId($request['informed_symptom_id'])->update(
-                [
-                    "symptom_scale" => $request['symptom_scale'],
-                    "diagnoses_id" => $request['diagnoses_id'],
-                    "symptom_id" => $request['symptom_id'],
-                    "description" => $request['description'],
-                ]
-            );
-
-            return response()->json(new SuccessResource("Sintoma informado editado com sucesso!"), 200);
-
+            $dataToUpdate = [];
+    
+            // Check if each column is present in the request and add it to the update data array if available
+            if ($request->has('symptom_scale')) {
+                $dataToUpdate['symptom_scale'] = $request->input('symptom_scale');
+            }
+    
+            if ($request->has('diagnoses_id')) {
+                $dataToUpdate['diagnoses_id'] = $request->input('diagnoses_id');
+            }
+    
+            if ($request->has('symptom_id')) {
+                $dataToUpdate['symptom_id'] = $request->input('symptom_id');
+            }
+    
+            if ($request->has('description')) {
+                $dataToUpdate['description'] = $request->input('description');
+            }
+    
+            if (!empty($dataToUpdate)) {
+                PatientSymptoms::whereId($request->input('informed_symptom_id'))->update($dataToUpdate);
+            }
+    
+            return response()->json(new SuccessResource("Sintoma editado com sucesso!"), 200);
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource("Erro ao informar sintoma!"), 422);
+            return response()->json(new ErrorResource("Erro ao editar sintoma!"), 422);
         }
     }
+    
 
     public function informedSymptomDelete(Request $request)
     {
