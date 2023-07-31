@@ -111,7 +111,7 @@ Route::prefix('patient')->group(function(){
         
         // Acount info
         Route::post('/logout', [AuthController::class, 'logout']);
-        Route::post('/foto-perfil', [AuthController::class, 'uploadFotoPerfil']);
+        Route::post('/foto-perfil', [AuthController::class, 'uploadFotoPerfilPatient']);
         Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfilPatient']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
@@ -183,6 +183,8 @@ Route::prefix('prescriber')->group(function(){
     Route::middleware('auth:webPresc')->group(function() {
         Route::post('/documents', [AuthController::class, 'uploadDocs']);
         Route::get('/documents', [AuthController::class, 'getDocuments']);
+        Route::post('/foto-perfil', [AuthController::class, 'uploadFotoPerfilPresc']);
+        Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfilPrescriber']);
         Route::post('/logout', [AuthController::class, 'logoutPresc']);
         Route::get('/prescriber-info/{id}', [AuthController::class, 'prescInfo']);
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);

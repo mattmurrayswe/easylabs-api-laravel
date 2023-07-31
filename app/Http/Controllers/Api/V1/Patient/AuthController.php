@@ -219,7 +219,7 @@ class AuthController extends Controller
         }
     }
 
-    public function uploadFotoPerfil(Request $request)
+    public function uploadFotoPerfilPatient(Request $request)
     {
         $id = Auth::guard("webPatient")->id();
 
@@ -237,7 +237,26 @@ class AuthController extends Controller
             return response()->json(new ErrorResource("Verifique os dados de Request."), 422);
 
         }
+    }
 
+    public function uploadFotoPerfilPresc(Request $request)
+    {
+        $id = Auth::guard("webPresc")->id();
+
+        if ($request->hasFile('foto_perfil')) {
+                
+            Storage::disk('local')->put("public/docs/prescriber/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
+            Prescriber::where("id", $id)->update([
+                "uploaded_foto_perfil" => "true"
+            ]);
+
+            return response()->json(new SuccessResource("Upload de foto de perfil do prescriber de id: {$id} feito com sucesso"), 200);
+            
+        } else {
+
+            return response()->json(new ErrorResource("Verifique os dados de Request."), 422);
+
+        }
     }
 
     public function uploadDocs(Request $request)
@@ -368,13 +387,27 @@ class AuthController extends Controller
         }
     }
 
-    public function getFotoPerfilPatient(Request $request)
+    public function getFotoPerfilPatient()
     {
         $id = Auth::guard("webPatient")->id();
         
         try {
 
             return Storage::download("/public/docs/patient/foto-perfil/foto-perfil-{$id}.jpg");
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function getFotoPerfilPrescriber()
+    {
+        $id = Auth::guard("webPatient")->id();
+        
+        try {
+
+            return Storage::download("/public/docs/prescriber/foto-perfil/foto-perfil-{$id}.jpg");
 
         } catch (\Throwable $th) {
 
