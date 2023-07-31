@@ -26,9 +26,9 @@ class PatientRequest extends FormRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:patients,email'],
             'password' => ['required', 'min:6','confirmed'],
-            'cellphone' => ['required', 'string'],
+            'cellphone' => ['string', 'nullable'],
             'cpf' => ['required', 'string', 'max:11', 'unique:patients,cpf'],
-            'birth' => ['date_format:Y-m-d','before:today','required'],
+            'birth' => ['date_format:Y-m-d','before:today', 'nullable'],
         ];
     }
 
