@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
+use Intervention\Image\Facades\Image;
 
 use function PHPUnit\Framework\isNull;
 
@@ -218,6 +219,27 @@ class AuthController extends Controller
         }
     }
 
+    public function uploadFotoPerfil(Request $request)
+    {
+        $id = Auth::guard("webPatient")->id();
+
+        if ($request->hasFile('foto_perfil')) {
+                
+            Storage::disk('local')->put("public/docs/patient/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
+            Patient::where("id", $id)->update([
+                "uploaded_foto_perfil" => "true"
+            ]);
+
+            return response()->json(new SuccessResource("Upload de foto de perfil do paciente de id: {$id} feito com sucesso"), 200);
+            
+        } else {
+
+            return response()->json(new ErrorResource("Verifique os dados de Request."), 422);
+
+        }
+
+    }
+
     public function uploadDocs(Request $request)
     {
         $id = 1;
@@ -339,6 +361,20 @@ class AuthController extends Controller
         try {
 
             return Storage::download("/public/docs/foto-perfil/foto-perfil-{$id}.jpg");
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function getFotoPerfilPatient(Request $request)
+    {
+        $id = Auth::guard("webPatient")->id();
+        
+        try {
+
+            return Storage::download("/public/docs/patient/foto-perfil/foto-perfil-{$id}.jpg");
 
         } catch (\Throwable $th) {
 

@@ -32,6 +32,7 @@ class Patient extends Authenticatable
         'treatment_feedback',
         'prescriber_id',
         'id_permissao',
+        'uploaded_foto_perfil',
     ];
 
     /**

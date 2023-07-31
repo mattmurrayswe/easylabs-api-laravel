@@ -81,6 +81,9 @@ Route::put('/valide/crm-verso/{id}', [AuthController::class, 'editCRMVerso']);
 Route::put('/valide/selfie-com-doc/{id}', [AuthController::class, 'editSelfieComDoc']);
 Route::put('/valide/foto-perfil/{id}', [AuthController::class, 'editFotoPerfil']);
 
+Route::post('/foto-perfil', [AuthController::class, 'uploadFotoPerfil']);
+Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfilPatient']);
+
 Route::prefix('patient')->group(function(){
     
     
@@ -108,6 +111,8 @@ Route::prefix('patient')->group(function(){
         
         // Acount info
         Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/foto-perfil', [AuthController::class, 'uploadFotoPerfil']);
+        Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfilPatient']);
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
         Route::put('/password', [AuthController::class, 'editPassword']);
