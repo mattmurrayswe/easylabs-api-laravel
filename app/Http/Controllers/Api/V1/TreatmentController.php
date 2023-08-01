@@ -175,6 +175,5 @@ class TreatmentController extends Controller
             return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
-
     }
 }

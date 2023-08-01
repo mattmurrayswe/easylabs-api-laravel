@@ -219,7 +219,7 @@ Route::prefix('prescriber')->group(function(){
         // Connect Patient on Prescriber
         Route::post('/connect-patient', [PatientController::class, 'connectPrescriberToPatient']);
         Route::post('/erase-connected-patient/{id}', [PatientController::class, 'errasePrescriberInPatient']);
-        Route::post('/get-pacient-treatment/{id}', [PatientController::class, 'getPacientTreatment']);
+        Route::get('/treatment-with-patient', [PatientController::class, 'treatmentWithPatient']);
         
         
         // Get Prescriber Info with patients and treatments

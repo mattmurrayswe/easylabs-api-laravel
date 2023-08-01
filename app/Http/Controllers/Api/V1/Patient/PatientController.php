@@ -8,7 +8,9 @@ use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
 use App\Models\PatientTreatment;
+use App\Models\TreatmentHasMedicines;
 use App\Models\TreatmentMedicine;
+use App\Models\TreatmentsRef;
 use App\Notifications\SendPasswordToCreatedPatientFromPrescriber;
 use Illuminate\Http\Request;
 
@@ -215,36 +217,25 @@ class PatientController extends Controller
         $patient->save();
 
         // Return a success response
-        return response()->json(new SuccessResource('Sucesso!'), 422);
+        return response()->json(new SuccessResource('Sucesso!'), 200);
     }
 
-    public function getPacientTreatment($id)
+    public function treatmentWithPatient(Request $request)
     {
 
         try {
             
-        $patient = Patient::with('newTreatments')->findOrFail($id);
+            $patient = Patient::with('treatments.treatmentsRef.medicine')->findOrFail($request->id_patient);
 
-        $response = [
-            'id' => $patient->id,
-            'name' => $patient->name,
-            'email' => $patient->email,
-            'cpf' => $patient->cpf,
-            'cellphone' => $patient->cellphone,
-            'birth' => $patient->birth,
-            'active' => $patient->active,
-            'treatments' => $patient->newTreatments->toArray(),
-        ];
+            return response()->json(new SuccessResource($patient), 200);
 
-        return response()->json($response);
         } catch (\Throwable $th) {
+            
             return response()->json(new ErrorResource('Paciente não encontrado'), 422);
 
         }
         
     }
-
-    
 
     protected function generatePassword()
     {

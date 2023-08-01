@@ -21,4 +21,8 @@ class TreatmentsRef extends Model
         'created_by'
     ];
 
+    public function treatmentsRef()
+    {
+        return $this->hasMany(TreatmentHasMedicines::class, 'treatment_id', 'id');
+    }
 }

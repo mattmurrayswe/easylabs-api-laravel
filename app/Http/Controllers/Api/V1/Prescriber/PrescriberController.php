@@ -193,8 +193,7 @@ class PrescriberController extends Controller
     public function getConnectedPatients($id) {
         try {
 
-            $prescribers = $this->getPrescribersWithPatients($id);
-            $prescribersData = $this->buildPrescribersData($prescribers);
+            
             
             return response()->json(new SuccessResource($prescribersData), 200);
 
