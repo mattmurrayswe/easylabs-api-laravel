@@ -25,4 +25,9 @@ class TreatmentsRef extends Model
     {
         return $this->hasMany(TreatmentHasMedicines::class, 'treatment_id', 'id');
     }
+
+    public function diagnose()
+    {
+        return $this->hasOne(Diagnoses::class, 'id', 'diagnoses_id');
+    }
 }

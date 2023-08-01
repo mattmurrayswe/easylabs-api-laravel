@@ -195,7 +195,7 @@ class PrescriberController extends Controller
     {
         try {
             
-            $patient = Prescriber::with('patients.treatments.treatmentsRef.medicine')->findOrFail($request->id_prescriber);
+            $patient = Prescriber::with('patients.treatments.treatmentsRef.medicine')->with('patients.treatments.diagnose')->findOrFail($request->id_prescriber);
 
             return response()->json(new SuccessResource($patient), 200);
 
