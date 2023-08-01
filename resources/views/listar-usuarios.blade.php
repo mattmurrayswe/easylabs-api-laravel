@@ -148,8 +148,18 @@
                             </div>
                             <!-- <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Endereço</label>
-                                <input disabled type="text" name="brand" id="" value="{{$u->permissao->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                                <input disabled type="text" name="brand" id="" value="{{$u->id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div> -->
+                            <div class="space-x-4">
+                                <div class="inline-flex items-center">
+                                    <input @if($u->active == 1) checked @endif type="radio" id="active-{{$u->unique_id}}" name="active-radios-{{$u->unique_id}}" value="active" class="radio radio-primary form-radio text-primary-600 focus:ring-primary-600 focus:border-primary-600">
+                                    <label for="active-{{$u->unique_id}}" class="ml-1 text-sm font-medium text-gray-900">Ativo</label>
+                                </div>
+                                <div class="inline-flex items-center">
+                                    <input type="radio" id="inactive-{{$u->unique_id}}" name="active-radios-{{$u->unique_id}}" value="inactive" class="radio radio-primary form-radio text-primary-600 focus:ring-primary-600 focus:border-primary-600">
+                                    <label for="inactive-{{$u->unique_id}}" class="ml-1 text-sm font-medium text-gray-900">Inativo</label>
+                                </div>
+                            </div>
                             <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Nome Permissão</label>
                                 <input disabled type="text" name="brand" id="" value="{{$u->permissao->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
