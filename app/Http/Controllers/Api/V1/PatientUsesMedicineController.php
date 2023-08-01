@@ -44,4 +44,17 @@ class PatientUsesMedicineController extends Controller
             return response()->json(new ErrorResource("Medicamento ou paciente nao existentes!"), 422);
         }
     }
+
+    public function listInformedMedPresc(Request $request)
+    {
+        try {
+            
+            $usedMedicines = PatientUsesMedicine::where('patient_id', $request->id_patient)->get()->toArray();
+
+            return response()->json(new SuccessResource($usedMedicines), 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource("Medicamento ou paciente nao existentes!"), 422);
+        }
+    }
 }

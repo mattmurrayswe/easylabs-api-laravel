@@ -100,9 +100,6 @@ Route::prefix('patient')->group(function(){
     Route::post('/new-password', [RecoverController::class, 'newPassword']);
     Route::post('/new-code', [RecoverController::class, 'sendNewCode']);
     
-    // Route::post('/approbation', [RecoverController::class, 'approbation']);
-    
-    // Authenticated Routes for Patient
     Route::middleware('auth:webPatient')->group(function() {
         
         // Patient
@@ -209,6 +206,9 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
         Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
         Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
+
+        Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMedPresc']);
+        Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptomsPresc']);
         
         
         // Create Patient Using Prescriber
@@ -222,14 +222,9 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/treatment-with-patient', [PatientController::class, 'treatmentWithPatient']);
         Route::get('/patients-with-treatments', [PrescriberController::class, 'getPrescriberPatientsWithTreatments']);
         
-        
-        // Get Prescriber Info with patients and treatments
-        
-        // Availability
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
         Route::post('/create-availability', [AvailabilityController::class, 'store']);
 
-        //Voucher
         Route::get('/vouchers', [VoucherController::class, 'getVoucher']);
         Route::get('/voucher/{id}', [VoucherController::class, 'getVoucherPerId']);
         Route::post('/voucher', [VoucherController::class, 'createVoucher']);
@@ -237,13 +232,10 @@ Route::prefix('prescriber')->group(function(){
         Route::delete('/voucher/{id}', [VoucherController::class, 'deleteVoucher']);
         Route::post('/use-voucher', [VoucherController::class, 'useVoucher']);
 
-
-        // ClinicAdress
         Route::get('/get-clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
         Route::post('/create-clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
         Route::put('/update-clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
         
-        // Appointment
         Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
         Route::delete('/drop-appointment/{id}', [AppointmentController::class, 'dropAppointment']);
 
@@ -252,10 +244,8 @@ Route::prefix('prescriber')->group(function(){
 
         Route::post('/end-appointment/{id}', [AppointmentController::class, 'endAppointment']);
 
-        // Appointment
         Route::get('/produto-indicado', [StatisticsController::class, 'showProdutoIndicadoPorDiagnostico']);
         
-        /** id do diagnostico */
         Route::get('/percepcao-melhora/{id}', [StatisticsController::class, 'showPercepcaoDeMelhora']);
 
         Route::get('/symptoms', [SymptomsController::class, 'listSymptoms']);
