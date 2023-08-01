@@ -105,7 +105,7 @@
             </div>
 
             @foreach($users as $u)
-            <div id="edit-modal-{{$u->unique_id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div data-modal-backdrop="static" id="edit-modal-{{$u->unique_id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <div class="relative bg-white rounded-lg shadow">
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
