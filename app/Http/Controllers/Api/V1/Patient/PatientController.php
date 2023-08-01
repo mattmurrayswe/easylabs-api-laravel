@@ -187,7 +187,9 @@ class PatientController extends Controller
     public function connectPrescriberToPatient(Request $request)
     {
         $patient = Patient::find($request->patient_id);
+        
         try {
+
             $patient->update([
                 'prescriber_id' => $request->prescriber_id
             ]);
