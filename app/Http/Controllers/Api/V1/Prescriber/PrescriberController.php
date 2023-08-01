@@ -190,17 +190,20 @@ class PrescriberController extends Controller
         return $prescribersData;
     }
     
-    public function getConnectedPatients($id) {
-        try {
 
+    public function getPrescriberPatientsWithTreatments(Request $request)
+    {
+        try {
             
-            
-            return response()->json(new SuccessResource($prescribersData), 200);
+            $patient = Prescriber::with('patients.treatments.treatmentsRef.medicine')->findOrFail($request->id_prescriber);
+
+            return response()->json(new SuccessResource($patient), 200);
 
         } catch (\Throwable $th) {
-
-            return response()->json(new ErrorResource($th->getMessage()), 422);
+            
+            return response()->json(new ErrorResource('Paciente não encontrado'), 422);
 
         }
+        
     }
 }

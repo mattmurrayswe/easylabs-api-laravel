@@ -59,7 +59,7 @@ class Prescriber extends Authenticatable
 
     public function patients()
     {
-        return $this->hasMany(Patient::class);
+        return $this->hasMany(Patient::class, "prescriber_id", "id");
     }
 
     public function clinic_address()

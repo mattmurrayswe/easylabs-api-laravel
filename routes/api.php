@@ -223,7 +223,7 @@ Route::prefix('prescriber')->group(function(){
         
         
         // Get Prescriber Info with patients and treatments
-        Route::get('/get-prescriber-patient/{id}', [PrescriberController::class, 'getConnectedPatients']);
+        Route::get('/patients-with-treatments', [PrescriberController::class, 'getPrescriberPatientsWithTreatments']);
         
         // Availability
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
