@@ -8,6 +8,14 @@
         <div id="container-content" class="bg-white w-4/5 ml-[20%] p-20 h-screen">
             <div class="header flex justify-between content-center">
                 <div id="titulo-pagina" class="text-gray-900 text-xl font-medium underline">
+                    <a class="flex" href="">
+                        <div class="w-5 mr-2 flex justify-center">
+                            <img src="{{URL::asset('/image/farmacias-parceiras.svg')}}" alt="profile Pic" height="40" width="40">
+                        </div>
+                        <p>Extração de Dados</p>
+                    </a>
+                </div>
+                <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
@@ -15,13 +23,6 @@
                             {{ __('Log Out') }}
                         </button>
                     </form>
-                </div>
-                <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
-                    <a class="flex" href="">
-                        <div class="w-7 mr-3 flex justify-center">
-                            <img src="{{URL::asset('/image/prof-icon.svg')}}" alt="profile Pic" height="20" width="20">
-                        </div>
-                    </a>
                 </div>
 
                 <head>
