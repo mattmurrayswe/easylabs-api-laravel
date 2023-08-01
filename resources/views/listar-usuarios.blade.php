@@ -30,6 +30,9 @@
                     <thead class="h-16">
                         <tr class="bg-gray-800">
                             <th class="rounded-tl-xl px-4">
+                                <p class="flex text-white">ID Listagem</p>
+                            </th>
+                            <th class="px-4">
                                 <p class="flex text-white">ID Usuário</p>
                             </th>
                             <th class="px-4">
@@ -49,6 +52,7 @@
                     <tbody class="my-20 bg-white rounded-xl">
                         @foreach ($users as $u)
                         <tr class="h-10 bg-gray-50">
+                            <td id="id-listagem" class="px-4">{{$u->unique_id}}</td>
                             <td id="id-usuario" class="px-4">{{$u->id}}</td>
                             <td id="name" class="px-4">{{$u->name}}</td>
                             <td id="permissao" class="px-4">{{$u->permissao->name}}</td>
@@ -60,6 +64,7 @@
                         @endforeach
                         <tr class="bg-gray-800 h-10">
                             <td class="px-4 rounded-bl-xl"></td>
+                            <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
@@ -118,21 +123,41 @@
 
                         <div class="p-6 space-y-6">
                             <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID Listagem</label>
+                                <input disabled type="text" name="brand" id="id-user-{{$u->unique_id}}" value="{{$u->unique_id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID Usuário</label>
-                                <input disabled type="text" name="brand" id="id-user-{{$u->unique_id}}" value="{{$u->id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                                <input disabled type="text" name="brand" id="id-user-{{$u->id}}" value="{{$u->id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div>
                             <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Nome Usuário</label>
                                 <input disabled type="text" name="brand" id="" value="{{$u->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div>
                             <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">CPF</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->cpf}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->email}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Telefone</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->cellphone}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <!-- <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Endereço</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->permissao->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div> -->
+                            <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Nome Permissão</label>
                                 <input disabled type="text" name="brand" id="" value="{{$u->permissao->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div>
                             <div>
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID Permissão</label>
-                                <input type="text" name="brand" id="id-permissao-new-{{$u->unique_id}}" value="{{$u->id_permissao}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                                <input type="text" name="brand" id="id-permissao-old-{{$u->unique_id}}" value="{{$u->id_permissao}}" hidden placeholder="">
+                                <input type="text" name="brand" id="id-permissao-new-{{$u->id_permissao}}" value="{{$u->id_permissao}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                                <input type="text" name="brand" id="id-permissao-old-{{$u->id_permissao}}" value="{{$u->id_permissao}}" hidden placeholder="">
                             </div>
                         </div>
                         <!-- Modal footer -->

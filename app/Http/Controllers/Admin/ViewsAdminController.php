@@ -186,6 +186,7 @@ class ViewsAdminController extends Controller
     
     public function listarUsuarios()
     {
+        // Get the prescribers and patients separately
         $prescribers = Prescriber::with("permissao")->get();
         $patients = Patient::with("permissao")->get();
     
@@ -200,17 +201,23 @@ class ViewsAdminController extends Controller
             return $patient;
         });
     
+        // Initialize a single counter for both prescribers and patients
+        $userCounter = 1;
+    
         // Add a unique numeric identifier to each user
-        $prescribers = $prescribers->map(function ($prescriber) {
-            $prescriber['unique_id'] = $prescriber->id; // Assuming 'id' is the auto-incrementing primary key for Prescriber model
+        $prescribers = $prescribers->map(function ($prescriber) use (&$userCounter) {
+            $prescriber['unique_id'] = $userCounter;
+            $userCounter++;
             return $prescriber;
         });
     
-        $patients = $patients->map(function ($patient) {
-            $patient['unique_id'] = $patient->id; // Assuming 'id' is the auto-incrementing primary key for Patient model
+        $patients = $patients->map(function ($patient) use (&$userCounter) {
+            $patient['unique_id'] = $userCounter;
+            $userCounter++;
             return $patient;
         });
     
+        // Concatenate the prescribers and patients into a single collection
         $users = $prescribers->concat($patients);
     
         return view('listar-usuarios', [
