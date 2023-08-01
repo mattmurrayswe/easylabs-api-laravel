@@ -62,4 +62,14 @@ class Permissao extends Model
         "extracao_dados_cadastrar",
         "extracao_dados_excluir"
     ];
+
+    public function getNameAttribute($value)
+    {
+        if($value == "Prescriber") {
+            return "Prescritor";
+        } 
+        if($value == "Patient") {
+            return "Paciente";
+        }
+    }
 }
