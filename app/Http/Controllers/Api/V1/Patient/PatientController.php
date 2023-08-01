@@ -192,7 +192,7 @@ class PatientController extends Controller
                 'prescriber_id' => $request->prescriber_id
             ]);
 
-            return response()->json(new SuccessResource('Sucesso!.'), 422);
+            return response()->json(new SuccessResource('Sucesso!.'), 200);
 
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource('Nao foi possivel criar o paciente'), 422);
