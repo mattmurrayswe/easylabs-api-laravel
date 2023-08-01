@@ -373,27 +373,17 @@ class AuthController extends Controller
         }
     }
 
-    public function getFotoPerfil()
-    {
-        $id = 1;
-        
-        try {
-
-            return Storage::download("/public/docs/foto-perfil/foto-perfil-{$id}.jpg");
-
-        } catch (\Throwable $th) {
-
-            return response()->json(new ErrorResource($th->getMessage()), 422);
-        }
-    }
-
     public function getFotoPerfilPatient()
     {
         $id = Auth::guard("webPatient")->id();
         
         try {
 
-            return Storage::download("/public/docs/patient/foto-perfil/foto-perfil-{$id}.jpg");
+            $response = [
+                "foto_perfil" => asset("storage/docs/patient/foto-perfil/foto-perfil-{$id}.jpg")
+            ];
+            
+            return response()->json(new SuccessResource($response), 200);
 
         } catch (\Throwable $th) {
 
@@ -407,7 +397,11 @@ class AuthController extends Controller
         
         try {
 
-            return Storage::download("/public/docs/prescriber/foto-perfil/foto-perfil-{$id}.jpg");
+            $response = [
+                "foto_perfil" => asset("storage/docs/prescriber/foto-perfil/foto-perfil-{$id}.jpg")
+            ];
+            
+            return response()->json(new SuccessResource($response), 200);
 
         } catch (\Throwable $th) {
 
