@@ -222,16 +222,25 @@ class AuthController extends Controller
     public function uploadFotoPerfilPatient(Request $request)
     {
         $id = Auth::guard("webPatient")->id();
-
+        
         if ($request->hasFile('foto_perfil')) {
-                
-            Storage::disk('local')->put("public/docs/patient/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
-            Patient::where("id", $id)->update([
-                "uploaded_foto_perfil" => "true"
-            ]);
 
-            return response()->json(new SuccessResource("Upload de foto de perfil do paciente de id: {$id} feito com sucesso"), 200);
-            
+            $path = "patient/foto-perfil/foto-perfil-{$id}.jpg";
+            $fileContents = file_get_contents($request->file('foto_perfil')->getPathname());
+    
+            Storage::disk('s3')->put($path, $fileContents, 'public');
+    
+            $publicUrl = Storage::disk('s3')->url($path);
+    
+            Patient::where("id", $id)->update([
+                "uploaded_foto_perfil" => $publicUrl
+            ]);
+    
+            return response()->json([
+                'message' => "Upload de foto de perfil do paciente de id: {$id} feito com sucesso",
+                'url' => $publicUrl,
+            ], 200);
+
         } else {
 
             return response()->json(new ErrorResource("Verifique os dados de Request."), 422);
@@ -245,12 +254,24 @@ class AuthController extends Controller
 
         if ($request->hasFile('foto_perfil')) {
                 
-            Storage::disk('local')->put("public/docs/prescriber/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
-            Prescriber::where("id", $id)->update([
-                "uploaded_foto_perfil" => "true"
-            ]);
+            if ($request->hasFile('foto_perfil')) {
 
-            return response()->json(new SuccessResource("Upload de foto de perfil do prescriber de id: {$id} feito com sucesso"), 200);
+                $path = "prescriber/foto-perfil/foto-perfil-{$id}.jpg";
+                $fileContents = file_get_contents($request->file('foto_perfil')->getPathname());
+        
+                Storage::disk('s3')->put($path, $fileContents, 'public');
+        
+                $publicUrl = Storage::disk('s3')->url($path);
+        
+                Patient::where("id", $id)->update([
+                    "uploaded_foto_perfil" => $publicUrl
+                ]);
+        
+                return response()->json([
+                    'message' => "Upload de foto de perfil do prescriber de id: {$id} feito com sucesso",
+                    'url' => $publicUrl,
+                ], 200);
+            }
             
         } else {
 
