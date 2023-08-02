@@ -1,16 +1,5 @@
 $(document).ready(function() {});
 
-function alimenteModalMedicamentoEdit(idMedicamento) {
-
-    $( `#input-name-${idMedicamento}` ).val($( `#name-${idMedicamento}`).text() );
-    $( `#input-presentation-${idMedicamento}` ).val($( `#presentation-${idMedicamento}`).text() );
-    $( `#input-concentration-${idMedicamento}` ).val($( `#concentration-${idMedicamento}`).text() );
-    $( `#input-volume_flask-${idMedicamento}` ).val($( `#volume_flask-${idMedicamento}`).text() );
-    $( `#input-formulation-${idMedicamento}` ).val($( `#formulation-${idMedicamento}`).text() );
-    $( `#input-lab-${idMedicamento}` ).val($( `#lab-${idMedicamento}`).text() );
-
-}
-
 function editFarmacia(idFarmacia) {
 
     const rede = $( `#rede-${idFarmacia}` ).val();
@@ -72,20 +61,29 @@ function cadastreFarmacia() {
 
     const rede = $( `#rede` ).val();
     const unidade = $( `#unidade` ).val();
-    const name = $( `#name` ).val();
+    const cnpj = $( `#cnpj` ).val();
+    const cellphone = $( `#cellphone` ).val();
     const email = $( `#email` ).val();
     const cep = $( `#cep` ).val();
-    const city = $( `#city` ).val();
-    const state = $( `#state` ).val();
     const street = $( `#street` ).val();
     const number = $( `#number` ).val();
-    const neighboor = $( `#neighboor` ).val();
     const complement = $( `#complement` ).val();
+    const neighboor = $( `#neighboor` ).val();
+    const city = $( `#city` ).val();
+    const state = $( `#state` ).val();
+    const cpf = $( `#cpf` ).val();
+    const name = $( `#name` ).val();
+
 
     $.ajax({
         url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy`,
         type: "POST",
         data: {
+            rede : rede,
+            unidade : unidade,
+            cnpj : cnpj,
+            cellphone : cellphone,
+            email : email,
             cep : cep,
             street : street,
             number : number,
@@ -93,10 +91,8 @@ function cadastreFarmacia() {
             neighboor : neighboor,
             city : city,
             state : state,
-            name : name,
-            rede : rede,
-            unidade : unidade,
-            email : email
+            cpf : cpf,
+            name : name
         },
         success: function(data, status) {
 

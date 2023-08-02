@@ -117,8 +117,12 @@
                     <input type="text" id="unidade" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>
-                    <input type="text" id="name" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">CNPJ</label>
+                    <input type="text" id="cnpj" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Telefone/Celular</label>
+                    <input type="text" id="cellphone" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">E-mail</label>
@@ -129,14 +133,6 @@
                     <input type="text" id="cep" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
-                    <input type="text" id="city" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                </div>
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Estado</label>
-                    <input type="text" id="state" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                </div>
-                <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Rua</label>
                     <input type="text" id="street" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
@@ -145,12 +141,28 @@
                     <input type="text" id="number" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
+                    <input type="text" id="complement" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Bairro</label>
                     <input type="text" id="neighboor" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
-                    <input type="text" id="complement" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
+                    <input type="text" id="city" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">UF</label>
+                    <input type="text" id="state" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>
+                    <input type="text" id="cpf" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">CPF Responsável</label>
+                    <input type="text" id="name" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
             </div>
             <!-- Modal footer -->
