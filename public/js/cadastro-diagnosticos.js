@@ -28,7 +28,7 @@ function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
 
 function editDiagnostico(idDiagnostico) {
 
-    let name = $(`#diagnose-name`).val();
+    let name = $(`#diagnose-name-${idDiagnostico}`).val();
 
     let sintomasIds = $(`.select-sintomas-${idDiagnostico}`).map(function() {
 
@@ -47,7 +47,7 @@ function editDiagnostico(idDiagnostico) {
     console.log(medicamentosIds)
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/diagnose/${idDiagnostico}`,
+        url: `http://0.0.0.0/api/diagnose/${idDiagnostico}`,
         type: "PUT",
         data: {
             name: name,
@@ -69,7 +69,7 @@ function editDiagnostico(idDiagnostico) {
 function deleteDiagnostico(idDiagnostico) {
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/diagnose/${idDiagnostico}`,
+        url: `http://0.0.0.0/api/diagnose/${idDiagnostico}`,
         type: "DELETE",
         success: function(data, status) {
 
@@ -113,7 +113,7 @@ function cadastreDiagnostico() {
     console.log(data)
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/diagnose`,
+        url: `http://0.0.0.0/api/diagnose`,
         type: "POST",
         data: {
             name: name,
