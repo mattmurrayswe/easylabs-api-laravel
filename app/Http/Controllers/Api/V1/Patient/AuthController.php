@@ -331,18 +331,17 @@ class AuthController extends Controller
 
     public function getDocuments()
     {
-        $id = 1;
+        $id = Auth::guard("webPresc")->id();
         
         try {
 
-            $response = [
-                "crm_frente" => asset("storage/docs/crm-frente/crm-frente-{$id}.jpg"),
-                "crm_verso" => asset("storage/docs/crm-verso/crm-verso-{$id}.jpg"),
-                "selfie_com_doc" => asset("storage/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg"),
-                "foto_perfil" => asset("storage/docs/foto-perfil/foto-perfil-{$id}.jpg")
-            ];
+            $docs = Prescriber::where("id", $id)->get([
+                "uploaded_crm_frente",
+                "uploaded_crm_verso",
+                "uploaded_selfie_com_doc",
+            ]);
             
-            return response()->json(new SuccessResource($response), 200);
+            return response()->json(new SuccessResource($docs), 200);
 
         } catch (\Throwable $th) {
 
