@@ -253,26 +253,23 @@ class AuthController extends Controller
         $id = Auth::guard("webPresc")->id();
 
         if ($request->hasFile('foto_perfil')) {
-                
-            if ($request->hasFile('foto_perfil')) {
 
-                $path = "prescriber/foto-perfil/foto-perfil-{$id}.jpg";
-                $fileContents = file_get_contents($request->file('foto_perfil')->getPathname());
-        
-                Storage::disk('s3')->put($path, $fileContents, 'public');
-        
-                $publicUrl = Storage::disk('s3')->url($path);
-        
-                Prescriber::where("id", $id)->update([
-                    "uploaded_foto_perfil" => $publicUrl
-                ]);
-        
-                return response()->json([
-                    'message' => "Upload de foto de perfil do prescriber de id: {$id} feito com sucesso",
-                    'url' => $publicUrl,
-                ], 200);
-            }
-            
+
+            $path = "prescriber/foto-perfil/foto-perfil-{$id}.jpg";
+            $fileContents = file_get_contents($request->file('foto_perfil')->getPathname());
+
+            Storage::disk('s3')->put($path, $fileContents, 'public');
+
+            $publicUrl = Storage::disk('s3')->url($path);
+
+            Prescriber::where("id", $id)->update([
+                "uploaded_foto_perfil" => $publicUrl
+            ]);
+
+            return response()->json([
+                'message' => "Upload de foto de perfil do prescriber de id: {$id} feito com sucesso",
+                'url' => $publicUrl,
+            ], 200);
         } else {
 
             return response()->json(new ErrorResource("Verifique os dados de Request."), 422);
@@ -282,49 +279,52 @@ class AuthController extends Controller
 
     public function uploadDocs(Request $request)
     {
-        $id = 1;
-
+        $id = Auth::guard("webPresc")->id();
+        $uploadedUrls = [];
+    
         try {
-            if(!isNull($request->file('crm_frente'))) {
-                
-                Storage::disk('local')->put("public/docs/crm-frente/crm-frente-{$id}.jpg", file_get_contents($request->file('crm_frente')->getPathname()));
+            if ($request->hasFile('crm_frente')) {
+                $path = "docs/crm-frente/crm-frente-{$id}.jpg";
+                $fileContents = file_get_contents($request->file('crm_frente')->getPathname());
+                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
-                    "uploaded_crm_frente" => "true"
+                    "uploaded_crm_frente" => $publicUrl
                 ]);
-                
+    
+                $uploadedUrls['crm_frente'] = $publicUrl;
             }
-            
-            if(!isNull($request->file('crm_verso'))) {
-                
-                Storage::disk('local')->put("public/docs/crm-verso/crm-verso-{$id}.jpg", file_get_contents($request->file('crm_verso')->getPathname()));
+    
+            if ($request->hasFile('crm_verso')) {
+                $path = "docs/crm-verso/crm-verso-{$id}.jpg";
+                $fileContents = file_get_contents($request->file('crm_verso')->getPathname());
+                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
-                    "uploaded_crm_verso" => "true"
+                    "uploaded_crm_verso" => $publicUrl
                 ]);
-                
+    
+                $uploadedUrls['crm_verso'] = $publicUrl;
             }
-            
-            if(!isNull($request->file('selfie_com_doc'))) {
-                
-                Storage::disk('local')->put("public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg", file_get_contents($request->file('selfie_com_doc')->getPathname()));
+    
+            if ($request->hasFile('selfie_com_doc')) {
+                $path = "docs/selfie-com-doc/selfie-com-doc-{$id}.jpg";
+                $fileContents = file_get_contents($request->file('selfie_com_doc')->getPathname());
+                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
-                    "uploaded_selfie_com_doc" => "true"
+                    "uploaded_selfie_com_doc" => $publicUrl
                 ]);
-                
+    
+                $uploadedUrls['selfie_com_doc'] = $publicUrl;
             }
-            
-            if(!isNull($request->file('foto_perfil'))) {
-                
-                Storage::disk('local')->put("public/docs/foto-perfil/foto-perfil-{$id}.jpg", file_get_contents($request->file('foto_perfil')->getPathname()));
-                Prescriber::where("id", $id)->update([
-                    "uploaded_foto_perfil" => "true"
-                ]);
-                
-            }
-            
-            return response()->json(new SuccessResource("Upload de documentos feito com sucesso"), 200);
-
+    
+            return response()->json(new SuccessResource([
+                "message" => "Upload de documentos feito com sucesso",
+                "uploaded_urls" => $uploadedUrls
+            ]), 200);
+    
         } catch (\Throwable $th) {
-
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
