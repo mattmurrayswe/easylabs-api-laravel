@@ -263,7 +263,7 @@ class AuthController extends Controller
         
                 $publicUrl = Storage::disk('s3')->url($path);
         
-                Patient::where("id", $id)->update([
+                Prescriber::where("id", $id)->update([
                     "uploaded_foto_perfil" => $publicUrl
                 ]);
         
@@ -395,16 +395,15 @@ class AuthController extends Controller
     }
 
     public function getFotoPerfilPatient()
-    {
-        $id = Auth::guard("webPatient")->id();
-        
+    { 
         try {
-
-            $response = [
-                "foto_perfil" => asset("storage/docs/patient/foto-perfil/foto-perfil-{$id}.jpg")
-            ];
+            $id = Auth::guard("webPatient")->id();
             
-            return response()->json(new SuccessResource($response), 200);
+            $foto = Patient::where("id", $id)->get([
+                "uploaded_foto_perfil"
+            ]);
+            
+            return response()->json(new SuccessResource($foto), 200);
 
         } catch (\Throwable $th) {
 
@@ -414,15 +413,15 @@ class AuthController extends Controller
 
     public function getFotoPerfilPrescriber()
     {
-        $id = Auth::guard("webPatient")->id();
+        $id = Auth::guard("webPresc")->id();
         
         try {
 
-            $response = [
-                "foto_perfil" => asset("storage/docs/prescriber/foto-perfil/foto-perfil-{$id}.jpg")
-            ];
+            $foto = Prescriber::where("id", $id)->get([
+                "uploaded_foto_perfil"
+            ]);
             
-            return response()->json(new SuccessResource($response), 200);
+            return response()->json(new SuccessResource($foto), 200);
 
         } catch (\Throwable $th) {
 
