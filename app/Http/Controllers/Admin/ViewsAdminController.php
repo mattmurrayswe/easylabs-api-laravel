@@ -108,20 +108,7 @@ class ViewsAdminController extends Controller
 
     public function farmaciasParceiras()
     {
-        $clinics = Pharmacy::all([
-            "id",
-            "cep",
-            "street",
-            "number",
-            "complement",
-            "neighboor",
-            "city",
-            "state",
-            "name",
-            "rede",
-            "unidade",
-            "email"
-        ]);
+        $clinics = Pharmacy::all();
 
         return view('farmacias-parceiras', [
             "clinics" => $clinics

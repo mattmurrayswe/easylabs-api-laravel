@@ -93,25 +93,5 @@ class Patient extends Authenticatable
     {
         return $this->where('email', $username)->first();
     }
-
-    public function getCellphoneAttribute($value)
-    {
-        // Remove any characters that are not digits, e.g., ( and )
-        $cleanedNumber = preg_replace('/[^0-9]/', '', $value);
-    
-        // Check if the cleaned number starts with "1" (assuming it is the country code), and remove it if present
-        if (substr($cleanedNumber, 0, 1) === '1') {
-            $cleanedNumber = substr($cleanedNumber, 1);
-        }
-    
-        // Check if the cleaned number starts with "55" (assuming it is the area code), and remove it if present
-        if (substr($cleanedNumber, 0, 2) === '55') {
-            $cleanedNumber = substr($cleanedNumber, 2);
-        }
-    
-        // Assuming the cellphone number is 10 digits now (e.g., 559324370)
-        // Format the number as (XX) XXXX-XXXX
-        return '(' . substr($cleanedNumber, 0, 2) . ') ' . substr($cleanedNumber, 2, 4) . '-' . substr($cleanedNumber, 6);
-    }
      
 }

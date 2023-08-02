@@ -4,15 +4,18 @@ function editFarmacia(idFarmacia) {
 
     const rede = $( `#rede-${idFarmacia}` ).val();
     const unidade = $( `#unidade-${idFarmacia}` ).val();
-    const name = $( `#name-${idFarmacia}` ).val();
+    const cnpj = $( `#cnpj-${idFarmacia}` ).val();
+    const cellphone = $( `#cellphone-${idFarmacia}` ).val();
     const email = $( `#email-${idFarmacia}` ).val();
     const cep = $( `#cep-${idFarmacia}` ).val();
-    const city = $( `#city-${idFarmacia}` ).val();
-    const state = $( `#state-${idFarmacia}` ).val();
     const street = $( `#street-${idFarmacia}` ).val();
     const number = $( `#number-${idFarmacia}` ).val();
-    const neighboor = $( `#neighboor-${idFarmacia}` ).val();
     const complement = $( `#complement-${idFarmacia}` ).val();
+    const neighboor = $( `#neighboor-${idFarmacia}` ).val();
+    const city = $( `#city-${idFarmacia}` ).val();
+    const state = $( `#state-${idFarmacia}` ).val();
+    const cpf = $( `#cpf-${idFarmacia}` ).val();
+    const name = $( `#name-${idFarmacia}` ).val();
 
     $.ajax({
         url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy/${idFarmacia}`,

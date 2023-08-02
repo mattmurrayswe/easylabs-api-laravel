@@ -162,7 +162,7 @@
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">CPF Responsável</label>
-                    <input type="text" id="name" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="cpf" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
             </div>
             <!-- Modal footer -->
@@ -200,8 +200,12 @@
                     <input type="text" id="unidade-{{$c->id}}" value="{{$c->unidade}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>
-                    <input type="text" id="name-{{$c->id}}" value="{{$c->name}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">CNPJ</label>
+                    <input type="text" id="cnpj-{{$c->id}}" value="{{$c->unidade}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Telefone/Celular</label>
+                    <input type="text" id="cellphone-{{$c->id}}" value="{{$c->cellphone}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">E-mail</label>
@@ -234,6 +238,14 @@
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
                     <input type="text" id="complement-{{$c->id}}" value="{{$c->complement}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>
+                    <input type="text" id="name-{{$c->id}}" value="{{$c->name}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">CPF Responsável</label>
+                    <input type="text" id="cpf-{{$c->id}}" value="{{$c->cpf}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
             </div>
             <!-- Modal footer -->

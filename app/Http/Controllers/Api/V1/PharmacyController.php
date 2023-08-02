@@ -43,6 +43,11 @@ class PharmacyController extends Controller
         try {
             
             $dataPharmacy = [
+                "rede" => $request->rede,
+                "unidade" => $request->unidade,
+                "cnpj" => $request->cnpj,
+                "cellphone" => $request->cellphone,
+                "email" => $request->email,
                 "cep" => $request->cep,
                 "street" => $request->street,
                 "number" => $request->number,
@@ -50,9 +55,8 @@ class PharmacyController extends Controller
                 "neighboor" => $request->neighboor,
                 "city" => $request->city,
                 "state" => $request->state,
+                "cpf" => $request->cpf,
                 "name" => $request->name,
-                "rede" => $request->rede,
-                "email" => $request->email,
             ];
 
             $pharmacy = Pharmacy::create($dataPharmacy);
@@ -65,30 +69,6 @@ class PharmacyController extends Controller
         } catch (\Throwable $th) {
 
             return response()->json(new ErrorResource($th->getMessage()), 422);
-        }
-    }
-
-    public function getAllDiagnoses()
-    {
-        try {
-
-            $diagnoses = Diagnoses::all();
-
-            return response()->json(new SuccessResource($diagnoses), 200);
-        } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 422);
-        }
-    }
-
-    public function getDiagnose($id)
-    {
-        try {
-
-            $diagnoses = Diagnoses::where("id", $id)->with("hasSymptoms.symptom")->get()->toArray();
-
-            return response()->json(new SuccessResource($diagnoses), 200);
-        } catch (\Throwable $th) {
-            return response()->json(new ErrorResource($th), 404);
         }
     }
 
@@ -106,27 +86,42 @@ class PharmacyController extends Controller
     public function editPharmacy(Request $request, $id)
     {
         try {
-
-            Pharmacy::where("id", $id)->update([
-                "cep" => $request->cep,
-                "street" => $request->street,
-                "number" => $request->number,
-                "complement" => $request->complement,
-                "neighboor" => $request->neighboor,
-                "city" => $request->city,
-                "state" => $request->state,
-                "name" => $request->name,
-                "rede" => $request->rede,
-                "unidade" => $request->unidade,
-                "email" => $request->email,
-            ]);
-
+            $updateData = [];
+            $fieldsToUpdate = [
+                "rede",
+                "unidade",
+                "cnpj",
+                "cellphone",
+                "email",
+                "cep",
+                "street",
+                "number",
+                "complement",
+                "neighboor",
+                "city",
+                "state",
+                "cpf",
+                "name",
+            ];
+    
+            // Check if the field exists in the request and is not null or empty
+            foreach ($fieldsToUpdate as $field) {
+                if ($request->has($field) && $request->filled($field)) {
+                    $updateData[$field] = $request->input($field);
+                }
+            }
+    
+            if (empty($updateData)) {
+                return response()->json(new ErrorResource("Nenhum campo foi informado para atualizar."), 422);
+            }
+    
+            Pharmacy::where("id", $id)->update($updateData);
+    
             return response()->json(new SuccessResource([
                 "message" => "Farmácia editada com sucesso!"
-            ]), 200);            
-
+            ]), 200);
+    
         } catch (\Throwable $th) {
-
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
