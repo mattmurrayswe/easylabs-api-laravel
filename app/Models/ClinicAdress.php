@@ -9,6 +9,8 @@ class ClinicAdress extends Model
     public $table = 'clinic_address';
     
     protected $fillable = [
+        'cnpj',
+        'company_name',
         'cep',
         'street',
         'number',

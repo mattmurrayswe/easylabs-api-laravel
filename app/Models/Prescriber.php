@@ -19,19 +19,23 @@ class Prescriber extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'especialidade',
         'email',
         'password',
         'cpf',
-        'address',
+        'street_number',
+        'complement',
+        'city',
+        'state',
+        'street',
+        'neighborhood',
+        'cep',
         'documents',
-        'indicate_clinic',
         'cellphone',
         'crm',
-        'cnpj',
-        'company_name',
         'active',
+        'indicate_clinic',
         'clinic_adress_id',
-        'especialidade',
         'id_permissao'
     ];
 
