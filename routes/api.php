@@ -232,9 +232,9 @@ Route::prefix('prescriber')->group(function(){
         Route::delete('/voucher/{id}', [VoucherController::class, 'deleteVoucher']);
         Route::post('/use-voucher', [VoucherController::class, 'useVoucher']);
 
-        Route::get('/get-clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
-        Route::post('/create-clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
-        Route::put('/update-clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
+        Route::get('/clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
+        Route::post('/clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
+        Route::put('/clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
         
         Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
         Route::delete('/drop-appointment/{id}', [AppointmentController::class, 'dropAppointment']);

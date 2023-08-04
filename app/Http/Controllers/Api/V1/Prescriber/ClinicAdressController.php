@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\ClinicAdress;
+use App\Models\Prescriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,11 +23,11 @@ class ClinicAdressController extends Controller
 
     public function createClinicAdress(Request $request)
     {
-        $user = Auth::guard("webPresc")->user();
+        $id = Auth::guard("webPresc")->id();
         try {
             $clinicAdress = ClinicAdress::create($request->all());
-    
-            $user->update([
+            
+            Prescriber::where("id", $id)->update([
                 'clinic_adress_id' => $clinicAdress->id
             ]);
 
