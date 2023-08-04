@@ -1,5 +1,3 @@
-$(document).ready(function() {});
-
 function editFarmacia(idFarmacia) {
 
     const rede = $( `#rede-${idFarmacia}` ).val();
@@ -18,7 +16,7 @@ function editFarmacia(idFarmacia) {
     const name = $( `#name-${idFarmacia}` ).val();
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy/${idFarmacia}`,
+        url: `${ENDPOINT_JS}/api/pharmacy/${idFarmacia}`,
         type: "PUT",
         data: {
             rede : rede,
@@ -31,7 +29,10 @@ function editFarmacia(idFarmacia) {
             street : street,
             number : number,
             neighboor : neighboor,
-            complement : complement
+            complement : complement,
+            cnpj : cnpj,
+            cellphone : cellphone,
+            cpf : cpf
         },
         success: function(data, status) {
 
@@ -47,7 +48,7 @@ function editFarmacia(idFarmacia) {
 function deleteFarmacia(idPharmacy) {
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy/${idPharmacy}`,
+        url: `${ENDPOINT_JS}/api/pharmacy/${idPharmacy}`,
         type: "DELETE",
         success: function(data, status) {
 
@@ -79,7 +80,7 @@ function cadastreFarmacia() {
 
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/pharmacy`,
+        url: `${ENDPOINT_JS}/api/pharmacy`,
         type: "POST",
         data: {
             rede : rede,
