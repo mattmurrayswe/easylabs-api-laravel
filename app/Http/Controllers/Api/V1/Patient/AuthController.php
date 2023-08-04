@@ -138,7 +138,7 @@ class AuthController extends Controller
 
         }
 
-        return new SpecificPrescriberResource($user);
+        return response()->json(new SuccessResource($user), 200);
     }
 
     public function editPatientInfo(int $id, Request $request)
