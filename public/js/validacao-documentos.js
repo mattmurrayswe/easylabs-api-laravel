@@ -20,7 +20,7 @@ function validarOuInvalidarDoc(idPresc) {
         success: function(data, status) {
 
             if (status === "success") {
-                
+                location.reload();
             }
         }
     });

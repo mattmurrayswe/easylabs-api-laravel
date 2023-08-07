@@ -146,10 +146,34 @@
                                 <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Telefone</label>
                                 <input disabled type="text" name="brand" id="" value="{{$u->cellphone}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div>
-                            <!-- <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Endereço</label>
-                                <input disabled type="text" name="brand" id="" value="{{$u->id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div> -->
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Número da Rua</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->street_number}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->complement}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->city}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Estado</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->state}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">CEP</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->cep}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Rua</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->street}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
+                            <div>
+                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Bairro</label>
+                                <input disabled type="text" name="brand" id="" value="{{$u->neighborhood}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                            </div>
                             <div class="space-x-4">
                                 <div class="inline-flex items-center">
                                     <input @if($u->active == 1) checked @endif type="radio" id="active-{{$u->unique_id}}" name="active-radios-{{$u->unique_id}}" value="active" class="radio radio-primary form-radio text-primary-600 focus:ring-primary-600 focus:border-primary-600">

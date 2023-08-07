@@ -22,7 +22,6 @@ class Patient extends Authenticatable
         'email',
         'password',
         'cpf',
-        'address',
         'cellphone',
         'birth',
         'active',
@@ -33,6 +32,13 @@ class Patient extends Authenticatable
         'prescriber_id',
         'id_permissao',
         'uploaded_foto_perfil',
+        'street_number',
+        'complement',
+        'city',
+        'state',
+        'cep',
+        'street',
+        'neighborhood',
     ];
 
     /**
