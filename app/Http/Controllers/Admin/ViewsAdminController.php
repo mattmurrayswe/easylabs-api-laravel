@@ -81,10 +81,9 @@ class ViewsAdminController extends Controller
     public function validacaoDocumentos()
     {
         $prescribers = Prescriber::where([
-            "uploaded_crm_frente" => "true",
-            "uploaded_crm_verso" => "true",
-            "uploaded_selfie_com_doc" => "true",
-            "uploaded_foto_perfil" => "true",
+            ["uploaded_crm_frente", "!=","false"],
+            ["uploaded_crm_verso", "!=","false"],
+            ["uploaded_selfie_com_doc", "!=","false"]
         ])->get([
             "id",
             "name",

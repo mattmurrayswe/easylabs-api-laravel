@@ -72,9 +72,9 @@ Route::put('/permissao-user', [PermissaoController::class, 'editPermissaoUser'])
 
 Route::post('/documents', [AuthController::class, 'uploadDocs']);
 Route::get('/documents', [AuthController::class, 'getDocuments']);
-Route::get('/crm-frente/{id}', [AuthController::class, 'getCRMFrente']);
-Route::get('/crm-verso/{id}', [AuthController::class, 'getCRMVerso']);
-Route::get('/selfie-com-doc/{id}', [AuthController::class, 'getSelfieComDoc']);
+Route::get('/crm-frente/{id}', [AuthController::class, 'downloadCRMFrente']);
+Route::get('/crm-verso/{id}', [AuthController::class, 'downloadCRMVerso']);
+Route::get('/selfie-com-doc/{id}', [AuthController::class, 'downloadSelfieComDoc']);
 Route::get('/foto-perfil/{id}', [AuthController::class, 'getFotoPerfil']);
 Route::put('/valide/crm-frente/{id}', [AuthController::class, 'editCRMFrente']);
 Route::put('/valide/crm-verso/{id}', [AuthController::class, 'editCRMVerso']);

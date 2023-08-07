@@ -77,7 +77,7 @@
 
 @foreach ($prescribers as $p)
 <div id="editModal-{{ $p->id }}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-2xl max-h-full">
+    <div data-modal-backdrop="static" class="relative w-full max-w-2xl max-h-full">
         <div class="relative bg-white rounded-lg shadow">
             <div class="flex items-start justify-between p-4 border-b rounded-t">
                 <h3 class="text-xl font-semibold text-gray-900">
@@ -101,11 +101,8 @@
                         @if ($p->ok_crm_verso === "false")
                         <option value="crm-verso">CRM Verso</option>
                         @endif
-                        @if ($p->ok_crm_verso === "false")
-                        <option value="selfie-com-doc">Selfie com Documento</option>
-                        @endif
                         @if ($p->ok_selfie_com_doc === "false")
-                        <option value="foto-perfil">Foto Perfil</option>
+                        <option value="selfie-com-doc">Selfie com Documento</option>
                         @endif
                     </select>
                 </div>

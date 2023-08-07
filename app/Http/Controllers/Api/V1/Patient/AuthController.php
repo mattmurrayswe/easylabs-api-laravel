@@ -11,7 +11,7 @@ use App\Http\Resources\Api\V1\DefaultUserResource;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Http\Resources\Api\V1\SpecificPatientResource; 
-use App\Http\Resources\Api\V1\SpecificPrescriberResource; 
+use Illuminate\Support\Facades\Response;
 use App\Models\Patient;
 use App\Models\Prescriber;
 use GuzzleHttp\Client;
@@ -349,51 +349,85 @@ class AuthController extends Controller
         }
     }
 
-    public function getCRMFrente()
+    public function downloadCRMFrente($id)
     {
-        $id = 1;
-        
         try {
+            $filePath = "docs/crm-frente/crm-frente-{$id}.jpg";
+    
+            $fileContents = Storage::disk('s3')->get($filePath);
+    
+            // Set the appropriate Content-Type for the file you are serving.
+            $contentType = 'image/jpeg'; // You can adjust this according to the file type.
+    
+            // Set response headers for download
+            $headers = [
+                'Content-Type' => $contentType,
+                'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
+            ];
+    
+            // Return the file as a download response.
+            return Response::make($fileContents, 200, $headers);
+    
+        } catch (\Throwable $th) {
 
-            return Storage::download("/public/docs/crm-frente/crm-frente-{$id}.jpg");
+            return response()->json(new ErrorResource($th->getMessage()), 422);
             
-
-        } catch (\Throwable $th) {
-
-            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 
-    public function getCRMVerso()
-    {
-        $id = 1;
-        
+    public function downloadCRMVerso($id)
+    {        
         try {
-
-            return Storage::download("/public/docs/crm-verso/crm-verso-{$id}.jpg");
-
-
+            $filePath = "docs/crm-verso/crm-verso-{$id}.jpg";
+    
+            $fileContents = Storage::disk('s3')->get($filePath);
+    
+            // Set the appropriate Content-Type for the file you are serving.
+            $contentType = 'image/jpeg'; // You can adjust this according to the file type.
+    
+            // Set response headers for download
+            $headers = [
+                'Content-Type' => $contentType,
+                'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
+            ];
+    
+            // Return the file as a download response.
+            return Response::make($fileContents, 200, $headers);
+    
         } catch (\Throwable $th) {
 
             return response()->json(new ErrorResource($th->getMessage()), 422);
+            
         }
     }
 
-    public function getSelfieComDoc()
+    public function downloadSelfieComDoc($id)
     {
-        $id = 1;
-        
         try {
-
-            return Storage::download("/public/docs/selfie-com-doc/selfie-com-doc-{$id}.jpg");
-
+            $filePath = "docs/selfie-com-doc/selfie-com-doc-{$id}.jpg";
+    
+            $fileContents = Storage::disk('s3')->get($filePath);
+    
+            // Set the appropriate Content-Type for the file you are serving.
+            $contentType = 'image/jpeg'; // You can adjust this according to the file type.
+    
+            // Set response headers for download
+            $headers = [
+                'Content-Type' => $contentType,
+                'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
+            ];
+    
+            // Return the file as a download response.
+            return Response::make($fileContents, 200, $headers);
+    
         } catch (\Throwable $th) {
 
             return response()->json(new ErrorResource($th->getMessage()), 422);
+            
         }
     }
 
-    public function getFotoPerfilPatient()
+    public function getFotoPerfilPatient($id)
     { 
         try {
             $id = Auth::guard("webPatient")->id();
@@ -410,7 +444,7 @@ class AuthController extends Controller
         }
     }
 
-    public function getFotoPerfilPrescriber()
+    public function getFotoPerfilPrescriber($id)
     {
         $id = Auth::guard("webPresc")->id();
         

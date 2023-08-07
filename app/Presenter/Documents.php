@@ -22,10 +22,6 @@ class Documents
                 $docs_pendentes[] = self::getFieldName('selfie_com_doc');
             }
         
-            if ($prescriber->ok_foto_perfil === 'false') {
-                $docs_pendentes[] = self::getFieldName('foto_perfil');
-            }
-        
             // Adicionar a lista de documentos pendentes ao prescriber
             $prescriber->docs_pendentes = implode(', ', $docs_pendentes);
         }

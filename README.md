@@ -5,12 +5,12 @@ cp .env.example .env
 
 Suba os containers do projeto
 ```sh
-docker-compose up -d
+./vendor/bin/sail up
 ```
 
 Acesse o container app
 ```sh
-docker-compose exec app bash
+docker-compose exec laravel.test bash
 ```
 
 Instale as dependências do projeto
@@ -33,7 +33,7 @@ Acesse o projeto
 https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com
 ```
 
-Doc de rotas
+Doc de rotas (Deprecated) usou-se Postman
 ```sh
 https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/manual/1.0/autenticacao
 ```
@@ -45,7 +45,7 @@ rm -R .docker
 php vendor/bin/vapor deploy production
 ```
 
-Auth
+Admin Login
 ```sh
 npm install
 npm run dev
