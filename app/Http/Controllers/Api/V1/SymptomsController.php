@@ -81,7 +81,6 @@ class SymptomsController extends Controller
                 where('created_at', '>', $request['start_time'])->
                 where('created_at', '<', $request['end_time'])->
                 where('patient_id', Auth::guard("webPatient")->id())->
-                where('symptom_id', $request['symptom_id'])->
                 where('diagnoses_id', $request['diagnoses_id'])->get()->toArray();
 
             return response()->json(new SuccessResource($symptoms), 200);
@@ -101,7 +100,6 @@ class SymptomsController extends Controller
                 where('created_at', '>', $request['start_time'])->
                 where('created_at', '<', $request['end_time'])->
                 where('patient_id', $request->id_patient)->
-                where('symptom_id', $request['symptom_id'])->
                 where('diagnoses_id', $request['diagnoses_id'])->get()->toArray();
 
             return response()->json(new SuccessResource($symptoms), 200);
