@@ -31,7 +31,7 @@ class ViewsAdminController extends Controller
 
     public function cadastroMedicamentos()
     {
-        $medicines = Medicine::paginate(5);
+        $medicines = Medicine::paginate(30);
 
         return view('cadastro-medicamentos', [ 
             'medicamentos' => $medicines
@@ -40,7 +40,7 @@ class ViewsAdminController extends Controller
 
     public function cadastroDiagnosticos()
     {
-        $diagnosesPaginator = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"])->paginate(5);
+        $diagnosesPaginator = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"])->paginate(30);
     
         $diagnoses = $diagnosesPaginator->items(); // Get the paginated items as an array
     
@@ -69,7 +69,7 @@ class ViewsAdminController extends Controller
             ["uploaded_crm_frente", "!=","false"],
             ["uploaded_crm_verso", "!=","false"],
             ["uploaded_selfie_com_doc", "!=","false"]
-        ])->paginate(5);
+        ])->paginate(30);
         
         $prescribers = Documents::concatDocumentosPendentes($prescribersPaginator);
         
@@ -86,7 +86,7 @@ class ViewsAdminController extends Controller
 
     public function farmaciasParceiras()
     {
-        $clinics = Pharmacy::paginate(2);
+        $clinics = Pharmacy::paginate(30);
 
         return view('farmacias-parceiras', [
             "clinics" => $clinics
@@ -131,7 +131,7 @@ class ViewsAdminController extends Controller
     public function listarUsuarios(Request $request)
     {
         // Define the number of items per page
-        $perPage = 10; // You can adjust this value as needed
+        $perPage = 15; // You can adjust this value as needed
 
         // Get the prescribers and patients separately with pagination
         $prescribers = Prescriber::with("permissao")->paginate($perPage);
