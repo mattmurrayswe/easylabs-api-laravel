@@ -8,6 +8,7 @@ class Diagnoses
     {
         foreach ($diagnoses as &$diagnose) {
 
+            $diagnose = $diagnose->toArray();
             $symptomsConcat = "";
 
             foreach ($diagnose["has_symptoms"] as $hasSymptom) {

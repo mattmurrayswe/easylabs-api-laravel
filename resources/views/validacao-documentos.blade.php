@@ -53,8 +53,17 @@
                                 <p class="flex justify-center">Validar</p>
                             </td>
                         <tr>
-                            @endforeach
-                        <tr class="bg-gray-800 h-10">
+                        @endforeach
+                        <tr class="bg-gray-800 max-h-5 h-5">
+                            <td class="px-4 rounded-bl-xl"></td>
+                            <td class="px-4" colspan="2"> <!-- Use colspan to span across two columns -->
+                                <div class="flex justify-center items-center h-full">
+                                    {{ $prescribersPaginator->links() }}
+                                </div>
+                            </td>
+                            <td class="px-4 rounded-br-xl"></td>
+                        </tr>
+                        <tr class="h-0">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>

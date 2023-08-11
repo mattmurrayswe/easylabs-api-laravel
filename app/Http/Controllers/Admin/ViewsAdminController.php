@@ -29,17 +29,7 @@ class ViewsAdminController extends Controller
 
     public function cadastroMedicamentos()
     {
-        $medicines = Medicine::all(
-            [
-                "id",
-                "name",
-                "presentation",
-                "concentration",
-                "volume_flask",
-                "formulation",
-                "lab",
-            ]
-        );
+        $medicines = Medicine::paginate(5);
 
         return view('cadastro-medicamentos', [ 
             'medicamentos' => $medicines
@@ -48,26 +38,24 @@ class ViewsAdminController extends Controller
 
     public function cadastroDiagnosticos()
     {
-        $diagnoses = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"])->get()->toArray();
-
+        $diagnosesPaginator = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"])->paginate(5);
+    
+        $diagnoses = $diagnosesPaginator->items(); // Get the paginated items as an array
+    
         $diagnoses = PresenterDiagnoses::concatSymptoms($diagnoses);
-
-        $symptoms = Symptoms::all(
-            [
-                "id",
-                "name"
-            ]
-        );
-
-        $medicines = Medicine::all(
-            [
-                "id",
-                "name"
-            ]
-        );
-
+    
+        $symptoms = Symptoms::all([
+            "id",
+            "name"
+        ]);
+    
+        $medicines = Medicine::all([
+            "id",
+            "name"
+        ]);
+    
         return view('cadastro-diagnosticos', [
-            'diagnoses' => $diagnoses,
+            'diagnoses' => $diagnosesPaginator,
             'symptoms' => $symptoms,
             'medicines' => $medicines
         ]);
@@ -75,23 +63,17 @@ class ViewsAdminController extends Controller
 
     public function validacaoDocumentos()
     {
-        $prescribers = Prescriber::where([
+        $prescribersPaginator = Prescriber::where([
             ["uploaded_crm_frente", "!=","false"],
             ["uploaded_crm_verso", "!=","false"],
             ["uploaded_selfie_com_doc", "!=","false"]
-        ])->get([
-            "id",
-            "name",
-            "ok_crm_frente",
-            "ok_crm_verso",
-            "ok_selfie_com_doc",
-            "ok_foto_perfil",
-        ]);
+        ])->paginate(5);
         
-        $prescribers = Documents::concatDocumentosPendentes($prescribers);
+        $prescribers = Documents::concatDocumentosPendentes($prescribersPaginator);
         
         return view('validacao-documentos', [
-            "prescribers" => $prescribers
+            "prescribers" => $prescribers,
+            "prescribersPaginator" => $prescribersPaginator
         ]);
     }
 
