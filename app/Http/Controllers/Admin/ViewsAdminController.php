@@ -20,12 +20,7 @@ class ViewsAdminController extends Controller
 {
     public function cadastroSintomas()
     {
-        $symptoms = Symptoms::all(
-            [
-                "id",
-                "name"
-            ]
-        );
+        $symptoms = Symptoms::paginate(30);
 
         return view('cadastro-sintomas', [ 
             'sintomas' => $symptoms
