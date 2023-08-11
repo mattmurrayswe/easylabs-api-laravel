@@ -67,14 +67,6 @@
     </a>
   </div>
   <div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
-    <a class="flex" href="{{ url('/desconto-promocao') }}">
-      <div class="w-5 mr-3 flex justify-center">
-        <img src="{{URL::asset('/image/tags.svg')}}" alt="profile Pic" height="18" width="18">
-      </div>
-      <p>Descontos e Promoções</p>
-    </a>
-  </div>
-  <div id="config-pushs" class="p-3 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
     <a class="flex" href="{{ url('/extracaodados') }}">
       <div class="w-5 mr-3 flex justify-center">
         <img src="{{URL::asset('/image/dadosbar.svg')}}" alt="profile Pic" height="18" width="18">

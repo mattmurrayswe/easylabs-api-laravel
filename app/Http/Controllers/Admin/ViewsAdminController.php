@@ -195,47 +195,64 @@ class ViewsAdminController extends Controller
 
     public function listarUsuarios(Request $request)
     {
-        // Define the number of items per page
+        $search = $request->input('search');
         $perPage = 15; // You can adjust this value as needed
-
-        // Get the prescribers and patients separately with pagination
-        $prescribers = Prescriber::with("permissao")->paginate($perPage);
-        $patients = Patient::with("permissao")->paginate($perPage);
-
-        // Add a user_type attribute to differentiate between prescribers and patients
+    
+        $prescribersQuery = Prescriber::with("permissao");
+        $patientsQuery = Patient::with("permissao");
+    
+        if ($search) {
+            $prescribersQuery->where(function($subquery) use ($search) {
+                $subquery->where('name', 'like', '%' . $search . '%')
+                         ->orWhereHas('permissao', function($query) use ($search) {
+                             $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
+                         })
+                         ->orWhere('id_permissao', $search); // Filter by id_permissao
+            });
+    
+            $patientsQuery->where(function($subquery) use ($search) {
+                $subquery->where('name', 'like', '%' . $search . '%')
+                         ->orWhereHas('permissao', function($query) use ($search) {
+                             $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
+                         })
+                         ->orWhere('id_permissao', $search); // Filter by id_permissao
+            });
+        }
+    
+        $prescribers = $prescribersQuery->paginate($perPage);
+        $patients = $patientsQuery->paginate($perPage);
+    
         $prescribers->getCollection()->transform(function ($prescriber) {
             $prescriber['user_type'] = 'prescriber';
             return $prescriber;
         });
-
+    
         $patients->getCollection()->transform(function ($patient) {
             $patient['user_type'] = 'patient';
             return $patient;
         });
-
-        // Initialize a single counter for both prescribers and patients
+    
         $userCounter = ($prescribers->currentPage() - 1) * $perPage + 1;
-
-        // Add a unique numeric identifier to each user
+    
         $prescribers->getCollection()->transform(function ($prescriber) use (&$userCounter) {
             $prescriber['unique_id'] = $userCounter;
             $userCounter++;
             return $prescriber;
         });
-
+    
         $patients->getCollection()->transform(function ($patient) use (&$userCounter) {
             $patient['unique_id'] = $userCounter;
             $userCounter++;
             return $patient;
         });
-
-        // Concatenate the prescribers and patients into a single collection
+    
         $users = $prescribers->concat($patients);
-
+    
         return view('listar-usuarios', [
             "users" => $users,
             "prescribers" => $prescribers,
             "patients" => $patients,
+            "search" => $search
         ]);
     }
     
