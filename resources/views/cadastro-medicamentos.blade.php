@@ -27,7 +27,19 @@
 
                 </div>
             </div>
-            <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
+            <div id="tabela-medicamentos" class="h-5/6 my-20">
+                <div class="mb-2">
+                    <form action="{{ url('/cadastro-medicamentos') }}" method="GET">
+                        <div class="flex">
+                            <div class="flex-1 mr-1">
+                                <input type="text" name="search" value="{{ $search }}" placeholder="Filtro" class="px-3 py-2 border rounded-lg w-full focus:outline-none">
+                            </div>
+                            <div>
+                                <button type="submit" class="bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-lg">Filtrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
                         <tr class="bg-gray-800">
@@ -83,7 +95,7 @@
                             </td>
                         </tr>
                         @php($i++)
-                        @endforeach                        
+                        @endforeach
                         <tr class="bg-gray-800 max-h-5 h-5">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4" colspan="7"> <!-- Use colspan to span across two columns -->

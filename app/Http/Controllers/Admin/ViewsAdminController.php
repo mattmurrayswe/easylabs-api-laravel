@@ -23,7 +23,6 @@ class ViewsAdminController extends Controller
     public function cadastroSintomas(Request $request)
     {
         $search = $request->input('search');
-    
         $query = Symptoms::query();
     
         if ($search) {
@@ -37,22 +36,51 @@ class ViewsAdminController extends Controller
             'search' => $search
         ]);
     }
-
-    public function cadastroMedicamentos()
+    public function cadastroMedicamentos(Request $request)
     {
-        $medicines = Medicine::paginate(30);
-
+        $search = $request->input('search');
+        $query = Medicine::query();        
+    
+        if ($search) {
+            $query->where(function($subquery) use ($search) {
+                $subquery->where('id', 'like', '%' . $search . '%')
+                         ->orWhere('name', 'like', '%' . $search . '%')
+                         ->orWhere('presentation', 'like', '%' . $search . '%')
+                         ->orWhere('concentration', 'like', '%' . $search . '%')
+                         ->orWhere('volume_flask', 'like', '%' . $search . '%')
+                         ->orWhere('formulation', 'like', '%' . $search . '%')
+                         ->orWhere('lab', 'like', '%' . $search . '%');
+            });
+        }
+    
+        $medicines = $query->paginate(30);
+        
         return view('cadastro-medicamentos', [ 
-            'medicamentos' => $medicines
+            'medicamentos' => $medicines,
+            'search' => $search
         ]);
     }
-
-    public function cadastroDiagnosticos()
-    {
-        $diagnosesPaginator = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"])->paginate(30);
     
+    public function cadastroDiagnosticos(Request $request)
+    {
+        $search = $request->input('search');
+    
+        // Query to fetch diagnoses with related data
+        $query = Diagnoses::with(["hasSymptoms.symptom", "hasSuggestedMedicines.medicine"]);
+    
+        if ($search) {
+            // Add a condition to search for diagnoses based on some criteria (e.g., id, name, symptoms, medicines, etc.)
+            $query->where(function($subquery) use ($search) {
+                $subquery->where('id', 'like', '%' . $search . '%') // Search by diagnosis id
+                         ->orWhere('name', 'like', '%' . $search . '%'); // Search by diagnosis name
+                // You can add more conditions here based on your needs, like symptoms, medicines, etc.
+            });
+        }
+    
+        $diagnosesPaginator = $query->paginate(30);
         $diagnoses = $diagnosesPaginator->items(); // Get the paginated items as an array
     
+        // Your existing code to concatenate symptoms
         $diagnoses = PresenterDiagnoses::concatSymptoms($diagnoses);
     
         $symptoms = Symptoms::all([
@@ -68,7 +96,8 @@ class ViewsAdminController extends Controller
         return view('cadastro-diagnosticos', [
             'diagnoses' => $diagnosesPaginator,
             'symptoms' => $symptoms,
-            'medicines' => $medicines
+            'medicines' => $medicines,
+            'search' => $search // Pass the search term to the view
         ]);
     }
 

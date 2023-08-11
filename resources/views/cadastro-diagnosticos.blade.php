@@ -25,7 +25,19 @@
                     </form>
                 </div>
             </div>
-            <div id="tabela-medicamentos" class="h-5/6 my-20 rounded-xl shadow">
+            <div id="tabela-medicamentos" class="h-5/6 my-20">
+                <div class="mb-2">
+                    <form action="{{ url('/cadastro-diagnosticos') }}" method="GET">
+                        <div class="flex">
+                            <div class="flex-1 mr-1">
+                                <input type="text" name="search" value="{{ $search }}" placeholder="Filtro" class="px-3 py-2 border rounded-lg w-full focus:outline-none">
+                            </div>
+                            <div>
+                                <button type="submit" class="bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-lg">Filtrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <table class="table-auto w-full h-full text-xs rounded-xl">
                     <thead class="h-16">
                         <tr class="bg-gray-800">
@@ -81,7 +93,6 @@
                                 <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center">Novo</button>
                             </td>
                         </tr>
-                        <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center">Novo</button>
                         <tr class="h-0">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4"></td>

@@ -30,10 +30,10 @@
                     <form action="{{ url('/cadastro-sintomas') }}" method="GET">
                         <div class="flex">
                             <div class="flex-1 mr-1">
-                                <input type="text" name="search" value="{{ $search }}" placeholder="Filtre" class="px-3 py-2 border rounded-lg w-full focus:outline-none">
+                                <input type="text" name="search" value="{{ $search }}" placeholder="Filtro" class="px-3 py-2 border rounded-lg w-full focus:outline-none">
                             </div>
                             <div>
-                                <button type="submit" class="bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-lg">Filtre</button>
+                                <button type="submit" class="bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-lg">Filtrar</button>
                             </div>
                         </div>
                     </form>
