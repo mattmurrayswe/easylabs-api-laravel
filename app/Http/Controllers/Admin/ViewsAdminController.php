@@ -15,6 +15,8 @@ use App\Models\Prescriber;
 use App\Models\Symptoms;
 use App\Presenter\Diagnoses as PresenterDiagnoses;
 use App\Presenter\Documents;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class ViewsAdminController extends Controller
 {
@@ -84,7 +86,7 @@ class ViewsAdminController extends Controller
 
     public function farmaciasParceiras()
     {
-        $clinics = Pharmacy::all();
+        $clinics = Pharmacy::paginate(2);
 
         return view('farmacias-parceiras', [
             "clinics" => $clinics
@@ -125,45 +127,50 @@ class ViewsAdminController extends Controller
             "admins" => $admins->count(),
         ]);
     }
-    
-    public function listarUsuarios()
+
+    public function listarUsuarios(Request $request)
     {
-        // Get the prescribers and patients separately
-        $prescribers = Prescriber::with("permissao")->get();
-        $patients = Patient::with("permissao")->get();
-    
+        // Define the number of items per page
+        $perPage = 10; // You can adjust this value as needed
+
+        // Get the prescribers and patients separately with pagination
+        $prescribers = Prescriber::with("permissao")->paginate($perPage);
+        $patients = Patient::with("permissao")->paginate($perPage);
+
         // Add a user_type attribute to differentiate between prescribers and patients
-        $prescribers = $prescribers->map(function ($prescriber) {
+        $prescribers->getCollection()->transform(function ($prescriber) {
             $prescriber['user_type'] = 'prescriber';
             return $prescriber;
         });
-    
-        $patients = $patients->map(function ($patient) {
+
+        $patients->getCollection()->transform(function ($patient) {
             $patient['user_type'] = 'patient';
             return $patient;
         });
-    
+
         // Initialize a single counter for both prescribers and patients
-        $userCounter = 1;
-    
+        $userCounter = ($prescribers->currentPage() - 1) * $perPage + 1;
+
         // Add a unique numeric identifier to each user
-        $prescribers = $prescribers->map(function ($prescriber) use (&$userCounter) {
+        $prescribers->getCollection()->transform(function ($prescriber) use (&$userCounter) {
             $prescriber['unique_id'] = $userCounter;
             $userCounter++;
             return $prescriber;
         });
-    
-        $patients = $patients->map(function ($patient) use (&$userCounter) {
+
+        $patients->getCollection()->transform(function ($patient) use (&$userCounter) {
             $patient['unique_id'] = $userCounter;
             $userCounter++;
             return $patient;
         });
-    
+
         // Concatenate the prescribers and patients into a single collection
         $users = $prescribers->concat($patients);
-    
+
         return view('listar-usuarios', [
-            "users" => $users
+            "users" => $users,
+            "prescribers" => $prescribers,
+            "patients" => $patients,
         ]);
     }
     
