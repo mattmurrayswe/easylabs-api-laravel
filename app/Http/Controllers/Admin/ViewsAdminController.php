@@ -20,12 +20,21 @@ use Illuminate\Pagination\Paginator;
 
 class ViewsAdminController extends Controller
 {
-    public function cadastroSintomas()
+    public function cadastroSintomas(Request $request)
     {
-        $symptoms = Symptoms::paginate(30);
-
+        $search = $request->input('search');
+    
+        $query = Symptoms::query();
+    
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+    
+        $symptoms = $query->paginate(30);
+    
         return view('cadastro-sintomas', [ 
-            'sintomas' => $symptoms
+            'sintomas' => $symptoms,
+            'search' => $search
         ]);
     }
 
