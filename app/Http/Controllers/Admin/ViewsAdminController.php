@@ -113,8 +113,8 @@ class ViewsAdminController extends Controller
     
         if ($search) {
             $query->where(function($subquery) use ($search) {
-                $subquery->where('name', 'like', '%' . $search . '%'); // Search by prescriber name
-                // Add more conditions here based on your needs
+                $subquery->where('id', 'like', '%' . $search . '%')
+                         ->orWhere('name', 'like', '%' . $search . '%');
             });
         }
     
@@ -133,12 +133,28 @@ class ViewsAdminController extends Controller
         return view('config-pushs');
     }
 
-    public function farmaciasParceiras()
+    public function farmaciasParceiras(Request $request)
     {
-        $clinics = Pharmacy::paginate(30);
-
+        $search = $request->input('search');
+    
+        $query = Pharmacy::query();
+    
+        if ($search) {
+            $query->where(function($subquery) use ($search) {
+                $subquery->where('id', 'like', '%' . $search . '%') // Search by pharmacy id
+                         ->orWhere('unidade', 'like', '%' . $search . '%') // Search by pharmacy unidade
+                         ->orWhere('rede', 'like', '%' . $search . '%') // Search by pharmacy rede
+                         ->orWhere('email', 'like', '%' . $search . '%') // Search by pharmacy email
+                         ->orWhere('cep', 'like', '%' . $search . '%'); // Search by pharmacy cep
+                // You can add more conditions here based on your needs
+            });
+        }
+    
+        $clinics = $query->paginate(30);
+    
         return view('farmacias-parceiras', [
-            "clinics" => $clinics
+            "clinics" => $clinics,
+            "search" => $search
         ]);
     }
 
