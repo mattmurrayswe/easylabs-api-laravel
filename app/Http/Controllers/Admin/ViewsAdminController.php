@@ -26,7 +26,10 @@ class ViewsAdminController extends Controller
         $query = Symptoms::query();
     
         if ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
+            $query->where(function($subquery) use ($search) {
+                $subquery->where('name', 'like', '%' . $search . '%') // Search by symptom name
+                         ->orWhere('id', $search); // Search by symptom id
+            });
         }
     
         $symptoms = $query->paginate(30);
@@ -36,6 +39,7 @@ class ViewsAdminController extends Controller
             'search' => $search
         ]);
     }
+    
     public function cadastroMedicamentos(Request $request)
     {
         $search = $request->input('search');
