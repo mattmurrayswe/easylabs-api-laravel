@@ -101,19 +101,30 @@ class ViewsAdminController extends Controller
         ]);
     }
 
-    public function validacaoDocumentos()
+    public function validacaoDocumentos(Request $request)
     {
-        $prescribersPaginator = Prescriber::where([
+        $search = $request->input('search');
+    
+        $query = Prescriber::where([
             ["uploaded_crm_frente", "!=","false"],
             ["uploaded_crm_verso", "!=","false"],
             ["uploaded_selfie_com_doc", "!=","false"]
-        ])->paginate(30);
-        
+        ]);
+    
+        if ($search) {
+            $query->where(function($subquery) use ($search) {
+                $subquery->where('name', 'like', '%' . $search . '%'); // Search by prescriber name
+                // Add more conditions here based on your needs
+            });
+        }
+    
+        $prescribersPaginator = $query->paginate(30);
         $prescribers = Documents::concatDocumentosPendentes($prescribersPaginator);
-        
+    
         return view('validacao-documentos', [
             "prescribers" => $prescribers,
-            "prescribersPaginator" => $prescribersPaginator
+            "prescribersPaginator" => $prescribersPaginator,
+            "search" => $search
         ]);
     }
 
