@@ -203,29 +203,37 @@ class ViewsAdminController extends Controller
     
         $prescribersQuery = Prescriber::with("permissao");
         $patientsQuery = Patient::with("permissao");
-    
+
         if ($search) {
-            $prescribersQuery->where(function($subquery) use ($search) {
-                $subquery->where('name', 'like', '%' . $search . '%')
-                    ->orWhereHas('permissao', function($query) use ($search) {
-                        $query->where('name', 'like', '%' . $search . '%');
+            $lowerSearch = strtolower($search); // Convert the search term to lowercase
+
+            if ($lowerSearch == 'prescritor') {
+                $lowerSearch = 'prescriber';
+            } elseif ($lowerSearch == 'paciente') {
+                $lowerSearch = 'patient';
+            }
+
+            $prescribersQuery->where(function ($subquery) use ($lowerSearch) {
+                $subquery->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereHas('permissao', function ($query) use ($lowerSearch) {
+                        $query->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%']);
                     })
-                    ->orWhere('cpf', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('id_permissao', $search);
+                    ->orWhereRaw('LOWER(cpf) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereRaw('LOWER(email) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhere('id_permissao', $lowerSearch);
             });
-    
-            $patientsQuery->where(function($subquery) use ($search) {
-                $subquery->where('name', 'like', '%' . $search . '%')
-                    ->orWhereHas('permissao', function($query) use ($search) {
-                        $query->where('name', 'like', '%' . $search . '%');
+
+            $patientsQuery->where(function ($subquery) use ($lowerSearch) {
+                $subquery->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereHas('permissao', function ($query) use ($lowerSearch) {
+                        $query->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%']);
                     })
-                    ->orWhere('cpf', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('id_permissao', $search);
+                    ->orWhereRaw('LOWER(cpf) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereRaw('LOWER(email) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhere('id_permissao', $lowerSearch);
             });
         }
-    
+
         $prescribers = $prescribersQuery->get();
         $patients = $patientsQuery->get();
     
@@ -256,7 +264,7 @@ class ViewsAdminController extends Controller
         $users = $prescribers->concat($patients);
 
         // Manual Pagination Logic
-        $perPage = 10; // You can adjust the number of users per page
+        $perPage = 30; // You can adjust the number of users per page
         $currentPage = $request->input('page', 1); // Get the current page from the query parameter
         $offset = ($currentPage - 1) * $perPage;
 
