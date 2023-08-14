@@ -78,7 +78,20 @@
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4" colspan="4">
                                 <div class="flex justify-center items-center h-full">
-                                    {{ $prescribers->links() }}
+                                    <div class="pagination">
+                                        @php
+                                        $lastPage = ceil($totalItems / $perPage);
+                                        @endphp
+                                        <ul>
+                                            @for ($i = 1; $i <= $lastPage; $i++)
+                                            <li>
+                                                <a href="{{ request()->fullUrlWithQuery(['page' => $i, 'search' => $search]) }}" class="{{ $i == $currentPage ? 'active' : '' }}">
+                                                    {{ $i }}
+                                                </a>
+                                            </li>
+                                            @endfor
+                                        </ul>
+                                    </div>
                                 </div>
                             </td>
                             <td class="px-4 rounded-br-xl">

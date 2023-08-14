@@ -200,7 +200,6 @@ class ViewsAdminController extends Controller
     public function listarUsuarios(Request $request)
     {
         $search = $request->input('search');
-        $perPage = 15; // You can adjust this value as needed
     
         $prescribersQuery = Prescriber::with("permissao");
         $patientsQuery = Patient::with("permissao");
@@ -208,57 +207,67 @@ class ViewsAdminController extends Controller
         if ($search) {
             $prescribersQuery->where(function($subquery) use ($search) {
                 $subquery->where('name', 'like', '%' . $search . '%')
-                         ->orWhereHas('permissao', function($query) use ($search) {
-                             $query->where('name', 'like', '%' . $search . '%');
-                         })
-                         ->orWhere('cpf', 'like', '%' . $search . '%')
-                         ->orWhere('email', 'like', '%' . $search . '%')
-                         ->orWhere('id_permissao', $search);
+                    ->orWhereHas('permissao', function($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhere('cpf', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('id_permissao', $search);
             });
     
             $patientsQuery->where(function($subquery) use ($search) {
                 $subquery->where('name', 'like', '%' . $search . '%')
-                         ->orWhereHas('permissao', function($query) use ($search) {
-                             $query->where('name', 'like', '%' . $search . '%');
-                         })
-                         ->orWhere('cpf', 'like', '%' . $search . '%')
-                         ->orWhere('email', 'like', '%' . $search . '%')
-                         ->orWhere('id_permissao', $search);
+                    ->orWhereHas('permissao', function($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhere('cpf', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('id_permissao', $search);
             });
         }
     
         $prescribers = $prescribersQuery->get();
         $patients = $patientsQuery->get();
-        
+    
         $prescribers->transform(function ($prescriber) {
             $prescriber['user_type'] = 'prescriber';
             return $prescriber;
         });
-        
+    
         $patients->transform(function ($patient) {
             $patient['user_type'] = 'patient';
             return $patient;
         });
-        
+    
         $userCounter = 1;
-        
+    
         $prescribers->transform(function ($prescriber) use (&$userCounter) {
             $prescriber['unique_id'] = $userCounter;
             $userCounter++;
             return $prescriber;
         });
-        
+    
         $patients->transform(function ($patient) use (&$userCounter) {
             $patient['unique_id'] = $userCounter;
             $userCounter++;
             return $patient;
         });
-        
+
         $users = $prescribers->concat($patients);
-        
+
+        // Manual Pagination Logic
+        $perPage = 30; // You can adjust the number of users per page
+        $currentPage = $request->input('page', 1); // Get the current page from the query parameter
+        $offset = ($currentPage - 1) * $perPage;
+
+        $usersPaginated = $users->slice($offset, $perPage);
+
         return view('listar-usuarios', [
-            "users" => $users,
-            "search" => $search
+            "users" => $usersPaginated,
+            "search" => $search,
+            "currentPage" => $currentPage,
+            "perPage" => $perPage,
+            "totalItems" => $users->count(),
         ]);
     }
     
