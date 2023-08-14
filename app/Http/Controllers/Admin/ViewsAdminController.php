@@ -209,7 +209,7 @@ class ViewsAdminController extends Controller
             $prescribersQuery->where(function($subquery) use ($search) {
                 $subquery->where('name', 'like', '%' . $search . '%')
                          ->orWhereHas('permissao', function($query) use ($search) {
-                             $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
+                             $query->where('name', 'like', '%' . $search . '%');
                          })
                          ->orWhere('cpf', 'like', '%' . $search . '%')
                          ->orWhere('email', 'like', '%' . $search . '%')
@@ -219,7 +219,7 @@ class ViewsAdminController extends Controller
             $patientsQuery->where(function($subquery) use ($search) {
                 $subquery->where('name', 'like', '%' . $search . '%')
                          ->orWhereHas('permissao', function($query) use ($search) {
-                             $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
+                             $query->where('name', 'like', '%' . $search . '%');
                          })
                          ->orWhere('cpf', 'like', '%' . $search . '%')
                          ->orWhere('email', 'like', '%' . $search . '%')
