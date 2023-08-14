@@ -256,21 +256,44 @@ class ViewsAdminController extends Controller
         $users = $prescribers->concat($patients);
 
         // Manual Pagination Logic
-        $perPage = 30; // You can adjust the number of users per page
+        $perPage = 10; // You can adjust the number of users per page
         $currentPage = $request->input('page', 1); // Get the current page from the query parameter
         $offset = ($currentPage - 1) * $perPage;
 
         $usersPaginated = $users->slice($offset, $perPage);
+
+        $totalItems = $users->count();
+        $lastPage = ceil($totalItems / $perPage);
+
+        $paginatorLinks = []; // Initialize an array to store paginator links
+
+        // Construct paginator links using a loop
+        for ($i = 1; $i <= $lastPage; $i++) {
+            $paginatorLinks[] = [
+                'page' => $i,
+                'url' => request()->fullUrlWithQuery(['page' => $i, 'search' => $search]),
+                'isCurrent' => $i == $currentPage,
+            ];
+        }
+        // Include the new code snippet here
+        $paginationInfo = [
+            'startItem' => $offset + 1,
+            'endItem' => $offset + $usersPaginated->count(),
+            'totalItems' => $totalItems,
+        ];
 
         return view('listar-usuarios', [
             "users" => $usersPaginated,
             "search" => $search,
             "currentPage" => $currentPage,
             "perPage" => $perPage,
-            "totalItems" => $users->count(),
+            "totalItems" => $totalItems,
+            "lastPage" => $lastPage,
+            "paginatorLinks" => $paginatorLinks, // Pass the paginator links to the view
+            "paginationInfo" => $paginationInfo, // Pass the pagination info to the view
         ]);
     }
-    
+
     public function permissoes()
     {
         $permissao = Permissao::all();
