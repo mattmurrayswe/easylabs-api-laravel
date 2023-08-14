@@ -227,39 +227,37 @@ class ViewsAdminController extends Controller
             });
         }
     
-        $prescribers = $prescribersQuery->paginate($perPage);
-        $patients = $patientsQuery->paginate($perPage);
-    
-        $prescribers->getCollection()->transform(function ($prescriber) {
+        $prescribers = $prescribersQuery->get();
+        $patients = $patientsQuery->get();
+        
+        $prescribers->transform(function ($prescriber) {
             $prescriber['user_type'] = 'prescriber';
             return $prescriber;
         });
-    
-        $patients->getCollection()->transform(function ($patient) {
+        
+        $patients->transform(function ($patient) {
             $patient['user_type'] = 'patient';
             return $patient;
         });
-    
-        $userCounter = ($prescribers->currentPage() - 1) * $perPage + 1;
-    
-        $prescribers->getCollection()->transform(function ($prescriber) use (&$userCounter) {
+        
+        $userCounter = 1;
+        
+        $prescribers->transform(function ($prescriber) use (&$userCounter) {
             $prescriber['unique_id'] = $userCounter;
             $userCounter++;
             return $prescriber;
         });
-    
-        $patients->getCollection()->transform(function ($patient) use (&$userCounter) {
+        
+        $patients->transform(function ($patient) use (&$userCounter) {
             $patient['unique_id'] = $userCounter;
             $userCounter++;
             return $patient;
         });
-    
+        
         $users = $prescribers->concat($patients);
-    
+        
         return view('listar-usuarios', [
             "users" => $users,
-            "prescribers" => $prescribers,
-            "patients" => $patients,
             "search" => $search
         ]);
     }
