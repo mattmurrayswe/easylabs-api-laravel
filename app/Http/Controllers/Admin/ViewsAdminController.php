@@ -212,6 +212,7 @@ class ViewsAdminController extends Controller
                              $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
                          })
                          ->orWhere('cpf', 'like', '%' . $search . '%')
+                         ->orWhere('email', 'like', '%' . $search . '%')
                          ->orWhere('id_permissao', $search);
             });
     
@@ -221,6 +222,7 @@ class ViewsAdminController extends Controller
                              $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
                          })
                          ->orWhere('cpf', 'like', '%' . $search . '%')
+                         ->orWhere('email', 'like', '%' . $search . '%')
                          ->orWhere('id_permissao', $search);
             });
         }
