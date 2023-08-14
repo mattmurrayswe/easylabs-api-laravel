@@ -39,7 +39,7 @@ class ViewsAdminController extends Controller
             'search' => $search
         ]);
     }
-    
+
     public function cadastroMedicamentos(Request $request)
     {
         $search = $request->input('search');
@@ -211,7 +211,8 @@ class ViewsAdminController extends Controller
                          ->orWhereHas('permissao', function($query) use ($search) {
                              $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
                          })
-                         ->orWhere('id_permissao', $search); // Filter by id_permissao
+                         ->orWhere('cpf', 'like', '%' . $search . '%')
+                         ->orWhere('id_permissao', $search);
             });
     
             $patientsQuery->where(function($subquery) use ($search) {
@@ -219,7 +220,8 @@ class ViewsAdminController extends Controller
                          ->orWhereHas('permissao', function($query) use ($search) {
                              $query->where('name', 'like', '%' . $search . '%'); // Search by permissao->name
                          })
-                         ->orWhere('id_permissao', $search); // Filter by id_permissao
+                         ->orWhere('cpf', 'like', '%' . $search . '%')
+                         ->orWhere('id_permissao', $search);
             });
         }
     
