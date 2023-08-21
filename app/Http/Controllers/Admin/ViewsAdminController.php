@@ -32,7 +32,7 @@ class ViewsAdminController extends Controller
             });
         }
     
-        $symptoms = $query->paginate(30);
+        $symptoms = $query->paginate(10);
     
         return view('cadastro-sintomas', [ 
             'sintomas' => $symptoms,
@@ -57,7 +57,7 @@ class ViewsAdminController extends Controller
             });
         }
     
-        $medicines = $query->paginate(30);
+        $medicines = $query->paginate(10);
         
         return view('cadastro-medicamentos', [ 
             'medicamentos' => $medicines,
@@ -81,7 +81,7 @@ class ViewsAdminController extends Controller
             });
         }
     
-        $diagnosesPaginator = $query->paginate(30);
+        $diagnosesPaginator = $query->paginate(10);
         $diagnoses = $diagnosesPaginator->items(); // Get the paginated items as an array
     
         // Your existing code to concatenate symptoms
@@ -122,7 +122,7 @@ class ViewsAdminController extends Controller
             });
         }
     
-        $prescribersPaginator = $query->paginate(30);
+        $prescribersPaginator = $query->paginate(10);
         $prescribers = Documents::concatDocumentosPendentes($prescribersPaginator);
     
         return view('validacao-documentos', [
@@ -154,7 +154,7 @@ class ViewsAdminController extends Controller
             });
         }
     
-        $clinics = $query->paginate(30);
+        $clinics = $query->paginate(10);
     
         return view('farmacias-parceiras', [
             "clinics" => $clinics,
@@ -264,7 +264,7 @@ class ViewsAdminController extends Controller
         $users = $prescribers->concat($patients);
 
         // Manual Pagination Logic
-        $perPage = 30; // You can adjust the number of users per page
+        $perPage = 10; // You can adjust the number of users per page
         $currentPage = $request->input('page', 1); // Get the current page from the query parameter
         $offset = ($currentPage - 1) * $perPage;
 
