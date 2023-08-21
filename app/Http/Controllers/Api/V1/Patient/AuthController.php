@@ -427,7 +427,7 @@ class AuthController extends Controller
         }
     }
 
-    public function getFotoPerfilPatient($id)
+    public function getFotoPerfilPatient()
     { 
         try {
             $id = Auth::guard("webPatient")->id();
@@ -440,11 +440,12 @@ class AuthController extends Controller
 
         } catch (\Throwable $th) {
 
+
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 
-    public function getFotoPerfilPrescriber($id)
+    public function getFotoPerfilPrescriber()
     {
         $id = Auth::guard("webPresc")->id();
         
