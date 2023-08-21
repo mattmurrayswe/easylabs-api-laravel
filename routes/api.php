@@ -187,6 +187,8 @@ Route::prefix('prescriber')->group(function(){
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
+
+        Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
         
         Route::post('/treatment', [TreatmentController::class, 'store']);
         Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
@@ -213,7 +215,7 @@ Route::prefix('prescriber')->group(function(){
         
         // Create Patient Using Prescriber
         Route::post('/create-patient', [PatientController::class, 'createPatientUsingPrescriber']);
-        Route::post('/find-patient', [PatientController::class, 'findPatientByCpf']);
+        Route::get('/find-patient', [PatientController::class, 'findPatientByCpf']);
         
         
         // Connect Patient on Prescriber
