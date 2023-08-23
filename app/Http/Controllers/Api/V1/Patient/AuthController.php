@@ -89,20 +89,44 @@ class AuthController extends Controller
     { 
         $credentials = $request->validated();
         $prescriber = Prescriber::where('email', $request->email)->first();
+    
         if (!$prescriber || !Hash::check($request->password, $prescriber->password)) {
             return response()->json(new ErrorResource('Email ou senha incorreto.'), 422);
         }
+    
+        if ($prescriber->active === false) {
+            return response()->json(new ErrorResource('Sua conta está desativada.'), 422);
+        }
+    
+        $pendingVerificationsWithMotives = [];
 
-        if (Prescriber::where('email', $request->email)->where('active', false)->get()->count() > 0) {
-            return response()->json(new ErrorResource('Sua conta esta desativada.'), 422);
-
+        if ($prescriber->ok_crm_frente !== "true") {
+            $motivo_crm_frente = $prescriber->motivo_crm_frente ?? 'Motivo não especificado.';
+            $pendingVerificationsWithMotives[] = "Verificação de documento CRM frente: $motivo_crm_frente";
         }
         
+        if ($prescriber->ok_crm_verso !== "true") {
+            $motivo_crm_verso = $prescriber->motivo_crm_verso ?? 'Motivo não especificado.';
+            $pendingVerificationsWithMotives[] = "Verificação de documento CRM verso: $motivo_crm_verso";
+        }
+        
+        if ($prescriber->ok_selfie_com_doc !== "true") {
+            $motivo_selfie_com_doc = $prescriber->motivo_selfie_com_doc ?? 'Motivo não especificado.';
+            $pendingVerificationsWithMotives[] = "Verificação de selfie com documento: $motivo_selfie_com_doc";
+        }
+        
+        if (!empty($pendingVerificationsWithMotives)) {
+            $pendingVerificationsText = implode("\n", $pendingVerificationsWithMotives);
+            $errorMessage = "Verificações pendentes com motivos:\n$pendingVerificationsText";
+            return response()->json(new ErrorResource($errorMessage), 422);
+        }        
+    
         /** @var Prescriber $prescriber */
         $token = $prescriber->createToken('main')->plainTextToken;
         $user = new DefaultUserResource($prescriber);
         return response(compact('user', 'token'));
     }
+    
 
     public function logout(Request $request)
     {
