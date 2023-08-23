@@ -87,7 +87,6 @@ Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfilPatient']);
 Route::prefix('patient')->group(function(){
     
     
-    
     // Google Login Routes
     Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
@@ -189,7 +188,14 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
 
         Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
-        
+
+        // Medicine
+        Route::post('/medicine', [MedicineController::class, 'store']);
+        Route::get('/medicine/{id}', [MedicineController::class, 'getMedicine']);
+        Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
+        Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
+        Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
+
         Route::post('/treatment', [TreatmentController::class, 'store']);
         Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
         Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
