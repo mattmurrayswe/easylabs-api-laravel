@@ -14,6 +14,7 @@ use App\Http\Resources\Api\V1\SpecificPatientResource;
 use Illuminate\Support\Facades\Response;
 use App\Models\Patient;
 use App\Models\Prescriber;
+use App\Models\Cuidador;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -144,22 +145,40 @@ class AuthController extends Controller
     public function editPatientInfo(int $id, Request $request)
     {
         try {
-
-            $user = Patient::find($id);
+            $patient = Patient::find($id);
     
-            $request = $request->all();
-
-            if (isset($request["password"])) {
-
-                $request["password"] = bcrypt($request['password']);
+            if (!$patient) {
+                return response()->json(new ErrorResource("Paciente não encontrado"), 404);
             }
-
-            $user->update($request);
-            
+    
+            $patientData = $request->except(['nome_cuidador', 'telefone_cuidador', 'relacao_ou_parentesco_cuidador']);
+    
+            if ($request->has('password')) {
+                $patientData['password'] = bcrypt($request->input('password'));
+            }
+    
+            $patient->update($patientData);
+    
+            $cuidadorData = [
+                'nome' => $request->input('nome_cuidador'),
+                'telefone' => $request->input('telefone_cuidador'),
+                'relacao_ou_parentesco' => $request->input('relacao_ou_parentesco_cuidador'),
+            ];
+    
+            $cuidador = $patient->cuidador;
+    
+            if (!$cuidador) {
+                $cuidador = new Cuidador($cuidadorData);
+                $cuidador->save();
+                $patient->id_cuidador = $cuidador->id;
+            } else {
+                $cuidador->update($cuidadorData);
+            }
+    
+            $patient->save();
+    
             return response()->json(new SuccessResource("Paciente editado com sucesso"), 200);
-
         } catch (\Throwable $th) {
-
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }

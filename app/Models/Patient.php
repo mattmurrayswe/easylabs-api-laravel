@@ -85,6 +85,11 @@ class Patient extends Authenticatable
         return $this->belongsTo(Prescriber::class);
     }
 
+    public function cuidador()
+    {
+        return $this->belongsTo(Cuidador::class, 'id_cuidador');
+    }
+
     public static function fromSocialite(SocialiteUser $user)
     {
         return self::updateOrCreate([
