@@ -12,7 +12,7 @@ class SpecificPatientResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
@@ -26,6 +26,11 @@ class SpecificPatientResource extends JsonResource
             'email_notification' => $this->email_notification ?? false,
             'remember_medicine' => $this->remember_medicine ?? false,
             'treatment_feedback' => $this->treatment_feedback ?? false,
+            'cuidador' => [
+                'nome' => $this->cuidador->nome ?? null,
+                'telefone' => $this->cuidador->telefone ?? null,
+                'relacao_ou_parentesco' => $this->cuidador->relacao_ou_parentesco ?? null,
+            ],
         ];
     }
 }

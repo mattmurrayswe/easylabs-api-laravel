@@ -171,7 +171,7 @@ class PatientController extends Controller
     {
         try {
             
-            $patient = Patient::with('treatments.treatmentsRef.medicine')->with('treatments.diagnose')->where("cpf", $request->cpf)->get();
+            $patient = Patient::with('cuidador')->with('treatments.treatmentsRef.medicine')->with('treatments.diagnose')->where("cpf", $request->cpf)->get();
 
             if($patient->count() === 0) {
                 return response()->json(new ErrorResource('Nao foi encontrado nenhum paciente com esse CPF'), 422);
