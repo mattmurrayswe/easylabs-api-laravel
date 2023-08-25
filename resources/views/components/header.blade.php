@@ -14,9 +14,9 @@
     <script src="{{URL::asset('/js/validacao-documentos.js')}}"></script>
     <script src="{{URL::asset('/js/listar-usuarios.js')}}"></script>
     <script src="{{URL::asset('/js/permissoes.js')}}"></script>
-    
+
     <title>Brease - Painel do Administrador</title>
-    
+
     <!-- Fonts -->
     <link rel="icon" href="{{URL::asset('/image/mais-alivio.png')}}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,4 +26,25 @@
     <script>
         const ENDPOINT_JS = document.getElementById('endpoint-js').dataset.value
     </script>
+    <style>
+        /* Add this style in your HTML or in a separate CSS file */
+        .scrollbar-none-custom {
+            scrollbar-width: thin;
+            scrollbar-color: #a0aec0 #edf2f7;
+        }
+
+        .scrollbar-none-custom::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .scrollbar-none-custom::-webkit-scrollbar-thumb {
+            background-color: #a0aec0;
+            border-radius: 4px;
+        }
+
+        .scrollbar-none-custom::-webkit-scrollbar-track {
+            background-color: #edf2f7;
+            border-radius: 4px;
+        }
+    </style>
 </head>
