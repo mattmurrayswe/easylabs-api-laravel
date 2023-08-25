@@ -109,11 +109,23 @@ class ViewsAdminController extends Controller
     {
         $search = $request->input('search');
     
-        $query = Prescriber::where([
-            ["uploaded_crm_frente", "!=","false"],
-            ["uploaded_crm_verso", "!=","false"],
-            ["uploaded_selfie_com_doc", "!=","false"]
-        ]);
+        $query = Prescriber::where(function ($query) {
+            $query->where(function ($query) {
+                $query->where([
+                    ["uploaded_crm_frente", "!=", "false"],
+                    ["uploaded_crm_verso", "!=", "false"],
+                    ["uploaded_selfie_com_doc", "!=", "false"],
+                ]);
+            })->where(function ($query) {
+                $query->orWhere([
+                    ["ok_crm_frente", "=", "false"]
+                ])->orWhere([
+                    ["ok_crm_verso", "=", "false"]
+                ])->orWhere([
+                    ["ok_selfie_com_doc", "=", "false"]
+                ]);
+            });
+        });
     
         if ($search) {
             $query->where(function($subquery) use ($search) {
