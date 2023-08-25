@@ -18,6 +18,7 @@
     <title>Brease - Painel do Administrador</title>
     
     <!-- Fonts -->
+    <link rel="icon" href="{{URL::asset('/image/mais-alivio.png')}}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />

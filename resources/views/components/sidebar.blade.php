@@ -1,6 +1,6 @@
 <div id="side-navbar" class="fixed min-h-screen bg-gray-200 w-1/5 shadow-xl py-2">
-  <div id="logo-brease" class="p-3 text-white flex justify-center py-16">
-    <img src="{{URL::asset('/image/logo.svg')}}" alt="profile Pic" height="120" width="120">
+  <div id="logo-brease" class="p-3 text-white flex justify-center pt-16 pb-4">
+    <img src="{{URL::asset('/image/mais-alivio.png')}}" alt="profile Pic" height="240" width="240">
   </div>
   <div id="cadastro-medicamentos" class=" p-3 pt-12 text-gray-900 mx-4 text-blue-500 hover:text-blue-800">
     <a class="flex" href="{{ url('/cadastro-medicamentos') }}">
