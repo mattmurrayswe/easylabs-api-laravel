@@ -13,6 +13,18 @@ function addInputSintomaAoDiagnostico(idDiagnosticoModal) {
     }
 }
 
+function deleteSymptom(idDiagnostico, idSintoma) {
+
+    $(`.select-sintomas-${idDiagnostico}-${idSintoma}`).remove();
+
+}
+
+function deleteMed(idDiagnostico, idMed) {
+
+    $(`.select-sintomas-${idDiagnostico}-${idMed}`).remove();
+
+}
+
 function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
 
     if (idDiagnosticoModal === false) {
