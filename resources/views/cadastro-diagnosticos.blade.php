@@ -132,7 +132,7 @@
                                 <div id="select-container-{{ $diagnose['id'] }}">
                                     @if (!empty($diagnose['has_symptoms']) && is_array($diagnose['has_symptoms']))
                                     @foreach ($diagnose['has_symptoms'] as $symptom)
-                                    <select class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                    <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                         @foreach ($symptoms as $s)
                                         <option value="{{ $s->id }}" {{ $s->id == $symptom['id'] ? 'selected' : '' }}>{{ $s->id }} - {{ $s->name }}</option>
                                         @endforeach
@@ -141,16 +141,25 @@
                                     @else
                                     <p>No symptoms found for this diagnosis.</p>
                                     @endif
+                                    <button onClick="addInputSintomaAoDiagnostico({{ $diagnose['id'] }})" id="button-select-sintomas-{{ $diagnose['id'] }}" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
                                 </div>
                             </div>
-                            <div id="div-selects-medicamentos-{{ $diagnose['id'] }}">
+                            <div id="div-selects-medicines-{{ $diagnose['id'] }}">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Medicamentos Sugeridos</label>
-                                <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                    @foreach ($medicines as $m)
-                                    <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
+                                <div id="medicine-container-{{ $diagnose['id'] }}">
+                                    @if (!empty($diagnose['has_suggested_medicines']) && is_array($diagnose['has_suggested_medicines']))
+                                    @foreach ($diagnose['has_suggested_medicines'] as $medicine)
+                                    <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                        @foreach ($medicines as $m)
+                                        <option value="{{ $m->id }}" {{ $m->id == $medicine['id'] ? 'selected' : '' }}>{{ $m->id }} - {{ $m->name }}</option>
+                                        @endforeach
+                                    </select>
                                     @endforeach
-                                </select>
-                                <button onCLick="addInputMedicamentoAoDiagnostico({{ $diagnose['id'] }})" id="button-select-medicamentos-{{ $diagnose['id'] }}" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
+                                    @else
+                                    <p>No medicines found for this diagnosis.</p>
+                                    @endif
+                                    <button onCLick="addInputMedicamentoAoDiagnostico({{ $diagnose['id'] }})" id="button-select-medicamentos-{{ $diagnose['id'] }}" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
+                                </div>
                             </div>
                         </div>
                         <!-- Modal footer -->
