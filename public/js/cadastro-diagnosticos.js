@@ -47,7 +47,7 @@ function editDiagnostico(idDiagnostico) {
     console.log(medicamentosIds)
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/diagnose/${idDiagnostico}`,
+        url: `${ENDPOINT_JS}/api/diagnose/${idDiagnostico}`,
         type: "PUT",
         data: {
             name: name,
@@ -113,7 +113,7 @@ function cadastreDiagnostico() {
     console.log(data)
 
     $.ajax({
-        url: `https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/diagnose`,
+        url: `${ENDPOINT_JS}/api/diagnose`,
         type: "POST",
         data: {
             name: name,
