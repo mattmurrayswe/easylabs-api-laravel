@@ -131,9 +131,9 @@
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Sintomas</label>
                                     @if (!empty($diagnose['has_symptoms']) && is_array($diagnose['has_symptoms']))
                                     @foreach ($diagnose['has_symptoms'] as $symptom)
-                                    <div class="flex items-center mb-1">
+                                    <div id="select-sintomas-{{ $diagnose['id'] }}" class="flex items-center mb-1">
                                         <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteSymptom({{ $diagnose['id'] }}, {{ $symptom['symptom_id'] }})">-</button>
-                                        <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                             @foreach ($symptoms as $s)
                                             <option value="{{ $s->id }}" {{ $s->id == $symptom['symptom_id'] ? 'selected' : '' }}>
                                                 {{ $s->id }} - {{ $s->name }}
