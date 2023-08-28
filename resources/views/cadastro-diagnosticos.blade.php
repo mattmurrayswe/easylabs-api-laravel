@@ -63,7 +63,7 @@
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
                         @php($i = 0)
-                        @foreach ($diagnoses as $diagnose)
+                        @foreach ($diagnosesPresenter as $diagnose)
                         @if ($i % 2 == 0)
                         <tr class="h-10 bg-gray-50">
                             @else

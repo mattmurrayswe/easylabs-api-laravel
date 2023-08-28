@@ -98,6 +98,7 @@ class ViewsAdminController extends Controller
         ]);
     
         return view('cadastro-diagnosticos', [
+            'diagnosesPresenter' => $diagnoses,
             'diagnoses' => $diagnosesPaginator,
             'symptoms' => $symptoms,
             'medicines' => $medicines,
