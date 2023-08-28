@@ -134,7 +134,7 @@
                                     @foreach ($diagnose['has_symptoms'] as $symptom)
                                     <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                         @foreach ($symptoms as $s)
-                                        <option value="{{ $s->id }}" {{ $s->id == $symptom['id'] ? 'selected' : '' }}>{{ $s->id }} - {{ $s->name }}</option>
+                                        <option value="{{ $s->id }}" {{ $s->id == $symptom['symptom_id'] ? 'selected' : '' }}>{{ $s->id }} - {{ $s->name }}</option>
                                         @endforeach
                                     </select>
                                     @endforeach
@@ -151,7 +151,7 @@
                                     @foreach ($diagnose['has_suggested_medicines'] as $medicine)
                                     <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                         @foreach ($medicines as $m)
-                                        <option value="{{ $m->id }}" {{ $m->id == $medicine['id'] ? 'selected' : '' }}>{{ $m->id }} - {{ $m->name }}</option>
+                                        <option value="{{ $m->id }}" {{ $m->id == $medicine['medicine_id'] ? 'selected' : '' }}>{{ $m->id }} - {{ $m->name }}</option>
                                         @endforeach
                                     </select>
                                     @endforeach
