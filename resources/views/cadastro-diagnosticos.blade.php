@@ -106,7 +106,7 @@
             </div>
 
             <!-- Modais de Edição do Diagnóstico -->
-            @foreach ($diagnoses as $diagnose)
+            @foreach ($diagnosesPresenter as $diagnose)
             <div data-modal-backdrop="static" id="edit-modal-{{ $diagnose['id'] }}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <div class="relative bg-white rounded-lg shadow">
@@ -129,12 +129,19 @@
                             </div>
                             <div id="div-selects-sintomas-{{ $diagnose['id'] }}">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Sintomas</label>
-                                <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                    @foreach ($symptoms as $s)
-                                    <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
+                                <div id="select-container-{{ $diagnose['id'] }}">
+                                    @if (!empty($diagnose['has_symptoms']) && is_array($diagnose['has_symptoms']))
+                                    @foreach ($diagnose['has_symptoms'] as $symptom)
+                                    <select class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                        @foreach ($symptoms as $s)
+                                        <option value="{{ $s->id }}" {{ $s->id == $symptom['id'] ? 'selected' : '' }}>{{ $s->id }} - {{ $s->name }}</option>
+                                        @endforeach
+                                    </select>
                                     @endforeach
-                                </select>
-                                <button onClick="addInputSintomaAoDiagnostico({{ $diagnose['id'] }})" id="button-select-sintomas-{{ $diagnose['id'] }}" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
+                                    @else
+                                    <p>No symptoms found for this diagnosis.</p>
+                                    @endif
+                                </div>
                             </div>
                             <div id="div-selects-medicamentos-{{ $diagnose['id'] }}">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Medicamentos Sugeridos</label>
