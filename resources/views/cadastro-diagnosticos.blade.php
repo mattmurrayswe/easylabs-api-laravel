@@ -129,58 +129,20 @@
                             </div>
                             <div id="div-selects-sintomas-{{ $diagnose['id'] }}">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Sintomas</label>
-                                @php($j = 0)
-                                @if (isset($diagnose["has_symptoms"]))
-                                @foreach ($diagnose["has_symptoms"] as $symptom)
-                                @if (isset($symptom['symptom']['name']))
-                                @php($j++)
-                                <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                    @foreach ($symptoms as $s)
-                                    @if ($symptom['symptom']['id'] === $s->id)
-                                    <option selected value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
-                                    @else
-                                    <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                                @endif
-                                @endforeach
-                                @endif
-                                @if ($j == 0)
                                 <select id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                     @foreach ($symptoms as $s)
                                     <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
                                     @endforeach
                                 </select>
-                                @endif
                                 <button onClick="addInputSintomaAoDiagnostico({{ $diagnose['id'] }})" id="button-select-sintomas-{{ $diagnose['id'] }}" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
                             </div>
                             <div id="div-selects-medicamentos-{{ $diagnose['id'] }}">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Medicamentos Sugeridos</label>
-                                @php($j = 0)
-                                @if (isset($diagnose["has_suggested_medicines"]))
-                                @foreach ($diagnose["has_suggested_medicines"] as $medicine)
-                                @if (isset($medicine['medicine']['name']))
-                                @php($j++)
-                                <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                    @foreach ($medicines as $m)
-                                    @if ($medicine['medicine']['id'] === $m->id)
-                                    <option selected value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
-                                    @else
-                                    <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                                @endif
-                                @endforeach
-                                @endif
-                                @if ($j == 0)
                                 <select id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }} mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                     @foreach ($medicines as $m)
                                     <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
                                     @endforeach
                                 </select>
-                                @endif
                                 <button onCLick="addInputMedicamentoAoDiagnostico({{ $diagnose['id'] }})" id="button-select-medicamentos-{{ $diagnose['id'] }}" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
                             </div>
                         </div>
