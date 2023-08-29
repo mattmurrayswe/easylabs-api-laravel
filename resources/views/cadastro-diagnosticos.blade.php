@@ -155,7 +155,9 @@
                                     <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteMed({{ $diagnose['id'] }}, {{ $medicine['medicine_id']}})">-</button>
                                     <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                         @foreach ($medicines as $m)
-                                        <option value="{{ $m->id }}" {{ $m->id == $medicine['medicine_id'] ? 'selected' : '' }}>{{ $m->id }} - {{ $m->name }}</option>
+                                        <option value="{{ $m->id }}" {{ $m->id == $medicine['medicine_id'] ? 'selected' : '' }}>
+                                            {{ $m->id }} - {{ $m->name }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
