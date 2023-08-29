@@ -8,7 +8,9 @@ function addInputSintomaAoDiagnostico(idDiagnosticoModal) {
 
     } else {
 
-        $( `#select-sintomas-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-sintomas-${idDiagnosticoModal}` );
+        $( `#select-sintomas-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-sintomas-${idDiagnosticoModal}`);
+        $( `#select-sintomas-${idDiagnosticoModal}` ).removeClass("hidden");
+        $( `#hidden-select-sintomas-${idDiagnosticoModal}` ).addClass(`select-sintomas-${idDiagnosticoModal}`); 
 
     }
 }
@@ -33,7 +35,9 @@ function addInputMedicamentoAoDiagnostico(idDiagnosticoModal) {
 
     } else {
 
-        $( `#select-medicamentos-${idDiagnosticoModal}` ).clone().insertBefore( `#button-select-medicamentos-${idDiagnosticoModal}` );    
+        $( `#select-medicamentos-${idDiagnosticoModal}`).clone().insertBefore(`#button-select-medicamentos-${idDiagnosticoModal}` );
+        $( `#select-medicamentos-${idDiagnosticoModal}` ).removeClass("hidden");   
+        $( `#hidden-select-medicamentos-${idDiagnosticoModal}` ).addClass(`select-medicamentos-${idDiagnosticoModal}` );   
 
     }
 }
