@@ -220,21 +220,31 @@
                             </div>
                             <div id="div-selects-sintomas">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Sintomas</label>
-                                <select id="select-sintomas" class="select-sintomas mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                    @foreach ($symptoms as $s)
-                                    <option value="{{ $s->id }}">{{ $s->id }} - {{ $s->name }}</option>
-                                    @endforeach
-                                </select>
+                                <div id="select-sintomas" class="select-sintomas hidden flex items-center mb-1">
+                                    <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteSelectPlusButton(this)">-</button>
+                                    <select id="hidden-select-sintomas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                        @foreach ($symptoms as $s)
+                                        <option value="{{ $s->id }}" {{ $s->id == $symptom['symptom_id'] ? 'selected' : '' }}>
+                                            {{ $s->id }} - {{ $s->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <button onClick="addInputSintomaAoDiagnostico(false)" id="button-select-sintomas" class="mt-1 mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
-                                <button onClick="addInputSintomaAoDiagnostico(false)" id="button-select-sintomas" class="mt-1 mb-1 block w-full p-2.5 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> - </button>
                             </div>
-                            <div id="div-selects-medicamentos">
+                            <div id="div-selects-medicines">
                                 <label class="block mb-2 text-sm font-medium text-gray-900">Medicamentos Sugeridos</label>
-                                <select id="select-medicamentos" class="select-medicamentos mb-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                    @foreach ($medicines as $m)
-                                    <option value="{{ $m->id }}">{{ $m->id }} - {{ $m->name }}</option>
-                                    @endforeach
-                                </select>
+                                <div id="select-medicamentos" class="select-medicamentos mb-1 hidden flex items-center ">
+                                    <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteSelectPlusButton(this)">-</button>
+                                    <select id="hidden-select-medicamentos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                        @foreach ($medicines as $m)
+                                        <option value="{{ $m->id }}" {{ $m->id == $medicine['medicine_id'] ? 'selected' : '' }}>
+                                            {{ $m->id }} - {{ $m->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button onCLick="addInputMedicamentoAoDiagnostico(false)" id="button-select-medicamentos" class="mb-1 block w-full p-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-1 text-center"> + </button>
                             </div>
                         </div>
                         <!-- Modal footer -->
