@@ -21,7 +21,7 @@ function deleteSymptom(idDiagnostico, idSintoma) {
 
 function deleteMed(idDiagnostico, idMed) {
 
-    $(`.select-sintomas-${idDiagnostico}-${idMed}`).remove();
+    $(`.select-medicamentos-${idDiagnostico}-${idMed}`).remove();
 
 }
 
