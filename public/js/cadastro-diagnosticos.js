@@ -13,9 +13,9 @@ function addInputSintomaAoDiagnostico(idDiagnosticoModal) {
     }
 }
 
-function deleteSymptom(idDiagnostico, idSintoma) {
+function deleteSelectPlusButton(element) {
 
-    $(`.select-sintomas-${idDiagnostico}-${idSintoma}`).remove();
+    $(element).parent().remove();
 
 }
 

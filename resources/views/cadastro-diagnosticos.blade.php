@@ -132,7 +132,7 @@
                                 @if (!empty($diagnose['has_symptoms']) && is_array($diagnose['has_symptoms']))
                                 @foreach ($diagnose['has_symptoms'] as $symptom)
                                 <div id="select-sintomas-{{ $diagnose['id'] }}" class="select-sintomas-{{ $diagnose['id'] }}-{{ $symptom['symptom_id'] }} flex items-center mb-1">
-                                    <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteSymptom({{ $diagnose['id'] }}, {{ $symptom['symptom_id']}})">-</button>
+                                    <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteSelectPlusButton(this)">-</button>
                                     <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                         @foreach ($symptoms as $s)
                                         <option value="{{ $s->id }}" {{ $s->id == $symptom['symptom_id'] ? 'selected' : '' }}>
@@ -152,7 +152,7 @@
                                 @if (!empty($diagnose['has_suggested_medicines']) && is_array($diagnose['has_suggested_medicines']))
                                 @foreach ($diagnose['has_suggested_medicines'] as $medicine)
                                 <div id="select-medicamentos-{{ $diagnose['id'] }}" class="select-medicamentos-{{ $diagnose['id'] }}-{{ $medicine['medicine_id'] }} mb-1 flex items-center ">
-                                    <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteMed({{ $diagnose['id'] }}, {{ $medicine['medicine_id']}})">-</button>
+                                    <button class="p-2 mr-[2px] bg-red-500 text-white rounded-lg w-10 h-10 flex-shrink-0" onclick="deleteSelectPlusButton(this)">-</button>
                                     <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                         @foreach ($medicines as $m)
                                         <option value="{{ $m->id }}" {{ $m->id == $medicine['medicine_id'] ? 'selected' : '' }}>
