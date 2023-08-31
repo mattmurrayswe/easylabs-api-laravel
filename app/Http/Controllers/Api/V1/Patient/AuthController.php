@@ -46,13 +46,24 @@ class AuthController extends Controller
 
     public function signupPrescriber(Request $request)
     {
+        $customMessages = [
+            'email.unique' => 'Este email já foi cadastrado',
+            'crm.unique' => 'Este CRM já foi cadastrado',
+            'cpf.unique' => 'Este CPF já foi cadastrado',
+        ];
+    
+        $validatedData = $request->validate([
+            'email' => 'required|email|unique:prescribers',
+            'crm' => 'required|unique:prescribers',
+            'cpf' => 'required|unique:prescribers',
+        ], $customMessages);
+    
         try {
-            
             $request['password'] = bcrypt($request['password']);
-            
+    
             $prescriber = $request->all();
             $prescriber = array_merge($request->all(), ["active" => true], ["documents" => '']);
-
+    
             $user = Prescriber::create($prescriber);
     
             $token = $user->createToken('main')->plainTextToken;
@@ -60,9 +71,8 @@ class AuthController extends Controller
             $user = new DefaultUserResource($user);
     
             return response(compact('user', 'token'));
-
+    
         } catch (\Throwable $th) {
-
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }

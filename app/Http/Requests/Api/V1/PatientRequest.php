@@ -37,6 +37,7 @@ class PatientRequest extends FormRequest
         return [
             'name.required' => 'O campo Nome é obrigatório!',
             'email.required' => 'O campo Email é obrigatório!',
+            'email.unique' => 'Este email já foi cadastrado',
             'password.required' => 'O campo Senha é obrigatório!',
             'cellphone.required' => 'O campo Celular é obrigatório!',
             'cpf.required' => 'O campo CPF é obrigatório!',
