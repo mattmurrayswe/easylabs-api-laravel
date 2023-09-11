@@ -127,7 +127,8 @@ class AuthController extends Controller
         
         if (!empty($pendingVerificationsWithMotives)) {
             $pendingVerificationsText = implode("\n", $pendingVerificationsWithMotives);
-            $errorMessage = "Verificações pendentes com motivos:\n$pendingVerificationsText";
+            // $errorMessage = "Verificações pendentes com motivos:\n$pendingVerificationsText";
+            $errorMessage = "Seu cadastro ainda está em análise!";
             return response()->json(new ErrorResource($errorMessage), 422);
         }        
     
