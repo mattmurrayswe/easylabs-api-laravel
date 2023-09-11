@@ -32,7 +32,7 @@ function openAlert() {
     if (alert) {
       alert.style.display = "flex";
     }
-  }
+}
   
   // To close the alert, you can create a similar function:
   function closeAlert() {
@@ -40,4 +40,4 @@ function openAlert() {
     if (alert) {
       alert.style.display = "none";
     }
-  }
+}
