@@ -11,7 +11,7 @@ function editarPermissaoDoUsuario(idUnique) {
     console.log(idPermNew)
 
     $.ajax({    
-        url: `http://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/api/permissao-user`,
+        url: `${ENDPOINT_JS}/api/permissao-user`,
         type: "PUT",
         data: {
             id_user : idUser,
@@ -21,8 +21,23 @@ function editarPermissaoDoUsuario(idUnique) {
         success: function(data, status) {
 
             if (status === "success") {
-                location.reload();
+                openAlert()
             }
         }
     });
 }
+
+function openAlert() {
+    const alert = document.getElementById("alert-3");
+    if (alert) {
+      alert.style.display = "flex";
+    }
+  }
+  
+  // To close the alert, you can create a similar function:
+  function closeAlert() {
+    const alert = document.getElementById("alert-3");
+    if (alert) {
+      alert.style.display = "none";
+    }
+  }
