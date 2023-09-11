@@ -2,19 +2,51 @@ $(document).ready(function() {});
 
 function validarOuInvalidarDoc(idPresc) {
 
-    const docType = $(`#doc-type-${idPresc}`).val();
-    const isValid = $(`input[name="validade-${idPresc}"]:checked`).val();
+    const isValidFrente = $(`input[name="validade-${idPresc}-crm-frente"]:checked`).val();
+    const isValidVerso = $(`input[name="validade-${idPresc}-crm-verso"]:checked`).val();
+    const isValidSelfie = $(`input[name="validade-${idPresc}-selfie-com-doc"]:checked`).val();
     const motivo = $(`#motivo-${idPresc}`).val();
 
-    console.log(docType);
-    console.log(isValid);
+    console.log(isValidFrente);
+    console.log(isValidVerso);
+    console.log(isValidSelfie);
     console.log(motivo);
 
     $.ajax({
-        url: `${ENDPOINT_JS}/api/valide/${docType}/${idPresc}`,
+        url: `${ENDPOINT_JS}/api/valide/crm-frente/${idPresc}`,
         type: "PUT",
         data: {
-            is_valid : isValid,
+            is_valid : isValidFrente,
+            motivo : motivo
+        },
+        success: function(data, status) {
+
+            if (status === "success") {
+                openAlert()
+            }
+        }
+    });
+
+    $.ajax({
+        url: `${ENDPOINT_JS}/api/valide/crm-verso/${idPresc}`,
+        type: "PUT",
+        data: {
+            is_valid : isValidVerso,
+            motivo : motivo
+        },
+        success: function(data, status) {
+
+            if (status === "success") {
+                openAlert()
+            }
+        }
+    });
+
+    $.ajax({
+        url: `${ENDPOINT_JS}/api/valide/selfie-com-doc/${idPresc}`,
+        type: "PUT",
+        data: {
+            is_valid : isValidSelfie,
             motivo : motivo
         },
         success: function(data, status) {
