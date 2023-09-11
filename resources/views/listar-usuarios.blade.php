@@ -12,7 +12,7 @@
                         <div class="w-7 mr-3 flex justify-center">
                             <img src="{{URL::asset('/image/perfuser.svg')}}" alt="profile Pic" height="20" width="20">
                         </div>
-                        <p>Listar de Usuários</p>
+                        <p>Lista de Usuários</p>
                     </a>
                 </div>
                 <div id="perfil-administrador flex content-center" class="text-gray-900 text-xl font-medium underline">
