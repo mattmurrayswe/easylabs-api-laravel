@@ -44,7 +44,7 @@
                             <th class="rounded-tl-xl px-4">
                                 <p class="flex text-white">ID Listagem</p>
                             </th>
-                            <th class="px-4">
+                            <th hidden class="px-4">
                                 <p class="flex text-white">ID Usuário</p>
                             </th>
                             <th class="px-4">
@@ -65,7 +65,7 @@
                         @foreach ($users as $u)
                         <tr class="h-10 bg-gray-50">
                             <td id="id-listagem" class="px-4">{{$u->unique_id}}</td>
-                            <td id="id-usuario" class="px-4">{{$u->id}}</td>
+                            <td hidden id="id-usuario" class="px-4">{{$u->id}}</td>
                             <td id="name" class="px-4">{{$u->name}}</td>
                             <td id="permissao" class="px-4">{{$u->permissao->name}}</td>
                             <td id="id-permissao" class="px-4">{{$u->id_permissao}}</td>
@@ -76,7 +76,7 @@
                         @endforeach
                         <tr class="bg-gray-800 max-h-5 h-5">
                             <td class="px-4 rounded-bl-xl"></td>
-                            <td class="px-4" colspan="4">
+                            <td class="px-4" colspan="3">
                                 <div class="py-3">
                                     <div class="w-full flex justify-center items-center">
                                         <p class="text-sm text-white leading-5">
@@ -123,7 +123,7 @@
                         </tr>
                         <tr class="h-0">
                             <td class="px-4 rounded-bl-xl"></td>
-                            <td class="px-4"></td>
+                            <td hidden class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
                             <td class="px-4"></td>
