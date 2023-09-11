@@ -15,6 +15,28 @@ function editFarmacia(idFarmacia) {
     const cpf = $( `#cpf-${idFarmacia}` ).val();
     const name = $( `#name-${idFarmacia}` ).val();
 
+    if (!rede) {
+
+        $( `#rede-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!unidade) {
+
+        $( `#unidade-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!cep) {
+
+        $( `#cep-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!rede || !unidade || !cep) {
+        return
+    }
+
     $.ajax({
         url: `${ENDPOINT_JS}/api/pharmacy/${idFarmacia}`,
         type: "PUT",
@@ -136,7 +158,7 @@ function removaOuAdicioneBorderRed(element) {
         $(element).removeClass("border border-red-500");
 
     } else {
-        
+
         $(element).addClass("border border-red-500");
 
     }

@@ -212,12 +212,12 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
-                    <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">*Nome da Rede</label>
+                    <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade</label>
-                    <input type="text" id="unidade-{{$c->id}}" value="{{$c->unidade}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">*Nome da Unidade</label>
+                    <input type="text" id="unidade-{{$c->id}}" value="{{$c->unidade}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">CNPJ</label>
@@ -232,8 +232,8 @@
                     <input type="text" id="email-{{$c->id}}" value="{{$c->email}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">CEP</label>
-                    <input type="text" id="cep-{{$c->id}}" value="{{$c->cep}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">*CEP</label>
+                    <input type="text" id="cep-{{$c->id}}" value="{{$c->cep}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
@@ -270,7 +270,7 @@
             </div>
             <!-- Modal footer -->
             <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                <button onClick="editFarmacia({{$c->id}})" data-modal-hide="editModal-{{$c->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Salvar</button>
+                <button onClick="editFarmacia({{$c->id}})" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Salvar</button>
             </div>
         </div>
     </div>
