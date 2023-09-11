@@ -15,6 +15,7 @@ function editSintoma(idSintoma) {
             console.log(data)
             if (status === "success") {
                 $( `#sintoma-name-${idSintoma}` ).text(novoNomeSintoma);
+                openAlert()
             }
 
         }
@@ -30,7 +31,7 @@ function deleteSintoma(idSintoma) {
 
             console.log(data)
             if (status === "success") {
-                location.reload();
+                openAlert()
             }
 
         }
@@ -52,9 +53,24 @@ function cadastreSintoma() {
         success: function(data, status) {
 
             if (status === "success") {
-                location.reload();
+                openAlert()
             }
 
         }
       });
+}
+
+function openAlert() {
+    const alert = document.getElementById("alert-3");
+    if (alert) {
+      alert.style.display = "flex";
+    }
+}
+  
+  // To close the alert, you can create a similar function:
+  function closeAlert() {
+    const alert = document.getElementById("alert-3");
+    if (alert) {
+      alert.style.display = "none";
+    }
 }
