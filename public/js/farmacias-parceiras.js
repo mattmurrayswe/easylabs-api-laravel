@@ -78,6 +78,27 @@ function cadastreFarmacia() {
     const cpf = $( `#cpf` ).val();
     const name = $( `#name` ).val();
 
+    if (!rede) {
+
+        $("#rede").addClass("border border-red-500");
+        
+    }
+
+    if (!unidade) {
+
+        $("#unidade").addClass("border border-red-500");
+        
+    }
+
+    if (!cep) {
+
+        $("#cep").addClass("border border-red-500");
+        
+    }
+
+    if (!rede || !unidade || !cep) {
+        return
+    }
 
     $.ajax({
         url: `${ENDPOINT_JS}/api/pharmacy`,
@@ -106,4 +127,17 @@ function cadastreFarmacia() {
 
         }
       });
+}
+
+function removaOuAdicioneBorderRed(element) {
+
+    if ( $(element).val() ) {
+
+        $(element).removeClass("border border-red-500");
+
+    } else {
+        
+        $(element).addClass("border border-red-500");
+
+    }
 }
