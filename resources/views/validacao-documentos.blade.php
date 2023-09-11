@@ -131,26 +131,61 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div>
-                    <label for="doc-type-{{ $p->id }}" class="block mb-2 text-sm font-medium text-gray-900">Documentos</label>
-                    <select id="doc-type-{{ $p->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                        @if ($p->ok_crm_frente === "false")
-                        <option selected value="crm-frente">CRM Frente</option>
-                        @endif
-                        @if ($p->ok_crm_verso === "false")
-                        <option value="crm-verso">CRM Verso</option>
-                        @endif
-                        @if ($p->ok_selfie_com_doc === "false")
-                        <option value="selfie-com-doc">Selfie com Documento</option>
-                        @endif
-                    </select>
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="invalido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}" value="false" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                    <label class="ml-2 text-sm font-medium text-gray-900">Invalidar</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="valido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                    <label class="ml-2 text-sm font-medium text-gray-900">Validar</label>
+                    <label for="doc-type-{{ $p->id }}" class="block mb-5 text-sm font-medium text-gray-900">Documentos</label>
+                    @if ($p->ok_crm_frente === "false")
+                    <div class="mb-6 flex justify-between">
+                        <div>
+                            <div class="flex items-center mb-1 mr-1">
+                                <label class="w-16 ml-2 text-sm font-medium text-gray-900">Invalidar</label>
+                                <input id="invalido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}-crm-frente" value="false" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            </div>
+                            <div class="flex items-center mb-1 mr-1">
+                                <label class="w-16 ml-2 text-sm font-medium text-gray-900">Validar</label>
+                                <input id="valido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}-crm-frente" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            </div>
+                        </div>
+                        <select disabled id="doc-type-{{ $p->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <option selected value="crm-frente">CRM Frente</option>
+                        </select>
+                        <button onClick="baixarDoc({{ $p->id }}, 'crm-frente')" type="button" class="ml-1 text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Baixar</button>
+                    </div>
+                    @endif
+                    @if ($p->ok_crm_verso === "false")
+                    <div class="mb-6 flex justify-between">
+                        <div>
+                            <div class="flex items-center mb-1 mr-1">
+                                <label class="w-16 ml-2 text-sm font-medium text-gray-900">Invalidar</label>
+                                <input id="invalido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}-crm-verso" value="false" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            </div>
+                            <div class="flex items-center mb-1 mr-1">
+                                <label class="w-16 ml-2 text-sm font-medium text-gray-900">Validar</label>
+                                <input id="valido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}-crm-verso" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            </div>
+                        </div>
+                        <select disabled id="doc-type-{{ $p->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <option selected value="crm-verso">CRM Verso</option>
+                        </select>
+                        <button onClick="baixarDoc({{ $p->id }}, 'crm-verso')" type="button" class="ml-1 text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Baixar</button>
+                    </div>
+                    @endif
+                    @if ($p->ok_selfie_com_doc === "false")
+                    <div class="mb-6 flex justify-between">
+                        <div>
+                            <div class="flex items-center mb-1 mr-1">
+                                <label class="w-16 ml-2 text-sm font-medium text-gray-900">Invalidar</label>
+                                <input id="invalido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}-selfie-com-doc" value="false" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            </div>
+                            <div class="flex items-center mb-1 mr-1">
+                                <label class="w-16 ml-2 text-sm font-medium text-gray-900">Validar</label>
+                                <input id="valido-{{ $p->id }}" type="radio" name="validade-{{ $p->id }}-selfie-com-doc" value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            </div>
+                        </div>
+                        <select disabled id="doc-type-{{ $p->id }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <option selected value="selfie-com-doc">Selfie com Documento</option>
+                        </select>
+                        <button onClick="baixarDoc({{ $p->id }}, 'selfie-com-doc')" type="button" class="ml-1 text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Baixar</button>
+                    </div>
+                    @endif
                 </div>
                 <div class="mb-6">
                     <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900">Motivo</label>
@@ -159,7 +194,6 @@
             </div>
             <!-- Modal footer -->
             <div class="box items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                <button onClick="baixarDoc({{ $p->id }})" type="button" class="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Baixar</button>
                 <button onClick="validarOuInvalidarDoc({{ $p->id }})" data-modal-hide="editModal-{{ $p->id }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Salvar</button>
             </div>
         </div>

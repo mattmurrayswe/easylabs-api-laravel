@@ -26,8 +26,7 @@ function validarOuInvalidarDoc(idPresc) {
     });
 }
 
-function baixarDoc(idPresc) {
-    const docType = $(`#doc-type-${idPresc}`).val();
+function baixarDoc(idPresc, docType) {
 
     $.ajax({
         url: `${ENDPOINT_JS}/api/${docType}/${idPresc}`,
