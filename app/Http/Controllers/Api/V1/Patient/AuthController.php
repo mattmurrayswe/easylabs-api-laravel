@@ -493,7 +493,6 @@ class AuthController extends Controller
 
         } catch (\Throwable $th) {
 
-
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }

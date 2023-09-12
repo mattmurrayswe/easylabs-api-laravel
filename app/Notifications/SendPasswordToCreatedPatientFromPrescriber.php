@@ -17,7 +17,7 @@ class SendPasswordToCreatedPatientFromPrescriber extends Notification
     public function __construct($password, $email)
     {
         $this->password = $password;
-        $this->email = $password;
+        $this->email = $email;
     }
 
     /**

@@ -162,7 +162,7 @@ class PatientController extends Controller
             return response(compact('user', 'token'));
 
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource('Nao foi possivel criar o paciente'), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }
