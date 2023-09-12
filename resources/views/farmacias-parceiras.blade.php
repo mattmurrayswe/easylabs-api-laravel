@@ -105,13 +105,16 @@
                         @endforeach
                         <tr class="bg-gray-800 max-h-5 h-5">
                             <td class="px-4 rounded-bl-xl"></td>
-                            <td class="px-4" colspan="5"> <!-- Use colspan to span across two columns -->
+                            <td class="px-4" colspan="4"> <!-- Use colspan to span across two columns -->
                                 <div class="flex justify-center items-center h-full">
                                     {{ $clinics->links() }}
                                 </div>
                             </td>
-                            <td class="px-4 rounded-br-xl">
+                            <td class="pl-4 pr-1 text-end">
                                 <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center">Novo</button>
+                            </td>
+                            <td class="rounded-br-xl">
+                                <button type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center">Exportar</button>
                             </td>
                         </tr>
                         <tr class="h-0">
