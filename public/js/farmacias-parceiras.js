@@ -164,6 +164,43 @@ function removaOuAdicioneBorderRed(element) {
     }
 }
 
+function exportFarmacias() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/export-excel/farmacias', // Replace with your API endpoint
+        xhrFields: {
+            responseType: 'blob' // Set the response type to 'blob'
+        },
+        success: function (data) {
+            // Create a Blob object to represent the data
+            var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Check if the browser supports the 'download' attribute
+            if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                // For Internet Explorer
+                window.navigator.msSaveBlob(blob, 'farmacias.xlsx');
+            } else {
+                // Create a URL for the Blob
+                var url = window.URL.createObjectURL(blob);
+
+                // Create a temporary <a> element to trigger the download
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'farmacias.xlsx';
+
+                // Trigger the download
+                a.click();
+
+                // Clean up
+                window.URL.revokeObjectURL(url);
+            }
+        },
+        error: function (error) {
+            console.error('Download failed:', error);
+        }
+    });
+}
+
 function openAlert() {
     const alert = document.getElementById("alert-3");
     if (alert) {
