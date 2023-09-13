@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\V1\DiagnoseController;
 use App\Http\Controllers\Api\V1\PharmacyController;
 use App\Http\Controllers\Api\V1\StatisticsController;
 use App\Http\Controllers\Api\V1\SymptomsController;
+use App\Http\Controllers\Admin\ExcelExportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Admin
+Route::get('/export-excel/medicines', [ExcelExportController::class, 'export']);
+
 Route::get('/cep', [AuthController::class, 'cep']);
 Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);
 Route::delete('/symptom/{id}', [SymptomsController::class, 'deleteSymptom']);
