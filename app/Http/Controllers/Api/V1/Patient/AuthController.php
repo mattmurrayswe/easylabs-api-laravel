@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Patient;
 
+use App\Domain\FotoPerfilUploader;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\LoginRequest;
 use App\Http\Requests\Api\V1\LoginPrescRequest;
@@ -307,27 +308,30 @@ class AuthController extends Controller
 
         if ($request->hasFile('foto_perfil')) {
 
-
-            $path = "prescriber/foto-perfil/foto-perfil-{$id}.jpg";
-            $fileContents = file_get_contents($request->file('foto_perfil')->getPathname());
-
-            Storage::disk('s3')->put($path, $fileContents, 'public');
-
-            $publicUrl = Storage::disk('s3')->url($path);
-
-            Prescriber::where("id", $id)->update([
-                "uploaded_foto_perfil" => $publicUrl
-            ]);
+            $publicUrl = FotoPerfilUploader::uploadFotoPerfil($id, $request->file('foto_perfil'));
 
             return response()->json([
                 'message' => "Upload de foto de perfil do prescriber de id: {$id} feito com sucesso",
                 'url' => $publicUrl,
             ], 200);
+
         } else {
 
             return response()->json(new ErrorResource("Verifique os dados de Request."), 422);
 
         }
+    }
+
+    public function uploadFotoPerfilDomain($id, $file) {
+
+        $path = "prescriber/foto-perfil/foto-perfil-{$id}.jpg";
+        $fileContents = file_get_contents($file->getPathname());
+        Storage::disk('s3')->put($path, $fileContents, 'public');
+        $publicUrl = Storage::disk('s3')->url($path);
+        Prescriber::where("id", $id)->update([
+            "uploaded_foto_perfil" => $publicUrl
+        ]);
+        return $publicUrl;
     }
 
     public function uploadDocs(Request $request)
@@ -370,6 +374,11 @@ class AuthController extends Controller
                 ]);
     
                 $uploadedUrls['selfie_com_doc'] = $publicUrl;
+            }
+    
+            if ($request->hasFile('foto_perfil')) {
+                $publicUrl = FotoPerfilUploader::uploadFotoPerfil($id, $request->file('foto_perfil'));
+                $uploadedUrls['foto_perfil'] = $publicUrl;
             }
     
             return response()->json(new SuccessResource([
