@@ -184,6 +184,7 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/logout', [AuthController::class, 'logoutPresc']);
         Route::get('/prescriber-info/{id}', [AuthController::class, 'prescInfo']);
         Route::put('/prescriber-info/{id}', [AuthController::class, 'editPrescInfo']);
+        Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
 
