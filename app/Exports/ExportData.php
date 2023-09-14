@@ -35,7 +35,15 @@ class ExportData implements FromCollection
             });
         }
     
-        $medicines = $query->get();
+        $medicines = $query->get([
+            'id',
+            'name',
+            'presentation',
+            'concentration',
+            'volume_flask',
+            'formulation',
+            'lab',
+        ]);
         return $medicines;
     }
 }
