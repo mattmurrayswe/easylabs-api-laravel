@@ -81,11 +81,12 @@ class ExcelExportController extends Controller
         }
     }
     
-    public function exportFarmacias()
+    public function exportFarmacias(Request $request)
     {
         try {
+            $search = $request->input('search');
             // Generate the Excel file
-            $export = new ExportDataFarmacias;
+            $export = new ExportDataFarmacias($search);
             
             $fileName = 'farmacias-' . uniqid() . '.xlsx'; // Combine prefix and unique identifier
 
