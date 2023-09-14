@@ -7,8 +7,9 @@ use App\Models\Patient;
 use App\Models\Pharmacy;
 use App\Models\Prescriber;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExportDataUsuarios implements FromCollection
+class ExportDataUsuarios implements FromCollection, WithHeadings
 {
     protected $search;
 
@@ -17,9 +18,29 @@ class ExportDataUsuarios implements FromCollection
         $this->search = $search;
     }
 
+    public function headings(): array
+    {
+        // Define the headings for your Excel sheet
+        return  [
+            'Nome Usuário',
+            'Email',
+            'CPF',
+            'Telefone',
+            'Rua',
+            'Numero da Rua',
+            'Complemento',
+            'Bairro',
+            'Cidade',
+            'Estado',
+            'CEP',
+            'Ativo',
+            'ID Permissão',
+            'Nome da Permissão'
+        ];
+    }
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         $prescribersQuery = Prescriber::with("permissao");
@@ -56,8 +77,41 @@ class ExportDataUsuarios implements FromCollection
             });
         }
     
-        $prescribers = $prescribersQuery->get();
-        $patients = $patientsQuery->get();
+        $prescribers = $prescribersQuery->get(
+            [
+                'name',
+                'email',
+                'cpf',
+                'cellphone',
+                'street',
+                'street_number',
+                'complement',
+                'neighborhood',
+                'city',
+                'state',
+                'cep',
+                'active',
+                'id_permissao'
+            ]
+        );
+
+        $patients = $patientsQuery->get(
+            [
+            'name',
+            'email',
+            'cpf',
+            'cellphone',
+            'street',
+            'street_number',
+            'complement',
+            'neighborhood',
+            'city',
+            'state',
+            'cep',
+            'active',
+            'id_permissao'
+            ]
+        );
     
         $prescribers->transform(function ($prescriber) {
             $prescriber['user_type'] = 'prescriber';
