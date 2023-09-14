@@ -5,14 +5,33 @@ namespace App\Exports;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExportDataFarmacias implements FromCollection
+class ExportDataFarmacias implements FromCollection, WithHeadings
 {
     protected $search;
 
     public function __construct($search)
     {
         $this->search = $search;
+    }
+
+    public function headings(): array
+    {
+        return [
+            "id",
+            "CEP",
+            "Rua",
+            "Número da Rua",
+            "Complemento",
+            "Bairro",
+            "Cidade",
+            "Estado",
+            "Nome do Responsável",
+            "Nome da Unidade",
+            "Rede",
+            "E-mail",
+        ];
     }
 
     /**
@@ -34,7 +53,19 @@ class ExportDataFarmacias implements FromCollection
             });
         }
     
-        $pharmacies = $query->get();
+        $pharmacies = $query->get([
+            "cep",
+            "street",
+            "number",
+            "complement",
+            "neighboor",
+            "city",
+            "state",
+            "unidade",
+            "name",
+            "rede",
+            "email",
+        ]);
         return $pharmacies;
     }
 }

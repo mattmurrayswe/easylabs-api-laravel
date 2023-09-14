@@ -4,14 +4,28 @@ namespace App\Exports;
 
 use App\Models\Medicine;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExportData implements FromCollection
+class ExportData implements FromCollection, WithHeadings
 {
     protected $search;
 
     public function __construct($search)
     {
         $this->search = $search;
+    }
+
+    public function headings(): array
+    {
+        return [
+            'id',
+            'Nome Medicamento',
+            'Apresentação',
+            'Concentração',
+            'Volume Frasco',
+            'Formulação',
+            'Laboratório',
+        ];
     }
 
     /**
