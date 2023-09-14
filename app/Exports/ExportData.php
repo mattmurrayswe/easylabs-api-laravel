@@ -7,12 +7,35 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExportData implements FromCollection
 {
+    protected $search;
+
+    public function __construct($search)
+    {
+        $this->search = $search;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        $data = Medicine::all();
-        return $data;
+        $query = Medicine::query();        
+        
+
+        if ($this->search) {
+            $search = $this->search;
+            $query->where(function($subquery) use ($search) {
+                $subquery->where('id', 'like', '%' . $search . '%')
+                         ->orWhere('name', 'like', '%' . $search . '%')
+                         ->orWhere('presentation', 'like', '%' . $search . '%')
+                         ->orWhere('concentration', 'like', '%' . $search . '%')
+                         ->orWhere('volume_flask', 'like', '%' . $search . '%')
+                         ->orWhere('formulation', 'like', '%' . $search . '%')
+                         ->orWhere('lab', 'like', '%' . $search . '%');
+            });
+        }
+    
+        $medicines = $query->get();
+        return $medicines;
     }
 }

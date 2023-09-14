@@ -89,33 +89,27 @@ function cadastreMedicamento() {
 }
 
 function exportMeds() {
+
+    const search = $('#search').val();
+
     $.ajax({
         type: 'GET',
-        url: '/api/export-excel/medicines', // Replace with your API endpoint
+        url: '/api/export-excel/medicines',
+        data: { search: search }, // Add the 'search' parameter to the request
         xhrFields: {
-            responseType: 'blob' // Set the response type to 'blob'
+            responseType: 'blob'
         },
         success: function (data) {
-            // Create a Blob object to represent the data
             var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-            // Check if the browser supports the 'download' attribute
             if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                // For Internet Explorer
                 window.navigator.msSaveBlob(blob, 'medicamentos.xlsx');
             } else {
-                // Create a URL for the Blob
                 var url = window.URL.createObjectURL(blob);
-
-                // Create a temporary <a> element to trigger the download
                 var a = document.createElement('a');
                 a.href = url;
                 a.download = 'medicamentos.xlsx';
-
-                // Trigger the download
                 a.click();
-
-                // Clean up
                 window.URL.revokeObjectURL(url);
             }
         },
