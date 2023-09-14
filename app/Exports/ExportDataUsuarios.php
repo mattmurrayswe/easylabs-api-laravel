@@ -10,14 +10,52 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExportDataUsuarios implements FromCollection
 {
+    protected $search;
+
+    public function __construct($search)
+    {
+        $this->search = $search;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
         $prescribersQuery = Prescriber::with("permissao");
-        $patientsQuery = Patient::with("permissao");
+        $patientsQuery = Patient::with("permissao");     
+        
+        if ($this->search) {
+            $search = $this->search;
+            $lowerSearch = strtolower($search); // Convert the search term to lowercase
 
+            if ($lowerSearch == 'prescritor') {
+                $lowerSearch = 'prescriber';
+            } elseif ($lowerSearch == 'paciente') {
+                $lowerSearch = 'patient';
+            }
+
+            $prescribersQuery->where(function ($subquery) use ($lowerSearch) {
+                $subquery->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereHas('permissao', function ($query) use ($lowerSearch) {
+                        $query->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%']);
+                    })
+                    ->orWhereRaw('LOWER(cpf) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereRaw('LOWER(email) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhere('id_permissao', $lowerSearch);
+            });
+
+            $patientsQuery->where(function ($subquery) use ($lowerSearch) {
+                $subquery->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereHas('permissao', function ($query) use ($lowerSearch) {
+                        $query->whereRaw('LOWER(name) like ?', ['%' . $lowerSearch . '%']);
+                    })
+                    ->orWhereRaw('LOWER(cpf) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhereRaw('LOWER(email) like ?', ['%' . $lowerSearch . '%'])
+                    ->orWhere('id_permissao', $lowerSearch);
+            });
+        }
+    
         $prescribers = $prescribersQuery->get();
         $patients = $patientsQuery->get();
     

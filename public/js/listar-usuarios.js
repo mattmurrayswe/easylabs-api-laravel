@@ -28,9 +28,13 @@ function editarPermissaoDoUsuario(idUnique) {
 }
 
 function exportUsuarios() {
+
+    const search = $('#search').val();
+
     $.ajax({
         type: 'GET',
         url: '/api/export-excel/usuarios', // Replace with your API endpoint
+        data: { search: search }, // Add the 'search' parameter to the request
         xhrFields: {
             responseType: 'blob' // Set the response type to 'blob'
         },

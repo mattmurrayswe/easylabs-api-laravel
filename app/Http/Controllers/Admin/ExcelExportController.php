@@ -49,11 +49,12 @@ class ExcelExportController extends Controller
         }
     }
 
-    public function exportUsuarios()
+    public function exportUsuarios(Request $request)
     {
         try {
+            $search = $request->input('search');
             // Generate the Excel file
-            $export = new ExportDataUsuarios;
+            $export = new ExportDataUsuarios($search);
             
             $fileName = 'usuarios-' . uniqid() . '.xlsx'; // Combine prefix and unique identifier
 
