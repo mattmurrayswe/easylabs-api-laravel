@@ -35,8 +35,10 @@ use Illuminate\Support\Facades\Route;
 
 // Admin
 Route::get('/export-excel/medicines', [ExcelExportController::class, 'exportMedicamentos']);
+Route::post('/import-excel/medicines', [ExcelExportController::class, 'importMedicamentos'])->name('medicine.import');;
 Route::get('/export-excel/usuarios', [ExcelExportController::class, 'exportUsuarios']);
 Route::get('/export-excel/farmacias', [ExcelExportController::class, 'exportFarmacias']);
+Route::post('/import-excel/farmacias', [ExcelExportController::class, 'importFarmacias'])->name('farmacias.import');;
 
 Route::get('/cep', [AuthController::class, 'cep']);
 Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);

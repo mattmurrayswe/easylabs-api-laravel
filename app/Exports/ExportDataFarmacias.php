@@ -19,7 +19,6 @@ class ExportDataFarmacias implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            "id",
             "CEP",
             "Rua",
             "Número da Rua",

@@ -6,6 +6,8 @@ use App\Exports\ExportData;
 use App\Exports\ExportDataFarmacias;
 use App\Exports\ExportDataUsuarios;
 use App\Http\Controllers\Controller;
+use App\Imports\FarmaciasImport;
+use App\Imports\MedicineImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -47,6 +49,20 @@ class ExcelExportController extends Controller
             Log::error('Excel export error: ' . $e->getMessage());
             // You can also return an error response or handle the error as needed
         }
+    }
+
+    public function importMedicamentos(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv' // Validate the uploaded file
+        ]);
+
+        $file = $request->file('file');
+
+        // Import the data from the Excel file using the MedicineImport class
+        Excel::import(new MedicineImport(), $file);
+
+        return response()->json(['message' => 'Data imported successfully'], 200);
     }
 
     public function exportUsuarios(Request $request)
@@ -113,6 +129,20 @@ class ExcelExportController extends Controller
             Log::error('Excel export error: ' . $e->getMessage());
             // You can also return an error response or handle the error as needed
         }
+    }
+
+    public function importFarmacias(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv' // Validate the uploaded file
+        ]);
+
+        $file = $request->file('file');
+
+        // Import the data from the Excel file using the MedicineImport class
+        Excel::import(new FarmaciasImport(), $file);
+
+        return response()->json(['message' => 'Data imported successfully'], 200);
     }
 }
 

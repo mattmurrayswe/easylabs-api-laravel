@@ -1,4 +1,30 @@
-$(document).ready(function() {});
+function importData() {
+    const formData = new FormData();
+    formData.append("file", $("#fileInput")[0].files[0]);
+    formData.append("_token", "{{ csrf_token() }}");
+
+    $.ajax({
+        url: `${ENDPOINT_JS}/api/import-excel/medicines`,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response, status) {
+
+            console.log(response)
+            console.log(status)
+
+            if (status === "success") {
+                // If the response status is 200, show the success message
+                openAlert()
+            }
+        },
+        error: function (error) {
+            console.error("An error occurred:", error);
+        },
+    });
+}
+
 
 function alimenteModalMedicamentoEdit(idMedicamento) {
 
