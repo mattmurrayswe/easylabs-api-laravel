@@ -22,28 +22,10 @@ class ExcelExportController extends Controller
             // Retrieve the search parameter from the request
             $search = $request->input('search');
     
-            // Create an instance of your ExportData class with the search parameter
-            $export = new ExportData($search);
-    
-            $fileName = 'medicamentos-' . uniqid() . '.xlsx'; // Combine prefix and unique identifier
-    
-            // Generate the Excel file and store it on S3
-            $s3FilePath = 'exports/' . $fileName;
-            Excel::store($export, $s3FilePath, 's3');
-    
-            // Create a closure that reads and streams the file from S3
-            $file = function () use ($s3FilePath) {
-                $s3FileContents = Storage::disk('s3')->get($s3FilePath);
-                echo $s3FileContents;
-            };
-    
-            // Create the response with the streamed content
-            $response = new StreamedResponse($file, 200, [
-                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'Content-Disposition' => 'attachment; filename="medicamentos.xlsx"',
+            return (new ExportData($search))->download('farmacias.xlsx', \Maatwebsite\Excel\Excel::XLSX, [
+                'X-Vapor-Base64-Encode' => 'True'
             ]);
-    
-            return $response;
+
         } catch (\Exception $e) {
             // Log any exceptions or errors
             Log::error('Excel export error: ' . $e->getMessage());
@@ -69,28 +51,11 @@ class ExcelExportController extends Controller
     {
         try {
             $search = $request->input('search');
-            // Generate the Excel file
-            $export = new ExportDataUsuarios($search);
-            
-            $fileName = 'usuarios-' . uniqid() . '.xlsx'; // Combine prefix and unique identifier
 
-            // Generate the Excel file and store it on S3
-            $s3FilePath = 'exports/' . $fileName;
-            Excel::store($export, $s3FilePath, 's3');
-
-            // Create a closure that reads and streams the file from S3
-            $file = function () use ($s3FilePath) {
-                $s3FileContents = Storage::disk('s3')->get($s3FilePath);
-                echo $s3FileContents;
-            };
-
-            // Create the response with the streamed content
-            $response = new StreamedResponse($file, 200, [
-                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'Content-Disposition' => 'attachment; filename="usuarios.xlsx"',
+            return (new ExportDataUsuarios($search))->download('usuarios.xlsx', \Maatwebsite\Excel\Excel::XLSX, [
+                'X-Vapor-Base64-Encode' => 'True'
             ]);
-
-            return $response;
+            
         } catch (\Exception $e) {
             // Log any exceptions or errors
             Log::error('Excel export error: ' . $e->getMessage());
@@ -102,28 +67,11 @@ class ExcelExportController extends Controller
     {
         try {
             $search = $request->input('search');
-            // Generate the Excel file
-            $export = new ExportDataFarmacias($search);
-            
-            $fileName = 'farmacias-' . uniqid() . '.xlsx'; // Combine prefix and unique identifier
 
-            // Generate the Excel file and store it on S3
-            $s3FilePath = 'exports/' . $fileName;
-            Excel::store($export, $s3FilePath, 's3');
-
-            // Create a closure that reads and streams the file from S3
-            $file = function () use ($s3FilePath) {
-                $s3FileContents = Storage::disk('s3')->get($s3FilePath);
-                echo $s3FileContents;
-            };
-
-            // Create the response with the streamed content
-            $response = new StreamedResponse($file, 200, [
-                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'Content-Disposition' => 'attachment; filename="farmacias.xlsx"',
+            return (new ExportDataFarmacias($search))->download('farmacias.xlsx', \Maatwebsite\Excel\Excel::XLSX, [
+                'X-Vapor-Base64-Encode' => 'True'
             ]);
 
-            return $response;
         } catch (\Exception $e) {
             // Log any exceptions or errors
             Log::error('Excel export error: ' . $e->getMessage());

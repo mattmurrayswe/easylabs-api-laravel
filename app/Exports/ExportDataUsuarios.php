@@ -6,12 +6,19 @@ use App\Models\Medicine;
 use App\Models\Patient;
 use App\Models\Pharmacy;
 use App\Models\Prescriber;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Excel;
 
-class ExportDataUsuarios implements FromCollection, WithHeadings
+class ExportDataUsuarios implements FromCollection, WithHeadings, Responsable
 {
+    use Exportable;
+    
     protected $search;
+
+    private $writerType = Excel::XLSX;
 
     public function __construct($search)
     {

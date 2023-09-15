@@ -4,11 +4,15 @@ namespace App\Exports;
 
 use App\Models\Medicine;
 use App\Models\Pharmacy;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExportDataFarmacias implements FromCollection, WithHeadings
+class ExportDataFarmacias implements FromCollection, WithHeadings, Responsable
 {
+    use Exportable;
+
     protected $search;
 
     public function __construct($search)
