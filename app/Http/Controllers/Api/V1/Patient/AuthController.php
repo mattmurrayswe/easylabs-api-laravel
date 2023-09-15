@@ -194,20 +194,34 @@ class AuthController extends Controller
     
             $patient->update($patientData);
     
-            $cuidadorData = [
-                'nome' => $request->input('nome_cuidador'),
-                'telefone' => $request->input('telefone_cuidador'),
-                'relacao_ou_parentesco' => $request->input('relacao_ou_parentesco_cuidador'),
-            ];
-    
-            $cuidador = $patient->cuidador;
-    
-            if (!$cuidador) {
-                $cuidador = new Cuidador($cuidadorData);
-                $cuidador->save();
-                $patient->id_cuidador = $cuidador->id;
-            } else {
-                $cuidador->update($cuidadorData);
+            if (
+                $request->has('nome_cuidador') ||
+                $request->has('telefone_cuidador') ||
+                $request->has('relacao_ou_parentesco_cuidador')
+            ) {
+                $cuidadorData = [];
+            
+                if ($request->has('nome_cuidador')) {
+                    $cuidadorData['nome'] = $request->input('nome_cuidador');
+                }
+                
+                if ($request->has('telefone_cuidador')) {
+                    $cuidadorData['telefone'] = $request->input('telefone_cuidador');
+                }
+                
+                if ($request->has('relacao_ou_parentesco_cuidador')) {
+                    $cuidadorData['relacao_ou_parentesco'] = $request->input('relacao_ou_parentesco_cuidador');
+                }
+                
+                $cuidador = $patient->cuidador;
+                
+                if (!$cuidador) {
+                    $cuidador = new Cuidador($cuidadorData);
+                    $cuidador->save();
+                    $patient->id_cuidador = $cuidador->id;
+                } else {
+                    $cuidador->update($cuidadorData);
+                }
             }
     
             $patient->save();
