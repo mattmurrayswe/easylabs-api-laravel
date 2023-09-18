@@ -95,7 +95,7 @@
                         @if ($i % 2 == 0)
                         <tr class="h-10 bg-gray-50">
                             @else
-                        <tr class="h-10">
+                        <tr id="div-{{ $medicamento->id }}" class="h-10">
                             @endif
                             <td id="id-{{ $medicamento->id }}" class="px-4">{{ $medicamento->id }}</td>
                             <td id="name-{{ $medicamento->id }}" class="px-4">{{ $medicamento->name }}</td>

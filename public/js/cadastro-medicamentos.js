@@ -16,7 +16,7 @@ function importData() {
 
             if (status === "success") {
                 // If the response status is 200, show the success message
-                openAlert()
+                reloadPageWithModal()
             }
         },
         error: function (error) {
@@ -57,11 +57,11 @@ function editMedicamento(idMedicamento) {
             formulation: formulation,
             lab: lab
         },
-        success: function(data, status) {
+        success: function(dataResponse, status) {
 
-            console.log(data)
+            console.log(dataResponse)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -77,7 +77,7 @@ function deleteMedicamento(idMedicamento) {
 
             console.log(data)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -107,7 +107,7 @@ function cadastreMedicamento() {
         success: function(data, status) {
 
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -145,17 +145,48 @@ function exportMeds() {
     });
 }
 
-function openAlert() {
+function openAlert(showModal) {
     const alert = document.getElementById("alert-3");
-    if (alert) {
+    if (showModal && alert) {
       alert.style.display = "flex";
     }
-}
+  }
   
-  // To close the alert, you can create a similar function:
-  function closeAlert() {
+// To close the alert, you can create a similar function:
+function closeAlert() {
     const alert = document.getElementById("alert-3");
     if (alert) {
       alert.style.display = "none";
     }
+}
+
+function checkURLParameter() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showModal = urlParams.get("showModal");
+    
+    // Convert the parameter value to a boolean (if it's present)
+    const shouldShowModal = showModal === "true";
+    
+    openAlert(shouldShowModal);
+}
+
+window.addEventListener("load", () => {
+  checkURLParameter();
+});
+
+function reloadPageWithModal() {
+    // Get the current URL
+    let currentURL = window.location.href;
+  
+    // Check if the URL already contains a query string
+    if (currentURL.includes("?")) {
+      // If it does, append the showModal parameter
+      currentURL += "&showModal=true";
+    } else {
+      // If not, add the query string with the showModal parameter
+      currentURL += "?showModal=true";
+    }
+  
+    // Reload the page with the modified URL
+    window.location.href = currentURL;
 }
