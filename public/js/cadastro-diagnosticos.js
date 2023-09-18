@@ -79,7 +79,7 @@ function editDiagnostico(idDiagnostico) {
 
             console.log(data)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -95,7 +95,7 @@ function deleteDiagnostico(idDiagnostico) {
 
             console.log(data)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -143,7 +143,7 @@ function cadastreDiagnostico() {
         success: function(data, status) {
 
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }

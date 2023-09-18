@@ -16,7 +16,7 @@ function importDataFarmacias() {
 
             if (status === "success") {
                 // If the response status is 200, show the success message
-                openAlert()
+                reloadPageWithModal()
             }
         },
         error: function (error) {
@@ -87,7 +87,7 @@ function editFarmacia(idFarmacia) {
 
             console.log(data)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -103,7 +103,7 @@ function deleteFarmacia(idPharmacy) {
 
             console.log(data)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -171,7 +171,7 @@ function cadastreFarmacia() {
         success: function(data, status) {
 
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }

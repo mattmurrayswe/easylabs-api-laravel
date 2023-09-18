@@ -21,7 +21,7 @@ function editarPermissaoDoUsuario(idUnique) {
         success: function(data, status) {
 
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
         }
     });

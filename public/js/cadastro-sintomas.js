@@ -15,7 +15,7 @@ function editSintoma(idSintoma) {
             console.log(data)
             if (status === "success") {
                 $( `#sintoma-name-${idSintoma}` ).text(novoNomeSintoma);
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -31,7 +31,7 @@ function deleteSintoma(idSintoma) {
 
             console.log(data)
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
@@ -53,7 +53,7 @@ function cadastreSintoma() {
         success: function(data, status) {
 
             if (status === "success") {
-                openAlert()
+                reloadPageWithModal()
             }
 
         }
