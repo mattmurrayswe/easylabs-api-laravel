@@ -231,18 +231,3 @@ function exportFarmacias() {
         }
     });
 }
-
-function openAlert() {
-    const alert = document.getElementById("alert-3");
-    if (alert) {
-      alert.style.display = "flex";
-    }
-}
-  
-  // To close the alert, you can create a similar function:
-  function closeAlert() {
-    const alert = document.getElementById("alert-3");
-    if (alert) {
-      alert.style.display = "none";
-    }
-}

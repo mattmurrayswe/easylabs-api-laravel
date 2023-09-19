@@ -146,6 +146,7 @@ function exportMeds() {
 }
 
 function openAlert(showModal) {
+    console.log(showModal)
     const alert = document.getElementById("alert-3");
     if (showModal && alert) {
       alert.style.display = "flex";
