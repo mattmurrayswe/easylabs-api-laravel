@@ -22,9 +22,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
-use Intervention\Image\Facades\Image;
-
-use function PHPUnit\Framework\isNull;
+use Intervention\Image\ImageManagerStatic as Image;
+use Maestroerror\HeicToJpg;
 
 class AuthController extends Controller
 {
@@ -355,21 +354,36 @@ class AuthController extends Controller
     
         try {
             if ($request->hasFile('crm_frente')) {
+                $file = $request->file('crm_frente');
                 $path = "docs/crm-frente/crm-frente-{$id}.jpg";
-                $fileContents = file_get_contents($request->file('crm_frente')->getPathname());
-                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $fileFormat = $file->getClientOriginalExtension();
+                if (strtoupper($fileFormat) === 'HEIC') {
+                    $heicImagePath = $file->getPathname();
+                    HeicToJpg::convert($heicImagePath)->saveAs("crm-frente-{$id}.jpg");
+                    Storage::disk('s3')->put($path, file_get_contents("crm-frente-{$id}.jpg"), 'public');
+                } else {
+                    $fileContents = file_get_contents($file->getPathname());
+                    Storage::disk('s3')->put($path, $fileContents, 'public');
+                }
                 $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
                     "uploaded_crm_frente" => $publicUrl
                 ]);
-    
                 $uploadedUrls['crm_frente'] = $publicUrl;
             }
     
             if ($request->hasFile('crm_verso')) {
+                $file = $request->file('crm_verso');
                 $path = "docs/crm-verso/crm-verso-{$id}.jpg";
-                $fileContents = file_get_contents($request->file('crm_verso')->getPathname());
-                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $fileFormat = $file->getClientOriginalExtension();
+                if (strtoupper($fileFormat) === 'HEIC') {
+                    $heicImagePath = $file->getPathname();
+                    HeicToJpg::convert($heicImagePath)->saveAs("crm-verso-{$id}.jpg");
+                    Storage::disk('s3')->put($path, file_get_contents("crm-verso-{$id}.jpg"), 'public');
+                } else {
+                    $fileContents = file_get_contents($file->getPathname());
+                    Storage::disk('s3')->put($path, $fileContents, 'public');
+                }
                 $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
                     "uploaded_crm_verso" => $publicUrl
@@ -379,9 +393,17 @@ class AuthController extends Controller
             }
     
             if ($request->hasFile('selfie_com_doc')) {
+                $file = $request->file('selfie_com_doc');
                 $path = "docs/selfie-com-doc/selfie-com-doc-{$id}.jpg";
-                $fileContents = file_get_contents($request->file('selfie_com_doc')->getPathname());
-                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $fileFormat = $file->getClientOriginalExtension();
+                if (strtoupper($fileFormat) === 'HEIC') {
+                    $heicImagePath = $file->getPathname();
+                    HeicToJpg::convert($heicImagePath)->saveAs("selfie_com_doc-{$id}.jpg");
+                    Storage::disk('s3')->put($path, file_get_contents("selfie_com_doc-{$id}.jpg"), 'public');
+                } else {
+                    $fileContents = file_get_contents($file->getPathname());
+                    Storage::disk('s3')->put($path, $fileContents, 'public');
+                }
                 $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
                     "uploaded_selfie_com_doc" => $publicUrl
