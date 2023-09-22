@@ -22,8 +22,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Facades\Image;
 use Maestroerror\HeicToJpg;
+use Imagick;
 
 class AuthController extends Controller
 {
@@ -359,8 +360,9 @@ class AuthController extends Controller
                 $fileFormat = $file->getClientOriginalExtension();
                 if (strtoupper($fileFormat) === 'HEIC') {
                     $heicImagePath = $file->getPathname();
-                    HeicToJpg::convert($heicImagePath)->saveAs("crm-frente-{$id}.jpg");
-                    Storage::disk('s3')->put($path, file_get_contents("crm-frente-{$id}.jpg"), 'public');
+                    $imagick = new Imagick($heicImagePath);
+                    $imagick->setImageFormat('jpeg');
+                    Storage::disk('s3')->put($path, $imagick->getImageBlob(), 'public');
                 } else {
                     $fileContents = file_get_contents($file->getPathname());
                     Storage::disk('s3')->put($path, $fileContents, 'public');
@@ -378,8 +380,9 @@ class AuthController extends Controller
                 $fileFormat = $file->getClientOriginalExtension();
                 if (strtoupper($fileFormat) === 'HEIC') {
                     $heicImagePath = $file->getPathname();
-                    HeicToJpg::convert($heicImagePath)->saveAs("crm-verso-{$id}.jpg");
-                    Storage::disk('s3')->put($path, file_get_contents("crm-verso-{$id}.jpg"), 'public');
+                    $imagick = new Imagick($heicImagePath);
+                    $imagick->setImageFormat('jpeg');
+                    Storage::disk('s3')->put($path, $imagick->getImageBlob(), 'public');
                 } else {
                     $fileContents = file_get_contents($file->getPathname());
                     Storage::disk('s3')->put($path, $fileContents, 'public');
@@ -398,8 +401,9 @@ class AuthController extends Controller
                 $fileFormat = $file->getClientOriginalExtension();
                 if (strtoupper($fileFormat) === 'HEIC') {
                     $heicImagePath = $file->getPathname();
-                    HeicToJpg::convert($heicImagePath)->saveAs("selfie_com_doc-{$id}.jpg");
-                    Storage::disk('s3')->put($path, file_get_contents("selfie_com_doc-{$id}.jpg"), 'public');
+                    $imagick = new Imagick($heicImagePath);
+                    $imagick->setImageFormat('jpeg');
+                    Storage::disk('s3')->put($path, $imagick->getImageBlob(), 'public');
                 } else {
                     $fileContents = file_get_contents($file->getPathname());
                     Storage::disk('s3')->put($path, $fileContents, 'public');
