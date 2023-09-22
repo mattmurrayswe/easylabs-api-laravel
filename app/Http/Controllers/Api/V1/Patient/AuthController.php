@@ -359,7 +359,8 @@ class AuthController extends Controller
                 $fileFormat = $file->getClientOriginalExtension();
                 if (strtoupper($fileFormat) === 'HEIC') {
                     $heicImagePath = $file->getPathname();
-                    Storage::disk('s3')->put($path, HeicToJpg::convert($heicImagePath)->get(), 'public');
+                    HeicToJpg::convert($heicImagePath)->saveAs("crm-frente-{$id}.jpg");
+                    Storage::disk('s3')->put($path, file_get_contents("crm-frente-{$id}.jpg"), 'public');
                 } else {
                     $fileContents = file_get_contents($file->getPathname());
                     Storage::disk('s3')->put($path, $fileContents, 'public');
@@ -377,7 +378,8 @@ class AuthController extends Controller
                 $fileFormat = $file->getClientOriginalExtension();
                 if (strtoupper($fileFormat) === 'HEIC') {
                     $heicImagePath = $file->getPathname();
-                    Storage::disk('s3')->put($path, HeicToJpg::convert($heicImagePath)->get(), 'public');
+                    HeicToJpg::convert($heicImagePath)->saveAs("crm-verso-{$id}.jpg");
+                    Storage::disk('s3')->put($path, file_get_contents("crm-verso-{$id}.jpg"), 'public');
                 } else {
                     $fileContents = file_get_contents($file->getPathname());
                     Storage::disk('s3')->put($path, $fileContents, 'public');
@@ -396,7 +398,8 @@ class AuthController extends Controller
                 $fileFormat = $file->getClientOriginalExtension();
                 if (strtoupper($fileFormat) === 'HEIC') {
                     $heicImagePath = $file->getPathname();
-                    Storage::disk('s3')->put($path, HeicToJpg::convert($heicImagePath)->get(), 'public');
+                    HeicToJpg::convert($heicImagePath)->saveAs("selfie_com_doc-{$id}.jpg");
+                    Storage::disk('s3')->put($path, file_get_contents("selfie_com_doc-{$id}.jpg"), 'public');
                 } else {
                     $fileContents = file_get_contents($file->getPathname());
                     Storage::disk('s3')->put($path, $fileContents, 'public');

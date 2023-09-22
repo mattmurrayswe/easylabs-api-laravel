@@ -38,11 +38,20 @@ Doc de rotas (Deprecated) usou-se Postman
 https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/manual/1.0/autenticacao
 ```
 
+Images
+```sh
+Adicionar o docker dentro do sail para permitir deploy
+/vendor/laravel/sail/runtimes/8.2/Dockerfile
+Adicione as seguintes linhas 
+RUN curl -fsSL https://get.docker.com | bash
+RUN usermod -aG docker sail
+```
+
 Deploy
 ```sh
 rm -R node_modules
 rm -R .docker
-php vendor/bin/vapor deploy production
+php vendor/bin/vapor deploy prod-docker
 ```
 
 Admin Login
