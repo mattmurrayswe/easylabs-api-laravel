@@ -1,0 +1,9 @@
+/storage/*
+/public/storage/*
+/node_modules/
+/vendor/
+/tests/
+/phpunit.xml
+/phpunit.xml.dist
+/server.php
+/bootstrap/cache/*

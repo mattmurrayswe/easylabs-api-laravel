@@ -1,6 +1,24 @@
 id: 45541
 name: api-brease-laravel
 environments:
+    dev:
+        memory: 1024
+        cli-memory: 512
+        runtime: 'php-8.1:al2'
+        build:
+            - 'composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'npm install'
+            - 'npm run build'
+        deploy: null
+    prod-docker:
+        memory: 1024
+        cli-memory: 512
+        runtime: docker
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'npm ci && npm run build && rm -rf node_modules'
     production:
         memory: 1024
         cli-memory: 512
@@ -12,4 +30,3 @@ environments:
             - 'npm run build'
         deploy:
             - 'php artisan migrate --force'
-          # - 'npm ci && npm run build && rm -rf node_modules'

@@ -17,3 +17,4 @@ yarn-error.log
 .vapor
 .docker
 /docker
+.env.prod-docker
