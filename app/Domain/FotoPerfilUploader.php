@@ -4,6 +4,7 @@ namespace App\Domain;
 
 use App\Models\Prescriber;
 use Illuminate\Support\Facades\Storage;
+use Imagick;
 
 class FotoPerfilUploader
 {
@@ -15,8 +16,17 @@ class FotoPerfilUploader
 
     public static function upload($id, $file) {
         $path = "prescriber/foto-perfil/foto-perfil-{$id}.jpg";
+        $fileFormat = $file->getClientOriginalExtension();
+        if (strtoupper($fileFormat) === 'HEIC') {
+            $heicImagePath = $file->getPathname();
+            $imagick = new Imagick($heicImagePath);
+            $imagick->setImageFormat('jpeg');
+            Storage::disk('s3')->put($path, $imagick->getImageBlob(), 'public');
+        } else {
+            $fileContents = file_get_contents($file->getPathname());
+            Storage::disk('s3')->put($path, $fileContents, 'public');
+        }
         $fileContents = file_get_contents($file->getPathname());
-        Storage::disk('s3')->put($path, $fileContents, 'public');
         $publicUrl = Storage::disk('s3')->url($path);
         return $publicUrl;
     }
