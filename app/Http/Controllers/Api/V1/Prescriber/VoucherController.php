@@ -8,8 +8,14 @@ use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
 use App\Models\Voucher;
 use App\Models\VoucherLog;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class VoucherController extends Controller
@@ -37,10 +43,36 @@ class VoucherController extends Controller
     {
         try {
 
-            Voucher::create($request->all());
+            $voucher = Voucher::create($request->all());
 
-            return response()->json(new SuccessResource('Voucher cadastrado com sucesso'), 200);
+            // Check if the voucher exists
+            if (!$voucher) {
+                abort(404, 'Voucher not found');
+            }
 
+            // Generate the QR code using endroid/qr-code
+            $qrCode = QrCode::create($voucher->code)
+                ->setEncoding(new Encoding('UTF-8'));
+
+            // Store the QR code image in S3
+            $filePath = 'qrcodes-voucher/' . $voucher->code . '.png';
+            $qrCodeImage = (new PngWriter())->write($qrCode)->getString();
+
+            $s3Response = Storage::disk('s3')->put($filePath, $qrCodeImage);
+
+            // Update the QR code path in the database
+            $url = Storage::disk('s3')->url($filePath);
+            $voucher->qr_code_path = $url;
+            $voucher->save();
+
+            $response = [
+                'message' => 'Voucher cadastrado com sucesso',
+                'url' => $url,
+                'voucher_id' => $voucher->id, // Include the voucher ID here
+            ];
+
+            return response()->json(new SuccessResource($response), 200);
+            
         } catch (\Throwable $th) {
 
             return response()->json(new ErrorResource($th->getMessage()), 422);

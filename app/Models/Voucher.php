@@ -24,7 +24,8 @@ class Voucher extends Model
         'is_active',
         'uses',
         'cpf',
-        'prescriber_id'
+        'prescriber_id',
+        'qr_code_path'
     ];
 
     public function prescriber()
