@@ -323,4 +323,11 @@ class ViewsAdminController extends Controller
             "permissao" => $permissao
         ]);
     }
+
+    public function mensagens()
+    {
+        // $permissao = Permissao::all();
+
+        return view('mensagens');
+    }
 }

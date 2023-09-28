@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/extracaodados', [ViewsAdminController::class, 'extracaoDados']);
     
     Route::get('/permissoes', [ViewsAdminController::class, 'permissoes']);
+
+    Route::get('/mensagens', [ViewsAdminController::class, 'mensagens']);
     
     Route::get('/listar-usuarios', [ViewsAdminController::class, 'listarUsuarios']);
     
