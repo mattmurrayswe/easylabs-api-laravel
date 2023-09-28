@@ -21,6 +21,13 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'laravel-notification-channels/apn' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'NotificationChannels\\Apn\\ApnServiceProvider',
+    ),
+  ),
   'laravel/breeze' => 
   array (
     'providers' => 

@@ -1,5 +1,7 @@
 <?php
 
+use NotificationChannels\Apn\ApnChannel;
+
 return [
 
     /*
@@ -29,7 +31,13 @@ return [
     */
 
     'connections' => [
-
+        'apn' => [
+            // 'key_id' => 'KDWVLY353U',
+            // 'team_id' => 'AK32B62CB9',
+            'app_bundle_id' => 'com.gebit.breaseapp',
+            'certificate_path' => './certificates/aps_development_prescriber.pem',
+            'production' => 'false',
+        ],
         'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),

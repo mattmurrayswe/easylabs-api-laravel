@@ -61,6 +61,11 @@ class Prescriber extends Authenticatable
         'indicate_clinic' => 'boolean'
     ];
 
+    public function routeNotificationForApn()
+    {
+        return $this->apn_token;
+    }
+
     public function patients()
     {
         return $this->hasMany(Patient::class, "prescriber_id", "id");

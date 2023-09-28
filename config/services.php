@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'apn' => [
+        'environment' => env('APN_ENVIRONMENT', 'sandbox'), // Use 'production' for the production environment
+        'certificate' => env('APN_CERT_PATH'),
+        'passphrase' => env('APN_CERT_PASSPHRASE'),
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
