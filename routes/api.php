@@ -122,6 +122,7 @@ Route::prefix('patient')->group(function(){
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
         Route::post('/account-config/{id}', [PatientController::class, 'updateAccountConfig']);
+        Route::post('/apn-token', [PatientController::class, 'storeApnToken']);
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informMed']);
@@ -194,22 +195,23 @@ Route::prefix('prescriber')->group(function(){
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
-
+        Route::post('/apn-token', [PrescriberController::class, 'storeApnToken']);
+        
         Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
-
+        
         // Medicine
         Route::post('/medicine', [MedicineController::class, 'store']);
         Route::get('/medicine/{id}', [MedicineController::class, 'getMedicine']);
         Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
         Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
         Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
-
+        
         Route::post('/treatment', [TreatmentController::class, 'store']);
         Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
         Route::get('/treatment/{id}', [TreatmentController::class, 'getTreatment']);
         Route::delete('/treatment/{id}', [TreatmentController::class, 'deleteTreatment']);
         Route::put('/treatment/{id}', [TreatmentController::class, 'editTreatment']);
-
+        
         // newTreatment
         Route::post('/new-treatment', [NewTreatmentController::class, 'storePresc']);
         Route::get('/all-newtreatments', [NewTreatmentController::class, 'getAllTreatmentPresc']);
@@ -222,7 +224,7 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/diagnose/{id}', [DiagnoseController::class, 'getDiagnose']);
         Route::delete('/diagnose/{id}', [DiagnoseController::class, 'deleteDiagnose']);
         Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
-
+        
         Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMedPresc']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptomsPresc']);
         
@@ -240,30 +242,30 @@ Route::prefix('prescriber')->group(function(){
         
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
         Route::post('/create-availability', [AvailabilityController::class, 'store']);
-
+        
         Route::get('/vouchers', [VoucherController::class, 'getVoucher']);
         Route::get('/voucher/{id}', [VoucherController::class, 'getVoucherPerId']);
         Route::post('/voucher', [VoucherController::class, 'createVoucher']);
         Route::put('/voucher/{id}', [VoucherController::class, 'updateVoucher']);
         Route::delete('/voucher/{id}', [VoucherController::class, 'deleteVoucher']);
         Route::post('/use-voucher', [VoucherController::class, 'useVoucher']);
-
+        
         Route::get('/clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
         Route::post('/clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
         Route::put('/clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
         
         Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
         Route::delete('/drop-appointment/{id}', [AppointmentController::class, 'dropAppointment']);
-
+        
         Route::get('/next-appointments', [AppointmentController::class, 'nextAppointments']);
         Route::get('/past-appointments', [AppointmentController::class, 'pastAppointments']);
-
+        
         Route::post('/end-appointment/{id}', [AppointmentController::class, 'endAppointment']);
-
+        
         Route::get('/produto-indicado', [StatisticsController::class, 'showProdutoIndicadoPorDiagnostico']);
         
         Route::get('/percepcao-melhora/{id}', [StatisticsController::class, 'showPercepcaoDeMelhora']);
-
+        
         Route::get('/symptoms', [SymptomsController::class, 'listSymptoms']);
         Route::post('/symptom', [SymptomsController::class, 'cadastreSymptom']);
     });

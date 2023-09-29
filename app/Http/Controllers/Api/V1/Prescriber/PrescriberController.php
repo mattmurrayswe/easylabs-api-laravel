@@ -11,9 +11,21 @@ use App\Models\PatientTreatment;
 use App\Models\Treatment;
 use App\Models\TreatmentMedicine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PrescriberController extends Controller
 {
+    public function storeApnToken(Request $request)
+    {
+        $prescriber = Prescriber::find(Auth::guard("webPresc")->id());
+
+        $apnToken = $request->input('apn_token');
+
+        $prescriber->update(['apn_token' => $apnToken]);
+
+        return response()->json(['message' => 'APN token stored successfully']);
+    }
+
     public function desativate($id)
     {
         $prescriber = Prescriber::find($id);

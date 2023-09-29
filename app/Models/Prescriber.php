@@ -36,7 +36,8 @@ class Prescriber extends Authenticatable
         'active',
         'indicate_clinic',
         'clinic_adress_id',
-        'id_permissao'
+        'id_permissao',
+        'apn_token'
     ];
 
     /**

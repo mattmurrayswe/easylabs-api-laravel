@@ -13,9 +13,21 @@ use App\Models\TreatmentMedicine;
 use App\Models\TreatmentsRef;
 use App\Notifications\SendPasswordToCreatedPatientFromPrescriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
+    public function storeApnToken(Request $request)
+    {
+        $patient = Patient::find(Auth::guard("webPatient")->id());
+
+        $apnToken = $request->input('apn_token');
+
+        $patient->update(['apn_token' => $apnToken]);
+
+        return response()->json(['message' => 'APN token stored successfully']);
+    }
+
     public function desativate($id)
     {
         $patient = Patient::find($id);

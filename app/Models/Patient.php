@@ -39,6 +39,7 @@ class Patient extends Authenticatable
         'cep',
         'street',
         'neighborhood',
+        'apn_token',
     ];
 
     /**
