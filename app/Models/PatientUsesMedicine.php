@@ -19,6 +19,7 @@ class PatientUsesMedicine extends Model
         'medicine_id',
         'treatment_id',
         'howMany',
+        'created_at'
     ];
 
     

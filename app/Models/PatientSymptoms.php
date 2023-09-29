@@ -15,6 +15,7 @@ class PatientSymptoms extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'created_at',
         'patient_id',
         'symptom_id',
         'diagnoses_id',

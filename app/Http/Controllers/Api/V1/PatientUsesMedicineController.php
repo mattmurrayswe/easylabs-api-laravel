@@ -21,7 +21,8 @@ class PatientUsesMedicineController extends Controller
                 "patient_id" => Auth::guard("webPatient")->id(),
                 "medicine_id" => $request->medicine_id,
                 "treatment_id" => $request->treatment_id,
-                "howMany" => $request->how_many
+                "howMany" => $request->how_many,
+                "created_at" => $request->created_at
             ];
 
             PatientUsesMedicine::create($data);
