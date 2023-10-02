@@ -60,6 +60,7 @@ class RecoverController extends Controller
             'email' => "required|email|exists:patients,email",
             'token' => "required|min:6|max:6",
         ]);
+
         $recoveryCode = PatientPasswordRecover::where('email', $request->email)->first();
 
         $code = $request['token'];
@@ -71,7 +72,7 @@ class RecoverController extends Controller
 
         }
 
-        return response()->json(new ErrorResource("Código de validação inválido."), 200);
+        return response()->json(new ErrorResource("Código de validação inválido."), 400);
 
     }
 
