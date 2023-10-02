@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Medicine\StoreMedicineRequest;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
+use App\Models\MedicineReminder;
 use App\Service\MedicineService;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,69 @@ class MedicineController extends Controller
         $this->errorMessage = "Medicamento nao encontrado!";
     }
 
+    public function storeReminder(Request $request)
+    {
+        $validatedData = $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'medicine_id' => 'required|exists:medicines,id',
+            'reminder_time' => 'required|date_format:H:i:s',
+        ]);
+
+        $reminder = MedicineReminder::create($validatedData);
+
+        return response()->json(new SuccessResource($reminder), 200);
+    }
+
+    public function indexReminder(Request $request)
+    {
+        $request->validate([
+            'patient_id' => 'required|integer|exists:patients,id',
+        ]);
+
+        $patient_id = $request->input('patient_id');
+        
+        $reminders = MedicineReminder::where('patient_id', $patient_id)->get();
+        
+        return response()->json(new SuccessResource($reminders), 200);
+    }
+
+    public function showReminder($id)
+    {
+        $reminder = MedicineReminder::where('id', $id)->get();
+
+        return response()->json(new SuccessResource($reminder), 200);
+    }
+
+    public function updateReminder(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'reminder_time' => 'sometimes|required|date_format:H:i:s',
+        ]);
+    
+        $reminder = MedicineReminder::find($id);
+    
+        if (!$reminder) {
+            return response()->json(['message' => 'Reminder not found'], 404);
+        }
+    
+        $reminder->update($validatedData);
+    
+        return response()->json(new SuccessResource($reminder), 200);
+    }
+
+    public function destroyReminder($id)
+    {
+        $reminder = MedicineReminder::find($id);
+    
+        if (!$reminder) {
+            return response()->json(['message' => 'Reminder not found'], 404);
+        }
+
+        $reminder->delete();
+
+        return response()->json(['message' => 'Reminder destruído com sucesso'], 200);
+    }
+
     public function store(StoreMedicineRequest $request)
     {
         try {
@@ -46,16 +110,16 @@ class MedicineController extends Controller
     public function getAllMedicine()
     {
         try {
-            
+
             $treament = $this->medicineService->getAllMedicine();
 
             return response()->json(new SuccessResource($treament), 200);
-            
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th->getMessage()), 422);
 
         }
     }
+
     public function getMedicine($id)
     {
 
@@ -67,6 +131,7 @@ class MedicineController extends Controller
             return response()->json(new ErrorResource($this->errorMessage), 404);
         }
     }
+
     public function deleteMedicine($id)
     {
 
@@ -78,6 +143,7 @@ class MedicineController extends Controller
             return response()->json(new ErrorResource($this->errorMessage), 404);
         }
     }
+    
     public function edit(StoreMedicineRequest $request, $id)
     {
 

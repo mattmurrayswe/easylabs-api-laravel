@@ -139,9 +139,10 @@ Route::prefix('patient')->group(function(){
         
         // Follow Up Treatment
         Route::post('/follow-up', [FollowUpController::class, 'store']);
-        Route::post('/message', [FollowUpController::class, 'messageToPrescriber']);
-        Route::get('/message', [FollowUpController::class, 'readMessagesToPrescriber']);
-        
+        Route::post('/message', [FollowUpController::class, 'message']);
+        Route::get('/message', [FollowUpController::class, 'readMessages']);
+        Route::post('/message/admin', [FollowUpController::class, 'patientMessagesAdmin']);
+        Route::post('/message/patient', [FollowUpController::class, 'patientMessagesPrescriber']);
         
         // Medicine
         Route::post('/medicine', [MedicineController::class, 'store']);
@@ -149,6 +150,12 @@ Route::prefix('patient')->group(function(){
         Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
         Route::delete('/medicine/{id}', [MedicineController::class, 'deleteMedicine']);
         Route::put('/medicine/{id}', [MedicineController::class, 'edit']);
+
+        Route::post('/reminder/medicine', [MedicineController::class, 'storeReminder']);
+        Route::get('/reminder/medicine', [MedicineController::class, 'indexReminder']);
+        Route::get('/reminder/medicine/{id}', [MedicineController::class, 'showReminder']);
+        Route::put('/reminder/medicine/{id}', [MedicineController::class, 'updateReminder']);
+        Route::delete('/reminder/medicine/{id}', [MedicineController::class, 'destroyReminder']);
         
         Route::post('/treatment', [TreatmentController::class, 'store']);
         Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);
@@ -196,7 +203,6 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/desativate-account/{id}', [PrescriberController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PrescriberController::class, 'delete']);
         Route::post('/apn-token', [PrescriberController::class, 'storeApnToken']);
-        
         Route::get('/all-medicines', [MedicineController::class, 'getAllMedicine']);
         
         // Medicine
@@ -227,6 +233,9 @@ Route::prefix('prescriber')->group(function(){
         
         Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMedPresc']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptomsPresc']);
+        Route::post('/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
+        Route::post('/message/patient', [FollowUpController::class, 'prescriberMessagesPatient']);
+        Route::get('/message', [FollowUpController::class, 'readMessages']);
         
         
         // Create Patient Using Prescriber
