@@ -26,6 +26,26 @@ class VoucherController extends Controller
         return response()->json(new SuccessResource(Auth::guard("webPresc")->user()->vouchers), 200);
 
     }
+
+    // public function getVoucher()
+    // {
+    //     // Find the user by ID (in this case, ID 5)
+    //     $user = Prescriber::find(5);
+    
+    //     if ($user) {
+    //         // Send the APN notification to the user
+    //         Log::info('controller'); // or dd('toApn method called');
+
+    //         Notification::send($user, new MyAPNSNotification());
+    
+    //         // Assuming you're returning a JSON response
+    //         return response()->json(new SuccessResource(Auth::guard("webPresc")->user()->vouchers), 200);
+    //     } else {
+    //         // Handle the case where the user with ID 5 is not found
+    //         return response()->json(['message' => 'User not found'], 404);
+    //     }
+    // }
+
     public function getVoucherPerId($id)
     {
         try {
