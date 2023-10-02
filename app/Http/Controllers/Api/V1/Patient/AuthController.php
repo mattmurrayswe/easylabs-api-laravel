@@ -698,6 +698,46 @@ class AuthController extends Controller
         }
     }
 
+    public function docsStatusCpf(Request $request)
+    {
+        try {
+            $prescriber = Prescriber::where("cpf", $request->cpf)->first();
+
+            $pendingVerificationsWithMotives = [];
+
+            if ($prescriber->ok_crm_frente !== "true") {
+                $motivo_crm_frente = $prescriber->motivo_crm_frente ?? 'Ainda em análise.';
+                $pendingVerificationsWithMotives[] = "Verificação de documento CRM frente: $motivo_crm_frente";
+            }
+            
+            if ($prescriber->ok_crm_verso !== "true") {
+                $motivo_crm_verso = $prescriber->motivo_crm_verso ?? 'Ainda em análise.';
+                $pendingVerificationsWithMotives[] = "Verificação de documento CRM verso: $motivo_crm_verso";
+            }
+            
+            if ($prescriber->ok_selfie_com_doc !== "true") {
+                $motivo_selfie_com_doc = $prescriber->motivo_selfie_com_doc ?? 'Ainda em análise.';
+                $pendingVerificationsWithMotives[] = "Verificação de selfie com documento: $motivo_selfie_com_doc";
+            }
+            
+            if (!empty($pendingVerificationsWithMotives)) {
+                // $errorMessage = "Verificações pendentes com motivos:\n$pendingVerificationsText";
+                $errorMessage = "Seu cadastro ainda está em análise!";
+                return response()->json(new SuccessResource([
+                    "message" => $errorMessage,
+                    "motivos" => $pendingVerificationsWithMotives
+                ]), 200);
+            }             
+            return response()->json(new SuccessResource(
+                ["message" => "Não há pendências para o CPF $request->cpf,adastro aprovado com sucesso."]
+            ), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
     public function handleGoogleCallback(Request $request)
     {
 

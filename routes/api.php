@@ -79,6 +79,7 @@ Route::put('/permissao-user', [PermissaoController::class, 'editPermissaoUser'])
 
 Route::post('/documents', [AuthController::class, 'uploadDocs']);
 Route::get('/documents', [AuthController::class, 'getDocuments']);
+Route::get('/documents/status/cpf', [AuthController::class, 'docsStatusCpf']);
 Route::get('/crm-frente/{id}', [AuthController::class, 'downloadCRMFrente']);
 Route::get('/crm-verso/{id}', [AuthController::class, 'downloadCRMVerso']);
 Route::get('/selfie-com-doc/{id}', [AuthController::class, 'downloadSelfieComDoc']);
