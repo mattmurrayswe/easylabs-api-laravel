@@ -73,18 +73,17 @@
                         </tr>
                     </thead>
                     <tbody class="my-20 bg-white rounded-xl">
-                        {{-- @foreach ($messages as $m)
+                        @foreach ($messages as $m)
                         <tr class="h-10 bg-gray-50">
-                            <td id="id-listagem" class="px-4">{{$m->unique_id}}</td>
                             <td hidden id="id-usuario" class="px-4">{{$m->id}}</td>
-                            <td id="name" class="px-4">{{$m->name}}</td>
-                            <td id="permissao" class="px-4">{{$m->permissao->name}}</td>
-                            <td id="id-permissao" class="px-4">{{$m->id_permissao}}</td>
-                            <td data-modal-target="edit-modal-{{$m->unique_id}}" data-modal-toggle="edit-modal-{{$m->unique_id}}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600">
+                            <td id="name" class="px-4">{{$m->from_id}}</td>
+                            <td id="permissao" class="px-4">{{$m->from_entity}}</td>
+                            <td id="id-permissao" class="px-4">{{$m->message}}</td>
+                            <td data-modal-target="edit-modal-{{$m->id}}" data-modal-toggle="edit-modal-{{$m->id}}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600">
                                 <p class="flex justify-end underline decoration-blue-400 decoration-2 hover:text-blue-600">Editar</p>
                             </td>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                         <tr class="bg-gray-800 max-h-5 h-5">
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4" colspan="2">

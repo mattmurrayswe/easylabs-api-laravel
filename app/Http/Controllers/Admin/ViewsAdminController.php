@@ -8,6 +8,7 @@ use App\Models\ClinicAdress;
 use App\Models\Clinics;
 use App\Models\Diagnoses;
 use App\Models\Medicine;
+use App\Models\Messages;
 use App\Models\Patient;
 use App\Models\Permissao;
 use App\Models\Pharmacy;
@@ -326,8 +327,26 @@ class ViewsAdminController extends Controller
 
     public function mensagens()
     {
-        // $permissao = Permissao::all();
-
-        return view('mensagens');
-    }
+        $messagesToPrescribers = Messages::where(function ($query) {
+            $query->where('to_entity', 'admin')
+                ->orWhere('from_entity', 'admin');
+        })
+        ->where(function ($query) {
+            $query->where('to_entity', 'prescriber')
+                ->orWhere('from_entity', 'prescriber');
+        });
+    
+        $messagesToPatients = Messages::where(function ($query) {
+            $query->where('to_entity', 'admin')
+                ->orWhere('from_entity', 'admin');
+        })
+        ->where(function ($query) {
+            $query->where('to_entity', 'patient')
+                ->orWhere('from_entity', 'patient');
+        });
+    
+        $messages = $messagesToPrescribers->union($messagesToPatients)->get();
+    
+        return view('mensagens', ['messages' => $messages]);
+    }    
 }
