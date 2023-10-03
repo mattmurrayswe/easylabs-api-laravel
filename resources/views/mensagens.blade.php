@@ -44,10 +44,10 @@
             </div>
             <div id="tabela-medicamentos" class="h-5/6 mb-20 content-center">
                 <div class="mb-2">
-                    <form action="{{ url('/listar-usuarios') }}" method="GET">
+                    <form action="{{ url('/mensagens') }}" method="GET">
                         <div class="flex">
                             <div class="flex-1 mr-1">
-                                {{-- <input id="search" type="text" name="search" value="{{ $search }}" placeholder="Filtro" class="px-3 py-2 border rounded-lg w-full focus:outline-none"> --}}
+                                <input id="search" type="text" name="search" value="{{ $search }}" placeholder="Filtro" class="px-3 py-2 border rounded-lg w-full focus:outline-none">
                             </div>
                             <div>
                                 <button type="submit" class="bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-lg">Filtrar</button>
@@ -76,11 +76,11 @@
                         @foreach ($messages as $m)
                         <tr class="h-10 bg-gray-50">
                             <td hidden id="id-usuario" class="px-4">{{$m->id}}</td>
-                            <td id="name" class="px-4">{{$m->from_id}}</td>
-                            <td id="permissao" class="px-4">{{$m->from_entity}}</td>
+                            <td id="name" class="px-4">{{$m->name}}</td>
+                            <td id="permissao" class="px-4">{{$m->entity}}</td>
                             <td id="id-permissao" class="px-4">{{$m->message}}</td>
-                            <td data-modal-target="edit-modal-{{$m->id}}" data-modal-toggle="edit-modal-{{$m->id}}" class="px-4 underline decoration-blue-400 decoration-2 hover:text-blue-600">
-                                <p class="flex justify-end underline decoration-blue-400 decoration-2 hover:text-blue-600">Editar</p>
+                            <td data-modal-target="chat-modal-{{$m->chat_id}}" data-modal-toggle="chat-modal-{{$m->chat_id}}" class="px-4 underline decoration-blue-400 decoration-2 cursor-pointer hover:text-blue-600">
+                                <p class="flex justify-end cursor-pointer hover:text-blue-600">Editar</p>
                             </td>
                         </tr>
                         @endforeach
@@ -88,13 +88,9 @@
                             <td class="px-4 rounded-bl-xl"></td>
                             <td class="px-4" colspan="2">
                                 <div class="flex justify-center items-center h-full">
-                                    {{-- {{ $messages->links() }} --}}
                                 </div>
                             </td>
-                            <td class="rounded-br-xl text-end">
-                                <button data-modal-target="add-modal" data-modal-toggle="add-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 text-center">Novo</button>
-                                <button onClick="exportUsuarios()" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-600 font-medium rounded-lg text-sm px-5 py-2.5 my-2.5 mr-5 text-center">Exportar</button>
-                            </td>
+                            <td class="rounded-br-xl text-end"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -130,15 +126,15 @@
                 </div>
             </div>
 
-            {{-- @foreach($messages as $m)
-            <div data-modal-backdrop="static" id="edit-modal-{{$m->unique_id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            @foreach($messages as $m)
+            <div data-modal-backdrop="static" id="chat-modal-{{$m->chat_id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <div class="relative bg-white rounded-lg shadow">
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
                             <h3 class="text-xl font-semibold text-gray-900">
-                                Editar o Perfil
+                                Chat
                             </h3>
-                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="edit-modal-{{$m->unique_id}}">
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="chat-modal-{{$m->chat_id}}">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
@@ -148,86 +144,29 @@
                         <!-- Modal body -->
 
                         <div class="p-6 space-y-6">
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID Listagem</label>
-                                <input disabled type="text" name="brand" id="id-user-{{$m->unique_id}}" value="{{$m->unique_id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID Usuário</label>
-                                <input disabled type="text" name="brand" id="id-user-{{$m->id}}" value="{{$m->id}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Nome Usuário</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">CPF</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->cpf}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->email}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Telefone</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->cellphone}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Número da Rua</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->street_number}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->complement}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->city}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Estado</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->state}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">CEP</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->cep}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Rua</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->street}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Bairro</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->neighborhood}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div class="space-x-4">
-                                <div class="inline-flex items-center">
-                                    <input @if($m->active == 1) checked @endif type="radio" id="active-{{$m->unique_id}}" name="active-radios-{{$m->unique_id}}" value="active" class="radio radio-primary form-radio text-primary-600 focus:ring-primary-600 focus:border-primary-600">
-                                    <label for="active-{{$m->unique_id}}" class="ml-1 text-sm font-medium text-gray-900">Ativo</label>
-                                </div>
-                                <div class="inline-flex items-center">
-                                    <input type="radio" id="inactive-{{$m->unique_id}}" name="active-radios-{{$m->unique_id}}" value="inactive" class="radio radio-primary form-radio text-primary-600 focus:ring-primary-600 focus:border-primary-600">
-                                    <label for="inactive-{{$m->unique_id}}" class="ml-1 text-sm font-medium text-gray-900">Inativo</label>
+                            @foreach($m->chat as $chatMessage)
+                            <div class="flex justify-{{$chatMessage->admin_replying ? 'start' : 'end'}} mt-2">
+                                <div class="bg-{{$chatMessage->admin_replying ? 'blue-500' : 'blue-800'}} text-white rounded-lg p-2 max-w-xs w-full">
+                                    <p>{{$chatMessage->message}}</p>
                                 </div>
                             </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">Nome Permissão</label>
-                                <input disabled type="text" name="brand" id="" value="{{$m->permissao->name}}" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                            </div>
-                            <div>
-                                <label for="brand" class="block mb-2 text-sm font-medium text-gray-900">ID Permissão</label>
-                                <input type="text" name="brand" id="id-permissao-new-{{$m->id_permissao}}" value="{{$m->id_permissao}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                                <input type="text" name="brand" id="id-permissao-old-{{$m->id_permissao}}" value="{{$m->id_permissao}}" hidden placeholder="">
-                            </div>
+                        @endforeach
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button onclick="editarPermissaoDoUsuario({{$m->unique_id}})" data-modal-hide="edit-modal-{{$m->unique_id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Editar</button>
-                        </div>
+                            <input type="text" id="mensagem-{{$m->chat_id}}" class="w-full px-3 py-2 border rounded-lg" placeholder="Digite sua mensagem">
+                            <button
+                            onclick="enviarMensagem(`{{ $m->entity_original }}`, @php echo ($m->entity_original === 'prescriber') ? $m->prescriber_id : $m->patient_id; @endphp, `{{ $m->name }}`, `{{ $m->chat_id }}`)"
+                            type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        >
+                                Enviar
+                            </button>
+                        </div>                        
                     </div>
                 </div>
             </div>
-            @endforeach --}}
+            @endforeach
 
 
 

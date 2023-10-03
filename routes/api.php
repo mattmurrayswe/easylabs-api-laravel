@@ -34,6 +34,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Admin
+Route::post('presc/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
+Route::post('patien/message/admin', [FollowUpController::class, 'patientMessagesAdmin']);
+
 Route::get('/export-excel/medicines', [ExcelExportController::class, 'exportMedicamentos']);
 Route::post('/import-excel/medicines', [ExcelExportController::class, 'importMedicamentos'])->name('medicine.import');;
 Route::get('/export-excel/usuarios', [ExcelExportController::class, 'exportUsuarios']);

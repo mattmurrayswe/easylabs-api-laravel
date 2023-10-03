@@ -10,13 +10,16 @@ use App\Models\Diagnoses;
 use App\Models\Medicine;
 use App\Models\Messages;
 use App\Models\Patient;
+use App\Models\PatientMessagesAdmin;
 use App\Models\Permissao;
 use App\Models\Pharmacy;
 use App\Models\Prescriber;
+use App\Models\PrescriberMessagesAdmin;
 use App\Models\Symptoms;
 use App\Presenter\Diagnoses as PresenterDiagnoses;
 use App\Presenter\Documents;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
 class ViewsAdminController extends Controller
@@ -325,28 +328,72 @@ class ViewsAdminController extends Controller
         ]);
     }
 
-    public function mensagens()
+    public function mensagens(Request $request)
     {
-        $messagesToPrescribers = Messages::where(function ($query) {
-            $query->where('to_entity', 'admin')
-                ->orWhere('from_entity', 'admin');
-        })
-        ->where(function ($query) {
-            $query->where('to_entity', 'prescriber')
-                ->orWhere('from_entity', 'prescriber');
+        $search = $request->input('search');
+    
+        // Get the latest messages for each patient
+        $latestPatientMessages = PatientMessagesAdmin::groupBy('patient_id')
+            ->selectRaw('MAX(id) as max_id')
+            ->pluck('max_id');
+    
+        // Get the latest messages for each prescriber
+        $latestPrescriberMessages = PrescriberMessagesAdmin::groupBy('prescriber_id')
+            ->selectRaw('MAX(id) as max_id')
+            ->pluck('max_id');
+    
+        // Initialize query objects for the latest messages
+        $latestMessagesToPatientsQuery = PatientMessagesAdmin::whereIn('id', $latestPatientMessages);
+        $latestMessagesToPrescribersQuery = PrescriberMessagesAdmin::whereIn('id', $latestPrescriberMessages);
+    
+        if ($search) {
+            // If there's a search query, filter the messages
+            $latestMessagesToPatientsQuery->where(function ($query) use ($search) {
+                $query->where('patient_name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('message', 'LIKE', '%' . $search . '%');
+            });
+    
+            $latestMessagesToPrescribersQuery->where(function ($query) use ($search) {
+                $query->where('prescriber_name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('message', 'LIKE', '%' . $search . '%');
+            });
+        }
+    
+        // Get the latest messages for patients and prescribers based on the query
+        $latestMessagesToPatients = $latestMessagesToPatientsQuery->get();
+        $latestMessagesToPrescribers = $latestMessagesToPrescribersQuery->get();
+    
+        // Create an incremental chat ID variable
+        $chatId = 1;
+    
+        // Add 'name' and 'entity' fields to each message for Patient Messages
+        $latestMessagesToPatients = $latestMessagesToPatients->map(function ($message) use (&$chatId) {
+            $message->name = $message->patient_name;
+            $message->entity = 'Paciente';
+            $message->entity_original = 'patient';
+            $message->chat_id = $chatId; // Unique incremental chat ID
+            $message->chat = PatientMessagesAdmin::where('patient_id', $message->patient_id)->get(); // Unique incremental chat ID
+            $chatId++; // Increment the chat ID
+            return $message;
         });
     
-        $messagesToPatients = Messages::where(function ($query) {
-            $query->where('to_entity', 'admin')
-                ->orWhere('from_entity', 'admin');
-        })
-        ->where(function ($query) {
-            $query->where('to_entity', 'patient')
-                ->orWhere('from_entity', 'patient');
+        // Add 'name' and 'entity' fields to each message for Prescriber Messages
+        $latestMessagesToPrescribers = $latestMessagesToPrescribers->map(function ($message) use (&$chatId) {
+            $message->name = $message->prescriber_name;
+            $message->entity = 'Prescritor';
+            $message->entity_original = 'prescriber';
+            $message->chat_id = $chatId; // Unique incremental chat ID
+            $message->chat = PrescriberMessagesAdmin::where('prescriber_id', $message->prescriber_id)->get(); // Unique incremental chat ID
+            $chatId++; // Increment the chat ID
+            return $message;
         });
     
-        $messages = $messagesToPrescribers->union($messagesToPatients)->get();
+        // Merge the two collections
+        $messages = $latestMessagesToPatients->concat($latestMessagesToPrescribers);
     
-        return view('mensagens', ['messages' => $messages]);
-    }    
+        return view('mensagens', [
+            'messages' => $messages,
+            'search' => $search,
+        ]);
+    }
 }
