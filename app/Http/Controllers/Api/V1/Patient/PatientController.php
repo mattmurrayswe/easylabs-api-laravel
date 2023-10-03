@@ -240,7 +240,7 @@ class PatientController extends Controller
 
         try {
             
-                $patient = Patient::with('treatments.treatmentsRef.medicine')->with('treatments.diagnose')->with('cuidador')->findOrFail($request->id_patient);
+            $patient = Patient::with('treatments.treatmentsRef.medicine')->with('treatments.diagnose')->with('cuidador')->findOrFail($request->id_patient);
 
             return response()->json(new SuccessResource($patient), 200);
 

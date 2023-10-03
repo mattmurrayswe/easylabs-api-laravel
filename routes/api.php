@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\V1\DiagnoseController;
 use App\Http\Controllers\Api\V1\PharmacyController;
 use App\Http\Controllers\Api\V1\StatisticsController;
 use App\Http\Controllers\Api\V1\SymptomsController;
+use App\Http\Controllers\Api\V1\ConfigsController;
 use App\Http\Controllers\Admin\ExcelExportController;
 use Illuminate\Support\Facades\Route;
 
@@ -111,6 +112,10 @@ Route::prefix('patient')->group(function(){
     Route::post('/new-code', [RecoverController::class, 'sendNewCode']);
     
     Route::middleware('auth:webPatient')->group(function() {
+
+        Route::post('configs', [ConfigsController::class, 'store']);
+        Route::get('configs', [ConfigsController::class, 'show']);
+        Route::put('configs', [ConfigsController::class, 'update']);
         
         // Patient
         Route::post('/set-treatment', [PatientController::class, 'setTreatmentToPatient']);
@@ -196,6 +201,11 @@ Route::prefix('prescriber')->group(function(){
     
     // // Authenticated Routes for Prescriber
     Route::middleware('auth:webPresc')->group(function() {
+        
+        Route::post('configs', [ConfigsController::class, 'store']);
+        Route::get('configs', [ConfigsController::class, 'show']);
+        Route::put('configs', [ConfigsController::class, 'update']);
+
         Route::post('/documents', [AuthController::class, 'uploadDocs']);
         Route::get('/documents', [AuthController::class, 'getDocuments']);
         Route::post('/foto-perfil', [AuthController::class, 'uploadFotoPerfilPresc']);
