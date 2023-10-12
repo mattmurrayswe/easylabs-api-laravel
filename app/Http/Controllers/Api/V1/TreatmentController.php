@@ -93,12 +93,17 @@ class TreatmentController extends Controller
                     "medicines" => $treatmentsHasMeds
                 ];
             }
-            
+
+            if (!$response) {
+                $response = [];
+            }
 
             return response()->json(new SuccessResource($response), 200);
             
         } catch (\Throwable $th) {
+
             return response()->json(new ErrorResource($th->getMessage()), 422);
+            
 
         }
     }
@@ -152,20 +157,18 @@ class TreatmentController extends Controller
             if (isset($request->medicines)) {
 
                 foreach ($request->medicines as $medicine) {
-    
+                    $dataToUpdate = $request->only([
+                        'intervalo_em_horas',
+                        'inicio_do_uso',
+                        'fim_do_uso',
+                        'how_many',
+                        'presentation'
+                    ]);
+            
                     TreatmentHasMedicines::where([
-                        "medicine_id" => $medicine["medicine_id"],
-                        "treatment_id" => $id,
-                    ])->update(
-                        [
-                            "medicine_id" => $medicine["medicine_id"],
-                            "intervalo_em_horas" => $medicine["intervalo_em_horas"],
-                            "inicio_do_uso" => $medicine["inicio_do_uso"],
-                            "fim_do_uso" => $medicine["fim_do_uso"],
-                            "how_many" => $medicine["how_many"],
-                            "presentation" => $medicine["presentation"]
-                        ]
-                    );
+                        'medicine_id' => $medicine['medicine_id'],
+                        'treatment_id' => $id,
+                    ])->update($dataToUpdate);
                 }
             }
 

@@ -537,12 +537,22 @@ class AuthController extends Controller
             $foto = Patient::where("id", $id)->get([
                 "uploaded_foto_perfil"
             ]);
+
+            if ($foto === "false") {
+                $data = [
+                    'uploaded_foto_perfil' => null,
+                ];
+            } else {
+                $data = [
+                    'uploaded_foto_perfil' => $foto,
+                ];
+            }
             
-            return response()->json(new SuccessResource($foto), 200);
+            return response()->json(new SuccessResource($data), 200);
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th->getMessage()), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 500);
         }
     }
 
@@ -552,15 +562,73 @@ class AuthController extends Controller
         
         try {
 
-            $foto = Prescriber::where("id", $id)->get([
-                "uploaded_foto_perfil"
-            ]);
+            $foto = Prescriber::where("id", $id)->value("uploaded_foto_perfil");
+
+            if ($foto === "false") {
+                $data = [
+                    'uploaded_foto_perfil' => null,
+                ];
+            } else {
+                $data = [
+                    'uploaded_foto_perfil' => $foto,
+                ];
+            }
             
-            return response()->json(new SuccessResource($foto), 200);
+            return response()->json(new SuccessResource($data), 200);
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th->getMessage()), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 500);
+        }
+    }
+
+    public function deleteFotoPerfilPrescriber()
+    {        
+        try {
+            $id = Auth::guard("webPresc")->id();
+    
+            $filePath = "docs/selfie-com-doc/selfie-com-doc-{$id}.jpg";
+
+            if (Storage::disk('s3')->exists($filePath)) {
+
+                Storage::disk('s3')->delete($filePath);
+
+            }
+
+            Prescriber::where("id", $id)->update([
+                "uploaded_foto_perfil" => "false"
+            ]);
+            
+            return response()->json(new SuccessResource("Foto de perfil deletada com sucesso."), 204);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 500);
+        }
+    }
+
+    public function deleteFotoPerfilPatient()
+    {        
+        try {
+            $id = Auth::guard("webPatient")->id();
+    
+            $filePath = "docs/selfie-com-doc/selfie-com-doc-{$id}.jpg";
+
+            if (Storage::disk('s3')->exists($filePath)) {
+
+                Storage::disk('s3')->delete($filePath);
+
+            }
+
+            Patient::where("id", $id)->update([
+                "uploaded_foto_perfil" => "false"
+            ]);
+            
+            return response()->json(new SuccessResource("Foto de perfil deletada com sucesso."), 204);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 500);
         }
     }
 
@@ -703,6 +771,10 @@ class AuthController extends Controller
         try {
             $prescriber = Prescriber::where("cpf", $request->cpf)->first();
 
+            if (!$prescriber) {
+                return response()->json(new ErrorResource("O usuário não está cadastrado na base"), 404); 
+            }
+
             $pendingVerificationsWithMotives = [];
 
             if ($prescriber->ok_crm_frente !== "true") {
@@ -729,12 +801,12 @@ class AuthController extends Controller
                 ]), 200);
             }             
             return response()->json(new SuccessResource(
-                ["message" => "Não há pendências para o CPF $request->cpf,adastro aprovado com sucesso."]
+                ["message" => "Não há pendências para o CPF $request->cpf, cadastro aprovado com sucesso."]
             ), 200);
 
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($th->getMessage()), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 500);
         }
     }
 

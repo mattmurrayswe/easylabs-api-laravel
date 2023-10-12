@@ -46,8 +46,8 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => "AKIAQGTVVZNYXTVZNAVC",
-            'secret' => "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",
+            'key' => env('AWS_KEY'),
+            'secret' => env('AWS_SECRET'),
             'region' => "sa-east-1",
             'bucket' => "brease-foto-perfil",
         ],

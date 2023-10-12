@@ -103,7 +103,7 @@ class RecoverController extends Controller
     {
         $request->validate([
             'email' => "required|email|exists:patients,email",
-            'password' => ["required", Password::min(8)->letters()->symbols()]
+            'password' => ['required', 'min:6','confirmed'],
         ]);
 
         if (isset($request['password'])) {
@@ -121,7 +121,7 @@ class RecoverController extends Controller
     {
         $request->validate([
             'email' => "required|email|exists:prescribers,email",
-            'password' => ["required", Password::min(8)->letters()->symbols()]
+            'password' => ['required', 'min:6','confirmed'],
         ]);
 
         if (isset($request['password'])) {
