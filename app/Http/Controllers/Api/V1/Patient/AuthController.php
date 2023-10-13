@@ -111,32 +111,54 @@ class AuthController extends Controller
     
         $pendingVerificationsWithMotives = [];
 
-        if ($prescriber->ok_crm_frente !== "true") {
+        if ($prescriber->ok_crm_frente === "false") {
             $motivo_crm_frente = $prescriber->motivo_crm_frente ?? 'Motivo não especificado.';
             $pendingVerificationsWithMotives[] = "Verificação de documento CRM frente: $motivo_crm_frente";
         }
         
-        if ($prescriber->ok_crm_verso !== "true") {
+        if ($prescriber->ok_crm_verso === "false") {
             $motivo_crm_verso = $prescriber->motivo_crm_verso ?? 'Motivo não especificado.';
             $pendingVerificationsWithMotives[] = "Verificação de documento CRM verso: $motivo_crm_verso";
         }
         
-        if ($prescriber->ok_selfie_com_doc !== "true") {
+        if ($prescriber->ok_selfie_com_doc === "false") {
             $motivo_selfie_com_doc = $prescriber->motivo_selfie_com_doc ?? 'Motivo não especificado.';
             $pendingVerificationsWithMotives[] = "Verificação de selfie com documento: $motivo_selfie_com_doc";
         }
         
+        
         if (!empty($pendingVerificationsWithMotives)) {
+            $user = new DefaultUserResource($prescriber);
+            $token = $prescriber->createToken('main')->plainTextToken;
             $pendingVerificationsText = implode("\n", $pendingVerificationsWithMotives);
-            // $errorMessage = "Verificações pendentes com motivos:\n$pendingVerificationsText";
-            $errorMessage = "Seu cadastro ainda está em análise!";
-            return response()->json(new ErrorResource($errorMessage), 422);
-        }        
+            return response()->json([
+                "status" => 3, //Recusado
+                "message" => "Documentos recusados!",
+                "user" => $user,
+                "token" => $token,
+                "motive" => $pendingVerificationsText
+            ], 200);
+        }
+
+        if (
+            $prescriber->ok_crm_frente === "" ||
+            $prescriber->ok_crm_verso === "" ||
+            $prescriber->ok_selfie_com_doc  === ""
+        ) {
+            return response()->json(new ErrorResource([
+                "status" => 2, //Em análise
+                "message" => "Existem documentos pendentes de análise"
+            ]), 422);  
+        }
     
         /** @var Prescriber $prescriber */
         $token = $prescriber->createToken('main')->plainTextToken;
         $user = new DefaultUserResource($prescriber);
-        return response(compact('user', 'token'));
+        return response()->json([
+            "user" => $user,
+            "token" => $token,
+            "status" => 1 //Documentos aprovados
+        ]);
     }
     
 
@@ -369,7 +391,9 @@ class AuthController extends Controller
                 }
                 $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
-                    "uploaded_crm_frente" => $publicUrl
+                    "uploaded_crm_frente" => $publicUrl,
+                    "ok_crm_frente" => "",
+                    "motivo_crm_frente" => ""
                 ]);
                 $uploadedUrls['crm_frente'] = $publicUrl;
             }
@@ -389,7 +413,9 @@ class AuthController extends Controller
                 }
                 $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
-                    "uploaded_crm_verso" => $publicUrl
+                    "uploaded_crm_verso" => $publicUrl,
+                    "ok_crm_verso" => "",
+                    "motivo_crm_verso" => ""
                 ]);
     
                 $uploadedUrls['crm_verso'] = $publicUrl;
@@ -410,7 +436,9 @@ class AuthController extends Controller
                 }
                 $publicUrl = Storage::disk('s3')->url($path);
                 Prescriber::where("id", $id)->update([
-                    "uploaded_selfie_com_doc" => $publicUrl
+                    "uploaded_selfie_com_doc" => $publicUrl,
+                    "ok_selfie_com_doc" => "",
+                    "motivo_selfie_com_doc" => ""
                 ]);
     
                 $uploadedUrls['selfie_com_doc'] = $publicUrl;
@@ -769,7 +797,9 @@ class AuthController extends Controller
     public function docsStatusCpf(Request $request)
     {
         try {
-            $prescriber = Prescriber::where("cpf", $request->cpf)->first();
+            $formattedCPF = substr($request->cpf, 0, 3) . '.' . substr($request->cpf, 3, 3) . '.' . substr($request->cpf, 6, 3) . '-' . substr($request->cpf, 9, 2);
+
+            $prescriber = Prescriber::where("cpf", $formattedCPF)->first();
 
             if (!$prescriber) {
                 return response()->json(new ErrorResource("O usuário não está cadastrado na base"), 404); 

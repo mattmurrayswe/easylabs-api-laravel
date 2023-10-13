@@ -10,15 +10,15 @@ class Documents
 
             $docs_pendentes = [];
         
-            if ($prescriber->ok_crm_frente === 'false') {
+            if ($prescriber->ok_crm_frente === '') {
                 $docs_pendentes[] = self::getFieldName('crm_frente');
             }
         
-            if ($prescriber->ok_crm_verso === 'false') {
+            if ($prescriber->ok_crm_verso === '') {
                 $docs_pendentes[] = self::getFieldName('crm_verso');
             }
         
-            if ($prescriber->ok_selfie_com_doc === 'false') {
+            if ($prescriber->ok_selfie_com_doc === '') {
                 $docs_pendentes[] = self::getFieldName('selfie_com_doc');
             }
         

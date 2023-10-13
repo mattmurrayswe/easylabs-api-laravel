@@ -157,18 +157,29 @@ class TreatmentController extends Controller
             if (isset($request->medicines)) {
 
                 foreach ($request->medicines as $medicine) {
-                    $dataToUpdate = $request->only([
-                        'intervalo_em_horas',
-                        'inicio_do_uso',
-                        'fim_do_uso',
-                        'how_many',
-                        'presentation'
-                    ]);
+
+                    if (isset($medicine["intervalo_em_horas"])) {
+                        $dataToUpdate["intervalo_em_horas"] = $medicine["intervalo_em_horas"];
+                    } 
+                    if (isset($medicine["inicio_do_uso"])) {
+                        $dataToUpdate["inicio_do_uso"] = $medicine["inicio_do_uso"];
+                    } 
+                    if (isset($medicine["fim_do_uso"])) {
+                        $dataToUpdate["fim_do_uso"] = $medicine["fim_do_uso"];
+                    } 
+                    if (isset($medicine["how_many"])) {
+                        $dataToUpdate["how_many"] = $medicine["how_many"];
+                    } 
+                    if (isset($medicine["presentation"])) {
+                        $dataToUpdate["presentation"] = $medicine["presentation"];
+                    } 
             
                     TreatmentHasMedicines::where([
                         'medicine_id' => $medicine['medicine_id'],
                         'treatment_id' => $id,
                     ])->update($dataToUpdate);
+
+                    $dataToUpdate = [];
                 }
             }
 

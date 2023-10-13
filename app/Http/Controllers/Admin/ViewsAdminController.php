@@ -123,11 +123,11 @@ class ViewsAdminController extends Controller
                 ]);
             })->where(function ($query) {
                 $query->orWhere([
-                    ["ok_crm_frente", "=", "false"]
+                    ["ok_crm_frente", "=", ""]
                 ])->orWhere([
-                    ["ok_crm_verso", "=", "false"]
+                    ["ok_crm_verso", "=", ""]
                 ])->orWhere([
-                    ["ok_selfie_com_doc", "=", "false"]
+                    ["ok_selfie_com_doc", "=", ""]
                 ]);
             });
         });
