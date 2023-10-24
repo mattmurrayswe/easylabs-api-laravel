@@ -218,4 +218,28 @@ class PrescriberController extends Controller
         }
         
     }
+
+    public function countPatients(Request $request)
+    {
+        $request->validate([
+            'id_prescriber' => 'required|integer',
+        ]);
+
+        try {
+            $prescriber = Prescriber::with('patients.treatments')->findOrFail($request->id_prescriber);
+            $patients = $prescriber->patients;
+            $count = 0;
+    
+            foreach ($patients as $patient) {
+                if ($patient->treatments->isNotEmpty()) {
+                    $count++;
+                }
+            }
+
+            return response()->json(['count' => $count], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th->getMessage()), 500);
+        }
+    }
 }

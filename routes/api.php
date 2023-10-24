@@ -266,6 +266,7 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/erase-connected-patient/{id}', [PatientController::class, 'errasePrescriberInPatient']);
         Route::get('/treatment-with-patient', [PatientController::class, 'treatmentWithPatient']);
         Route::get('/patients-with-treatments', [PrescriberController::class, 'getPrescriberPatientsWithTreatments']);
+        Route::get('/count/patients', [PrescriberController::class, 'countPatients']);
         
         Route::get('/get-availability', [AvailabilityController::class, 'getAvailability']);
         Route::post('/create-availability', [AvailabilityController::class, 'store']);
