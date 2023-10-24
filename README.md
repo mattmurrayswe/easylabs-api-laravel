@@ -30,12 +30,12 @@ chmod -R 777 storage
 
 Acesse o projeto
 ```sh
-https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com
+https://aged-oasis-di8qclo59nbp.vapor-farm-f1.com
 ```
 
 Doc de rotas (Deprecated) usou-se Postman
 ```sh
-https://icy-summer-xir3wc6vqiim.vapor-farm-a1.com/manual/1.0/autenticacao
+https://aged-oasis-di8qclo59nbp.vapor-farm-f1.com/manual/1.0/autenticacao
 ```
 
 Images

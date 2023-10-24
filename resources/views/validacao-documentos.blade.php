@@ -132,7 +132,7 @@
             <div class="p-6 space-y-6">
                 <div>
                     <label for="doc-type-{{ $p->id }}" class="block mb-5 text-sm font-medium text-gray-900">Documentos</label>
-                    @if ($p->ok_crm_frente === "false")
+                    @if ($p->ok_crm_frente === "")
                     <div class="mb-6 flex justify-between">
                         <div>
                             <div class="flex items-center mb-1 mr-1">
@@ -150,7 +150,7 @@
                         <button onClick="baixarDoc({{ $p->id }}, 'crm-frente')" type="button" class="ml-1 text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Baixar</button>
                     </div>
                     @endif
-                    @if ($p->ok_crm_verso === "false")
+                    @if ($p->ok_crm_verso === "")
                     <div class="mb-6 flex justify-between">
                         <div>
                             <div class="flex items-center mb-1 mr-1">
@@ -168,7 +168,7 @@
                         <button onClick="baixarDoc({{ $p->id }}, 'crm-verso')" type="button" class="ml-1 text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Baixar</button>
                     </div>
                     @endif
-                    @if ($p->ok_selfie_com_doc === "false")
+                    @if ($p->ok_selfie_com_doc === "")
                     <div class="mb-6 flex justify-between">
                         <div>
                             <div class="flex items-center mb-1 mr-1">

@@ -30,6 +30,8 @@ class AuthController extends Controller
 {
     public function signup(PatientRequest $request)
     {
+        $request["cpf"] = substr($request["cpf"], 0, 3) . '.' . substr($request["cpf"], 3, 3) . '.' . substr($request["cpf"], 6, 3) . '-' . substr($request["cpf"], 9, 2);
+
         $request->merge([
             'active' => true,
         ]);
@@ -113,17 +115,17 @@ class AuthController extends Controller
 
         if ($prescriber->ok_crm_frente === "false") {
             $motivo_crm_frente = $prescriber->motivo_crm_frente ?? 'Motivo não especificado.';
-            $pendingVerificationsWithMotives[] = "Verificação de documento CRM frente: $motivo_crm_frente";
+            $pendingVerificationsWithMotives[] = "CRM frente recusado: $motivo_crm_frente";
         }
         
         if ($prescriber->ok_crm_verso === "false") {
             $motivo_crm_verso = $prescriber->motivo_crm_verso ?? 'Motivo não especificado.';
-            $pendingVerificationsWithMotives[] = "Verificação de documento CRM verso: $motivo_crm_verso";
+            $pendingVerificationsWithMotives[] = "CRM verso recusado: $motivo_crm_verso";
         }
         
         if ($prescriber->ok_selfie_com_doc === "false") {
             $motivo_selfie_com_doc = $prescriber->motivo_selfie_com_doc ?? 'Motivo não especificado.';
-            $pendingVerificationsWithMotives[] = "Verificação de selfie com documento: $motivo_selfie_com_doc";
+            $pendingVerificationsWithMotives[] = "Selfie com Documento recusado: $motivo_selfie_com_doc";
         }
         
         
