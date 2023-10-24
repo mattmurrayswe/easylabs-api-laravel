@@ -147,6 +147,28 @@ class SymptomsController extends Controller
         }
     }
 
+    public function informedSymptomsPrescLastWeek(Request $request)
+    {
+        $request->validate(['id_patient' => 'required|string']);
+
+        try {
+            $startOfWeek = Carbon::now()->subDays(6); // Calculate the start date for the last 7 days (1 week).
+            $endOfWeek = Carbon::now(); // The current date is the end date.
+
+            $symptoms = PatientSymptoms::
+                where('created_at', '>', $startOfWeek)->
+                where('created_at', '<', $endOfWeek)->
+                where('patient_id', $request->id_patient)->get()->toArray();
+
+            return response()->json(new SuccessResource($symptoms), 200);
+            
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 404);
+
+        }
+    }
+
     public function informedSymptomsCount(Request $request)
     {
         try {

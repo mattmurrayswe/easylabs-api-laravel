@@ -253,6 +253,7 @@ Route::prefix('prescriber')->group(function(){
         
         Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMedPresc']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptomsPresc']);
+        Route::get('/informed-symptoms/week', [SymptomsController::class, 'informedSymptomsPrescLastWeek']);
         Route::post('/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
         Route::post('/message/patient', [FollowUpController::class, 'prescriberMessagesPatient']);
         Route::get('/message', [FollowUpController::class, 'readMessages']);
