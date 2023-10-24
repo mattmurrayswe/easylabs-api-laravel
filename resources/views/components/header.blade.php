@@ -10,7 +10,6 @@
     <script src="{{URL::asset('/js/cadastro-sintomas.js')}}"></script>
     <script src="{{URL::asset('/js/cadastro-medicamentos.js')}}"></script>
     <script src="{{URL::asset('/js/cadastro-diagnosticos.js')}}"></script>
-    <script src="{{URL::asset('/js/farmacias-parceiras.js')}}"></script>
     <script src="{{URL::asset('/js/validacao-documentos.js')}}"></script>
     <script src="{{URL::asset('/js/listar-usuarios.js')}}"></script>
     <script src="{{URL::asset('/js/permissoes.js')}}"></script>

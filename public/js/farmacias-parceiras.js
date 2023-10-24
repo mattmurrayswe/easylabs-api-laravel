@@ -140,24 +140,24 @@ function deleteFarmacia(idPharmacy) {
       });
 }
 
-function uploadImage() {
-    
-    // When a file is selected, display a preview of the image
-    $('#uploadImage').change(function() {
+$(document).ready(function() {
+    $("#imageUpload").change(function() {
         var file = this.files[0];
-    
+
         if (file) {
             var reader = new FileReader();
-    
+
             reader.onload = function(e) {
-                $('#previewImage').attr('src', e.target.result);
-                $('#previewImage').css('display', 'block');
+                $("#imagePreview").css("display", "block");
+                $("#previewImage").attr("src", e.target.result);
             };
-    
+
             reader.readAsDataURL(file);
+        } else {
+            $("#imagePreview").css("display", "none");
         }
     });
-}
+});
 
 function cadastreFarmacia() {
 
