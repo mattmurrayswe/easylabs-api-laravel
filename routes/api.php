@@ -143,6 +143,8 @@ Route::prefix('patient')->group(function(){
         Route::put('/informed-symptom', [SymptomsController::class, 'informedSymptomEdit']);
         Route::delete('/informed-symptom', [SymptomsController::class, 'informedSymptomDelete']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptoms']);
+        Route::get('/informed-symptoms/week', [SymptomsController::class, 'informedSymptomsLastWeek']);
+        Route::get('/informed-symptoms/month', [SymptomsController::class, 'informedSymptomsLastMonth']);
         Route::get('/informed-symptoms-count', [SymptomsController::class, 'informedSymptomsCount']);
         
         // Patient inform me

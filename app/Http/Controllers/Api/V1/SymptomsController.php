@@ -7,6 +7,7 @@ use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\PatientSymptoms;
 use App\Models\Symptoms;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,6 +93,42 @@ class SymptomsController extends Controller
         }
     }
 
+    public function informedSymptomsLastWeek(Request $request)
+    {
+
+        try {
+            $startOfWeek = Carbon::now()->subDays(6); // Calculate the start date for the last 7 days (1 week).
+            $endOfWeek = Carbon::now(); // The current date is the end date.
+    
+            $symptoms = PatientSymptoms::
+                where('created_at', '>=', $startOfWeek)->
+                where('created_at', '<=', $endOfWeek)->
+                where('patient_id', 126)->get()->toArray();
+    
+            return response()->json(new SuccessResource($symptoms), 200);
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($symptoms), 500);
+        }
+    }
+
+    public function informedSymptomsLastMonth(Request $request)
+    {
+
+        try {
+            $startOfWeek = Carbon::now()->subDays(29); // Calculate the start date for the last 7 days (1 week).
+            $endOfWeek = Carbon::now(); // The current date is the end date.
+    
+            $symptoms = PatientSymptoms::
+                where('created_at', '>=', $startOfWeek)->
+                where('created_at', '<=', $endOfWeek)->
+                where('patient_id', Auth::guard("webPatient")->id())->get()->toArray();
+    
+            return response()->json(new SuccessResource($symptoms), 200);
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th->getMessage()), 500);
+        }
+    }
+
     public function informedSymptomsPresc(Request $request)
     {
         try {
@@ -99,14 +136,13 @@ class SymptomsController extends Controller
             $symptoms = PatientSymptoms::
                 where('created_at', '>', $request['start_time'])->
                 where('created_at', '<', $request['end_time'])->
-                where('patient_id', $request->id_patient)->
-                where('diagnoses_id', $request['diagnoses_id'])->get()->toArray();
+                where('patient_id', $request->id_patient)->get()->toArray();
 
             return response()->json(new SuccessResource($symptoms), 200);
             
         } catch (\Throwable $th) {
 
-            return response()->json(new ErrorResource($symptoms), 404);
+            return response()->json(new ErrorResource($th->getMessage()), 404);
 
         }
     }
