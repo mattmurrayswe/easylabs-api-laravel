@@ -42,6 +42,36 @@ function editFarmacia(idFarmacia) {
     const cpf = $( `#cpf-${idFarmacia}` ).val();
     const name = $( `#name-${idFarmacia}` ).val();
 
+    if (!street) {
+
+        $( `#street-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!number) {
+
+        $( `#number-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!neighboor) {
+
+        $( `#neighboor-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!city) {
+
+        $( `#city-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
+    if (!state) {
+
+        $( `#state-${idFarmacia}` ).addClass("border border-red-500");
+        
+    }
+
     if (!rede) {
 
         $( `#rede-${idFarmacia}` ).addClass("border border-red-500");
@@ -60,7 +90,7 @@ function editFarmacia(idFarmacia) {
         
     }
 
-    if (!rede || !unidade || !cep) {
+    if (!street || !number || !neighboor || !city || !state || !rede || !unidade || !cep) {
         return
     }
 
@@ -110,6 +140,25 @@ function deleteFarmacia(idPharmacy) {
       });
 }
 
+function uploadImage() {
+    
+    // When a file is selected, display a preview of the image
+    $('#uploadImage').change(function() {
+        var file = this.files[0];
+    
+        if (file) {
+            var reader = new FileReader();
+    
+            reader.onload = function(e) {
+                $('#previewImage').attr('src', e.target.result);
+                $('#previewImage').css('display', 'block');
+            };
+    
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
 function cadastreFarmacia() {
 
     const rede = $( `#rede` ).val();
@@ -127,25 +176,55 @@ function cadastreFarmacia() {
     const cpf = $( `#cpf` ).val();
     const name = $( `#name` ).val();
 
+    if (!street) {
+
+        $( `#street` ).addClass("border border-red-500");
+        
+    }
+
+    if (!number) {
+
+        $( `#number` ).addClass("border border-red-500");
+        
+    }
+
+    if (!neighboor) {
+
+        $( `#neighboor` ).addClass("border border-red-500");
+        
+    }
+
+    if (!city) {
+
+        $( `#city` ).addClass("border border-red-500");
+        
+    }
+
+    if (!state) {
+
+        $( `#state` ).addClass("border border-red-500");
+        
+    }
+
     if (!rede) {
 
-        $("#rede").addClass("border border-red-500");
+        $( `#rede` ).addClass("border border-red-500");
         
     }
 
     if (!unidade) {
 
-        $("#unidade").addClass("border border-red-500");
+        $( `#unidade` ).addClass("border border-red-500");
         
     }
 
     if (!cep) {
 
-        $("#cep").addClass("border border-red-500");
+        $( `#cep` ).addClass("border border-red-500");
         
     }
 
-    if (!rede || !unidade || !cep) {
+    if (!street || !number || !neighboor || !city || !state || !rede || !unidade || !cep) {
         return
     }
 

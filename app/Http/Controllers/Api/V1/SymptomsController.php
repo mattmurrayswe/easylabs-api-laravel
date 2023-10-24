@@ -103,7 +103,7 @@ class SymptomsController extends Controller
             $symptoms = PatientSymptoms::
                 where('created_at', '>=', $startOfWeek)->
                 where('created_at', '<=', $endOfWeek)->
-                where('patient_id', 126)->get()->toArray();
+                where('patient_id', Auth::guard("webPatient")->id())->get()->toArray();
     
             return response()->json(new SuccessResource($symptoms), 200);
         } catch (\Throwable $th) {

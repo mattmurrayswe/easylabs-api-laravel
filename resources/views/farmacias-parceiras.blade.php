@@ -158,11 +158,17 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">*Nome da Rede</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Foto de Perfil</label>
+                    <input type="file" id="imageUpload" class="hidden" accept="image/*">
+                    <button id="uploadButton" class="bg-blue-500 text-white text-sm rounded-lg p-2.5">Upload Image</button>
+                    <img id="previewImage" src="" alt="Preview Image" style="max-width: 200px; display: none;">
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
                     <input type="text" id="rede" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">*Nome da Unidade </label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade </label>
                     <input type="text" id="unidade" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
@@ -178,16 +184,16 @@
                     <input type="text" id="email" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">*CEP</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">CEP</label>
                     <input type="text" id="cep" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Rua</label>
-                    <input type="text" id="street" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="street" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Número</label>
-                    <input type="text" id="number" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="number" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
@@ -195,15 +201,15 @@
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Bairro</label>
-                    <input type="text" id="neighboor" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="neighboor" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
-                    <input type="text" id="city" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="city" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">UF</label>
-                    <input type="text" id="state" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="state" value="" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Nome do Responsável</label>
@@ -241,11 +247,11 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">*Nome da Rede</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
                     <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">*Nome da Unidade</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade</label>
                     <input type="text" id="unidade-{{$c->id}}" value="{{$c->unidade}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
@@ -261,28 +267,28 @@
                     <input type="text" id="email-{{$c->id}}" value="{{$c->email}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">*CEP</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">CEP</label>
                     <input type="text" id="cep-{{$c->id}}" value="{{$c->cep}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Cidade</label>
-                    <input type="text" id="city-{{$c->id}}" value="{{$c->city}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="city-{{$c->id}}" value="{{$c->city}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Estado</label>
-                    <input type="text" id="state-{{$c->id}}" value="{{$c->state}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="state-{{$c->id}}" value="{{$c->state}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Rua</label>
-                    <input type="text" id="street-{{$c->id}}" value="{{$c->street}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="street-{{$c->id}}" value="{{$c->street}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Número</label>
-                    <input type="text" id="number-{{$c->id}}" value="{{$c->number}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="number-{{$c->id}}" value="{{$c->number}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Bairro</label>
-                    <input type="text" id="neighboor-{{$c->id}}" value="{{$c->neighboor}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                    <input type="text" id="neighboor-{{$c->id}}" value="{{$c->neighboor}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">Complemento</label>
