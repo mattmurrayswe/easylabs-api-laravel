@@ -66,6 +66,14 @@ class Patient extends Authenticatable
         return $query->where('active',false);
     }
 
+    public function usedMedicinesToday()
+    {
+        $test =  now()->toDateString();
+        
+        return $this->hasMany(PatientUsesMedicine::class, 'patient_id', 'id')
+        ->whereDate('created_at', now()->toDateString());
+    }
+
     public function symptoms()
     {
         return $this->hasMany(PatientSymptoms::class, 'patient_id', 'id');

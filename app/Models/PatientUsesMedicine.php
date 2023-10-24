@@ -21,8 +21,5 @@ class PatientUsesMedicine extends Model
         'howMany',
         'created_at'
     ];
-
-    
-
 }
 

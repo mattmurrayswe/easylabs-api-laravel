@@ -226,18 +226,17 @@ class PrescriberController extends Controller
         ]);
 
         try {
-            $prescriber = Prescriber::with('patients.symptoms')->findOrFail($request->id_prescriber);
+            $prescriber = Prescriber::with('patients.usedMedicinesToday')->findOrFail($request->id_prescriber);
             $patients = $prescriber->patients;
             $count = 0;
-    
+
             foreach ($patients as $patient) {
-                if ($patient->treatments->isNotEmpty()) {
+                if ($patient->usedMedicinesToday->isNotEmpty()) {
                     $count++;
                 }
             }
 
             return response()->json(['count' => $count], 200);
-
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th->getMessage()), 500);
         }
