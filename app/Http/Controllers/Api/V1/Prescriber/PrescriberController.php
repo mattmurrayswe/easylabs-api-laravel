@@ -226,7 +226,7 @@ class PrescriberController extends Controller
         ]);
 
         try {
-            $prescriber = Prescriber::with('patients.treatments')->findOrFail($request->id_prescriber);
+            $prescriber = Prescriber::with('patients.symptoms')->findOrFail($request->id_prescriber);
             $patients = $prescriber->patients;
             $count = 0;
     

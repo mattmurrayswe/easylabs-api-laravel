@@ -66,10 +66,10 @@ class Patient extends Authenticatable
         return $query->where('active',false);
     }
 
-    // public function treatments()
-    // {
-    //     return $this->belongsToMany(Treatment::class, 'patient_treatment')->withTimestamps();
-    // }
+    public function symptoms()
+    {
+        return $this->hasMany(PatientSymptoms::class, 'patient_id', 'id');
+    }
 
     public function treatments()
     {
