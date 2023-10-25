@@ -25,6 +25,32 @@ function importDataFarmacias() {
     });
 }
 
+function fetchAddressInfo(input) {
+    const cep = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+    if (cep.length !== 8) {
+        return; // Invalid CEP
+    }
+
+    const apiUrl = `https://viacep.com.br/ws/${cep}/json/`;
+
+    fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            if (!data.erro) {
+                // Populate address fields
+                $(`#city`).val(data.localidade); // Cidade
+                $(`#state`).val(data.uf); // Estado
+                $(`#street`).val(data.logradouro); // Rua
+                $(`#neighboor`).val(data.bairro); // Rua
+                // You may need to adapt this based on your specific field IDs
+                // and data structure from the API response
+            }
+        })
+        .catch((error) => {
+            console.error('An error occurred while fetching address data:', error);
+        });
+}
+
 function editFarmacia(idFarmacia) {
 
     const formData = new FormData();
