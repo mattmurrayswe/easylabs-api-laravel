@@ -3,19 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\Treatment\StoreTreatmentRequest;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
-use App\Models\Diagnoses;
-use App\Models\DiagnosesHasSuggestedMedicines;
-use App\Models\DiagnosesHasSymptoms;
-use App\Models\Medicine;
 use App\Models\Pharmacy;
-use App\Models\TreatmentsRef;
-use App\Models\TreatmentHasMedicines;
 use App\Service\TreatmentService;
-use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PharmacyController extends Controller
 {
@@ -42,6 +36,16 @@ class PharmacyController extends Controller
     {
         try {
             
+            if ($request->hasFile('foto')) {
+
+                $file = $request->file('foto');
+                $uniqueId = Str::uuid();
+                $path = "docs/pharmacies/{$uniqueId}.jpg";
+                $fileContents = file_get_contents($file->getPathname());
+                Storage::disk('s3')->put($path, $fileContents, 'public');
+                $foto = Storage::disk('s3')->url($path);
+            }
+
             $dataPharmacy = [
                 "rede" => $request->rede,
                 "unidade" => $request->unidade,
@@ -57,6 +61,7 @@ class PharmacyController extends Controller
                 "state" => $request->state,
                 "cpf" => $request->cpf,
                 "name" => $request->name,
+                "foto" => $foto
             ];
 
             $pharmacy = Pharmacy::create($dataPharmacy);
@@ -102,12 +107,24 @@ class PharmacyController extends Controller
                 "state",
                 "cpf",
                 "name",
+                "foto"
             ];
     
             // Check if the field exists in the request and is not null or empty
             foreach ($fieldsToUpdate as $field) {
-                if ($request->has($field) && $request->filled($field)) {
-                    $updateData[$field] = $request->input($field);
+                if (($request->has($field) && $request->filled($field)) || $request->hasFile($field)) {
+                    // Handle the foto upload to S3
+                    if ($field === 'foto' && $request->hasFile('foto')) {
+                        $file = $request->file('foto');
+                        $uniqueId = Str::uuid();
+                        $path = "docs/pharmacies/{$uniqueId}.jpg";
+                        $fileContents = file_get_contents($file->getPathname());
+                        Storage::disk('s3')->put($path, $fileContents, 'public');
+                        $foto = Storage::disk('s3')->url($path);
+                        $updateData[$field] = $foto; // Store the S3 path in your data
+                    } else {
+                        $updateData[$field] = $request->input($field);
+                    }
                 }
             }
     

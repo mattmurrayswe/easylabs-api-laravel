@@ -19,7 +19,8 @@ class Pharmacy extends Model
         "unidade",
         "name",
         "rede",
-        "email"
+        "email",
+        "foto"
     ];
 }
 

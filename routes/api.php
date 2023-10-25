@@ -65,7 +65,7 @@ Route::post('/pharmacy', [PharmacyController::class, 'store']);
 Route::get('/pharmacy', [PharmacyController::class, 'getAllPharmacies']);
 Route::get('/pharmacy/{id}', [PharmacyController::class, 'getPharmacy']);
 Route::delete('/pharmacy/{id}', [PharmacyController::class, 'deletePharmacy']);
-Route::put('/pharmacy/{id}', [PharmacyController::class, 'editPharmacy']);
+Route::post('/pharmacy/{id}', [PharmacyController::class, 'editPharmacy']);
 
 Route::post('/treatment', [TreatmentController::class, 'store']);
 Route::get('/treatment', [TreatmentController::class, 'getAllTreatments']);

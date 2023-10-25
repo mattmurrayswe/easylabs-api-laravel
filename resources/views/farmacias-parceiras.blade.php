@@ -173,7 +173,7 @@
                                 <label class="text-sm font-medium text-gray-900 mb-2">Foto de Perfil</label>
                                 <label class="px-5 py-2.5 mb-2.5 text-xs rounded-lg bg-gray-300 cursor-pointer w-fit">
                                     Escolher Arquivo
-                                    <input type="file" id="imageUpload" accept="image/*" class="hidden">
+                                    <input type="file" name="foto" id="imageUpload" accept="image/*" class="hidden">
                                 </label>
                             <div style="display:none" id="imagePreview">
                                 <img class="w-20 h-20 rounded-sm" id="previewImage" src="#" alt="Preview Image">
@@ -256,13 +256,29 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
-                    <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
-                </div>
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade</label>
-                    <input type="text" id="unidade-{{$c->id}}" value="{{$c->unidade}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                <div class="flex justify-between">
+                    <div class="flex flex-wrap">
+                        <div class="mb-4 w-[400px]">
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Rede</label>
+                            <input type="text" id="rede-{{$c->id}}" value="{{$c->rede}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                        </div>
+                        <div class="mb-2 w-[400px]">
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Nome da Unidade </label>
+                            <input type="text"id="unidade-{{$c->id}}" value="{{$c->unidade}}" onChange="removaOuAdicioneBorderRed(this)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
+                        </div>
+                    </div>
+                    <div class="flex h-[120px]">
+                        <div class="flex flex-wrap justify-end items-start h-[40px]">
+                                <label class="text-sm font-medium text-gray-900 mb-2">Foto de Perfil</label>
+                                <label class="px-5 py-2.5 mb-2.5 text-xs rounded-lg bg-gray-300 cursor-pointer w-fit">
+                                    Escolher Arquivo
+                                    <input type="file" id="imageUpload-{{$c->id}}" onChange="uploadImage(this, {{$c->id}})" accept="image/*" class="hidden">
+                                </label>
+                            <div>
+                                <img class="w-20 h-20 rounded-sm" id="previewImage-{{$c->id}}" src="{{$c->foto}}" alt="Preview Image">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">CNPJ</label>

@@ -27,6 +27,8 @@ function importDataFarmacias() {
 
 function editFarmacia(idFarmacia) {
 
+    const formData = new FormData();
+    const fileInput = $(`#imageUpload-${idFarmacia}`)[0];
     const rede = $( `#rede-${idFarmacia}` ).val();
     const unidade = $( `#unidade-${idFarmacia}` ).val();
     const cnpj = $( `#cnpj-${idFarmacia}` ).val();
@@ -41,6 +43,22 @@ function editFarmacia(idFarmacia) {
     const state = $( `#state-${idFarmacia}` ).val();
     const cpf = $( `#cpf-${idFarmacia}` ).val();
     const name = $( `#name-${idFarmacia}` ).val();
+
+    formData.append('rede', rede);
+    formData.append('unidade', unidade);
+    formData.append('foto', fileInput.files[0]);
+    formData.append('cnpj', cnpj);
+    formData.append('cellphone', cellphone);
+    formData.append('email', email);
+    formData.append('cep', cep);
+    formData.append('street', street);
+    formData.append('number', number);
+    formData.append('complement', complement);
+    formData.append('neighboor', neighboor);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('cpf', cpf);
+    formData.append('name', name);
 
     if (!street) {
 
@@ -96,23 +114,10 @@ function editFarmacia(idFarmacia) {
 
     $.ajax({
         url: `${ENDPOINT_JS}/api/pharmacy/${idFarmacia}`,
-        type: "PUT",
-        data: {
-            rede : rede,
-            unidade : unidade,
-            name : name,
-            email : email,
-            cep : cep,
-            city : city,
-            state : state,
-            street : street,
-            number : number,
-            neighboor : neighboor,
-            complement : complement,
-            cnpj : cnpj,
-            cellphone : cellphone,
-            cpf : cpf
-        },
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: formData,
         success: function(data, status) {
 
             console.log(data)
@@ -159,102 +164,71 @@ $(document).ready(function() {
     });
 });
 
+
+function uploadImage(input, id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // Display the selected image in the preview for the specific item
+            $("#previewImage-" + id).attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
 function cadastreFarmacia() {
+    const formData = new FormData();
+    const rede = $(`#rede`).val();
+    const unidade = $(`#unidade`).val();
+    const fileInput = $(`#imageUpload`)[0];
+    const cnpj = $(`#cnpj`).val();
+    const cellphone = $(`#cellphone`).val();
+    const email = $(`#email`).val();
+    const cep = $(`#cep`).val();
+    const street = $(`#street`).val();
+    const number = $(`#number`).val();
+    const complement = $(`#complement`).val();
+    const neighboor = $(`#neighboor`).val();
+    const city = $(`#city`).val();
+    const state = $(`#state`).val();
+    const cpf = $(`#cpf`).val();
+    const name = $(`#name`).val();
 
-    const rede = $( `#rede` ).val();
-    const unidade = $( `#unidade` ).val();
-    const cnpj = $( `#cnpj` ).val();
-    const cellphone = $( `#cellphone` ).val();
-    const email = $( `#email` ).val();
-    const cep = $( `#cep` ).val();
-    const street = $( `#street` ).val();
-    const number = $( `#number` ).val();
-    const complement = $( `#complement` ).val();
-    const neighboor = $( `#neighboor` ).val();
-    const city = $( `#city` ).val();
-    const state = $( `#state` ).val();
-    const cpf = $( `#cpf` ).val();
-    const name = $( `#name` ).val();
-
-    if (!street) {
-
-        $( `#street` ).addClass("border border-red-500");
-        
-    }
-
-    if (!number) {
-
-        $( `#number` ).addClass("border border-red-500");
-        
-    }
-
-    if (!neighboor) {
-
-        $( `#neighboor` ).addClass("border border-red-500");
-        
-    }
-
-    if (!city) {
-
-        $( `#city` ).addClass("border border-red-500");
-        
-    }
-
-    if (!state) {
-
-        $( `#state` ).addClass("border border-red-500");
-        
-    }
-
-    if (!rede) {
-
-        $( `#rede` ).addClass("border border-red-500");
-        
-    }
-
-    if (!unidade) {
-
-        $( `#unidade` ).addClass("border border-red-500");
-        
-    }
-
-    if (!cep) {
-
-        $( `#cep` ).addClass("border border-red-500");
-        
-    }
-
-    if (!street || !number || !neighboor || !city || !state || !rede || !unidade || !cep) {
-        return
-    }
+    formData.append('rede', rede);
+    formData.append('unidade', unidade);
+    formData.append('foto', fileInput.files[0]);
+    formData.append('cnpj', cnpj);
+    formData.append('cellphone', cellphone);
+    formData.append('email', email);
+    formData.append('cep', cep);
+    formData.append('street', street);
+    formData.append('number', number);
+    formData.append('complement', complement);
+    formData.append('neighboor', neighboor);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('cpf', cpf);
+    formData.append('name', name);
 
     $.ajax({
         url: `${ENDPOINT_JS}/api/pharmacy`,
-        type: "POST",
-        data: {
-            rede : rede,
-            unidade : unidade,
-            cnpj : cnpj,
-            cellphone : cellphone,
-            email : email,
-            cep : cep,
-            street : street,
-            number : number,
-            complement : complement,
-            neighboor : neighboor,
-            city : city,
-            state : state,
-            cpf : cpf,
-            name : name
-        },
-        success: function(data, status) {
-
-            if (status === "success") {
-                reloadPageWithModal()
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        data: formData,
+        success: function (data, status) {
+            if (status === 'success') {
+                // Handle success
+                reloadPageWithModal();
             }
-
-        }
-      });
+        },
+        error: function () {
+            // Handle errors
+        },
+    });
 }
 
 function removaOuAdicioneBorderRed(element) {
