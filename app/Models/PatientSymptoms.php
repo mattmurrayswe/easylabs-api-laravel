@@ -22,5 +22,13 @@ class PatientSymptoms extends Model
         'symptom_scale',
         'description',
     ];
+
+    /**
+     * Define a relationship with the Symptoms model.
+     */
+    public function symptom()
+    {
+        return $this->belongsTo(Symptoms::class, 'symptom_id');
+    }
 }
 
