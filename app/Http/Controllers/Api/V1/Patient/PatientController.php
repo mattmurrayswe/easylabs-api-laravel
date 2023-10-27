@@ -19,6 +19,8 @@ class PatientController extends Controller
 {
     public function storeApnToken(Request $request)
     {
+        $request->validate(["apn_token"=> "required|string"]);
+
         $patient = Patient::find(Auth::guard("webPatient")->id());
 
         $apnToken = $request->input('apn_token');
