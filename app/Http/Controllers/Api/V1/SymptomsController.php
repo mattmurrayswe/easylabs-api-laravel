@@ -147,6 +147,30 @@ class SymptomsController extends Controller
         }
     }
 
+    public function informedSymptomsPrescPeriod(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'start_time' => 'required|date',
+                'end_time' => 'required|date',
+                'id_patient' => 'required|integer', // Assuming patient_id is an integer
+            ]);
+
+            $symptoms = PatientSymptoms::
+                where('created_at', '>', $request['start_time'])->
+                where('created_at', '<', $request['end_time'])->
+                where('patient_id', $request->id_patient)->with('symptom')->get()->toArray();
+
+            return response()->json(new SuccessResource($symptoms), 200);
+            
+        } catch (\Throwable $th) {
+
+            return response()->json(new ErrorResource($th->getMessage()), 500);
+
+        }
+    }
+
     public function informedSymptomsPrescLastWeek(Request $request)
     {
         $request->validate(['id_patient' => 'required|integer']);

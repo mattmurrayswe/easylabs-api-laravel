@@ -88,6 +88,15 @@ class PharmacyController extends Controller
         }
     }
 
+    public function getAllPharmacies()
+    {
+        $pharmacies = Pharmacy::get();
+
+        return response()->json(new SuccessResource([
+            "pharmacies" => $pharmacies
+        ]), 200);
+    }
+
     public function editPharmacy(Request $request, $id)
     {
         try {
