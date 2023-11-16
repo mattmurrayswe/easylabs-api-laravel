@@ -14,9 +14,11 @@ return [
     |
     */
     'apn' => [
-        'environment' => env('APN_ENVIRONMENT', 'sandbox'), // Use 'production' for the production environment
+        'environment' => env('APN_ENVIRONMENT', 'sandbox'),
         'certificate' => env('APN_CERT_PATH'),
-        'passphrase' => env('APN_CERT_PASSPHRASE'),
+        'key_id' => env('APN_KEY_ID'),
+        'team_id' => env('APN_TEAM_ID'),
+        'service_bundle' => env('APN_SERVICE_BUNDLE_PATH', null),
     ],
 
     'mailgun' => [

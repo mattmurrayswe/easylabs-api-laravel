@@ -61,6 +61,11 @@ class Patient extends Authenticatable
         'email_verified_at' => 'datetime'
     ];
 
+    public function routeNotificationForApn()
+    {
+        return $this->apn_token;
+    }
+
     public function scopeIsInactive($query)
     {
         return $query->where('active',false);

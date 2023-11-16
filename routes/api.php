@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\V1\StatisticsController;
 use App\Http\Controllers\Api\V1\SymptomsController;
 use App\Http\Controllers\Api\V1\ConfigsController;
 use App\Http\Controllers\Admin\ExcelExportController;
+use App\Http\Controllers\NotificationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -133,7 +134,9 @@ Route::prefix('patient')->group(function(){
         Route::post('/desativate-account/{id}', [PatientController::class, 'desativate']);
         Route::post('/delete-account/{id}', [PatientController::class, 'delete']);
         Route::post('/account-config/{id}', [PatientController::class, 'updateAccountConfig']);
+
         Route::post('/apn-token', [PatientController::class, 'storeApnToken']);
+        Route::get('/test-notification', [NotificationsController::class, 'testNotification']);
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informMed']);

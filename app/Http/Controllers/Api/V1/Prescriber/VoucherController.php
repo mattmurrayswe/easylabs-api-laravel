@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
+use App\Models\Prescriber;
 use App\Models\Voucher;
 use App\Models\VoucherLog;
+use App\Notifications\MyAPNSNotification;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\Encoding\Encoding;
@@ -15,6 +17,8 @@ use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,28 +27,20 @@ class VoucherController extends Controller
 
     public function getVoucher()
     {
-        return response()->json(new SuccessResource(Auth::guard("webPresc")->user()->vouchers), 200);
+        $user = Prescriber::find(5);
+    
+        if ($user) {
 
+            Log::info('controller');
+
+            Notification::send($user, new MyAPNSNotification());
+
+            return response()->json(new SuccessResource(Auth::guard("webPresc")->user()->vouchers), 200);
+        } else {
+
+            return response()->json(['message' => 'Failed to notify'], 500);
+        }
     }
-
-    // public function getVoucher()
-    // {
-    //     // Find the user by ID (in this case, ID 5)
-    //     $user = Prescriber::find(5);
-    
-    //     if ($user) {
-    //         // Send the APN notification to the user
-    //         Log::info('controller'); // or dd('toApn method called');
-
-    //         Notification::send($user, new MyAPNSNotification());
-    
-    //         // Assuming you're returning a JSON response
-    //         return response()->json(new SuccessResource(Auth::guard("webPresc")->user()->vouchers), 200);
-    //     } else {
-    //         // Handle the case where the user with ID 5 is not found
-    //         return response()->json(['message' => 'User not found'], 404);
-    //     }
-    // }
 
     public function getVoucherPerId($id)
     {

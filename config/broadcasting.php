@@ -32,11 +32,13 @@ return [
 
     'connections' => [
         'apn' => [
-            // 'key_id' => 'KDWVLY353U',
-            // 'team_id' => 'AK32B62CB9',
-            'app_bundle_id' => 'com.gebit.breaseapp',
-            'certificate_path' => './certificates/aps_development_prescriber.pem',
-            'production' => 'false',
+            'driver' => 'apn',
+            'environment' => env('APN_ENVIRONMENT', 'sandbox'),
+            'passphrase' => env('APN_CERT_PASSPHRASE'),
+            'key_id' => env('APN_KEY_ID'),
+            'team_id' => env('APN_TEAM_ID'),
+            'app_bundle_id' => env('APN_BUNDLE_ID'),
+            'service_bundle' => env('APN_CERT_PATH'),
         ],
         'pusher' => [
             'driver' => 'pusher',
