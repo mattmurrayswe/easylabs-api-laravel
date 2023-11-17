@@ -61,7 +61,7 @@ class PatientUsesMedicineController extends Controller
             $medicines = PatientUsesMedicine::
                 where('created_at', '>', $request['start_time'])->
                 where('created_at', '<', $request['end_time'])->
-                where('patient_id', $request->id_patient)->with('medicine')->get()->toArray();
+                where('patient_id', $request->id_patient)->with('medicine')->with('treatmentHasMedicines')->get()->toArray();
         
             return response()->json(new SuccessResource($medicines), 200);
 
