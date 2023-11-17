@@ -28,9 +28,11 @@ class PatientUsesMedicineController extends Controller
             ];
 
             PatientUsesMedicine::create($data);
+
             return response()->json(new SuccessResource("Uso do medicamento feito com sucesso!"), 200);
 
         } catch (\Throwable $th) {
+
             return response()->json(new ErrorResource("Medicamento ou paciente nao existentes!"), 422);
         }
     }
@@ -38,10 +40,30 @@ class PatientUsesMedicineController extends Controller
     public function listInformedMed()
     {
         try {
-            
             $usedMedicines = PatientUsesMedicine::where('patient_id', Auth::guard("webPatient")->id())->get()->toArray();
 
             return response()->json(new SuccessResource($usedMedicines), 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource("Medicamento ou paciente nao existentes!"), 422);
+        }
+    }
+
+    public function informedMedPeriod(Request $request)
+    {
+        try {
+            $request->validate([
+                'start_time' => 'required|date',
+                'end_time' => 'required|date',
+                'id_patient' => 'required|integer',
+            ]);
+        
+            $medicines = PatientUsesMedicine::
+                where('created_at', '>', $request['start_time'])->
+                where('created_at', '<', $request['end_time'])->
+                where('patient_id', $request->id_patient)->with('medicine')->get()->toArray();
+        
+            return response()->json(new SuccessResource($medicines), 200);
 
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource("Medicamento ou paciente nao existentes!"), 422);

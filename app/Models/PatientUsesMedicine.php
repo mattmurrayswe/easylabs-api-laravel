@@ -21,5 +21,13 @@ class PatientUsesMedicine extends Model
         'howMany',
         'created_at'
     ];
+
+    /**
+     * Define a relationship with the Symptoms model.
+     */
+    public function medicine()
+    {
+        return $this->belongsTo(Medicine::class, 'medicine_id');
+    }
 }
 

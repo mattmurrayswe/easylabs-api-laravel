@@ -138,6 +138,7 @@ Route::prefix('patient')->group(function(){
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informMed']);
         Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMed']);
+        Route::get('/inform-med/period', [PatientUsesMedicineController::class, 'informedMedPeriod']);
         
         Route::post('/inform-symptoms', [SymptomsController::class, 'informSymptoms']);
         Route::put('/informed-symptom', [SymptomsController::class, 'informedSymptomEdit']);
@@ -264,6 +265,7 @@ Route::prefix('prescriber')->group(function(){
         Route::put('/diagnose/{id}', [DiagnoseController::class, 'editDiagnose']);
         
         Route::get('/inform-med', [PatientUsesMedicineController::class, 'listInformedMedPresc']);
+        Route::get('/inform-med/period', [PatientUsesMedicineController::class, 'informedMedPeriod']);
         Route::get('/informed-symptoms', [SymptomsController::class, 'informedSymptomsPresc']);
         Route::get('/informed-symptoms/period', [SymptomsController::class, 'informedSymptomsPrescPeriod']);
         Route::get('/informed-symptoms/week', [SymptomsController::class, 'informedSymptomsPrescLastWeek']);
