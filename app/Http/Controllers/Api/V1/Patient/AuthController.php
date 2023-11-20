@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\Patient;
 use App\Models\Prescriber;
 use App\Models\Cuidador;
+use App\Models\PatientDocs;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -370,6 +371,63 @@ class AuthController extends Controller
             "uploaded_foto_perfil" => $publicUrl
         ]);
         return $publicUrl;
+    }
+
+    public function uploadDocsNamed(Request $request)
+    {
+        $request->validate([
+            "doc_name" => "required|string"
+        ]);
+
+        $id = Auth::guard("webPatient")->id();
+
+        try {
+            if ($request->hasFile($request->input('doc_name'))) {
+                $file = $request->file($request->input('doc_name'));
+                $path = "docs/patient/{$request->input('doc_name')}-{$id}.jpg";
+                $fileFormat = $file->getClientOriginalExtension();
+
+                if (strtoupper($fileFormat) === 'HEIC') {
+                    $heicImagePath = $file->getPathname();
+                    $imagick = new Imagick($heicImagePath);
+                    $imagick->setImageFormat('jpeg');
+                    Storage::disk('s3')->put($path, $imagick->getImageBlob(), 'public');
+                } else {
+                    $fileContents = file_get_contents($file->getPathname());
+                    Storage::disk('s3')->put($path, $fileContents, 'public');
+                }
+
+                $publicUrl = Storage::disk('s3')->url($path);
+                PatientDocs::create([
+                    "patient_id" => $id,
+                    "doc_name" => $request->input('doc_name'),
+                    "doc_url" => $publicUrl
+                ]);
+
+                return response()->json(new SuccessResource([
+                    "message" => "Upload de documentos feito com sucesso",
+                    "doc_url" => $publicUrl
+                ]), 200);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function uploadedDocsNamed(Request $request)
+    {
+        try {
+            $patientDocs = PatientDocs::where([
+                "patient_id" => Auth::guard("webPatient")->id()
+            ])->get();
+
+            return response()->json(new SuccessResource([
+                "docs" => $patientDocs
+            ]), 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
     }
 
     public function uploadDocs(Request $request)

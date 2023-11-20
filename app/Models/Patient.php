@@ -109,6 +109,11 @@ class Patient extends Authenticatable
         ]);
     }
 
+    public function patientDocs()
+    {
+        return $this->hasMany(PatientDoc::class);
+    }
+
     public function findForPassport($username)
     {
         return $this->where('email', $username)->first();

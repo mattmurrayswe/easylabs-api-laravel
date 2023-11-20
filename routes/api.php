@@ -127,6 +127,9 @@ Route::prefix('patient')->group(function(){
         Route::get('/foto-perfil', [AuthController::class, 'getFotoPerfilPatient']);
         Route::delete('/foto-perfil', [AuthController::class, 'deleteFotoPerfilPatient']);
 
+        Route::post('/documents', [AuthController::class, 'uploadDocsNamed']);
+        Route::get('/documents', [AuthController::class, 'uploadedDocsNamed']);
+
         Route::get('/patient-info/{id}', [AuthController::class, 'patientInfo']);
         Route::put('/patient-info/{id}', [AuthController::class, 'editPatientInfo']);
         Route::put('/password', [AuthController::class, 'editPassword']);
