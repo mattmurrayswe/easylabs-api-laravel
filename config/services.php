@@ -14,11 +14,15 @@ return [
     |
     */
     'apn' => [
-        'environment' => env('APN_ENVIRONMENT', 'sandbox'),
-        'certificate' => env('APN_CERT_PATH'),
+        'environment' => env('APN_ENVIRONMENT', 'production'),
         'key_id' => env('APN_KEY_ID'),
         'team_id' => env('APN_TEAM_ID'),
-        'service_bundle' => env('APN_SERVICE_BUNDLE_PATH', null),
+        'auth_key_path' => env('APN_AUTH_KEY_PATH'),
+        'app_bundle_id' => env('APN_APP_BUNDLE_ID'),
+        'http2' => env('APN_HTTP2', true),
+        'certificate_path' => env('APN_CERTIFICATE_PATH'),
+        'certificate_passphrase' => env('APN_CERTIFICATE_PASSPHRASE'),
+        'feedback' => env('APN_FEEDBACK', true),
     ],
 
     'mailgun' => [
