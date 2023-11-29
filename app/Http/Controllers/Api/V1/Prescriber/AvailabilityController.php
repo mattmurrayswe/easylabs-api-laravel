@@ -11,7 +11,52 @@ use Illuminate\Support\Facades\Auth;
 
 class AvailabilityController extends Controller
 {
-    public function getAvailability()
+    public function getDatas()
+    {
+        $availability = Availability::with('diaSemana')
+            ->with('period')
+            ->where('prescriber_id', Auth::guard("webPresc")->user()->id)
+            ->orderBy('day_id')
+            ->get();
+        
+        $response = [
+            'id' => Auth::guard("webPresc")->user()->id,
+            'name_prescriber' => Auth::guard("webPresc")->user()->name,
+            'dates' => []
+        ];
+
+        foreach ($availability as $item) {
+            $dates = [
+                'day' => $item->diaSemana->day,
+                'start_time' => $item->start_time,
+                'end_time' => $item->end_time,
+                'period' => $item->period->period,
+            ];
+            $response['dates'][] = $dates;
+
+        }
+        return response()->json(new SuccessResource($response), 200);
+
+    }
+
+    public function getHorarios(Request $request)
+    {
+        $request->validate(["dia" => "required|datetime"]);
+        $request->validate(["horas" => "required|timestamp"]);
+       
+        $dia = $request->input("dia");
+        $horas = $request->input("horas");
+
+        $disponibilidades = Availability::whereDate('data', $dia) 
+        ->where('hora', $horas) 
+        ->get(); 
+    
+        return response()->json(['data' => $disponibilidades], 200);
+
+    
+    }
+
+    public function getDisponibilidadeMedico()
     {
         $availability = Availability::with('diaSemana')
             ->with('period')
@@ -71,7 +116,7 @@ class AvailabilityController extends Controller
             return response()->json(new SuccessResource('Sucesso!'), 200);
 
         } catch (\Throwable $th) {
-            return response()->json(new ErrorResource('Ocorreu um erro'), 422);
+            return response()->json(new ErrorResource($th->getMessage()), 422);
         }
     }
 }
