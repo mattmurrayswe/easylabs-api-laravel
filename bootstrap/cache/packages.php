@@ -10,13 +10,6 @@
       'LaRecipe' => 'BinaryTorch\\LaRecipe\\LaRecipe',
     ),
   ),
-  'gg-innovative/larafirebase' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'GGInnovative\\Larafirebase\\Providers\\LarafirebaseServiceProvider',
-    ),
-  ),
   'intervention/image' => 
   array (
     'providers' => 
@@ -26,13 +19,6 @@
     'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
-    ),
-  ),
-  'kutia-software-company/larafirebase' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Kutia\\Larafirebase\\Providers\\LarafirebaseServiceProvider',
     ),
   ),
   'laravel-notification-channels/apn' => 
@@ -86,10 +72,6 @@
     'providers' => 
     array (
       0 => 'Laravel\\Vapor\\VaporServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Vapor' => 'Laravel\\Vapor\\Vapor',
     ),
   ),
   'laravel/vapor-ui' => 

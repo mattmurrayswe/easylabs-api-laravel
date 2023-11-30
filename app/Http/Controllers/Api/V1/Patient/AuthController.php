@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\LoginRequest;
 use App\Http\Requests\Api\V1\LoginPrescRequest;
 use App\Http\Requests\Api\V1\PatientRequest;
-use App\Http\Requests\Api\V1\EditPatientRequest;
 use App\Http\Resources\Api\V1\DefaultUserResource;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
@@ -23,8 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
-use Intervention\Image\Facades\Image;
-use Maestroerror\HeicToJpg;
+use Illuminate\Support\Str;
 use Imagick;
 
 class AuthController extends Controller
@@ -427,6 +425,29 @@ class AuthController extends Controller
 
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource($th->getMessage()), 422);
+        }
+    }
+
+    public function uploadedDocsNamedDelete(Request $request)
+    {
+        try {
+
+            $patientDoc = PatientDocs::find($request->input('doc_named_id'));
+    
+            $extracted_part = Str::after($patientDoc->doc_url, '.com');
+    
+            if ($extracted_part) {
+                echo Storage::disk('s3')->delete($extracted_part); 
+            }
+    
+            $patientDoc->delete();
+    
+            return response()->json(['message' => 'Documento do paciente excluído com sucesso']);
+
+        } catch (\Throwable $th) {
+
+            return response()->json($th->getMessage());
+
         }
     }
 
