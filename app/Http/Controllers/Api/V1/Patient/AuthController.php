@@ -432,6 +432,10 @@ class AuthController extends Controller
     {
         try {
 
+            $request->validate([
+                "doc_named_id" => "required|string"
+            ]);
+
             $patientDoc = PatientDocs::find($request->input('doc_named_id'));
     
             $extracted_part = Str::after($patientDoc->doc_url, '.com');
