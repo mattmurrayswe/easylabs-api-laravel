@@ -198,7 +198,14 @@ Route::prefix('patient')->group(function(){
         Route::get('/new-treatment/{id}', [NewTreatmentController::class, 'show']);
         Route::delete('/new-treatment/{id}', [NewTreatmentController::class, 'destroy']);
         Route::put('/new-treatment/{id}', [NewTreatmentController::class, 'update']);
+
+        Route::get('/agenda/disponibilidade/datas', [AvailabilityController::class, 'getDisponibilidadeDatas']);
+        Route::get('/agenda/horarios', [AvailabilityController::class, 'getHorarios']);
         
+        Route::post('/consulta/marcar', [AppointmentController::class, 'marcarConsulta']);
+        Route::delete('/consulta/desmarcar/{id}', [AppointmentController::class, 'desmarcarConsulta']);
+        Route::get('/consulta/proxima', [AppointmentController::class, 'nextAppointments']);
+        Route::get('/consulta/ultima', [AppointmentController::class, 'pastAppointments']);
     });
     
 });
@@ -289,17 +296,17 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/patients-with-treatments', [PrescriberController::class, 'getPrescriberPatientsWithTreatments']);
         Route::get('/count/patients', [PrescriberController::class, 'countPatients']);
         
-        Route::get('/agenda/datas', [AvailabilityController::class, 'getDatas']);
-        Route::get('/agenda/horario', [AvailabilityController::class, 'getHorarios']);
-        Route::get('/agenda/medicos', [AvailabilityController::class, 'getDisponibilidadeMedico']);
-        Route::post('/agenda/datas', [AvailabilityController::class, 'store']);
-        Route::post('/agenda/horarios', [AvailabilityController::class, 'store']);
-        Route::post('/agenda/medicos', [AvailabilityController::class, 'store']);
+        Route::get('/agenda/disponibilidade/datas', [AvailabilityController::class, 'getDisponibilidadeDatas']);
+        Route::post('/agenda/disponibilidade/datas', [AvailabilityController::class, 'storeDisponibilidadeDatas']);
+        Route::get('/agenda/horarios', [AvailabilityController::class, 'getHorarios']);
+        Route::post('/agenda/horarios', [AvailabilityController::class, 'storeHorarios']);
         
-        Route::get('/consulta/next', [AppointmentController::class, 'nextAppointments']);
-        Route::get('/consulta/proxima', [AppointmentController::class, 'pastAppointments']);
-        Route::post('/consulta/desmarcar', [AppointmentController::class, 'endAppointment']);
-
+        Route::post('/consulta/marcar', [AppointmentController::class, 'marcarConsulta']);
+        Route::post('/consulta/finalizar/{id}', [AppointmentController::class, 'finalizarConsulta']);
+        Route::delete('/consulta/desmarcar/{id}', [AppointmentController::class, 'desmarcarConsulta']);
+        Route::get('/consulta/proxima', [AppointmentController::class, 'nextAppointments']);
+        Route::get('/consulta/ultima', [AppointmentController::class, 'pastAppointments']);
+        
         Route::get('/vouchers', [VoucherController::class, 'getVoucher']);
         Route::get('/voucher/{id}', [VoucherController::class, 'getVoucherPerId']);
         Route::post('/voucher', [VoucherController::class, 'createVoucher']);
@@ -310,10 +317,6 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/clinic-adress', [ClinicAdressController::class, 'getClinicAdress']);
         Route::post('/clinic-adress', [ClinicAdressController::class, 'createClinicAdress']);
         Route::put('/clinic-adress', [ClinicAdressController::class, 'updateClinicAdress']);
-        
-        Route::post('/create-appointment', [AppointmentController::class, 'createAppointment']);
-        Route::delete('/drop-appointment/{id}', [AppointmentController::class, 'dropAppointment']);
-        
         
         Route::get('/produto-indicado', [StatisticsController::class, 'showProdutoIndicadoPorDiagnostico']);
         

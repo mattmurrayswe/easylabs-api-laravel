@@ -6,43 +6,55 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Availability;
+use App\Models\Prescriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AvailabilityController extends Controller
 {
-    public function getDatas()
-    {
-        $availability = Availability::with('diaSemana')
-            ->with('period')
-            ->where('prescriber_id', Auth::guard("webPresc")->user()->id)
-            ->orderBy('day_id')
-            ->get();
+    public function getDisponibilidadeDatas(Request $request)
+    {   
+        $request->validate(["prescriber_id" => "required|integer"]);
         
-        $response = [
-            'id' => Auth::guard("webPresc")->user()->id,
-            'name_prescriber' => Auth::guard("webPresc")->user()->name,
-            'dates' => []
-        ];
+        try {
 
-        foreach ($availability as $item) {
-            $dates = [
-                'day' => $item->diaSemana->day,
-                'start_time' => $item->start_time,
-                'end_time' => $item->end_time,
-                'period' => $item->period->period,
+            $prescriber = Prescriber::findOrFail($request->input("prescriber_id"));
+
+            $availability = Availability::with('diaSemana')
+                ->with('period')
+                ->where('prescriber_id', $request->input("prescriber_id"))
+                ->orderBy('day_id')
+                ->get();
+            
+            $response = [
+                'id' => $request->input('prescriber_id'),
+                'name_prescriber' => $prescriber->name,
+                'dates' => []
             ];
-            $response['dates'][] = $dates;
+    
+            foreach ($availability as $item) {
+                $dates = [
+                    'day' => $item->diaSemana->day,
+                    'start_time' => $item->start_time,
+                    'end_time' => $item->end_time,
+                    'period' => $item->period->period,
+                ];
+                $response['dates'][] = $dates;
+    
+            }
+
+            return response()->json($response, 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json($th->getMessage(), 500);
 
         }
-        return response()->json(new SuccessResource($response), 200);
-
     }
 
-    public function getHorarios(Request $request)
+    public function getDisponibilidadeHorarios(Request $request)
     {
-        $request->validate(["dia" => "required|datetime"]);
-        $request->validate(["horas" => "required|timestamp"]);
+        $request->validate(["data" => "required|date"]);
        
         $dia = $request->input("dia");
         $horas = $request->input("horas");
@@ -84,7 +96,7 @@ class AvailabilityController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function storeDisponibilidadeDatas(Request $request)
     {
         $userId = Auth::guard("webPresc")->user()->id;
         
@@ -116,7 +128,9 @@ class AvailabilityController extends Controller
             return response()->json(new SuccessResource('Sucesso!'), 200);
 
         } catch (\Throwable $th) {
+
             return response()->json(new ErrorResource($th->getMessage()), 422);
         }
+        
     }
 }
