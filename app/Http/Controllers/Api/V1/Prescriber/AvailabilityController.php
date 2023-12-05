@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Prescriber;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
+use App\Models\Appointment;
 use App\Models\Availability;
 use App\Models\Prescriber;
 use Carbon\Carbon;
@@ -71,6 +72,7 @@ class AvailabilityController extends Controller
     public function getHorarios(Request $request)
     {
         try {
+
             $request->validate([
                 "prescriber_id" => "required|exists:prescribers,id",
                 "data" => "required|date"
@@ -84,13 +86,18 @@ class AvailabilityController extends Controller
                     'day_id' => $idWeekDay
                 ]
             )->get();
-    
+
             if ($availability->isEmpty()) {
 
                 return response()->json([
                     "error" => "No availability found for the given prescriber"
                 ], 404);
             }
+
+            $appointments = Appointment::where('prescriber_id', $request->input("prescriber_id"))
+                ->whereDate('appointment_date', $request->input("data"))
+                ->pluck('appointment_time')
+                ->toArray();
     
             $start = Carbon::parse($availability[0]->start_time);
             $end = Carbon::parse($availability[0]->end_time);
@@ -98,18 +105,20 @@ class AvailabilityController extends Controller
             $slots = [];
     
             while ($start < $end) {
-                $slots[] = $start->format('H:i');
-                $start->add(new DateInterval('PT30M')); // Use 'PT30M' for 30 minutes interval
+                $slots[] = $start->format('H:i:s');
+                $start->add(new DateInterval('PT30M'));
             }
     
             $start = Carbon::parse($availability[1]->start_time);
             $end = Carbon::parse($availability[1]->end_time);
     
             while ($start < $end) {
-                $slots[] = $start->format('H:i');
-                $start->add(new DateInterval('PT30M')); // Use 'PT30M' for 30 minutes interval
+                $slots[] = $start->format('H:i:s');
+                $start->add(new DateInterval('PT30M'));
             }
-    
+
+            $slots = array_diff($slots, $appointments);
+
             return response()->json($slots, 200);
 
         } catch (\Throwable $th) {
