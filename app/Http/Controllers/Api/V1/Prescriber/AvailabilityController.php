@@ -7,6 +7,8 @@ use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Availability;
 use App\Models\Prescriber;
+use Carbon\Carbon;
+use DateInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,8 +66,57 @@ class AvailabilityController extends Controller
         ->get(); 
     
         return response()->json(['data' => $disponibilidades], 200);
+    }
 
+    public function getHorarios(Request $request)
+    {
+        try {
+            $request->validate([
+                "prescriber_id" => "required|exists:prescribers,id",
+                "data" => "required|date"
+            ]);
     
+            $idWeekDay = Carbon::parse($request->input("data"))->dayOfWeek;
+
+            $availability = Availability::where(
+                [
+                    'prescriber_id' => $request->input("prescriber_id"),
+                    'day_id' => $idWeekDay
+                ]
+            )->get();
+    
+            if ($availability->isEmpty()) {
+
+                return response()->json([
+                    "error" => "No availability found for the given prescriber"
+                ], 404);
+            }
+    
+            $start = Carbon::parse($availability[0]->start_time);
+            $end = Carbon::parse($availability[0]->end_time);
+    
+            $slots = [];
+    
+            while ($start < $end) {
+                $slots[] = $start->format('H:i');
+                $start->add(new DateInterval('PT30M')); // Use 'PT30M' for 30 minutes interval
+            }
+    
+            $start = Carbon::parse($availability[1]->start_time);
+            $end = Carbon::parse($availability[1]->end_time);
+    
+            while ($start < $end) {
+                $slots[] = $start->format('H:i');
+                $start->add(new DateInterval('PT30M')); // Use 'PT30M' for 30 minutes interval
+            }
+    
+            return response()->json($slots, 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json(["error" => $th->getMessage()], 500);
+
+        }
     }
 
     public function getDisponibilidadeMedico()
@@ -93,7 +144,6 @@ class AvailabilityController extends Controller
 
         }
         return response()->json(new SuccessResource($response), 200);
-
     }
 
     public function storeDisponibilidadeDatas(Request $request)

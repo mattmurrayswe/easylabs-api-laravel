@@ -28,5 +28,4 @@ class Availability extends Model
     {
         return $this->belongsTo(Prescriber::class, 'prescriber_id');
     }
-
 }
