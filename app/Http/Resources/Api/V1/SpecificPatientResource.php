@@ -31,6 +31,10 @@ class SpecificPatientResource extends JsonResource
                 'telefone' => $this->cuidador->telefone ?? null,
                 'relacao_ou_parentesco' => $this->cuidador->relacao_ou_parentesco ?? null,
             ],
+            'prescriber' => [
+                'prescriber_id' => $this->prescriber->id ?? null,
+                'clinic_address' => $this->prescriber->clinic_address ?? null,
+            ]
         ];
     }
 }

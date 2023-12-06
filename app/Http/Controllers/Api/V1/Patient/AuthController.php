@@ -179,7 +179,7 @@ class AuthController extends Controller
 
     public function patientInfo(int $id)
     {
-        $user = Patient::with('cuidador')->find($id);
+        $user = Patient::with('cuidador')->with('prescriber.clinic_address')->find($id);
     
         if (!$user) {
             return response()->json(new ErrorResource('Paciente nao encontrado.'), 422);
