@@ -11,7 +11,14 @@ class Availability extends Model
 
     public $timestamps = false;
     public $table = 'availability';
-    protected $fillable = ['prescriber_id', 'day_id', 'start_time', 'end_time', 'period_id'];
+    protected $fillable = [
+        'prescriber_id',
+        'day_id',
+        'start_time',
+        'end_time',
+        'period_id',
+        'consulta_duracao_min'
+    ];
 
 
     public function diaSemana()

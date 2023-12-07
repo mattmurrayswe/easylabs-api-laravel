@@ -72,60 +72,64 @@ class AvailabilityController extends Controller
     public function getHorarios(Request $request)
     {
         try {
-
             $request->validate([
                 "prescriber_id" => "required|exists:prescribers,id",
                 "data" => "required|date"
             ]);
     
-            $idWeekDay = Carbon::parse($request->input("data"))->dayOfWeek;
-
-            $availability = Availability::where(
-                [
-                    'prescriber_id' => $request->input("prescriber_id"),
+            $prescriberId = $request->input("prescriber_id");
+            $startDate = Carbon::parse($request->input("data"));
+            $endDate = $startDate->copy()->addDays(6);
+    
+            $availableSlots = [];
+    
+            for ($date = $startDate; $date <= $endDate; $date->addDay()) {
+                $idWeekDay = $date->dayOfWeek;
+    
+                $availability = Availability::where([
+                    'prescriber_id' => $prescriberId,
                     'day_id' => $idWeekDay
-                ]
-            )->get();
-
-            if ($availability->isEmpty()) {
-
-                return response()->json([
-                    "error" => "No availability found for the given prescriber"
-                ], 404);
-            }
-
-            $appointments = Appointment::where('prescriber_id', $request->input("prescriber_id"))
-                ->whereDate('appointment_date', $request->input("data"))
-                ->pluck('appointment_time')
-                ->toArray();
+                ])->get();
     
-            $start = Carbon::parse($availability[0]->start_time);
-            $end = Carbon::parse($availability[0]->end_time);
+                if ($availability->isNotEmpty()) {
+                    $slots = $this->generateTimeSlots($availability);
+                    $appointments = $this->getExistingAppointments($prescriberId, $date);
     
-            $slots = [];
-    
-            while ($start < $end) {
-                $slots[] = $start->format('H:i:s');
-                $start->add(new DateInterval('PT30M'));
+                    $availableSlots[$date->format('Y-m-d')] = array_diff($slots, $appointments);
+                }
             }
     
-            $start = Carbon::parse($availability[1]->start_time);
-            $end = Carbon::parse($availability[1]->end_time);
-    
-            while ($start < $end) {
-                $slots[] = $start->format('H:i:s');
-                $start->add(new DateInterval('PT30M'));
-            }
-
-            $slots = array_diff($slots, $appointments);
-
-            return response()->json($slots, 200);
-
+            return response()->json($availableSlots, 200);
         } catch (\Throwable $th) {
-
             return response()->json(["error" => $th->getMessage()], 500);
-
         }
+    }
+    
+    // Helper function to generate time slots
+    function generateTimeSlots($availability)
+    {
+        $slots = [];
+    
+        foreach ($availability as $available) {
+            $start = Carbon::parse($available->start_time);
+            $end = Carbon::parse($available->end_time);
+    
+            while ($start < $end) {
+                $slots[] = $start->format('H:i:s');
+                $start->add(new DateInterval("PT{$available->consulta_duracao_min}M"));
+            }
+        }
+    
+        return $slots;
+    }
+    
+    // Helper function to get existing appointments for a given prescriber and date
+    function getExistingAppointments($prescriberId, $date)
+    {
+        return Appointment::where('prescriber_id', $prescriberId)
+            ->whereDate('appointment_date', $date)
+            ->pluck('appointment_time')
+            ->toArray();
     }
 
     public function getDisponibilidadeMedico()
@@ -174,7 +178,8 @@ class AvailabilityController extends Controller
                     $available->update(
                             [
                                 'start_time' => $dates['start_time'],
-                                'end_time' => $dates['end_time']
+                                'end_time' => $dates['end_time'],
+                                'consulta_duracao_min' => $dates['consulta_duracao_min']
                             ]
                         );
 
