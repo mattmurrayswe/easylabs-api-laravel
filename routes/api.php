@@ -203,7 +203,7 @@ Route::prefix('patient')->group(function(){
         Route::get('/agenda/disponibilidade/datas', [AvailabilityController::class, 'getDisponibilidadeDatas']);
         Route::get('/agenda/horarios', [AvailabilityController::class, 'getHorarios']);
         
-        Route::post('/consulta/marcar', [AppointmentController::class, 'marcarConsulta']);
+        Route::post('/consulta/marcar', [AppointmentController::class, 'marcarConsultaPatient']);
         Route::delete('/consulta/desmarcar/{id}', [AppointmentController::class, 'desmarcarConsulta']);
         Route::get('/consulta/proxima', [AppointmentController::class, 'nextAppointmentsPatient']);
         Route::get('/consulta/ultima', [AppointmentController::class, 'pastAppointments']);
