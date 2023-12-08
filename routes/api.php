@@ -205,7 +205,7 @@ Route::prefix('patient')->group(function(){
         
         Route::post('/consulta/marcar', [AppointmentController::class, 'marcarConsulta']);
         Route::delete('/consulta/desmarcar/{id}', [AppointmentController::class, 'desmarcarConsulta']);
-        Route::get('/consulta/proxima', [AppointmentController::class, 'nextAppointments']);
+        Route::get('/consulta/proxima', [AppointmentController::class, 'nextAppointmentsPatient']);
         Route::get('/consulta/ultima', [AppointmentController::class, 'pastAppointments']);
     });
     

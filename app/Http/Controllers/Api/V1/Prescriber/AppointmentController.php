@@ -170,6 +170,38 @@ class AppointmentController extends Controller
 
     }
 
+    public function nextAppointmentsPatient()
+    {
+        $dataAtual = Carbon::now();
+        $horaAtual = Carbon::now()->format('H:i:s');
+
+        $appointments = Appointment::where('patient_id', Auth::user()->id)
+            ->whereDate('appointment_date', '>=', $dataAtual )
+            ->with('prescritor')
+            ->get();
+
+
+        if (count($appointments) == 0) {
+            return response()->json(new SuccessResource('Sem consultas futuras'), 200);
+        }
+
+        foreach ($appointments as $appointment) {
+            $response[] = [
+                'id' => $appointment->id,
+                'description' => $appointment->description,
+                'appointment_date' => $appointment->appointment_date,
+                'appointment_time' => $appointment->appointment_time,
+                'patient' => $appointment->patient,
+                'prescriber' => $appointment->prescritor,
+                'type' => $appointment->type,
+                'address' => $appointment->type == 'presencial' ? $appointment->prescritor->clinic_address : 'Telemedicina',
+            ];
+        }
+
+        return response()->json(new SuccessResource($response), 200);
+
+    }
+
     public function pastAppointments()
     {
         $dataAtual = Carbon::now();
