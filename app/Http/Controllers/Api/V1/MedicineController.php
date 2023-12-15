@@ -52,7 +52,7 @@ class MedicineController extends Controller
 
         $patient_id = $request->input('patient_id');
         
-        $reminders = MedicineReminder::where('patient_id', $patient_id)->get();
+        $reminders = MedicineReminder::where('patient_id', $patient_id)->with('medicine')->get();
         
         return response()->json(new SuccessResource($reminders), 200);
     }

@@ -17,4 +17,10 @@ class MedicineReminder extends Model
         'sent',
         'reminder_time',
     ];
+
+
+    public function medicine()
+    {
+        return $this->belongsTo(Medicine::class, 'id_cuidador');
+    }
 }

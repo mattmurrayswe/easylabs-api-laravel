@@ -74,7 +74,7 @@ class PatientUsesMedicineController extends Controller
     {
         try {
             
-            $usedMedicines = PatientUsesMedicine::where('patient_id', $request->id_patient)->get()->toArray();
+            $usedMedicines = PatientUsesMedicine::where('patient_id', $request->id_patient)->with('medicine')->get()->toArray();
 
             return response()->json(new SuccessResource($usedMedicines), 200);
 
