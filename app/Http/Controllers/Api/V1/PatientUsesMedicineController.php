@@ -40,7 +40,7 @@ class PatientUsesMedicineController extends Controller
     public function listInformedMed()
     {
         try {
-            $usedMedicines = PatientUsesMedicine::where('patient_id', Auth::guard("webPatient")->id())->get()->toArray();
+            $usedMedicines = PatientUsesMedicine::where('patient_id', Auth::guard("webPatient")->id())->with('medicine')->get()->toArray();
 
             return response()->json(new SuccessResource($usedMedicines), 200);
 

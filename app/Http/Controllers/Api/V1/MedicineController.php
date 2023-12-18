@@ -59,7 +59,7 @@ class MedicineController extends Controller
 
     public function showReminder($id)
     {
-        $reminder = MedicineReminder::where('id', $id)->get();
+        $reminder = MedicineReminder::where('id', $id)->with('medicine')->get();
 
         return response()->json(new SuccessResource($reminder), 200);
     }

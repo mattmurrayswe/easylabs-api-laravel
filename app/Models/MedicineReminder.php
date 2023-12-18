@@ -21,6 +21,6 @@ class MedicineReminder extends Model
 
     public function medicine()
     {
-        return $this->belongsTo(Medicine::class, 'id_cuidador');
+        return $this->belongsTo(Medicine::class, 'medicine_id');
     }
 }
