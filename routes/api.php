@@ -160,9 +160,10 @@ Route::prefix('patient')->group(function(){
         // Follow Up Treatment
         Route::post('/follow-up', [FollowUpController::class, 'store']);
         Route::post('/message', [FollowUpController::class, 'message']);
-        Route::get('/message', [FollowUpController::class, 'readMessages']);
         Route::post('/message/admin', [FollowUpController::class, 'patientMessagesAdmin']);
+
         Route::post('/message/prescriber', [FollowUpController::class, 'patientMessagesPrescriber']);
+        Route::get('/messages', [FollowUpController::class, 'listMessagesForPatient']);
         Route::post('/message/{id}/mark-as-read', [FollowUpController::class, 'markAsRead']);
 
         // Medicine
@@ -284,9 +285,10 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/informed-symptoms/period', [SymptomsController::class, 'informedSymptomsPrescPeriod']);
         Route::get('/informed-symptoms/week', [SymptomsController::class, 'informedSymptomsPrescLastWeek']);
         Route::post('/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
+
         Route::post('/message/prescriber', [FollowUpController::class, 'prescriberMessagesPatient']);
         Route::post('/message/{id}/mark-as-read', [FollowUpController::class, 'markAsRead']);
-        Route::get('/message', [FollowUpController::class, 'readMessages']);
+        Route::get('/messages', [FollowUpController::class, 'listMessagesForPrescriber']);
         
         
         // Create Patient Using Prescriber
