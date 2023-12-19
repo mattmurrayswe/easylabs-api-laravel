@@ -9,9 +9,11 @@ use App\Models\FollowUp;
 use App\Models\Messages;
 use App\Models\MessagesToPrescriber;
 use App\Models\PatientMessagesAdmin;
+use App\Models\PatientMessagesPrescriber;
 use App\Models\PrescriberMessagesAdmin;
 use App\Models\PrescriberMessagesPatient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FollowUpController extends Controller
 {
@@ -61,23 +63,49 @@ class FollowUpController extends Controller
     }    
 
     public function prescriberMessagesPatient(Request $request)
-    {
-        // Validate the incoming request data
+    { 
         $validatedData = $request->validate([
-            'prescriber_id' => 'required|integer',
-            'prescriber_name' => 'required|string',
-            'patient_id' => 'required|integer',
-            'patient_name' => 'required|string',
-            'is_replying' => 'nullable|bool',
-            'message' => 'required|string',
+            'message' => 'required',
+            'patient_id' => 'required|exists:patients,id'
         ]);
 
-        // Create a new message record in the database
-        $message = PrescriberMessagesPatient::create($validatedData);
+        $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
+            'prescriber_id' => Auth::guard("webPresc")->id(),
+            'sent_by' => 'presc'
+        ]));
 
-        // Return a response indicating success
-        return response()->json(['message' => 'Message created successfully', 'data' => $message], 201);
+        return response()->json(
+            ['message' => 'Mensagem enviada com sucesso', 'data' => $message],
+            201
+        );
     }    
+
+    public function patientMessagesPrescriber(Request $request)
+    {
+        $validatedData = $request->validate([
+            'message' => 'required',
+            'prescriber_id' => 'required|exists:prescribers,id'
+        ]);
+
+        $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
+            'patient_id' => Auth::guard("webPatient")->id(),
+            'sent_by' => 'patient'
+        ]));
+
+        return response()->json(
+            ['message' => 'Mensagem enviada com sucesso', 'data' => $message],
+            201
+        );
+    }
+
+    public function markAsRead($id)
+    {
+        $message = PatientMessagesPrescriber::findOrFail($id);
+
+        $message->update(['status' => 'read']);
+
+        return response()->json(['message' => 'Message marked as read', 'data' => $message]);
+    }
 
     public function readMessages(Request $request)
     {
