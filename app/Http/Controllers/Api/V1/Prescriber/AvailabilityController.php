@@ -128,6 +128,7 @@ class AvailabilityController extends Controller
     function getExistingAppointments($prescriberId, $date)
     {
         return Appointment::where('prescriber_id', $prescriberId)
+            ->whereIn('status', ['aprovada', 'pendente'])
             ->whereDate('appointment_date', $date)
             ->pluck('appointment_time')
             ->toArray();

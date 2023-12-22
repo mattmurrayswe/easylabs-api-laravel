@@ -313,6 +313,7 @@ Route::prefix('prescriber')->group(function(){
         Route::delete('/consulta/desmarcar/{id}', [AppointmentController::class, 'desmarcarConsulta']);
         Route::get('/consulta/proxima', [AppointmentController::class, 'nextAppointments']);
         Route::get('/consulta/ultima', [AppointmentController::class, 'pastAppointments']);
+        Route::post('/consulta/aprovar/{id}', [AppointmentController::class, 'aprovarConsulta']);
         
         Route::get('/vouchers', [VoucherController::class, 'getVoucher']);
         Route::get('/voucher/{id}', [VoucherController::class, 'getVoucherPerId']);

@@ -195,7 +195,8 @@ class AppointmentController extends Controller
         try {
             $appointment = Appointment::find($id);
             $appointment->update([
-                'appointment_done' => 1
+                'appointment_done' => 1,
+                'status' => 'realizada'
             ]);
             return response()->json(new SuccessResource('Consulta encerrada'), 200);
 
@@ -226,6 +227,26 @@ class AppointmentController extends Controller
         }
     }
 
+    public function aprovarConsulta($id, Request $request)
+    {        
+        try {
+            $request->validate( [
+                'status' => 'required|in:aprovada,negada',
+            ]);
+
+            Appointment::where("id", $id)->update(['status' => $request->status]);
+
+            $appointment = Appointment::find($id);
+
+            return response()->json(new SuccessResource(['Status da consulta alterado.', $appointment]), 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json($th->getMessage(), 422);
+
+        }
+    }
+
 
     public function nextAppointments()
     {
@@ -249,6 +270,7 @@ class AppointmentController extends Controller
                 'appointment_time' => $appointment->appointment_time,
                 'patient' => $appointment->patient,
                 'prescriber' => $appointment->prescritor,
+                'status' => $appointment->status,
                 'type' => $appointment->type,
                 'address' => $appointment->type == 'presencial' ? Auth::user()->clinic_address : 'Telemedicina',
             ];
@@ -282,6 +304,7 @@ class AppointmentController extends Controller
                 'patient' => $appointment->patient,
                 'prescriber' => $appointment->prescritor,
                 'type' => $appointment->type,
+                'status' => $appointment->status,
                 'address' => $appointment->type == 'presencial' ? $appointment->prescritor->clinic_address : 'Telemedicina',
             ];
         }
