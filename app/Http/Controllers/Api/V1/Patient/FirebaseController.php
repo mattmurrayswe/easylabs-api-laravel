@@ -27,7 +27,8 @@ class FirebaseController extends Controller
                 "notification" => [
                     "title" => "Mais Alivio",
                     "body" => $request->message,  
-                ]
+                ],
+                "priority" => "high"
             ];
         
             $headers = [
@@ -44,7 +45,8 @@ class FirebaseController extends Controller
             ]);
             
             return response()->json([
-                "firebase_response" => json_decode($response->getBody()->getContents())
+                "firebase_response" => json_decode($response->getBody()->getContents()),
+                "token_mobile_utilizado" => $firebaseToken
             ], 200);
 
         } catch (RequestException $e) {
