@@ -164,7 +164,7 @@ Route::prefix('patient')->group(function(){
 
         Route::post('/message/prescriber', [FollowUpController::class, 'patientMessagesPrescriber']);
         Route::get('/messages', [FollowUpController::class, 'listMessagesForPatient']);
-        Route::post('/message/{id}/mark-as-read', [FollowUpController::class, 'markAsRead']);
+        Route::post('/message/mark-as-read', [FollowUpController::class, 'markAsRead']);
 
         // Medicine
         Route::post('/medicine', [MedicineController::class, 'store']);
@@ -287,7 +287,7 @@ Route::prefix('prescriber')->group(function(){
         Route::post('/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
 
         Route::post('/message/prescriber', [FollowUpController::class, 'prescriberMessagesPatient']);
-        Route::post('/message/{id}/mark-as-read', [FollowUpController::class, 'markAsRead']);
+        Route::post('/message/mark-as-read', [FollowUpController::class, 'markAsRead']);
         Route::get('/messages', [FollowUpController::class, 'listMessagesForPrescriber']);
         
         

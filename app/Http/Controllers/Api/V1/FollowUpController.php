@@ -112,13 +112,25 @@ class FollowUpController extends Controller
         return response()->json(['data' => $messages]);
     }
 
-    public function markAsRead($id)
+    public function markAsRead(Request $request)
     {
-        $message = PatientMessagesPrescriber::findOrFail($id);
+        try {
+            
+            $request->validate([
+                "messages_ids" => "required|array",
+                "messages_ids.*" => ["required", "integer"],
+            ]);
+    
+            PatientMessagesPrescriber::whereIn("id", $request->messages_ids)->update(['status' => 'read']);
+    
+            $messages = PatientMessagesPrescriber::whereIn("id", $request->messages_ids)->get();
+    
+            return response()->json(['messages' => 'Messages marked as read', 'updated' => $messages]);
 
-        $message->update(['status' => 'read']);
-
-        return response()->json(['message' => 'Message marked as read', 'data' => $message]);
+        } catch (\Throwable $th) {
+            
+            return response()->json($th->getMessage(), 500);
+        }
     }
 
     public function readMessages(Request $request)
