@@ -8,6 +8,7 @@ use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\Patient;
 use App\Models\Voucher;
 use App\Models\VoucherLog;
+use App\Models\VouchersSent;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\Encoding\Encoding;
@@ -24,7 +25,7 @@ class VoucherController extends Controller
     public function getVoucher()
     {
         $voucher = Voucher::all();
-        
+
         return response()->json(new SuccessResource($voucher), 200);
     }
 
@@ -56,6 +57,48 @@ class VoucherController extends Controller
 
         } catch (\Throwable $th) {
             return response()->json(new ErrorResource('Voucher nao encontrado'), 422);
+
+        }
+    }
+
+    public function sendVoucher(Request $request)
+    {
+        try {
+            $request->validate([
+                'voucher_id' => 'required|exists:vouchers,id',
+                'patient_id' => 'required|exists:patients,id',
+                'sent_by_prescriber_id' => 'required|exists:prescribers,id',
+            ]);
+
+            $voucherSent = VouchersSent::create($request->all());
+
+            return response()->json([
+                "message" => "Voucher enviado com sucesso!",
+                "voucher_sent" => $voucherSent
+            ], 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json($th->getMessage(), 500);
+
+        }
+    }
+
+    public function receivedVouchers()
+    {
+        try {
+
+            $voucherSent = VouchersSent::where(
+                "patient_id", Auth::guard("webPatient")->id()
+            )->get();
+
+            return response()->json([
+                "vouchers" => $voucherSent
+            ], 200);
+
+        } catch (\Throwable $th) {
+
+            return response()->json($th->getMessage(), 500);
 
         }
     }

@@ -140,6 +140,7 @@ Route::prefix('patient')->group(function(){
         Route::post('/account-config/{id}', [PatientController::class, 'updateAccountConfig']);
         Route::post('/apn-token', [PatientController::class, 'storeApnToken']);
         Route::get('/test-notification', [FirebaseController::class, 'testNotification']);
+        Route::get('/received-vouchers', [VoucherController::class, 'receivedVouchers']);
         
         // Patient Uses Medicine
         Route::post('/inform-med', [PatientUsesMedicineController::class, 'informMed']);
@@ -318,6 +319,7 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/vouchers', [VoucherController::class, 'getVoucher']);
         Route::get('/voucher/{id}', [VoucherController::class, 'getVoucherPerId']);
         Route::post('/voucher', [VoucherController::class, 'createVoucher']);
+        Route::post('/send-voucher', [VoucherController::class, 'sendVoucher']);
         Route::put('/voucher/{id}', [VoucherController::class, 'updateVoucher']);
         Route::delete('/voucher/{id}', [VoucherController::class, 'deleteVoucher']);
         Route::post('/use-voucher', [VoucherController::class, 'useVoucher']);
