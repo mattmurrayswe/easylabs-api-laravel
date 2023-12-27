@@ -71,7 +71,7 @@ class FollowUpController extends Controller
 
         $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
             'prescriber_id' => Auth::guard("webPresc")->id(),
-            'sent_by' => 'presc'
+            'sentby' => 'presc'
         ]));
 
         return response()->json(
@@ -89,7 +89,7 @@ class FollowUpController extends Controller
 
         $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
             'patient_id' => Auth::guard("webPatient")->id(),
-            'sent_by' => 'patient'
+            'sentby' => 'patient'
         ]));
 
         return response()->json(
