@@ -13,6 +13,7 @@ class PatientMessagesPrescriber extends Model
         'patient_id',
         'message',
         'prescriber_id',
+        'sentby',
         'status'
     ];
 
