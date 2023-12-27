@@ -286,7 +286,7 @@ Route::prefix('prescriber')->group(function(){
         Route::get('/informed-symptoms/week', [SymptomsController::class, 'informedSymptomsPrescLastWeek']);
         Route::post('/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
 
-        Route::post('/message/prescriber', [FollowUpController::class, 'prescriberMessagesPatient']);
+        Route::post('/message/patient', [FollowUpController::class, 'prescriberMessagesPatient']);
         Route::post('/message/mark-as-read', [FollowUpController::class, 'markAsRead']);
         Route::get('/messages', [FollowUpController::class, 'listMessagesForPrescriber']);
         
