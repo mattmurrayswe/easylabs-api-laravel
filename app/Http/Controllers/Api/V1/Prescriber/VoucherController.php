@@ -90,7 +90,7 @@ class VoucherController extends Controller
 
             $voucherSent = VouchersSent::where(
                 "patient_id", Auth::guard("webPatient")->id()
-            )->get();
+            )->with('voucher')->get();
 
             return response()->json([
                 "vouchers" => $voucherSent
