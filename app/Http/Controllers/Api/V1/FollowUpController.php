@@ -98,9 +98,12 @@ class FollowUpController extends Controller
         );
     }
 
-    public function listMessagesForPrescriber()
+    public function listMessagesForPrescriber(Request $request)
     {
-        $messages = PatientMessagesPrescriber::where('prescriber_id', Auth::guard('webPresc')->id())->get();
+        $messages = PatientMessagesPrescriber::where([
+            'prescriber_id' => Auth::guard('webPresc')->id(),
+            'patient_id' => $request->patient_id
+        ])->get();
 
         return response()->json(['data' => $messages]);
     }
