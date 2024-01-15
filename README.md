@@ -54,6 +54,11 @@ rm -R .docker
 php vendor/bin/vapor deploy prod-docker
 ```
 
+Doc. de Envs Vapor
+```
+https://docs.vapor.build/projects/environments.html
+```
+
 Admin Login
 ```sh
 npm install
