@@ -30,7 +30,11 @@ chmod -R 777 storage
 
 Acesse o projeto
 ```sh
+Homolog
 https://aged-oasis-di8qclo59nbp.vapor-farm-f1.com
+
+Prod
+https://frosty-geyser-f6gyi7hxpw0a.vapor-farm-g1.com
 ```
 
 Doc de rotas (Deprecated) usou-se Postman
