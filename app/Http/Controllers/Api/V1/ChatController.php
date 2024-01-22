@@ -14,10 +14,10 @@ class ChatController extends Controller
     {
         try {
 
-            event(new ChatEvent("teste"));
+            event(new ChatEvent("Healthcheck de WS feito com sucesso."));
 
             return response()->json(
-                "Teste de chat realizado com sucesso",
+                "Teste realizado com sucesso",
                 200
             );
 

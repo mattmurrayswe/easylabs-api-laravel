@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "echo-server": "laravel-echo-server start"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

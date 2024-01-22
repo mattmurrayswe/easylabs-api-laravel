@@ -31,7 +31,7 @@
                 }
             });
         })
-        .listen('MessageSent', (event) => {
+        .listen('ChatEvent', (event) => {
             console.log(event);
             messages.push({
                 message: event.message.message,
