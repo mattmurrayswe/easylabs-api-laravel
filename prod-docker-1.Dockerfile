@@ -1,6 +1,8 @@
 # Use the laravelphp/vapor image as the base image
 FROM laravelphp/vapor:php82
 
+EXPOSE 6001
+
 # Install necessary system dependencies (if supported by the base image)
 # For this example, we assume the base image supports apk package manager
 RUN apk update && \

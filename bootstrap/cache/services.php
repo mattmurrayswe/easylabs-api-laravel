@@ -41,9 +41,10 @@
     37 => 'Intervention\\Image\\ImageServiceProvider',
     38 => 'App\\Providers\\AppServiceProvider',
     39 => 'App\\Providers\\AuthServiceProvider',
-    40 => 'App\\Providers\\EventServiceProvider',
-    41 => 'App\\Providers\\RouteServiceProvider',
-    42 => 'App\\Providers\\VaporUiServiceProvider',
+    40 => 'App\\Providers\\BroadcastServiceProvider',
+    41 => 'App\\Providers\\EventServiceProvider',
+    42 => 'App\\Providers\\RouteServiceProvider',
+    43 => 'App\\Providers\\VaporUiServiceProvider',
   ),
   'eager' => 
   array (
@@ -71,9 +72,10 @@
     21 => 'Intervention\\Image\\ImageServiceProvider',
     22 => 'App\\Providers\\AppServiceProvider',
     23 => 'App\\Providers\\AuthServiceProvider',
-    24 => 'App\\Providers\\EventServiceProvider',
-    25 => 'App\\Providers\\RouteServiceProvider',
-    26 => 'App\\Providers\\VaporUiServiceProvider',
+    24 => 'App\\Providers\\BroadcastServiceProvider',
+    25 => 'App\\Providers\\EventServiceProvider',
+    26 => 'App\\Providers\\RouteServiceProvider',
+    27 => 'App\\Providers\\VaporUiServiceProvider',
   ),
   'deferred' => 
   array (

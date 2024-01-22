@@ -1,7 +1,7 @@
 import './bootstrap';
+import 'socket.io-client';
+import Echo from 'laravel-echo';
+import io from 'socket.io-client';
 
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+window.io = io;
+window.Echo = Echo;

@@ -51,11 +51,24 @@ RUN curl -fsSL https://get.docker.com | bash
 RUN usermod -aG docker sail
 ```
 
-Deploy
+Deploy Homolog
 ```sh
 rm -R node_modules
 rm -R .docker
 php vendor/bin/vapor deploy prod-docker
+```
+
+Deploy Prod
+```sh
+rm -R node_modules
+rm -R .docker
+php vendor/bin/vapor deploy prod-docker-1
+```
+
+Deploy
+```sh
+npm run dev
+laravel-echo-server start
 ```
 
 Doc. de Envs Vapor
