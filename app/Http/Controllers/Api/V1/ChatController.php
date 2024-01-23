@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Events\ChatEvent;
+use App\Events\MyEvent;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Api\V1\ErrorResource;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -14,7 +13,7 @@ class ChatController extends Controller
     {
         try {
 
-            event(new ChatEvent("Healthcheck de WS feito com sucesso."));
+            event(new MyEvent('hello world'));
 
             return response()->json(
                 "Teste realizado com sucesso",

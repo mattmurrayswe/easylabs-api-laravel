@@ -1,47 +1,29 @@
 @vite(['resources/js/app.js'])
-<script type="module">
-    let server = new Echo({
-        broadcaster: 'socket.io',
-        host: window.location.hostname + ':6001',
-        client: io
-    });
-    let users = [];
-    let messages = [];
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
 
-    server.join('chat')
-        .here(users => {
-            console.log(users)
-            users.forEach(user => {
-                users.push(user);
-            });
-        })
-        .joining(user => {
-            console.log(users)
-            users.push(user);
-        })
-        .leaving(user => {
-            users = users.filter(u => u.id !== user.id);
-            console.log(users)
-        })
-        .listenForWhisper('typing', ({id, name}) => {
-            console.log(name);
-            users.forEach((user, index) => {
-                if (user.id === id) {
-                    user.typing = true;
-                }
-            });
-        })
-        .listen('ChatEvent', (event) => {
-            console.log(event);
-            messages.push({
-                message: event.message.message,
-                user: event.user
-            });
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
 
-            users.forEach((user, index) => {
-                if (user.id === event.user.id) {
-                    user.typing = false;
-                }
-            });
-        });
+  var pusher = new Pusher('6b5cc6e162f72b773f02', {
+    cluster: 'sa1'
+  });
+
+  var channel = pusher.subscribe('my-channel');
+  channel.bind('my-event', function(data) {
+    alert(JSON.stringify(data));
+  });
+
+  var channel = pusher.subscribe('my-channel');
+  channel.bind('MyEvent', function(data) {
+    alert(JSON.stringify(data));
+  });
+  
 </script>
+<body>
+    <h1>Pusher Test</h1>
+    <p>
+      Try publishing an event to channel <code>my-channel</code>
+      with event name <code>my-event</code>.
+    </p>
+  </body>

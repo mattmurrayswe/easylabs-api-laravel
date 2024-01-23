@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "echo-server": "laravel-echo-server start"
+        "websocket": "laravel-echo-server start"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
