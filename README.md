@@ -30,7 +30,11 @@ chmod -R 777 storage
 
 Acesse o projeto
 ```sh
+Homolog
 https://aged-oasis-di8qclo59nbp.vapor-farm-f1.com
+
+Prod
+https://frosty-geyser-f6gyi7hxpw0a.vapor-farm-g1.com
 ```
 
 Doc de rotas (Deprecated) usou-se Postman
@@ -47,11 +51,28 @@ RUN curl -fsSL https://get.docker.com | bash
 RUN usermod -aG docker sail
 ```
 
-Deploy
+Deploy Homolog
 ```sh
 rm -R node_modules
 rm -R .docker
 php vendor/bin/vapor deploy prod-docker
+```
+
+Deploy Prod
+```sh
+rm -R node_modules
+rm -R .docker
+php vendor/bin/vapor deploy prod-docker-1
+```
+
+Deploy
+```sh
+npm run dev
+```
+
+Doc. de Envs Vapor
+```
+https://docs.vapor.build/projects/environments.html
 ```
 
 Admin Login

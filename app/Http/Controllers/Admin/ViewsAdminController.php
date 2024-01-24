@@ -24,6 +24,11 @@ use Illuminate\Pagination\Paginator;
 
 class ViewsAdminController extends Controller
 {
+    public function testWebsocket(Request $request)
+    {
+        return view('test-websocket'); 
+    }
+
     public function cadastroSintomas(Request $request)
     {
         $search = $request->input('search');

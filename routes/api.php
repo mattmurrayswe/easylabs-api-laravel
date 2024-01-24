@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\FollowUpController;
+use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\MedicineController;
 use App\Http\Controllers\Api\V1\NewTreatmentController;
 use App\Http\Controllers\Api\V1\Patient\AuthController;
@@ -39,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('presc/message/admin', [FollowUpController::class, 'prescriberMessagesAdmin']);
 Route::post('patien/message/admin', [FollowUpController::class, 'patientMessagesAdmin']);
 
+Route::post('/chat/test', [ChatController::class, 'testChat']);
+Route::post('/sininho/test', [ChatController::class, 'testSininho']);
 Route::get('/export-excel/medicines', [ExcelExportController::class, 'exportMedicamentos']);
 Route::post('/import-excel/medicines', [ExcelExportController::class, 'importMedicamentos'])->name('medicine.import');;
 Route::get('/export-excel/usuarios', [ExcelExportController::class, 'exportUsuarios']);

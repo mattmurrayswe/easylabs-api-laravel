@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\ViewsAdminController;
 |
 */
 
+Route::get('/test-websocket', [ViewsAdminController::class, 'testWebsocket']);
+
 Route::middleware('auth')->group(function() {
 
     Route::get('/cadastro-sintomas', [ViewsAdminController::class, 'cadastroSintomas']);
