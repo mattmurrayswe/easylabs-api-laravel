@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         // Reiniciar a marcação de "enviado hoje" para todos os lembretes diariamente
         $schedule->call(function () {
-            MedicineReminder::where('sent_today', true)->update(['sent_today' => false]);
+            MedicineReminder::where('sent_today', 1)->update(['sent_today' => 0]);
         })->dailyAt('00:00');
 
         // Agendar o envio dos lembretes de medicamentos a cada minuto
@@ -63,7 +63,7 @@ class Kernel extends ConsoleKernel
                 ]);
 
                 // Marcar como enviado hoje
-                $medicineReminder->update(['sent_today' => true]);
+                $medicineReminder->update(['sent_today' => 1]);
             }
         })->everyMinute();
     }
