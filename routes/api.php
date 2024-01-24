@@ -41,6 +41,7 @@ Route::post('presc/message/admin', [FollowUpController::class, 'prescriberMessag
 Route::post('patien/message/admin', [FollowUpController::class, 'patientMessagesAdmin']);
 
 Route::post('/chat/test', [ChatController::class, 'testChat']);
+Route::post('/sininho/test', [ChatController::class, 'testSininho']);
 Route::get('/export-excel/medicines', [ExcelExportController::class, 'exportMedicamentos']);
 Route::post('/import-excel/medicines', [ExcelExportController::class, 'importMedicamentos'])->name('medicine.import');;
 Route::get('/export-excel/usuarios', [ExcelExportController::class, 'exportUsuarios']);

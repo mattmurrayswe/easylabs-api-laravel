@@ -68,7 +68,6 @@ php vendor/bin/vapor deploy prod-docker-1
 Deploy
 ```sh
 npm run dev
-laravel-echo-server start
 ```
 
 Doc. de Envs Vapor

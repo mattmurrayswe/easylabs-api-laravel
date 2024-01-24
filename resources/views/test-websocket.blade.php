@@ -14,8 +14,8 @@
     alert(JSON.stringify(data));
   });
 
-  var channel = pusher.subscribe('my-channel');
-  channel.bind('MyEvent', function(data) {
+  var channel = pusher.subscribe('sininho-channel');
+  channel.bind('sininho-event', function(data) {
     alert(JSON.stringify(data));
   });
   
