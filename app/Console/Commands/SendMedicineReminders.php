@@ -18,7 +18,7 @@ class SendMedicineReminders extends Command
         $medicineReminders = MedicineReminder::whereRaw("TIME_FORMAT(reminder_time, '%H:%i') = ?", [$currentTime])->get();
 
         foreach ($medicineReminders as $medicineReminder) {
-
+//ok
 
             $this->info("Sending reminder for MedicineReminder ID: $medicineReminder->id");
         }
