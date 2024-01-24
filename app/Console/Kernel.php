@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('app:send-medicine-reminders')->everyMinute();
 
-        // Reiniciar a marcação de "enviado hoje" para todos os lembretes diariamente
+        // Reiniciar a marcação de "enviado hoje" para todos os lembretes diariamente.
         $schedule->call(function () {
             MedicineReminder::where('sent_today', 1)->update(['sent_today' => 0]);
         })->dailyAt('00:00');

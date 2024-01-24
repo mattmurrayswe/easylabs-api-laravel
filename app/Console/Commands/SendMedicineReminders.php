@@ -18,8 +18,7 @@ class SendMedicineReminders extends Command
         $medicineReminders = MedicineReminder::whereRaw("TIME_FORMAT(reminder_time, '%H:%i') = ?", [$currentTime])->get();
 
         foreach ($medicineReminders as $medicineReminder) {
-            // Adapte o código de envio de notificação conforme necessário
-            // Certifique-se de que o ID do paciente, o token Firebase e o envio da notificação estão corretos
+
 
             $this->info("Sending reminder for MedicineReminder ID: $medicineReminder->id");
         }
