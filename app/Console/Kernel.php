@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command('app:send-medicine-reminders')->everyMinute();
+
         // Reiniciar a marcação de "enviado hoje" para todos os lembretes diariamente
         $schedule->call(function () {
             MedicineReminder::where('sent_today', true)->update(['sent_today' => false]);
@@ -77,4 +79,5 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
 }
