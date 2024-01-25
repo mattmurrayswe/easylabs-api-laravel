@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\MessagesEvent;
 use App\Events\MyEvent;
 use App\Events\SininhoEvent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -31,10 +33,17 @@ class ChatController extends Controller
     public function testSininho(Request $request)
     {
         try {
-
-            event(new SininhoEvent(
-                ['count_notifications' => 2]
+            
+            event(new MessagesEvent(
+                "Bom dia! Consegue confirmar minha consulta?",
+                true,
+                3,
+                3
             ));
+
+            // event(new SininhoEvent(
+            //     ['count_notifications' => 2]
+            // ));
 
             return response()->json(
                 "Teste de sininho realizado com sucesso",

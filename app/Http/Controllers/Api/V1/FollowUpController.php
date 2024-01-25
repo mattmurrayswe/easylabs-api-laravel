@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\MessagesEvent;
+use App\Events\SininhoEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\ErrorResource;
 use App\Http\Resources\Api\V1\SuccessResource;
 use App\Models\FollowUp;
 use App\Models\Messages;
 use App\Models\MessagesToPrescriber;
+use App\Models\Patient;
 use App\Models\PatientMessagesAdmin;
 use App\Models\PatientMessagesPrescriber;
 use App\Models\PrescriberMessagesAdmin;
@@ -91,6 +94,21 @@ class FollowUpController extends Controller
             'patient_id' => Auth::guard("webPatient")->id(),
             'sentby' => 'patient'
         ]));
+
+        $patient = Patient::where("id", Auth::guard('webPatient')->id())->first();
+
+        event(new SininhoEvent(
+            [
+                'message' => "Nova mensagem do paciente {$patient->name}",
+            ],
+        ));
+
+        event(new MessagesEvent(
+            $request->message,
+            true,
+            Auth::guard('webPatient')->id(),
+            $patient->room_id
+        ));
 
         return response()->json(
             ['message' => 'Mensagem enviada com sucesso', 'data' => $message],

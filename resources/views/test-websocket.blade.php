@@ -18,6 +18,11 @@
   channel.bind('sininho-event', function(data) {
     alert(JSON.stringify(data));
   });
+
+  var channel = pusher.subscribe('chat.3');
+  channel.bind('messages-event', function(data) {
+      alert(JSON.stringify(data.message));
+  });
   
 </script>
 <body>

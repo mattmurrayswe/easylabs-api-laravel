@@ -30,6 +30,7 @@ class Patient extends Authenticatable
         'remember_medicine',
         'treatment_feedback',
         'prescriber_id',
+        'room_id',
         'id_permissao',
         'uploaded_foto_perfil',
         'street_number',

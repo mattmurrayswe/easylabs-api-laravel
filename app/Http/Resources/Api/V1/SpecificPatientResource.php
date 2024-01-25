@@ -33,6 +33,7 @@ class SpecificPatientResource extends JsonResource
             ],
             'prescriber' => [
                 'prescriber_id' => $this->prescriber->id ?? null,
+                'room_id' => $this->room_id ?? null,
                 'clinic_address' => $this->prescriber->clinic_address ?? null,
                 'data' => $this->prescriber ?? null,
             ]
