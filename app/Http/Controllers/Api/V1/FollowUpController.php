@@ -66,21 +66,52 @@ class FollowUpController extends Controller
     }    
 
     public function prescriberMessagesPatient(Request $request)
-    { 
-        $validatedData = $request->validate([
-            'message' => 'required',
-            'patient_id' => 'required|exists:patients,id'
-        ]);
+    {
+        try {
 
-        $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
-            'prescriber_id' => Auth::guard("webPresc")->id(),
-            'sentby' => 'presc'
-        ]));
+            $validatedData = $request->validate([
+                'message' => 'required',
+                'patient_id' => 'required|exists:patients,id'
+            ]);
 
-        return response()->json(
-            ['message' => 'Mensagem enviada com sucesso', 'data' => $message],
-            201
-        );
+            $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
+                'prescriber_id' => Auth::guard("webPresc")->id(),
+                'sentby' => 'presc'
+            ]));
+
+            $patient = Patient::where("id", $request->patient_id)->first();
+
+            if($patient->prescriber_id != Auth::guard('webPresc')->id()) {
+                return response()->json(
+                    ['message' => 'Este paciente não está vinculado ao seu prescritor.'],
+                    422
+                );
+            }
+
+            event(new MessagesEvent(
+                $request->message,
+                false,
+                Auth::guard('webPresc')->id(),
+                $patient->room_id
+            ));
+
+            event(new SininhoEvent(
+                "Nova mensagem do prescritor.",
+                $patient->room_id
+            ));
+
+            return response()->json(
+                ['message' => 'Mensagem enviada com sucesso', 'data' => $message, 'room_id' => $patient->room_id],
+                201
+            );
+
+        } catch (\Throwable $th) {
+
+            return response()->json(
+                $th->getMessage(),
+                500
+            );
+        }
     }    
 
     public function patientMessagesPrescriber(Request $request)
@@ -100,9 +131,8 @@ class FollowUpController extends Controller
             $patient = Patient::where("id", Auth::guard('webPatient')->id())->first();
     
             event(new SininhoEvent(
-                [
-                    'message' => "Nova mensagem do paciente {$patient->name}",
-                ],
+                "Nova mensagem do paciente {$patient->name}",
+                $patient->room_id
             ));
     
             event(new MessagesEvent(

@@ -12,10 +12,12 @@ class SininhoEvent implements ShouldBroadcast
   use Dispatchable, InteractsWithSockets, SerializesModels;
 
   public $sininho;
+  public $room_id;
 
-  public function __construct($sininho)
+  public function __construct($sininho, $room_id)
   {
       $this->sininho = $sininho;
+      $this->room_id = $room_id;
   }
 
   public function broadcastOn()
