@@ -85,35 +85,44 @@ class FollowUpController extends Controller
 
     public function patientMessagesPrescriber(Request $request)
     {
-        $validatedData = $request->validate([
-            'message' => 'required',
-            'prescriber_id' => 'required|exists:prescribers,id'
-        ]);
+        try {
 
-        $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
-            'patient_id' => Auth::guard("webPatient")->id(),
-            'sentby' => 'patient'
-        ]));
+            $validatedData = $request->validate([
+                'message' => 'required',
+                'prescriber_id' => 'required|exists:prescribers,id'
+            ]);
+    
+            $message = PatientMessagesPrescriber::create(array_merge($validatedData, [
+                'patient_id' => Auth::guard("webPatient")->id(),
+                'sentby' => 'patient'
+            ]));
+    
+            $patient = Patient::where("id", Auth::guard('webPatient')->id())->first();
+    
+            event(new SininhoEvent(
+                [
+                    'message' => "Nova mensagem do paciente {$patient->name}",
+                ],
+            ));
+    
+            event(new MessagesEvent(
+                $request->message,
+                true,
+                Auth::guard('webPatient')->id(),
+                $patient->room_id
+            ));
+    
+            return response()->json(
+                ['message' => 'Mensagem enviada com sucesso', 'data' => $message, 'room_id' => $patient->room_id],
+                201
+            );
 
-        $patient = Patient::where("id", Auth::guard('webPatient')->id())->first();
-
-        event(new SininhoEvent(
-            [
-                'message' => "Nova mensagem do paciente {$patient->name}",
-            ],
-        ));
-
-        event(new MessagesEvent(
-            $request->message,
-            true,
-            Auth::guard('webPatient')->id(),
-            $patient->room_id
-        ));
-
-        return response()->json(
-            ['message' => 'Mensagem enviada com sucesso', 'data' => $message],
-            201
-        );
+        } catch (\Throwable $th) {
+            return response()->json(
+                $th->getMessage(),
+                500
+            );
+        }
     }
 
     public function listMessagesForPrescriber(Request $request)

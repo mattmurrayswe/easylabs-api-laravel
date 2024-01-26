@@ -41,10 +41,6 @@ class ChatController extends Controller
                 3
             ));
 
-            // event(new SininhoEvent(
-            //     ['count_notifications' => 2]
-            // ));
-
             return response()->json(
                 "Teste de sininho realizado com sucesso",
                 200
