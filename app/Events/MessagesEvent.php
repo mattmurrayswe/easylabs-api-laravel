@@ -21,7 +21,7 @@ class MessagesEvent implements ShouldBroadcast
         string $message,
         bool $isPatientMessaging,
         int $id,
-        int $room
+        string $room
     ) {
         $this->message = $message;
         $this->isPatientMessaging = $isPatientMessaging;
